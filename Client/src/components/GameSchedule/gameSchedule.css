@@ -1,0 +1,86 @@
+.schedule_container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-bg);
+}
+
+.schedule_content_container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1280px;
+    background-color: rgb(245, 245, 252);
+    color: var(--color-bg);
+    margin-top: 2rem;
+    font-family: var(--font-main);
+    padding-bottom: 2rem;
+    /* padding: 0 6.5rem 2rem; */
+    
+    
+    /* padding-bottom: 4rem; */
+}
+
+.schedule_content_container h1 {
+    font-family: var(--font-header);
+}
+
+
+.day_tile_container {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+}
+
+.date_header {
+    display: flex;
+}
+
+.game_container {
+    display: flex;
+}
+
+.schedule_table {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 0.5rem;
+}
+
+.schedule_controller {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 6rem;
+}
+
+.schedule_btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    color: var(--color-bg);
+    width: 12rem;
+    border: 1px solid rgba(119, 136, 153, 0.5);
+    font-weight: 700;
+    transition:var(--transition);
+    padding: 0.75rem;
+}
+
+.schedule_btn:hover {
+    background-color: var(--color-dark-white);
+    border-color: rgba(119, 136, 153, 0.5);
+    transition:var(--transition)
+}
+
+.schedule_section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}

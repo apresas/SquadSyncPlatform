@@ -1,0 +1,38 @@
+.day_container {
+    color: var(--color-bg);
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* height: 3.5rem; */
+    width: 7rem;
+    aspect-ratio: 5/3;
+    padding: 1rem;
+    border-radius: 10px;
+    border: 1px solid rgba(119, 136, 153, 0.5);
+    transition: var(--transition);
+    scroll-behavior: smooth;
+}
+
+.day_container:hover {
+    background-color: var(--color-dark-white);
+    transition: var(--transition);
+    color: var(--color-bg);
+}
+
+.date_header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* gap: 1rem; */
+}
+
+.game_container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.number_of_games {
+    font-weight: 600;
+}

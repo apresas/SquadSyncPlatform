@@ -1,0 +1,70 @@
+.filter_controls_container {
+  display: flex;
+  align-items: center;
+  margin: 2rem 0 1rem;
+  gap: 1rem;
+  user-select: none;
+}
+
+.date_range_selector, .team_selector {
+  display: flex;
+  background-color: white;
+  align-items: center;
+  justify-content: space-between;
+  width: 12rem;
+  border: 1px solid rgba(119, 136, 153, 0.5);
+  padding: 0.75rem;
+  border-radius: 10px;
+  user-select: none;
+}
+
+.date_range_selector {
+    width: 15rem;
+}
+
+.next_btn, .prev_btn, .date_btn, .select_btn{
+    display: flex;
+    padding: 0;
+    color: var(--color-bg);
+    background-color: transparent;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    user-select: none;
+}
+
+.next_btn:hover, .prev_btn:hover, .date_btn:hover, .select_btn:hover{
+    border-color: transparent;
+}
+
+.select_btn {
+    width: 100%;
+    justify-content: space-between;
+}
+
+.arrow_btn {
+    display: flex;
+    width: 1.5rem;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.arrow_btn span {
+    height: 1.25rem;
+    width: 1px;
+    background-color: rgba(119, 136, 153, 0.5);
+}
+
+.date_picker_container {
+    position: relative;
+    user-select: none;
+}
+.popup_container {
+    position: absolute;
+    background-color: white;
+    border: 1px solid rgba(119, 136, 153, 0.5);
+    border-radius: 7px;
+    right: -1.25rem;
+    top: 3.5rem;
+}
+

@@ -1,0 +1,104 @@
+.ranking_container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-bg);
+}
+
+.ranking_content_container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1280px;
+  background-color: rgb(245, 245, 252);
+  color: var(--color-bg);
+  margin-top: 2rem;
+  font-family: var(--font-main);
+  padding-bottom: 4rem;
+}
+
+.rankings_table {
+  margin-top: 4rem;
+  border: 2px solid lightgray;
+  width: 85%;
+}
+
+.rankings_table thead {
+  background-color: var(--color-ohio-blue);
+  color: white;
+}
+
+.rankings_table thead td {
+  border: 1px solid var(--color-nav);
+  padding: 0 0.5rem;
+}
+
+.rankings_table thead tr {
+  height: 1rem;
+}
+
+.rankings_table thead th {
+  border: 1px solid var(--color-nav);
+  font-family: var(--font-header);
+  font-size: 2.25rem;
+  padding: 0.5rem;
+}
+
+
+.rankings_table td {
+  height: 3rem;
+  text-align: center;
+  padding: 0.5rem;
+  /* border: 1px solid lightgray; */
+}
+
+.rankings_table tbody tr:nth-of-type(even) {
+  background-color: var(--color-dark-white);
+}
+
+.rankings_table tbody tr{
+    border-top: 1px solid lightgray;
+}
+
+.rankings_table tbody td:nth-of-type(2) {
+  text-align: left;
+}
+
+.ranking_column {
+  text-align: center;
+}
+
+.team_column {
+  width: 60%;
+}
+
+.record_column {
+  width: 5rem;
+}
+
+.ranking_name_container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-weight: 600;
+  /* justify-content: center; */
+}
+
+.ranking_name_container img {
+  width: 3rem;
+  aspect-ratio: 1/1;
+}
+
+.table_footer {
+    width: 85%;
+    padding: 0.5rem 0;
+    background-color: var(--color-ohio-blue);
+    color: white;
+    border: 1px solid lightgray;
+}
+
+.table_footer p {
+    margin: 0 1rem;
+}

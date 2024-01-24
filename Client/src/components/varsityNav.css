@@ -1,0 +1,8 @@
+.varsity_nav_container {
+    gap: 1rem;
+    display: flex;
+}
+
+.navLinks {
+    color: white;
+}

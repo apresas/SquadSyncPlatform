@@ -1,0 +1,330 @@
+[
+    {
+        "redTeam": [
+            {
+                "playerID": 241910,
+                "teamID": 9,
+                "firstName": "Caleb",
+                "lastName": "Ross",
+                "position": "G"
+            },
+            {
+                "playerID": 234340,
+                "teamID": 0,
+                "firstName": "Nolan",
+                "lastName": "Smith",
+                "position": "G"
+            },
+            {
+                "playerID": 241947,
+                "teamID": 16,
+                "firstName": "Evan",
+                "lastName": "Merna",
+                "position": "G"
+            },
+            {
+                "playerID": 255634,
+                "teamID": 7,
+                "firstName": "Ben",
+                "lastName": "Dorbish",
+                "position": "F"
+            },
+            {
+                "playerID": 294313,
+                "teamID": 5,
+                "firstName": "Trey",
+                "lastName": "Martin",
+                "position": "F"
+            },
+            {
+                "playerID": 251716,
+                "teamID": 13,
+                "firstName": "Christopher",
+                "lastName": "Heekin",
+                "position": "F"
+            },
+            {
+                "playerID": 223844,
+                "teamID": 12,
+                "firstName": "Sean",
+                "lastName": "Moore",
+                "position": "F"
+            },
+            {
+                "playerID": 238666,
+                "teamID": 12,
+                "firstName": "Nicholas",
+                "lastName": "Scharfenberger",
+                "position": "F"
+            },
+            {
+                "playerID": 258248,
+                "teamID": 9,
+                "firstName": "Brain",
+                "lastName": "Savage",
+                "position": "F"
+            },
+            {
+                "playerID": 278581,
+                "teamID": 10,
+                "firstName": "Robert",
+                "lastName": "Wilson",
+                "position": "F"
+            },
+            {
+                "playerID": 229840,
+                "teamID": 5,
+                "firstName": "Antonio",
+                "lastName": "Dejanov",
+                "position": "F"
+            },
+            {
+                "playerID": 249890,
+                "teamID": 13,
+                "firstName": "Henry",
+                "lastName": "Ropp",
+                "position": "F"
+            },
+            {
+                "playerID": 228286,
+                "teamID": 15,
+                "firstName": "Steven",
+                "lastName": "Wolfe",
+                "position": "F"
+            },
+            {
+                "playerID": 247190,
+                "teamID": 15,
+                "firstName": "Gavin",
+                "lastName": "Scott",
+                "position": "F"
+            },
+            {
+                "playerID": 278504,
+                "teamID": 1,
+                "firstName": "Michael",
+                "lastName": "Wozniak",
+                "position": "F"
+            },
+            {
+                "playerID": 240676,
+                "teamID": 12,
+                "firstName": "John",
+                "lastName": "Vincent III",
+                "position": "D"
+            },
+            {
+                "playerID": 201841,
+                "teamID": 3,
+                "firstName": "Nicholas",
+                "lastName": "Shevetz",
+                "position": "D"
+            },
+            {
+                "playerID": 278991,
+                "teamID": 7,
+                "firstName": "Ben",
+                "lastName": "Garth",
+                "position": "D"
+            },
+            {
+                "playerID": 263066,
+                "teamID": 13,
+                "firstName": "Andrew",
+                "lastName": "Coburn",
+                "position": "D"
+            },
+            {
+                "playerID": 206771,
+                "teamID": 4,
+                "firstName": "Brandon",
+                "lastName": "Monska",
+                "position": "D"
+            },
+            {
+                "playerID": 265494,
+                "teamID": 4,
+                "firstName": "Grant",
+                "lastName": "Heerdt",
+                "position": "D"
+            },
+            {
+                "playerID": 210923,
+                "teamID": 3,
+                "firstName": "Maxwell",
+                "lastName": "Lockett",
+                "position": "D"
+            },
+            {
+                "playerID": 232329,
+                "teamID": 7,
+                "firstName": "Sam",
+                "lastName": "Ziliak",
+                "position": "D"
+            }
+        ],
+        "blueTeam": [
+            {
+                "playerID": 280578,
+                "teamID": 9,
+                "firstName": "Robert",
+                "lastName": "Cook",
+                "position": "G"
+            },
+            {
+                "playerID": 241666,
+                "teamID": 7,
+                "firstName": "Landon",
+                "lastName": "Ramsier",
+                "position": "G"
+            },
+            {
+                "playerID": 209633,
+                "teamID": 12,
+                "firstName": "Dylan",
+                "lastName": "Fansler",
+                "position": "G"
+            },
+            {
+                "playerID": 255634,
+                "teamID": 7,
+                "firstName": "Ben",
+                "lastName": "Dorbish",
+                "position": "F"
+            },
+            {
+                "playerID": 294313,
+                "teamID": 5,
+                "firstName": "Trey",
+                "lastName": "Martin",
+                "position": "F"
+            },
+            {
+                "playerID": 251716,
+                "teamID": 13,
+                "firstName": "Christopher",
+                "lastName": "Heekin",
+                "position": "F"
+            },
+            {
+                "playerID": 223844,
+                "teamID": 12,
+                "firstName": "Sean",
+                "lastName": "Moore",
+                "position": "F"
+            },
+            {
+                "playerID": 238666,
+                "teamID": 12,
+                "firstName": "Nicholas",
+                "lastName": "Scharfenberger",
+                "position": "F"
+            },
+            {
+                "playerID": 258248,
+                "teamID": 9,
+                "firstName": "Brain",
+                "lastName": "Savage",
+                "position": "F"
+            },
+            {
+                "playerID": 278581,
+                "teamID": 10,
+                "firstName": "Robert",
+                "lastName": "Wilson",
+                "position": "F"
+            },
+            {
+                "playerID": 229840,
+                "teamID": 5,
+                "firstName": "Antonio",
+                "lastName": "Dejanov",
+                "position": "F"
+            },
+            {
+                "playerID": 249890,
+                "teamID": 13,
+                "firstName": "Henry",
+                "lastName": "Ropp",
+                "position": "F"
+            },
+            {
+                "playerID": 228286,
+                "teamID": 15,
+                "firstName": "Steven",
+                "lastName": "Wolfe",
+                "position": "F"
+            },
+            {
+                "playerID": 247190,
+                "teamID": 15,
+                "firstName": "Gavin",
+                "lastName": "Scott",
+                "position": "F"
+            },
+            {
+                "playerID": 278504,
+                "teamID": 1,
+                "firstName": "Michael",
+                "lastName": "Wozniak",
+                "position": "F"
+            },
+            {
+                "playerID": 240676,
+                "teamID": 12,
+                "firstName": "John",
+                "lastName": "Vincent III",
+                "position": "D"
+            },
+            {
+                "playerID": 201841,
+                "teamID": 3,
+                "firstName": "Nicholas",
+                "lastName": "Shevetz",
+                "position": "D"
+            },
+            {
+                "playerID": 278991,
+                "teamID": 7,
+                "firstName": "Ben",
+                "lastName": "Garth",
+                "position": "D"
+            },
+            {
+                "playerID": 263066,
+                "teamID": 13,
+                "firstName": "Andrew",
+                "lastName": "Coburn",
+                "position": "D"
+            },
+            {
+                "playerID": 206771,
+                "teamID": 4,
+                "firstName": "Brandon",
+                "lastName": "Monska",
+                "position": "D"
+            },
+            {
+                "playerID": 265494,
+                "teamID": 4,
+                "firstName": "Grant",
+                "lastName": "Heerdt",
+                "position": "D"
+            },
+            {
+                "playerID": 210923,
+                "teamID": 3,
+                "firstName": "Maxwell",
+                "lastName": "Lockett",
+                "position": "D"
+            },
+            {
+                "playerID": 232329,
+                "teamID": 7,
+                "firstName": "Sam",
+                "lastName": "Ziliak",
+                "position": "D"
+            }
+        ]
+    }
+]

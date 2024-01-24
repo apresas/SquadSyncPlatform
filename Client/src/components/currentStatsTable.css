@@ -1,0 +1,27 @@
+.current_stats_table {
+    background-color: rgba(255, 255, 255, 1);
+    color: var(--color-bg);
+    padding: 2rem;
+    border-top: 6px solid white;
+    border-bottom: 6px solid white;
+    font-family: var(--font-main);
+    border-radius: 8px;
+    opacity: 0.85;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.35);
+    /* border: 2px solid rgba(119, 136, 153, 0.5); */
+  }
+
+  .current_stats_table tr {
+    text-align: center;
+  }
+
+  .current_stats_table td {
+    height: 2.5rem;
+    font-size: 1.75rem;
+    font-weight: 700;
+    border-right: 1px solid rgba(119, 136, 153, 0.5);
+  }
+
+  .current_stats_table th {
+    border-right: 1px solid rgba(119, 136, 153, 0.5);
+  }

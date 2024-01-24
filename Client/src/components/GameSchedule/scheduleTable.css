@@ -1,0 +1,17 @@
+.schedule_table_container {
+    width: 85%;
+    background-color: white;
+    border-right: 1px solid rgba(119, 136, 153, 0.5);
+    border-left: 1px solid rgba(119, 136, 153, 0.5);
+    border-top: 1px solid rgba(119, 136, 153, 0.5);
+}
+
+.schedule_table_container h2 {
+    margin-left: 3rem;
+    font-size: 2rem;
+    font-family: var(--font-header);
+}
+
+.table_items {
+width: 50rem;
+}

@@ -1,0 +1,62 @@
+[
+  {
+    "playerID": 0,
+    "firstName": "Sean",
+    "lastName": "Moore",
+    "class": "2024",
+    "team": "St.Charles",
+    "logo": "../../src/assets/Logos/SC_logo.svg",
+    "goals": 9,
+    "assists": 6,
+    "points": 15,
+    "division": "Red"
+  },
+  {
+    "playerID": 1,
+    "firstName": "Jake",
+    "lastName": "Struck",
+    "class": "2025",
+    "team": "Olentangy Liberty",
+    "logo": "../../src/assets/Logos/Liberty_logo.svg",
+    "goals": 8,
+    "assists": 12,
+    "points": 20,
+    "division": "Red"
+  },
+  {
+    "playerID": 2,
+    "firstName": "Test",
+    "lastName": "Savage",
+    "class": "2024",
+    "team": "Olentangy Liberty",
+    "logo": "../../src/assets/Logos/Liberty_logo.svg",
+    "goals": 6,
+    "assists": 6,
+    "points": 12,
+    "division": "White"
+  },
+  {
+    "playerID": 3,
+    "firstName": "Test",
+    "lastName": "Lefebvre",
+    "class": "2024",
+    "team": "New Albeny",
+    "logo": "../../src/assets/Logos/NewAlbany_logo.svg",
+    "goals": 6,
+    "assists": 3,
+    "points": 9,
+    "division": "White"
+  },
+  {
+    "playerID": 4,
+    "firstName": "Test",
+    "lastName": "Leonard",
+    "class": "2025",
+    "team": "Olentangy Liberty",
+    "logo": "../../src/assets/Logos/Liberty_logo.svg",
+    "goals": 6,
+    "assists": 4,
+    "points": 10,
+    "division": "White"
+  }
+]

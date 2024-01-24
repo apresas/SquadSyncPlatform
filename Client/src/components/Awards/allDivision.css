@@ -1,0 +1,112 @@
+.all_division_container {
+    /* border: 1px solid lightgrey; */
+    width: 22.5rem;
+    background-color: white;
+    /* box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.35); */
+    border: 1px solid lightgrey;
+}
+
+.all_division_header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1rem;
+    border-bottom: 1px solid lightgray;
+    /* background-color: red; */
+}
+
+.all_division_header h2, .all_division_header h3, .all_division_item_container h2, .all_division_item_container h3 {
+    margin: 0;
+}
+
+.all_division_header h2 {
+    font-family: var(--font-header);
+}
+
+.all_division_header h3 {
+    font-family: var(--font-sub-header);
+    font-weight: 300;
+}
+
+.all_division_item_container{
+    position: relative;
+    display: flex;
+    height: 5rem;
+    border-bottom: 1px solid lightgrey;
+    transition: var(--transition-fast);
+    background-color: white;
+    /* border: 1px solid lightgray; */
+}
+
+.all_division_item_container::after {
+    content: "";
+    opacity: 0;
+    position: absolute;
+    bottom: 0;
+    height: 3px;
+    width: 0;
+    background-color: var(--color-ohio-blue);
+    box-shadow: 0px 3px 7px rgba(26, 86, 214, 0.5);
+    transition: var(--transition-fast);
+  }
+  
+  .all_division_item_container:hover::after {
+    transition: var(--transition-fast);
+    width: 100%;
+    opacity: 1;
+  }
+
+.all_division_item_container:hover{
+    transform: scale(1.03);
+    transition: var(--transition-fast);
+    z-index: 2;
+
+}
+
+  .all_division_item_container:hover::before {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    border: 1px solid lightgrey;
+  }
+
+.all_division_logo, .all_division_position, .all_division_info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.all_division_position {
+    aspect-ratio: 1/2;
+    font-size: 1.25rem;
+    font-weight: 600;
+    border-right: 1px solid lightgrey;
+}
+
+.all_division_logo {
+    aspect-ratio: 1/1;
+    border-right: 1px solid lightgrey;
+    padding: 1rem;
+}
+
+.all_division_logo img {
+    height: 3.5rem;
+    width: 3.5rem;
+}
+
+.all_division_info {
+    width: 100%;
+    flex-direction: column;
+}
+
+.all_division_info h2 {
+    font-family: var(--font-header);
+
+}
+
+.all_division_info h3 { 
+    font-family: var(--font-sub-header);
+    font-weight: 300;
+}

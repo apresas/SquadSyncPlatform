@@ -1,0 +1,43 @@
+.sponcer_bar_container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(16, 16, 17);
+    padding: 0.25rem 0;
+}
+
+.sponcer_bar_container::after {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-image: url(../../assets/Sponcer_bar_img.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    opacity: 0.25;
+}
+
+.sponcer_bar_content_container {
+    display: flex;
+    width: 100%;
+    max-width: 1280px;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+
+.sponcer_bar_content_container p{
+    margin: 0rem 0.5rem;
+    font-family: var(--font-main);
+    font-size: 0.75rem;
+}
+
+.sponcer_bar_content_container img{
+    width: 7%;
+    cursor: pointer;
+}
+
+.sponcer_bar_content_container img, .sponcer_bar_content_container p {
+    z-index: 2;
+}

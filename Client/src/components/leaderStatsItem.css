@@ -1,0 +1,74 @@
+.leader_stats_item {
+    display: grid;
+    align-content: center;
+    grid-template-columns: 1fr 8fr 2fr;
+    background-color: var(--color-border-white);
+    border-radius: 15px;
+    padding: 0.3rem 0.5rem;
+    font-family: "Bebas Neue";
+    color: var(--color-bg);
+    font-weight: 300;
+    letter-spacing: 0.03rem;
+    font-size: 1rem;
+    position: relative;
+    overflow: hidden;
+}
+
+
+/* .leader_stats_item::after {
+    content: "";
+    position: absolute;
+    background-color:var(--color-ohio-blue);
+    border-radius: 20px;
+    height: 100%;
+    width: 0%;
+    transition: var(--transition-fast);
+}
+
+.leader_stats_item:hover::after {
+    width: 80%;
+    transition: var(--transition-fast);
+} */
+
+.select_item {
+    position: absolute;
+    height: 100%;
+    border-radius: 15px;
+    background-color: rgba(0, 71, 171, 1);
+    width: 0%;
+    transition: var(--transition-fast);
+}
+
+/* .select_item_active {
+    position: absolute;
+    background-color: rgba(0, 71, 171, 1);
+    border-radius: 15px;
+    height: 100%;
+    width: 80%;
+    transition: var(--transition-fast);
+} */
+
+.leader_stats_item:hover .select_item {
+    width: 80%;
+    transition: var(--transition-fast);
+}
+
+.leader_stats_item:hover > .leader_name, .leader_stats_item:hover .position_number {
+    color: white;
+}
+
+.position_number {
+    margin-left: 0.5rem;
+    z-index: 2;
+}
+
+.leader_name {
+    margin-left: 0.5rem;
+    z-index: 2;
+}
+
+.leader_stat {
+    justify-self: end;
+    padding-right: 0.5rem;
+    z-index: 2;
+}

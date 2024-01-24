@@ -1,0 +1,1806 @@
+[
+  {
+    "date": "2023-11-12",
+    "games": []
+  },
+  {
+    "date": "2023-11-13",
+    "games": []
+  },
+  {
+    "date": "2023-11-14",
+    "games": []
+  },
+  {
+    "date": "2023-11-15",
+    "games": []
+  },
+  {
+    "date": "2023-11-16",
+    "games": []
+  },
+  {
+    "date": "2023-11-17",
+    "games": [
+      {
+        "gameID": 0,
+        "homeID": 0,
+        "homeTeam": "Archbishop Moeller",
+        "awayID": 9,
+        "awayTeam": "Olentangy Liberty",
+        "homeScore": 1,
+        "awayScore": 5,
+        "time": "6:00pm",
+        "arena": "Northlands"
+      },
+      {
+        "gameID": 1,
+        "homeID": 11,
+        "homeTeam": "Springboro",
+        "awayID": 3,
+        "awayTeam": "Dublin Coffman",
+        "homeScore": 0,
+        "awayScore": 8,
+        "time": "7:00pm",
+        "arena": "South Metro"
+      },
+      {
+        "gameID": 2,
+        "homeID": 14,
+        "homeTeam": "Upper Arlington",
+        "awayID": 12,
+        "awayTeam": "St. Charles",
+        "homeScore": 1,
+        "awayScore": 2,
+        "time": "7:30pm",
+        "arena": "Ice Haus"
+      },
+      {
+        "gameID": 3,
+        "homeID": 10,
+        "homeTeam": "Olentangy Orange",
+        "awayID": 2,
+        "awayTeam": "Columbus Academy",
+        "homeScore": 7,
+        "awayScore": 1,
+        "time": "7:30pm",
+        "arena": "North 1"
+      },
+      {
+        "gameID": 4,
+        "homeID": 5,
+        "homeTeam": "Gahanna",
+        "awayID": 6,
+        "awayTeam": "New Albany",
+        "homeScore": 3,
+        "awayScore": 5,
+        "time": "8:15pm",
+        "arena": "Easton 2"
+      },
+      {
+        "gameID": 5,
+        "homeID": 4,
+        "homeTeam": "Dublin Jerome",
+        "awayID": 8,
+        "awayTeam": "Olentangy Berlin",
+        "homeScore": 2,
+        "awayScore": 4,
+        "time": "8:20pm",
+        "arena": "Dublin 1"
+      },
+      {
+        "gameID": 6,
+        "homeID": 16,
+        "homeTeam": "Thomas Worthington",
+        "awayID": 15,
+        "awayTeam": "Worthington Kilborne",
+        "homeScore": 4,
+        "awayScore": 2,
+        "time": "8:30pm",
+        "arena": "Ice Works"
+      },
+      {
+        "gameID": 7,
+        "homeID": 7,
+        "homeTeam": "Olentangy",
+        "awayID": 1,
+        "awayTeam": "Bishop Watterson",
+        "homeScore": 8,
+        "awayScore": 2,
+        "time": "8:30pm",
+        "arena": "North 3"
+      }
+    ]
+  },
+  {
+    "date": "2023-11-18",
+    "games": [
+      {
+        "gameID": 8,
+        "homeID": 10,
+        "homeTeam": "Olentangy Orange",
+        "awayID": 8,
+        "awayTeam": "Olentangy Berlin",
+        "homeScore": 3,
+        "awayScore": 1,
+        "time": "6:00pm",
+        "arena": "North 1"
+      },
+      {
+        "gameID": 9,
+        "homeID": 12,
+        "homeTeam": "St.Charles",
+        "awayID": 4,
+        "awayTeam": "Dublin Jerome",
+        "homeScore": 4,
+        "awayScore": 2,
+        "time": "8:00pm",
+        "arena": "Ice Haus"
+      },
+      {
+        "gameID": 10,
+        "homeID": 16,
+        "homeTeam": "Thomas Worthington",
+        "awayID": 7,
+        "awayTeam": "Olentangy",
+        "homeScore": 2,
+        "awayScore": 4,
+        "time": "8:00pm",
+        "arena": "North 1"
+      }
+    ]
+  },
+  {
+    "date": "2023-11-19",
+    "games": [
+      {
+        "gameID": 9,
+        "homeID": 14,
+        "homeTeam": "Upper Arlington",
+        "awayID": 16,
+        "awayTeam": "Thomas Worthington",
+        "homeScore": 4,
+        "awayScore": 1,
+        "time": "2:00pm",
+        "arena": "Ice Haus"
+      },
+      {
+        "gameID": 10,
+        "homeID": 15,
+        "homeTeam": "Worthington Kilborne",
+        "awayID": 2,
+        "awayTeam": "Columbus Academy",
+        "homeScore": 6,
+        "awayScore": 3,
+        "time": "4:00pm",
+        "arena": "Ice Works"
+      },
+      {
+        "gameID": 11,
+        "homeID": 1,
+        "homeTeam": "Bishop Watterson",
+        "awayID": 3,
+        "awayTeam": "Dublin Coffman",
+        "homeScore": 1,
+        "awayScore": 5,
+        "time": "5:00pm",
+        "arena": "Fairgrounds"
+      },
+      {
+        "gameID": 12,
+        "homeID": 9,
+        "homeTeam": "Olentangy Liberty",
+        "awayID": 6,
+        "awayTeam": "New Albany",
+        "homeScore": 5,
+        "awayScore": 4,
+        "time": "5:00pm",
+        "arena": "North 1"
+      },
+      {
+        "gameID": 13,
+        "homeID": 5,
+        "homeTeam": "Gahanna",
+        "awayID": 11,
+        "awayTeam": "Springboro",
+        "homeScore": 2,
+        "awayScore": 3,
+        "time": "5:30pm",
+        "arena": "Easton 2"
+      }
+    ]
+  },
+  {
+    "date": "2023-11-20",
+    "games": []
+  },
+  {
+    "date": "2023-11-21",
+    "games": []
+  },
+  {
+    "date": "2023-11-22",
+    "games": []
+  },
+  {
+    "date": "2023-11-23",
+    "games": []
+  },
+  {
+    "date": "2023-11-24",
+    "games": []
+  },
+  {
+    "date": "2023-11-25",
+    "games": []
+  },
+  {
+    "date": "2023-11-26",
+    "games": []
+  },
+  {
+    "date": "2023-11-27",
+    "games": []
+  },
+  {
+    "date": "2023-11-28",
+    "games": []
+  },
+  {
+    "date": "2023-11-29",
+    "games": []
+  },
+  {
+    "date": "2023-11-30",
+    "games": []
+  },
+  {
+    "date": "2023-12-01",
+    "games": [
+      {
+        "gameID": 14,
+        "homeID": 8,
+        "homeTeam": "Olentangy Berlin",
+        "awayID": 14,
+        "awayTeam": "Upper Arlington",
+        "homeScore": 3,
+        "awayScore": 1,
+        "time": "7:00pm",
+        "arena": "North 1"
+      },
+      {
+        "gameID": 15,
+        "homeID": 12,
+        "homeTeam": "St.Charles",
+        "awayID": 9,
+        "awayTeam": "Olentangy Liberty",
+        "homeScore": 3,
+        "awayScore": 11,
+        "time": "7:30pm",
+        "arena": "Ice Haus"
+      },
+      {
+        "gameID": 16,
+        "homeID": 5,
+        "homeTeam": "Gahanna",
+        "awayID": 1,
+        "awayTeam": "Bishop Watterson",
+        "homeScore": 7,
+        "awayScore": 1,
+        "time": "8:45pm",
+        "arena": "Easton 2"
+      }
+    ]
+  },
+  {
+    "date": "2023-12-02",
+    "games": [
+      {
+        "gameID": 17,
+        "homeID": 11,
+        "homeTeam": "Springboro",
+        "awayID": 15,
+        "awayTeam": "Worthington Kilborne",
+        "homeScore": 3,
+        "awayScore": 5,
+        "time": "8:30pm",
+        "arena": "South Metro"
+      },
+      {
+        "gameID": 18,
+        "homeID": 13,
+        "homeTeam": "St.Xavier",
+        "awayID": 14,
+        "awayTeam": "Upper Arlington",
+        "homeScore": 7,
+        "awayScore": 3,
+        "time": "5:00pm",
+        "arena": "Sports Plus"
+      },
+      {
+        "gameID": 19,
+        "homeID": 16,
+        "homeTeam": "Thomas Worthington",
+        "awayID": 0,
+        "awayTeam": "Archbishop Moeller",
+        "homeScore": 0,
+        "awayScore": 6,
+        "time": "6:00pm",
+        "arena": "North 1"
+      },
+      {
+        "gameID": 20,
+        "homeID": 1,
+        "homeTeam": "Bishop Watterson",
+        "awayID": 2,
+        "awayTeam": "Columbus Academy",
+        "homeScore": 10,
+        "awayScore": 2,
+        "time": "8:40pm",
+        "arena": "Fairgrounds"
+      }
+    ]
+  },
+  {
+    "date": "2023-12-03",
+    "games": [
+      {
+        "gameID": 21,
+        "homeID": 12,
+        "homeTeam": "St.Charles",
+        "awayID": 8,
+        "awayTeam": "Olentangy Berlin",
+        "homeScore": 4,
+        "awayScore": 1,
+        "time": "1:10pm",
+        "arena": "Ice Haus"
+      },
+      {
+        "gameID": 22,
+        "homeID": 13,
+        "homeTeam": "St.Xavier",
+        "awayID": 16,
+        "awayTeam": "Thomas Worthington",
+        "homeScore": 3,
+        "awayScore": 5,
+        "time": "3:00pm",
+        "arena": "Sports Plus"
+      },
+      {
+        "gameID": 23,
+        "homeID": 14,
+        "homeTeam": "Upper Arlington",
+        "awayID": 5,
+        "awayTeam": "Gahanna",
+        "homeScore": 4,
+        "awayScore": 2,
+        "time": "3:10pm",
+        "arena": "Ice Haus"
+      },
+      {
+        "gameID": 24,
+        "homeID": 0,
+        "homeTeam": "Archbishop Moeller",
+        "awayID": 6,
+        "awayTeam": "New Albany",
+        "homeScore": 3,
+        "awayScore": 1,
+        "time": "6:00pm",
+        "arena": "Northlands"
+      },
+      {
+        "gameID": 25,
+        "homeID": 2,
+        "homeTeam": "Columbus Academy",
+        "awayID": 11,
+        "awayTeam": "Springboro",
+        "homeScore": 2,
+        "awayScore": 6,
+        "time": "5:50pm",
+        "arena": "Easton 2"
+      }
+    ]
+  },
+  {
+    "date": "2023-12-04",
+    "games": []
+  },
+  {
+    "date": "2023-12-05",
+    "games": []
+  },
+  {
+    "date": "2023-12-06",
+    "games": []
+  },
+  {
+    "date": "2023-12-07",
+    "games": []
+  },
+  {
+    "date": "2023-12-08",
+    "games": [
+      {
+        "gameID": 26,
+        "homeID": 0,
+        "homeTeam": "Archbishop Moeller",
+        "awayID": 8,
+        "awayTeam": "Olentangy Berlin",
+        "homeScore": 3,
+        "awayScore": 1,
+        "time": "6:00pm",
+        "arena": "Northlands"
+      },
+      {
+        "gameID": 27,
+        "homeID": 15,
+        "homeTeam": "Worthington Kilborne",
+        "awayID": 11,
+        "awayTeam": "Springboro",
+        "homeScore": 4,
+        "awayScore": 2,
+        "time": "6:30pm",
+        "arena": "Ice Works"
+      },
+      {
+        "gameID": 28,
+        "homeID": 7,
+        "homeTeam": "Olentangy",
+        "awayID": 2,
+        "awayTeam": "Columbus Academy",
+        "homeScore": 14,
+        "awayScore": 1,
+        "time": "7:20pm",
+        "arena": "North 1"
+      },
+      {
+        "gameID": 29,
+        "homeID": 6,
+        "homeTeam": "New Albany",
+        "awayID": 12,
+        "awayTeam": "St. Charles",
+        "homeScore": 0,
+        "awayScore": 6,
+        "time": "7:30pm",
+        "arena": "Easton 2"
+      },
+      {
+        "gameID": 30,
+        "homeID": 4,
+        "homeTeam": "Dublin Jerome",
+        "awayID": 10,
+        "awayTeam": "Olentangy Orange",
+        "homeScore": 6,
+        "awayScore": 2,
+        "time": "7:50pm",
+        "arena": "Dublin 1"
+      }
+    ]
+  },
+  {
+    "date": "2023-12-09",
+    "games": [
+      {
+        "gameID": 31,
+        "homeID": 11,
+        "homeTeam": "Springboro",
+        "awayID": 4,
+        "awayTeam": "Dublin Jerome",
+        "homeScore": 3,
+        "awayScore": 1,
+        "time": "6:00pm",
+        "arena": "South Metro"
+      },
+      {
+        "gameID": 32,
+        "homeID": 13,
+        "homeTeam": "St.Xavier",
+        "awayID": 1,
+        "awayTeam": "Bishop Watterson",
+        "homeScore": 4,
+        "awayScore": 2,
+        "time": "6:30pm",
+        "arena": "Sports Plus"
+      },
+      {
+        "gameID": 33,
+        "homeID": 3,
+        "homeTeam": "Dublin Coffman",
+        "awayID": 15,
+        "awayTeam": "Worthington Kilborne",
+        "homeScore": 14,
+        "awayScore": 1,
+        "time": "7:20pm",
+        "arena": "Dublin 1"
+      },
+      {
+        "gameID": 34,
+        "homeID": 5,
+        "homeTeam": "Gahanna",
+        "awayID": 7,
+        "awayTeam": "Olentangy",
+        "homeScore": 0,
+        "awayScore": 6,
+        "time": "7:30pm",
+        "arena": "Easton 2"
+      },
+      {
+        "gameID": 35,
+        "homeID": 8,
+        "homeTeam": "Olentangy Berlin",
+        "awayID": 16,
+        "awayTeam": "Thomas Worthington",
+        "homeScore": 6,
+        "awayScore": 2,
+        "time": "7:50pm",
+        "arena": "North 1"
+      },
+      {
+        "gameID": 36,
+        "homeID": 14,
+        "homeTeam": "Upper Arlington",
+        "awayID": 9,
+        "awayTeam": "Olentangy Liberty",
+        "homeScore": 6,
+        "awayScore": 2,
+        "time": "7:50pm",
+        "arena": "Ice Haus"
+      }
+    ]
+  },
+  {
+    "date": "2023-12-10",
+    "games": [
+      {
+        "gameID": 37,
+        "homeID": 13,
+        "homeTeam": "St.Xavier",
+        "awayID": 2,
+        "awayTeam": "Columbus Academy",
+        "homeScore": 12,
+        "awayScore": 0,
+        "time": "2:00pm",
+        "arena": "Sports Plus"
+      },
+      {
+        "gameID": 38,
+        "homeID": 9,
+        "homeTeam": "Olentangy Liberty",
+        "awayID": 0,
+        "awayTeam": "Archbishop Moeller",
+        "homeScore": 7,
+        "awayScore": 0,
+        "time": "3:15pm",
+        "arena": "North 2"
+      },
+      {
+        "gameID": 39,
+        "homeID": 6,
+        "homeTeam": "New Albany",
+        "awayID": 14,
+        "awayTeam": "Upper Arlington",
+        "homeScore": 1,
+        "awayScore": 3,
+        "time": "4:30pm",
+        "arena": "Easton 2"
+      },
+      {
+        "gameID": 40,
+        "homeID": 3,
+        "homeTeam": "Dublin Coffman",
+        "awayID": 11,
+        "awayTeam": "Springboro",
+        "homeScore": 4,
+        "awayScore": 0,
+        "time": "4:50pm",
+        "arena": "Dublin 1"
+      },
+      {
+        "gameID": 41,
+        "homeID": 10,
+        "homeTeam": "Olentangy Orange",
+        "awayID": 12,
+        "awayTeam": "St. Charles",
+        "homeScore": 3,
+        "awayScore": 2,
+        "time": "5:00pm",
+        "arena": "North 1"
+      },
+      {
+        "gameID": 42,
+        "homeID": 15,
+        "homeTeam": "Worthington Kilborne",
+        "awayID": 5,
+        "awayTeam": "Gahanna",
+        "homeScore": 4,
+        "awayScore": 2,
+        "time": "5:15pm",
+        "arena": "North 2"
+      },
+      {
+        "gameID": 43,
+        "homeID": 1,
+        "homeTeam": "Bishop Watterson",
+        "awayID": 16,
+        "awayTeam": "Thomas Worthington",
+        "homeScore": 0,
+        "awayScore": 3,
+        "time": "5:20pm",
+        "arena": "Fairgrounds"
+      }
+    ]
+  },
+  {
+    "date": "2023-12-11",
+    "games": []
+  },
+  {
+    "date": "2023-12-12",
+    "games": []
+  },
+  {
+    "date": "2023-12-13",
+    "games": []
+  },
+  {
+    "date": "2023-12-14",
+    "games": []
+  },
+  {
+    "date": "2023-12-15",
+    "games": [
+      {
+        "gameID": 44,
+        "homeID": 16,
+        "homeTeam": "Thomas Worthington",
+        "awayID": 6,
+        "awayTeam": "New Albany",
+        "homeScore": 2,
+        "awayScore": 5,
+        "time": "6:00pm",
+        "arena": "North 1"
+      },
+      {
+        "gameID": 45,
+        "homeID": 0,
+        "homeTeam": "Archbishop Moeller",
+        "awayID": 7,
+        "awayTeam": "Olentangy",
+        "homeScore": 1,
+        "awayScore": 5,
+        "time": "6:00pm",
+        "arena": "Northlands"
+      },
+      {
+        "gameID": 46,
+        "homeID": 4,
+        "homeTeam": "Dublin Jerome",
+        "awayID": 5,
+        "awayTeam": "Gahanna",
+        "homeScore": 3,
+        "awayScore": 3,
+        "time": "7:00pm",
+        "arena": "Dublin 1"
+      },
+      {
+        "gameID": 47,
+        "homeID": 2,
+        "homeTeam": "Columbus Academy",
+        "awayID": 15,
+        "awayTeam": "Worthington Kilborne",
+        "homeScore": 2,
+        "awayScore": 6,
+        "time": "7:30pm",
+        "arena": "Easton 2"
+      },
+      {
+        "gameID": 48,
+        "homeID": 10,
+        "homeTeam": "Olentangy Orange",
+        "awayID": 13,
+        "awayTeam": "St. Xavier",
+        "homeScore": 1,
+        "awayScore": 4,
+        "time": "8:00pm",
+        "arena": "North 1"
+      }
+    ]
+  },
+  {
+    "date": "2023-12-16",
+    "games": [
+      {
+        "gameID": 44,
+        "homeID": 2,
+        "homeTeam": "Columbus Academy",
+        "awayID": 3,
+        "awayTeam": "Dublin Coffman",
+        "homeScore": 0,
+        "awayScore": 5,
+        "time": "8:15pm",
+        "arena": "Dublin 2"
+      },
+      {
+        "gameID": 45,
+        "homeID": 4,
+        "homeTeam": "Dublin Jerome",
+        "awayID": 13,
+        "awayTeam": "St. Xavier",
+        "homeScore": 1,
+        "awayScore": 6,
+        "time": "6:00pm",
+        "arena": "Dublin 1"
+      },
+      {
+        "gameID": 46,
+        "homeID": 15,
+        "homeTeam": "Worthington Kilborne",
+        "awayID": 7,
+        "awayTeam": "Olentangy",
+        "homeScore": 1,
+        "awayScore": 12,
+        "time": "6:00pm",
+        "arena": "Ice Works"
+      },
+      {
+        "gameID": 47,
+        "homeID": 16,
+        "homeTeam": "Thomas Worthington",
+        "awayID": 5,
+        "awayTeam": "Gahanna",
+        "homeScore": 2,
+        "awayScore": 4,
+        "time": "6:15pm",
+        "arena": "Dublin 1"
+      }
+    ]
+  },
+  {
+    "date": "2023-12-17",
+    "games": [
+      {
+        "gameID": 48,
+        "homeID": 5,
+        "homeTeam": "Gahanna",
+        "awayID": 0,
+        "awayTeam": "Archbishop Moeller",
+        "homeScore": 1,
+        "awayScore": 2,
+        "time": "4:00pm",
+        "arena": "Easton 2"
+      },
+      {
+        "gameID": 49,
+        "homeID": 10,
+        "homeTeam": "Olentangy Orange",
+        "awayID": 6,
+        "awayTeam": "New Albany",
+        "homeScore": 2,
+        "awayScore": 3,
+        "time": "5:00pm",
+        "arena": "North 1"
+      },
+      {
+        "gameID": 50,
+        "homeID": 3,
+        "homeTeam": "Dublin Coffman",
+        "awayID": 16,
+        "awayTeam": "Thomas Worthington",
+        "homeScore": 4,
+        "awayScore": 2,
+        "time": "6:20pm",
+        "arena": "Dublin 1"
+      }
+    ]
+  },
+  {
+    "date": "2023-12-18",
+    "games": [
+      {
+        "gameID": 51,
+        "homeID": 7,
+        "homeTeam": "Olentangy",
+        "awayID": 3,
+        "awayTeam": "Dublin Coffman",
+        "homeScore": 4,
+        "awayScore": 1,
+        "time": "4:00pm",
+        "arena": "North 1"
+      }
+    ]
+  },
+  {
+    "date": "2023-12-19",
+    "games": []
+  },
+  {
+    "date": "2023-12-20",
+    "games": [
+      {
+        "gameID": 52,
+        "homeID": 8,
+        "homeTeam": "Olentangy Berlin",
+        "awayID": 12,
+        "awayTeam": "St. Charles",
+        "homeScore": 2,
+        "awayScore": 4,
+        "time": "6:00pm",
+        "arena": "North 1"
+      }
+    ]
+  },
+  {
+    "date": "2023-12-21",
+    "games": []
+  },
+  {
+    "date": "2023-12-22",
+    "games": [
+      {
+        "gameID": 53,
+        "homeID": 12,
+        "homeTeam": "St.Charles",
+        "awayID": 5,
+        "awayTeam": "Gahanna",
+        "homeScore": 3,
+        "awayScore": 0,
+        "time": "5:10pm",
+        "arena": "Ice Haus"
+      },
+      {
+        "gameID": 54,
+        "homeID": 6,
+        "homeTeam": "New Albany",
+        "awayID": 8,
+        "awayTeam": "Olentangy Berlin",
+        "homeScore": 4,
+        "awayScore": 6,
+        "time": "6:15pm",
+        "arena": "Easton 2"
+      },
+      {
+        "gameID": 55,
+        "homeID": 10,
+        "homeTeam": "Olentangy Orange",
+        "awayID": 16,
+        "awayTeam": "Thomas Worthington",
+        "homeScore": 4,
+        "awayScore": 6,
+        "time": "6:30pm",
+        "arena": "North 3"
+      },
+      {
+        "gameID": 56,
+        "homeID": 9,
+        "homeTeam": "Olentangy Liberty",
+        "awayID": 7,
+        "awayTeam": "Olentangy",
+        "homeScore": 5,
+        "awayScore": 2,
+        "time": "7:00pm",
+        "arena": "North 1"
+      }
+    ]
+  },
+  {
+    "date": "2023-12-23",
+    "games": [
+      {
+        "gameID": 57,
+        "homeID": 8,
+        "homeTeam": "Olentangy Berlin",
+        "awayID": 6,
+        "awayTeam": "New Albany",
+        "homeScore": 5,
+        "awayScore": 4,
+        "time": "1:40pm",
+        "arena": "North 3"
+      },
+      {
+        "gameID": 58,
+        "homeID": 12,
+        "homeTeam": "St.Charles",
+        "awayID": 13,
+        "awayTeam": "St. Xavier",
+        "homeScore": 8,
+        "awayScore": 3,
+        "time": "2:00pm",
+        "arena": "Ice Haus"
+      },
+      {
+        "gameID": 59,
+        "homeID": 4,
+        "homeTeam": "Dublin Jerome",
+        "awayID": 0,
+        "awayTeam": "Archbishop Moeller",
+        "homeScore": 0,
+        "awayScore": 0,
+        "time": "6:00pm",
+        "arena": "Dublin 1"
+      },
+      {
+        "gameID": 60,
+        "homeID": 1,
+        "homeTeam": "Bishop Watterson",
+        "awayID": 10,
+        "awayTeam": "Olentangy Orange",
+        "homeScore": 1,
+        "awayScore": 9,
+        "time": "6:00pm",
+        "arena": "Fairgrounds"
+      },
+      {
+        "gameID": 61,
+        "homeID": 9,
+        "homeTeam": "Olentangy Liberty",
+        "awayID": 16,
+        "awayTeam": "Thomas Worthington",
+        "homeScore": 5,
+        "awayScore": 2,
+        "time": "6:00pm",
+        "arena": "North 1"
+      }
+    ]
+  },
+  {
+    "date": "2023-12-24",
+    "games": []
+  },
+  {
+    "date": "2023-12-25",
+    "games": []
+  },
+  {
+    "date": "2023-12-26",
+    "games": []
+  },
+  {
+    "date": "2023-12-27",
+    "games": []
+  },
+  {
+    "date": "2023-12-28",
+    "games": []
+  },
+  {
+    "date": "2023-12-29",
+    "games": [
+      {
+        "gameID": 62,
+        "homeID": 15,
+        "homeTeam": "Worthington Kilborne",
+        "awayID": 10,
+        "awayTeam": "Olentangy Orange",
+        "homeScore": 0,
+        "awayScore": 10,
+        "time": "6:30pm",
+        "arena": "Ice Works"
+      },
+      {
+        "gameID": 63,
+        "homeID": 3,
+        "homeTeam": "Dublin Coffman",
+        "awayID": 1,
+        "awayTeam": "Bishop Watterson",
+        "homeScore": 8,
+        "awayScore": 3,
+        "time": "7:00pm",
+        "arena": "Dublin 1"
+      },
+      {
+        "gameID": 64,
+        "homeID": 8,
+        "homeTeam": "Olentangy Berlin",
+        "awayID": 13,
+        "awayTeam": "St. Xavier",
+        "homeScore": 0,
+        "awayScore": 0,
+        "time": "7:00pm",
+        "arena": "North 1"
+      },
+      {
+        "gameID": 65,
+        "homeID": 12,
+        "homeTeam": "St.Charles",
+        "awayID": 14,
+        "awayTeam": "Upper Arlington",
+        "homeScore": 2,
+        "awayScore": 0,
+        "time": "7:30pm",
+        "arena": "Ice Haus"
+      }
+    ]
+  },
+  {
+    "date": "2023-12-30",
+    "games": [
+      {
+        "gameID": 66,
+        "homeID": 1,
+        "homeTeam": "Bishop Watterson",
+        "awayID": 15,
+        "awayTeam": "Worthington Kilborne",
+        "homeScore": 4,
+        "awayScore": 3,
+        "time": "1:00pm",
+        "arena": "Fairgrounds"
+      },
+      {
+        "gameID": 67,
+        "homeID": 14,
+        "homeTeam": "Upper Arlington",
+        "awayID": 10,
+        "awayTeam": "Olentangy Orange",
+        "homeScore": 4,
+        "awayScore": 1,
+        "time": "2:00pm",
+        "arena": "Ice Haus"
+      },
+      {
+        "gameID": 68,
+        "homeID": 8,
+        "homeTeam": "Olentangy Berlin",
+        "awayID": 9,
+        "awayTeam": "Olentangy Liberty",
+        "homeScore": 3,
+        "awayScore": 2,
+        "time": "6:00pm",
+        "arena": "North 1"
+      }
+    ]
+  },
+  {
+    "date": "2023-12-31",
+    "games": []
+  },
+  {
+    "date": "2024-01-01",
+    "games": []
+  },
+  {
+    "date": "2024-01-02",
+    "games": []
+  },
+  {
+    "date": "2024-01-03",
+    "games": []
+  },
+  {
+    "date": "2024-01-04",
+    "games": []
+  },
+  {
+    "date": "2024-01-05",
+    "games": [
+      {
+        "gameID": 69,
+        "homeID": 15,
+        "homeTeam": "Worthington Kilborne",
+        "awayID": 1,
+        "awayTeam": "Bishop Watterson",
+        "homeScore": 3,
+        "awayScore": 2,
+        "time": "6:10pm",
+        "arena": "Ice Works"
+      },
+      {
+        "gameID": 70,
+        "homeID": 7,
+        "homeTeam": "Olentangy",
+        "awayID": 12,
+        "awayTeam": "St. Charles",
+        "homeScore": 3,
+        "awayScore": 3,
+        "time": "7:00pm",
+        "arena": "North 1"
+      },
+      {
+        "gameID": 71,
+        "homeID": 11,
+        "homeTeam": "Springboro",
+        "awayID": 10,
+        "awayTeam": "Olentangy Orange",
+        "homeScore": 4,
+        "awayScore": 5,
+        "time": "7:00pm",
+        "arena": "South Metro"
+      },
+      {
+        "gameID": 72,
+        "homeID": 6,
+        "homeTeam": "New Albany",
+        "awayID": 9,
+        "awayTeam": "Olentangy Liberty",
+        "homeScore": 2,
+        "awayScore": 10,
+        "time": "7:30pm",
+        "arena": "Easton 2"
+      },
+      {
+        "gameID": 73,
+        "homeID": 14,
+        "homeTeam": "Upper Arlington",
+        "awayID": 8,
+        "awayTeam": "Olentangy Berlin",
+        "homeScore": 2,
+        "awayScore": 2,
+        "time": "7:30pm",
+        "arena": "Ice Haus"
+      },
+      {
+        "gameID": 74,
+        "homeID": 3,
+        "homeTeam": "Dublin Coffman",
+        "awayID": 4,
+        "awayTeam": "Dublin Jerome",
+        "homeScore": 2,
+        "awayScore": 4,
+        "time": "8:20pm",
+        "arena": "Dublin 1"
+      }
+    ]
+  },
+  {
+    "date": "2024-01-06",
+    "games": [
+      {
+        "gameID": 75,
+        "homeID": 13,
+        "homeTeam": "St.Xavier",
+        "awayID": 3,
+        "awayTeam": "Dublin Coffman",
+        "homeScore": 4,
+        "awayScore": 4,
+        "time": "3:00pm",
+        "arena": "Sports Plus"
+      },
+      {
+        "gameID": 76,
+        "homeID": 0,
+        "homeTeam": "Archbishop Moeller",
+        "awayID": 12,
+        "awayTeam": "St. Charles",
+        "homeScore": 5,
+        "awayScore": 0,
+        "time": "4:00pm",
+        "arena": "Northlands"
+      },
+      {
+        "gameID": 77,
+        "homeID": 6,
+        "homeTeam": "New Albany",
+        "awayID": 7,
+        "awayTeam": "Olentangy",
+        "homeScore": 2,
+        "awayScore": 5,
+        "time": "6:00pm",
+        "arena": "Easton 2"
+      },
+      {
+        "gameID": 78,
+        "homeID": 16,
+        "homeTeam": "Thomas Worthington",
+        "awayID": 11,
+        "awayTeam": "Springboro",
+        "homeScore": 2,
+        "awayScore": 1,
+        "time": "5:15pm",
+        "arena": "North 2"
+      },
+      {
+        "gameID": 79,
+        "homeID": 4,
+        "homeTeam": "Dublin Jerome",
+        "awayID": 9,
+        "awayTeam": "Olentangy Liberty",
+        "homeScore": 1,
+        "awayScore": 4,
+        "time": "8:00pm",
+        "arena": "North 1"
+      }
+    ]
+  },
+  {
+    "date": "2024-01-07",
+    "games": [
+      {
+        "gameID": 75,
+        "homeID": 14,
+        "homeTeam": "Upper Arlington",
+        "awayID": 0,
+        "awayTeam": "Archbishop Moeller",
+        "homeScore": 4,
+        "awayScore": 2,
+        "time": "2:10pm",
+        "arena": "Ice Haus"
+      },
+      {
+        "gameID": 76,
+        "homeID": 13,
+        "homeTeam": "St.Xavier",
+        "awayID": 9,
+        "awayTeam": "Olentangy Liberty",
+        "homeScore": 1,
+        "awayScore": 10,
+        "time": "3:00pm",
+        "arena": "Sports Plus"
+      },
+      {
+        "gameID": 77,
+        "homeID": 4,
+        "homeTeam": "Dublin Jerome",
+        "awayID": 15,
+        "awayTeam": "Worthington Kilborne",
+        "homeScore": 6,
+        "awayScore": 2,
+        "time": "4:50pm",
+        "arena": "Dublin 1"
+      },
+      {
+        "gameID": 78,
+        "homeID": 2,
+        "homeTeam": "Columbus Academy",
+        "awayID": 16,
+        "awayTeam": "Thomas Worthington",
+        "homeScore": 0,
+        "awayScore": 7,
+        "time": "6:15pm",
+        "arena": "Easton 2"
+      }
+    ]
+  },
+  {
+    "date": "2023-01-08",
+    "games": []
+  },
+  {
+    "date": "2024-01-09",
+    "games": []
+  },
+  {
+    "date": "2024-01-10",
+    "games": [
+      {
+        "gameID": 79,
+        "homeID": 5,
+        "homeTeam": "Gahanna",
+        "awayID": 9,
+        "awayTeam": "Olentangy Liberty",
+        "homeScore": "-",
+        "awayScore": "-",
+        "time": "3:30pm",
+        "arena": "Easton 2"
+      }
+    ]
+  },
+  {
+    "date": "2024-01-11",
+    "games": []
+  },
+  {
+    "date": "2024-01-12",
+    "games": []
+  },
+  {
+    "date": "2024-01-13",
+    "games": []
+  },
+  {
+    "date": "2024-01-14",
+    "games": []
+  },
+  {
+    "date": "2024-01-15",
+    "games": []
+  },
+  {
+    "date": "2024-01-16",
+    "games": []
+  },
+  {
+    "date": "2024-01-17",
+    "games": []
+  },
+  {
+    "date": "2024-01-18",
+    "games": []
+  },
+  {
+    "date": "2024-01-19",
+    "games": [
+      {
+        "gameID": 75,
+        "homeID": 7,
+        "homeTeam": "Olentangy",
+        "awayID": 4,
+        "awayTeam": "Dublin Jerome",
+        "homeScore": "-",
+        "awayScore": "-",
+        "time": "6:00pm",
+        "arena": "North 1"
+      },
+      {
+        "gameID": 76,
+        "homeID": 3,
+        "homeTeam": "Dublin Coffman",
+        "awayID": 2,
+        "awayTeam": "Columbus Academy",
+        "homeScore": "-",
+        "awayScore": "-",
+        "time": "7:10pm",
+        "arena": "Dublin 1"
+      },
+      {
+        "gameID": 77,
+        "homeID": 12,
+        "homeTeam": "St.Charles",
+        "awayID": 6,
+        "awayTeam": "New Albany",
+        "homeScore": "-",
+        "awayScore": "-",
+        "time": "7:30pm",
+        "arena": "Ice Haus"
+      },
+      {
+        "gameID": 78,
+        "homeID": 8,
+        "homeTeam": "Olentangy Berlin",
+        "awayID": 5,
+        "awayTeam": "Gahanna",
+        "homeScore": "-",
+        "awayScore": "-",
+        "time": "8:00pm",
+        "arena": "North 1"
+      }
+    ]
+  },
+  {
+    "date": "2024-01-20",
+    "games": [
+      {
+        "gameID": 75,
+        "homeID": 0,
+        "homeTeam": "Archbishop Moeller",
+        "awayID": 13,
+        "awayTeam": "St. Xavier",
+        "homeScore": "-",
+        "awayScore": "-",
+        "time": "5:00pm",
+        "arena": "Heritage Banks"
+      },
+      {
+        "gameID": 76,
+        "homeID": 15,
+        "homeTeam": "Worthington Kilborne",
+        "awayID": 3,
+        "awayTeam": "Dublin Coffman",
+        "homeScore": "-",
+        "awayScore": "-",
+        "time": "5:20pm",
+        "arena": "Ice Works"
+      },
+      {
+        "gameID": 77,
+        "homeID": 10,
+        "homeTeam": "Olentangy Orange",
+        "awayID": 5,
+        "awayTeam": "Gahanna",
+        "homeScore": "-",
+        "awayScore": "-",
+        "time": "7:00pm",
+        "arena": "North 2"
+      },
+      {
+        "gameID": 78,
+        "homeID": 11,
+        "homeTeam": "Springboro",
+        "awayID": 2,
+        "awayTeam": "Columbus Academy",
+        "homeScore": "-",
+        "awayScore": "-",
+        "time": "7:00pm",
+        "arena": "South Metro"
+      }
+    ]
+  },
+  {
+    "date": "2024-01-21",
+    "games": [
+      {
+        "gameID": 75,
+        "homeID": 10,
+        "homeTeam": "Olentangy Orange",
+        "awayID": 7,
+        "awayTeam": "Olentangy",
+        "homeScore": "-",
+        "awayScore": "-",
+        "time": "3:25pm",
+        "arena": "North 2"
+      },
+      {
+        "gameID": 76,
+        "homeID": 1,
+        "homeTeam": "Bishop Watterson",
+        "awayID": 11,
+        "awayTeam": "Springboro",
+        "homeScore": "-",
+        "awayScore": "-",
+        "time": "5:05pm",
+        "arena": "Dublin 1"
+      },
+      {
+        "gameID": 77,
+        "homeID": 16,
+        "homeTeam": "Thomas Worthington",
+        "awayID": 4,
+        "awayTeam": "Dublin Jerome",
+        "homeScore": "-",
+        "awayScore": "-",
+        "time": "5:00pm",
+        "arena": "North 1"
+      }
+    ]
+  },
+  {
+    "date": "2024-01-22",
+    "games": []
+  },
+  {
+    "date": "2024-01-23",
+    "games": []
+  },
+  {
+    "date": "2024-01-24",
+    "games": []
+  },
+  {
+    "date": "2024-01-25",
+    "games": []
+  },
+  {
+    "date": "2024-01-26",
+    "games": [
+      {
+        "gameID": 75,
+        "homeID": 16,
+        "homeTeam": "Thomas Worthington",
+        "awayID": 12,
+        "awayTeam": "St. Charles",
+        "homeScore": "-",
+        "awayScore": "-",
+        "time": "3:25pm",
+        "arena": "North 2"
+      },
+      {
+        "gameID": 76,
+        "homeID": 0,
+        "homeTeam": "Archbishop Moeller",
+        "awayID": 10,
+        "awayTeam": "Olentangy Orange",
+        "homeScore": "-",
+        "awayScore": "-",
+        "time": "5:05pm",
+        "arena": "Dublin 1"
+      },
+      {
+        "gameID": 77,
+        "homeID": 5,
+        "homeTeam": "Gahanna",
+        "awayID": 3,
+        "awayTeam": "Dublin Coffman",
+        "homeScore": "-",
+        "awayScore": "-",
+        "time": "5:00pm",
+        "arena": "North 1"
+      },
+      {
+        "gameID": 75,
+        "homeID": 11,
+        "homeTeam": "Springboro",
+        "awayID": 13,
+        "awayTeam": "St. Xavier",
+        "homeScore": "-",
+        "awayScore": "-",
+        "time": "3:25pm",
+        "arena": "North 2"
+      },
+      {
+        "gameID": 76,
+        "homeID": 4,
+        "homeTeam": "Dublin Jerome",
+        "awayID": 14,
+        "awayTeam": "Upper Arlington",
+        "homeScore": "-",
+        "awayScore": "-",
+        "time": "5:05pm",
+        "arena": "Dublin 1"
+      },
+      {
+        "gameID": 77,
+        "homeID": 9,
+        "homeTeam": "Olentangy Liberty",
+        "awayID": 8,
+        "awayTeam": "Olentangy Berlin",
+        "homeScore": "-",
+        "awayScore": "-",
+        "time": "5:00pm",
+        "arena": "North 1"
+      }
+
+    ]
+  },
+  {
+    "date": "2024-01-27",
+    "games": [
+      {
+        "gameID": 75,
+        "homeID": 12,
+        "homeTeam": "St.Charles",
+        "awayID": 0,
+        "awayTeam": "Archbishop Moeller",
+        "homeScore": "-",
+        "awayScore": "-",
+        "time": "3:25pm",
+        "arena": "North 2"
+      },
+      {
+        "gameID": 76,
+        "homeID": 2,
+        "homeTeam": "Columbus Academy",
+        "awayID": 1,
+        "awayTeam": "Bishop Watterson",
+        "homeScore": "-",
+        "awayScore": "-",
+        "time": "5:05pm",
+        "arena": "Dublin 1"
+      },
+      {
+        "gameID": 76,
+        "homeID": 7,
+        "homeTeam": "Olentangy",
+        "awayID": 8,
+        "awayTeam": "Olentangy Berlin",
+        "homeScore": "-",
+        "awayScore": "-",
+        "time": "5:05pm",
+        "arena": "Dublin 1"
+      },
+      {
+        "gameID": 77,
+        "homeID": 9,
+        "homeTeam": "Olentangy Liberty",
+        "awayID": 14,
+        "awayTeam": "Upper Arlington",
+        "homeScore": "-",
+        "awayScore": "-",
+        "time": "5:00pm",
+        "arena": "North 1"
+      }
+    ]
+  },
+  {
+    "date": "2024-01-28",
+    "games": [
+      {
+        "gameID": 75,
+        "homeID": 2,
+        "homeTeam": "Columbus Academy",
+        "awayID": 5,
+        "awayTeam": "Gahanna",
+        "homeScore": "-",
+        "awayScore": "-",
+        "time": "3:25pm",
+        "arena": "North 2"
+      },
+      {
+        "gameID": 76,
+        "homeID": 6,
+        "homeTeam": "New Albany",
+        "awayID": 13,
+        "awayTeam": "St. Xavier",
+        "homeScore": "-",
+        "awayScore": "-",
+        "time": "5:05pm",
+        "arena": "Dublin 1"
+      },
+      {
+        "gameID": 77,
+        "homeID": 1,
+        "homeTeam": "Bishop Watterson",
+        "awayID": 4,
+        "awayTeam": "Dublin Jerome",
+        "homeScore": "-",
+        "awayScore": "-",
+        "time": "5:00pm",
+        "arena": "North 1"
+      },
+      {
+        "gameID": 76,
+        "homeID": 7,
+        "homeTeam": "Olentangy",
+        "awayID": 11,
+        "awayTeam": "Springboro",
+        "homeScore": "-",
+        "awayScore": "-",
+        "time": "5:05pm",
+        "arena": "Dublin 1"
+      },
+      {
+        "gameID": 77,
+        "homeID": 3,
+        "homeTeam": "Dublin Coffman",
+        "awayID": 10,
+        "awayTeam": "Olentangy Orange",
+        "homeScore": "-",
+        "awayScore": "-",
+        "time": "5:00pm",
+        "arena": "North 1"
+      }
+    ]
+  },
+  {
+    "date": "2024-01-29",
+    "games": []
+  },
+  {
+    "date": "2024-01-30",
+    "games": []
+  },
+  {
+    "date": "2024-01-31",
+    "games": []
+  },
+  {
+    "date": "2024-02-01",
+    "games": []
+  },
+  {
+    "date": "2024-02-02",
+    "games": [
+      {
+        "gameID": 75,
+        "homeID": 6,
+        "homeTeam": "New Albany",
+        "awayID": 4,
+        "awayTeam": "Dublin Jerome",
+        "homeScore": "-",
+        "awayScore": "-",
+        "time": "3:25pm",
+        "arena": "North 2"
+      },
+      {
+        "gameID": 76,
+        "homeID": 7,
+        "homeTeam": "Olentangy",
+        "awayID": 14,
+        "awayTeam": "Upper Arlington",
+        "homeScore": "-",
+        "awayScore": "-",
+        "time": "5:05pm",
+        "arena": "Dublin 1"
+      },
+      {
+        "gameID": 76,
+        "homeID": 9,
+        "homeTeam": "Olentangy Liberty",
+        "awayID": 12,
+        "awayTeam": "St. Charles",
+        "homeScore": "-",
+        "awayScore": "-",
+        "time": "5:05pm",
+        "arena": "Dublin 1"
+      },
+      {
+        "gameID": 77,
+        "homeID": 5,
+        "homeTeam": "Gahanna",
+        "awayID": 13,
+        "awayTeam": "St. Xavier",
+        "homeScore": "-",
+        "awayScore": "-",
+        "time": "5:00pm",
+        "arena": "North 1"
+      }
+    ]
+  },
+  {
+    "date": "2024-02-03",
+    "games": [
+      {
+        "gameID": 75,
+        "homeID": 9,
+        "homeTeam": "Olentangy Liberty",
+        "awayID": 10,
+        "awayTeam": "Olentangy Orange",
+        "homeScore": "-",
+        "awayScore": "-",
+        "time": "3:25pm",
+        "arena": "North 2"
+      },
+      {
+        "gameID": 76,
+        "homeID": 0,
+        "homeTeam": "Archbishop Moeller",
+        "awayID": 14,
+        "awayTeam": "Upper Arlington",
+        "homeScore": "-",
+        "awayScore": "-",
+        "time": "5:05pm",
+        "arena": "Dublin 1"
+      },
+      {
+        "gameID": 76,
+        "homeID": 11,
+        "homeTeam": "Springboro",
+        "awayID": 1,
+        "awayTeam": "Bishop Watterson",
+        "homeScore": "-",
+        "awayScore": "-",
+        "time": "5:05pm",
+        "arena": "Dublin 1"
+      },
+      {
+        "gameID": 77,
+        "homeID": 13,
+        "homeTeam": "St.Xavier",
+        "awayID": 7,
+        "awayTeam": "Olentangy",
+        "homeScore": "-",
+        "awayScore": "-",
+        "time": "5:00pm",
+        "arena": "North 1"
+      }
+    ]
+  },
+  {
+    "date": "2024-02-04",
+    "games": [
+      {
+        "gameID": 75,
+        "homeID": 14,
+        "homeTeam": "Upper Arlington",
+        "awayID": 6,
+        "awayTeam": "New Albany",
+        "homeScore": "-",
+        "awayScore": "-",
+        "time": "3:25pm",
+        "arena": "North 2"
+      },
+      {
+        "gameID": 76,
+        "homeID": 13,
+        "homeTeam": "St.Xavier",
+        "awayID": 15,
+        "awayTeam": "Worthington Kilborne",
+        "homeScore": "-",
+        "awayScore": "-",
+        "time": "5:05pm",
+        "arena": "Dublin 1"
+      },
+      {
+        "gameID": 76,
+        "homeID": 8,
+        "homeTeam": "Olentangy Berlin",
+        "awayID": 0,
+        "awayTeam": "Archbishop Moeller",
+        "homeScore": "-",
+        "awayScore": "-",
+        "time": "5:05pm",
+        "arena": "Dublin 1"
+      },
+      {
+        "gameID": 77,
+        "homeID": 2,
+        "homeTeam": "Columbus Academy",
+        "awayID": 4,
+        "awayTeam": "Dublin Jerome",
+        "homeScore": "-",
+        "awayScore": "-",
+        "time": "5:00pm",
+        "arena": "North 1"
+      }
+    ]
+  }
+
+  
+]

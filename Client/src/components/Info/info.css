@@ -1,0 +1,79 @@
+.info_container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-bg);
+    font-family: var(--font-main);
+}
+
+.info_content_container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 80%;
+    max-width: 1280px;
+    background-color: rgb(245, 245, 252);
+    color: var(--color-bg);
+    margin-top: 2rem;
+    font-family: 'Rajdhani', sans-serif;
+    padding-bottom: 4rem;
+}
+
+.league_info_container {
+    width: 80%;
+    padding-top: 2rem;
+}
+
+.league_info_container img{
+    width: 100%;
+    background-position: center;
+}
+
+.team_history_table, .league_championship_table, .total_championship_table, .league_contacts_table  {
+    width: 100%;
+    border: 1px solid lightgray;
+    margin-bottom: 1rem;
+}
+
+.team_history_table td:nth-of-type(2), .team_history_table td:nth-of-type(3) {
+    text-align: center;
+}
+
+.total_championship_table td:nth-of-type(1), .team_history_table td:nth-of-type(1), .league_championship_table td:nth-of-type(1){
+    padding: 0 1.5rem ;
+}
+
+.total_championship_table td:nth-of-type(2), .total_championship_table td:nth-of-type(3), .total_championship_table td:nth-of-type(4), .total_championship_table td:nth-of-type(5), .total_championship_table td:nth-of-type(6) {
+    text-align: center;
+}
+
+.team_history_table tr:nth-of-type(even), .league_championship_table tr:nth-of-type(even), .total_championship_table tr:nth-of-type(even), .league_contacts_table tr:nth-of-type(even) {
+    background-color: var(--color-dark-white);
+}
+
+.team_history_table thead, .league_championship_table thead, .total_championship_table thead, .league_contacts_table thead {
+    /* width: 100%; */
+    background-color: var(--color-ohio-blue);
+    font-family: var(--font-header);
+    color: white;
+}
+
+.league_contacts_table td:nth-of-type(1) {
+    padding-left: 1.5rem;
+}
+
+.league_contacts_table td:nth-of-type(2), .league_contacts_table td:nth-of-type(3) {
+    text-align: center;
+}
+
+.team_history_table thead th, .league_championship_table thead th, .total_championship_table thead th, .league_contacts_table thead th{
+    font-size: 1.5rem;
+    padding: 1rem 0;
+    color: white;
+}
+
+.league_championship_table  ul, .league_contacts_table ul {
+    list-style: none;
+    padding: 0;
+}

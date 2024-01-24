@@ -1,0 +1,87 @@
+.schedule_game_container {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  grid-template-columns: 5fr 1fr 5fr;
+  /* gap: 1rem; */
+  width: 35rem;
+  font-size: 1.2rem;
+}
+
+.schedule_game_container span {
+  font-weight: 600;
+}
+
+.table_items td,
+.score {
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.item_body {
+  display: grid;
+  grid-template-columns: 5fr 1fr 1fr 1fr;
+  /* display: flex;
+    align-items: center; */
+  /* justify-content: space-between; */
+  background-color: transparent;
+  padding: 1rem 3rem;
+  border-bottom: 1px solid rgba(119, 136, 153, 0.5);
+  transition: var(--transition);
+}
+
+/* .item_body:hover {
+  transform: scale(1.02);
+  transition: var(--transition);
+}
+
+.item_body:hover::after {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    border: 1px solid rgba(119, 136, 153, 0.5);
+  } */
+
+
+.table_items {
+  gap: 5rem;
+}
+
+.schedule_logo {
+  width: 3rem;
+  height: 3rem;
+}
+
+.score {
+  align-self: center;
+  justify-self: flex-end;
+  font-weight: 700;
+}
+
+.home_info_container,
+.away_info_container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-family: var(--font-header);
+}
+
+.home_info_container {
+  justify-self: end;
+}
+
+.at_symbol {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+}
+
+.schedule_time_container,
+.schedule_arena_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

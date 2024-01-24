@@ -1,0 +1,168 @@
+.overlay {
+    background-color: rgba(2, 14, 29, 0.85);
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+  }
+
+  .modal_container {
+    width: 60rem;
+    height: 40rem;
+    background: white;
+    color: var(--color-bg);
+    border-radius: 15px;
+    overflow: hidden;
+    /* padding: 2rem; */
+  }
+
+  .modal_content {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    height: 100%;
+  }
+
+  .modal_right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-ohio-blue);
+    color: white;
+    position: relative;
+  }
+
+  .team_logo_bg {
+    position: absolute;
+    height:25rem;
+    width: 25rem;
+    opacity: 0.30;
+    z-index: 0;
+  }
+
+  .modal_left {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .info_section_container {
+    /* align-self: flex-start; */
+    width: 100%;
+  }
+
+  .stats_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    z-index: 2;
+  }
+
+  .stats_container h2 {
+    font-family: "Bebas Neue";
+  }
+
+
+  .info_list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-family: 'Rajdhani', sans-serif;
+  }
+
+  .info_list li {
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+    font-size: 1.1rem;
+  }
+
+  .info_list span {
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+  }
+
+  .player_info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem 1rem;
+    width: 13rem;
+    transition: var(--transition);
+  }
+
+  .info_divider {
+    height: 2px;
+    width: 100%;
+    background-color: var(--color-border-white); 
+    margin: 1rem 0;
+  }
+
+  .player_info h2, h3 {
+    font-family: "Bebas Neue", sans-serif;
+    margin: 0;
+    line-height: 1;
+}
+
+.player_info h3 {
+    font-size: 1.8rem;
+    text-align: center;
+}
+
+.player_info h2 {
+    font-size: 3.5rem;
+}
+
+  .modal_controls {
+    position: absolute;
+    padding: 1rem;
+    right: 0;
+    top: 0;
+  }
+
+  .season_title {
+    margin-top: 0;
+  }
+
+  .close_btn_container {
+    color: white;
+    transition: var(--transition);
+    align-items: end;
+  }
+
+  .close_btn_container:hover {
+    color: var(--color-ohio-red);
+    transition: var(--transition)
+  }
+
+
+  .career_stats_container, .current_stats_container {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+  }
+
+
+  .player_portrait_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 12rem;
+    width: 12rem;
+    border-radius: 50%;
+    background-color: #EEE;
+    margin-bottom: 1rem;
+    overflow: hidden;
+    border: 2px solid rgb(229, 229, 229)
+}
+
+.player_portrait_container img {
+  width: 90%;
+  margin-top: 2rem;
+}
+

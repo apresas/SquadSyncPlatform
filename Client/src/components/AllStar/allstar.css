@@ -1,0 +1,106 @@
+.allstar_container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-bg);
+}
+
+.allstar_content_container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1280px;
+    background-color: rgb(245, 245, 252);
+    color: var(--color-bg);
+    margin-top: 2rem;
+    font-family: var(--font-main);
+}
+
+.allstar_content_container h1 {
+    font-family: var(--font-header);
+
+}
+
+.roster_title {
+    margin: 2rem 0 0 0;
+    font-size: 2.25rem;
+}
+
+.allstar_date_title {
+    font-family: var(--font-sub-header);
+    font-weight: 400;
+    margin: 0 0 2rem;
+}
+
+
+.allstar_team_container {
+    display: grid;
+    width: 80%;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.home_team, .away_team {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    border: solid 4px;
+    margin-bottom: 4rem;
+}
+
+.home_team {
+    border-color: var(--color-ohio-blue);
+}
+
+.away_team {
+    border-color: var(--color-ohio-red);
+}
+
+.away_team h1, .home_team h1 {
+    color: white;
+    padding: 2rem 0;
+    width: 100%;
+    margin: 0;
+}
+
+.away_team h1 {
+    background-color: var(--color-ohio-red);
+
+}
+
+.home_team h1 {
+    background-color: var(--color-ohio-blue);
+}
+
+.home_team h2, .away_team h2 {
+    font-family: var(--font-header);
+}
+
+.allstar_forward_grid, .allstar_defense_grid, .allstar_goalies_grid {
+    display: grid;
+    list-style: none;
+    /* align-content: center; */
+    padding: 1rem 3rem;
+    justify-items: center;
+    gap: 0.5rem;
+    margin: 0;
+}
+
+.allstar_forward_grid, .allstar_goalies_grid {
+    grid-template-columns: repeat(3, max-content);
+    padding-top: 0;
+}
+
+.allstar_defense_grid {
+    grid-template-columns: repeat(2, max-content);
+    padding-top: 0;
+}
+
+.allstar_goalies_grid {
+    padding-bottom: 4rem;
+}
+
+

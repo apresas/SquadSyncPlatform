@@ -1,0 +1,14 @@
+.no_games_header {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    border-top: 1px solid rgba(119, 136, 153, 0.5);
+    border-bottom: 1px solid rgba(119, 136, 153, 0.5);
+    background-color: rgb(245, 245, 252);
+    padding: 1rem 0;
+}
+
+.no_games_header h2 {
+    margin: 0;
+}
