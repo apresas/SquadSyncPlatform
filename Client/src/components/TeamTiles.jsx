@@ -31,13 +31,13 @@ function TeamTiles({ setCurrentTeam, setRosterTeam, getTeamData, teamData }) {
 
   // const [teamData, setTeamData] = useState();
 
-  useEffect(() => {
-    getTeamData()
-  }, []);
+  // useEffect(() => {
+  //   getTeamData()
+  // }, []);
 
-  useEffect(() => {
-    console.log("loading")
-  }, [teamData])
+  // useEffect(() => {
+  //   console.log("loading")
+  // }, [teamData])
 
 
   console.log(teamData);

@@ -4,10 +4,11 @@ import"./playerDropdownItem.css"
 function PlayerDropdownItem({data, type, logo, setDropdownTitle, setLogo, setCurrentTeamTitle}) {
   let itemName = ""  
   const itemClick = () => {
-        setDropdownTitle(testName);
+        setDropdownTitle(itemName);
         setLogo(logo);
-        setCurrentTeamTitle(testName)
+        // setCurrentTeamTitle(itemName)
       };
+
 
         if(type === "Position") {
           itemName = data.name

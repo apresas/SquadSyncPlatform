@@ -4,13 +4,13 @@ import Footer from "../components/Footer";
 import PlayerForm from "../components/PlayerForm/PlayerForm";
 import "./archieve.css";
 
-function Archieve() {
+function Archieve({teamData}) {
   return (
     <div className="archieve_container">
       <NavBar />
       <div className="archieve_content_container">
         <div>Archieve</div>
-        <PlayerForm />
+        <PlayerForm teamData={teamData}/>
       </div>
       <Footer />
     </div>

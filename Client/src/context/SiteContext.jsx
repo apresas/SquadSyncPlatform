@@ -49,16 +49,16 @@ export const SiteProvider = ({ children }) => {
     setTeamData(res.data)
   }
 
-  // useEffect(() => {
-  //   // axios({
-  //   //   method: "GET",
-  //   //   url: "http://localhost:9200/teams",
-  //   // }).then((res) => {
-  //   //   // console.log(res.data);
-  //   //   setTeamData(res.data)
-  //   // });
-  //   getTeamData()
-  // }, []);
+  useEffect(() => {
+    // axios({
+    //   method: "GET",
+    //   url: "http://localhost:9200/teams",
+    // }).then((res) => {
+    //   // console.log(res.data);
+    //   setTeamData(res.data)
+    // });
+    getTeamData()
+  }, []);
 
   // console.log(defaultTeam)
 

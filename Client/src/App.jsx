@@ -94,7 +94,7 @@ function App() {
         <Route path="/awards" element={<PlayerAwards />} />
         <Route path="/allstar" element={<AllstarGame />} />
         <Route path="/history" element={<History />} />
-        <Route path="/archive" element={<Archieve />} />
+        <Route path="/archive" element={<Archieve teamData={teamData} />} />
         <Route path="/links" element={<Links />} />
         <Route path="/info" element={<LeagueInfo />} />
       </Routes>
