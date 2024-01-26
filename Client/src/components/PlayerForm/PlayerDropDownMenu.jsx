@@ -1,25 +1,33 @@
-import React from 'react'
-import "./playerDropdownMenu.css"
-import PlayerDropdownItem from "./playerDropdownItem"
-import teamData from "../../data/teams.json"
+import React from "react";
+import "./playerDropdownMenu.css";
+import PlayerDropdownItem from "./playerDropdownItem";
+import teamData from "../../data/teams.json";
 
-function PlayerDropDownMenu({setDropdownTitle, setCurrentTeamTitle, currentTeamTitle, setLogo}) {
+function PlayerDropDownMenu({
+  data,
+  setDropdownTitle,
+  setCurrentTeamTitle,
+  currentTeamTitle,
+  setLogo,
+  type
+}) {
   return (
     <ul className="player_dropdown_menu">
-    {teamData.map((data) => (
-      <li key={data.id}>
-        <PlayerDropdownItem
-          name={data.schoolName}
-          logo={data.logo}
-          setDropdownTitle={setDropdownTitle}
-          setCurrentTeamTitle={setCurrentTeamTitle}
-          currentTeamTitle={currentTeamTitle}
-          setLogo={setLogo}
-        />
-      </li>
-    ))}
-  </ul>
-  )
+      {data.map((data) => (
+        <li key={data.id}>
+          <PlayerDropdownItem
+            data={data}
+            type={type}
+            logo={data.logo}
+            setDropdownTitle={setDropdownTitle}
+            setCurrentTeamTitle={setCurrentTeamTitle}
+            currentTeamTitle={currentTeamTitle}
+            setLogo={setLogo}
+          />
+        </li>
+      ))}
+    </ul>
+  );
 }
 
-export default PlayerDropDownMenu
+export default PlayerDropDownMenu;

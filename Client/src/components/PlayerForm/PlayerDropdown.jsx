@@ -3,14 +3,15 @@ import "./playerDropdown.css";
 import PlayerDropdownMenu from "./playerDropdownMenu";
 import { IoChevronDown } from "react-icons/io5";
 
-function PlayerDropdown() {
-  const [dropdownTitle, setDropdownTitle] = useState(["Select Team"]);
+function PlayerDropdown({ data, type }) {
+  const [dropdownTitle, setDropdownTitle] = useState([`Select ${type}`]);
   const [currentTeamTitle, setCurrentTeamTitle] = useState();
   const [logo, setLogo] = useState();
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
     setOpen(!open);
   };
+
   return (
     <div className="player_dropdown_container" onClick={handleOpen}>
       <div className="player_dropdown_toggle">
@@ -25,6 +26,8 @@ function PlayerDropdown() {
       </div>
       {open ? (
         <PlayerDropdownMenu
+          data={data}
+          type={type}
           setDropdownTitle={setDropdownTitle}
           setCurrentTeamTitle={setCurrentTeamTitle}
           currentTeamTitle={currentTeamTitle}
