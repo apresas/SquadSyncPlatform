@@ -1,7 +1,7 @@
 [
     {
         "id": 0,
-        "teamName": "Crusaders",
+        "mascotName": "Crusaders",
         "schoolName": "Archbishop Moeller",
         "city": "Cincinnati",
         "division": "Red",
@@ -10,7 +10,7 @@
     },
     {
         "id": 1,
-        "teamName": "Eagles",
+        "mascotName": "Eagles",
         "schoolName": "Bishop Watterson",
         "city": "Columbus",
         "division": "Blue",
@@ -18,7 +18,7 @@
     },
     {
         "id": 2,
-        "teamName": "Vikings",
+        "mascotName": "Vikings",
         "schoolName": "Columbus Academy",
         "city": "Gahanna",
         "division": "Blue",
@@ -26,7 +26,7 @@
     },
     {
         "id": 3,
-        "teamName": "Shamrocks",
+        "mascotName": "Shamrocks",
         "schoolName": "Dublin Coffman",
         "city": "Dublin",
         "division": "Blue",
@@ -34,7 +34,7 @@
     },
     {
         "id": 4,
-        "teamName": "Celtics",
+        "mascotName": "Celtics",
         "schoolName": "Dublin Jerome",
         "city": "Dublin",
         "division": "White",
@@ -42,7 +42,7 @@
     },
     {
         "id": 5,
-        "teamName": "Lions",
+        "mascotName": "Lions",
         "schoolName": "Gahanna",
         "city": "Gahanna",
         "division": "White",
@@ -50,7 +50,7 @@
     },
     {
         "id": 6,
-        "teamName": "Eagles",
+        "mascotName": "Eagles",
         "schoolName": "New Albany",
         "city": "New Albany",
         "division": "Red",
@@ -58,7 +58,7 @@
     },
     {
         "id": 7,
-        "teamName": "Braves",
+        "mascotName": "Braves",
         "schoolName": "Olentangy",
         "city": "Lewis Center",
         "division": "White",
@@ -66,7 +66,7 @@
     },
     {
         "id": 8,
-        "teamName": "Bears",
+        "mascotName": "Bears",
         "schoolName": "Olentangy Berlin",
         "city": "Delaware",
         "division": "Red",
@@ -74,7 +74,7 @@
     },
     {
         "id": 9,
-        "teamName": "Patriots",
+        "mascotName": "Patriots",
         "schoolName": "Olentangy Liberty",
         "city": "Powell",
         "division": "Red",
@@ -82,7 +82,7 @@
     },
     {
         "id": 10,
-        "teamName": "Pioneers",
+        "mascotName": "Pioneers",
         "schoolName": "Olentangy Orange",
         "city": "Lewis Center",
         "division": "White",
@@ -90,7 +90,7 @@
     },
     {
         "id": 11,
-        "teamName": "Panthers",
+        "mascotName": "Panthers",
         "schoolName": "Springboro",
         "city": "Springboro",
         "division": "Blue",
@@ -98,7 +98,7 @@
     },
     {
         "id": 12,
-        "teamName": "Cardinals",
+        "mascotName": "Cardinals",
         "schoolName": "St. Charles Prep",
         "city": "Bexley",
         "division": "Red",
@@ -106,7 +106,7 @@
     },
     {
         "id": 13,
-        "teamName": "Bombers",
+        "mascotName": "Bombers",
         "schoolName": "St. Xavier",
         "city": "Cincinnati",
         "division": "White",
@@ -114,7 +114,7 @@
     },
     {
         "id": 14,
-        "teamName": "Golden Bears",
+        "mascotName": "Golden Bears",
         "schoolName": "Upper Arlington",
         "city": "Upper Arlington",
         "division": "Red",
@@ -122,7 +122,7 @@
     },
     {
         "id": 15,
-        "teamName": "Wolves",
+        "mascotName": "Wolves",
         "schoolName": "Worthington Kilbourn",
         "city": "Worthington",
         "division": "Blue",
@@ -130,7 +130,7 @@
     },
     {
         "id": 16,
-        "teamName": "Cardinals",
+        "mascotName": "Cardinals",
         "schoolName": "Thomas Worthington",
         "city": "Worthington",
         "division": "White",

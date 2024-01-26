@@ -1,0 +1,121 @@
+.player_dropdown_container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* justify-content: space-between; */
+    width: 12rem;
+    border: 1px solid rgba(119, 136, 153, 0.5);
+    padding: 0.5rem;
+    /* border-radius: 10px; */
+    background-color: white;
+    color: var(--color-bg);
+    font-family: var(--font-header);
+}
+
+.player_dropdown_toggle {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: 600;
+}
+
+.player_dropdown_toggle img{
+    height: 1.5rem
+}
+
+.player_arrow_button {
+    height: 100%;
+    width: 100%;
+}
+.player_dropdown_control span{
+    height: 100%;
+    width: 3px;
+    background-color: lightgrey;
+}
+
+.player_dropdown_title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.player_dropdown_title img{
+    height: 1.25rem;
+}
+
+.player_dropdown_menu {
+    position: absolute;
+    border: 1px solid rgba(119, 136, 153, 0.5);
+    top: 2.1rem;
+    right: 0;
+    list-style-type: none;
+    padding: 0;
+    border-radius: 7px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.35);
+    width: 100%;
+    overflow: hidden;
+    overflow-y: scroll;
+    height: 10.4rem;
+  }
+
+  .player_dropdown_menu::-webkit-scrollbar {
+    display: none;
+  }
+
+  .player_dropdown_logo_container {
+    height: 100%;
+    display: flex;
+    aspect-ratio: 1/1;
+  }
+
+  .player_dropdown_logo_container img {
+    /* height: 1.5rem; */
+    width: 1.5rem;
+  }
+
+  .player_dropdown_item_container{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem
+  }
+
+  .player_dropdown_menu > li {
+    margin: 0;
+    /* background-color: var(--color-nav);
+    background-color: var(--color-white); */
+    background-color: white;
+    color: var(--color-bg);
+    position: relative;
+    font-family: var(--font-header);
+    letter-spacing: 0.02rem;
+    transition: var(--transition-fast);
+    border-bottom: solid 1px rgba(119, 136, 153, 0.5);
+  }
+
+  .player_dropdown_menu > li:hover {
+    background-color: dodgerblue;
+    transition: var(--transition-fast);
+  }
+  
+  .player_dropdown_menu > li > button {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 1rem;
+    margin: 0;
+    font: inherit;
+    cursor: pointer;
+  }
+

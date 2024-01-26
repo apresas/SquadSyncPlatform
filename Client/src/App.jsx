@@ -36,7 +36,9 @@ function App() {
     setFilteredItem,
     filteredItem,
     defaultTeam,
-    setDefaultTeam
+    setDefaultTeam,
+    getTeamData,
+    teamData
   } = useSite();
   return (
     <>
@@ -48,6 +50,8 @@ function App() {
               setCurrentTeam={setCurrentTeam}
               setRosterTeam={setRosterTeam}
               rosterTeam={rosterTeam}
+              getTeamData={getTeamData}
+              teamData={teamData}
             />
           }
         />
@@ -59,6 +63,7 @@ function App() {
               rosterTeam={rosterTeam}
               setCurrentPlayer={setCurrentPlayer}
               currentPlayer={currentPlayer}
+              teamData={teamData}
             />
           }
         />

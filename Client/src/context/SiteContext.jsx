@@ -1,5 +1,6 @@
-import React, { useContext, createContext, useState } from "react";
+import React, { useContext, createContext, useState, useEffect } from "react";
 import { format, addDays, subDays, eachDayOfInterval } from "date-fns";
+import axios from "axios";
 
 const SiteContext = createContext();
 
@@ -41,6 +42,24 @@ export const SiteProvider = ({ children }) => {
 
   }
 
+  const [teamData, setTeamData] = useState([]);
+
+  const getTeamData = async() => {
+    const res = await axios.get('http://localhost:9200/teams')
+    setTeamData(res.data)
+  }
+
+  // useEffect(() => {
+  //   // axios({
+  //   //   method: "GET",
+  //   //   url: "http://localhost:9200/teams",
+  //   // }).then((res) => {
+  //   //   // console.log(res.data);
+  //   //   setTeamData(res.data)
+  //   // });
+  //   getTeamData()
+  // }, []);
+
   // console.log(defaultTeam)
 
   // console.log(dateList);
@@ -67,7 +86,9 @@ export const SiteProvider = ({ children }) => {
         setFilteredItem,
         filteredItem,
         defaultTeam,
-        setDefaultTeam
+        setDefaultTeam,
+        teamData,
+        getTeamData
       }}
     >
       {children}

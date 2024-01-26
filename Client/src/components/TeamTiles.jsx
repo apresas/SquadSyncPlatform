@@ -1,15 +1,19 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect, useRef } from "react";
+import axios from "axios";
 import "./teamTiles.css";
 import Teams from "../data/teams.json";
 import standings from "../data/standing.json";
-import TitleBar from "./TitleBar"
+import TitleBar from "./TitleBar";
 import { FiChevronsDown } from "react-icons/fi";
 import { GrStar } from "react-icons/gr";
 import { useTable, useSortBy } from "react-table";
 import { Link, useParams } from "react-router-dom";
 import rosterData from "../data/rosterData.json";
 
-function TeamTiles({ setCurrentTeam, setRosterTeam }) {
+function TeamTiles({ setCurrentTeam, setRosterTeam, getTeamData, teamData }) {
+  const openRed = useRef(false)
+  const openWhite = useRef(false)
+  const openBlue = useRef(false)
   const [open, setOpen] = useState(false);
   const [open1, setOpen1] = useState(false);
   const [open2, setOpen2] = useState(false);
@@ -18,11 +22,25 @@ function TeamTiles({ setCurrentTeam, setRosterTeam }) {
     return Number(row.wins / row.gamesPlayed).toFixed(2);
   };
 
+
   const { id } = useParams();
 
   // const positionAccessor = (row) => {
   //   return Number(row.position);
   // };
+
+  // const [teamData, setTeamData] = useState();
+
+  useEffect(() => {
+    getTeamData()
+  }, []);
+
+  useEffect(() => {
+    console.log("loading")
+  }, [teamData])
+
+
+  console.log(teamData);
 
   const columns = useMemo(
     () => [
@@ -100,13 +118,27 @@ function TeamTiles({ setCurrentTeam, setRosterTeam }) {
 
   const addRoster = (team) => {
     rosterData
-    .filter((roster) => roster.teamID === team.id)
-    .map((roster) => (setRosterTeam(roster)));
-  }
+      .filter((roster) => roster.teamID === team.teamID)
+      .map((roster) => setRosterTeam(roster));
+  };
+
+  // const addRoster = (team) => {
+  //   rosterData
+  //     .filter((roster) => roster.teamID === team.id)
+  //     .map((roster) => setRosterTeam(roster));
+  // };
+
+  // const getTeamData = async () => {
+  //   const res = await axios.get("http://localhost:9200/teams");
+  //   setTeamData(res.data);
+  // };
 
   return (
     <div className="teamTiles_container">
-      <TitleBar title="Capital Hockey Conference" subtitle="Central Ohio Varsity Hockey"/>
+      <TitleBar
+        title="Capital Hockey Conference"
+        subtitle="Central Ohio Varsity Hockey"
+      />
       {/* <div className="teams_title_container">
         <h1 className="teams_tiles_title">CAPITAL HOCKEY CONFERENCE</h1>
         <h3 className="teams_tiles_sub">
@@ -119,25 +151,28 @@ function TeamTiles({ setCurrentTeam, setRosterTeam }) {
           <GrStar style={{ fontSize: "2rem" }} />
         </div>
         <div className="team_tiles red">
-          {Teams.map((team) => {
+          {teamData.map((team) => {
             return team;
           })
             .filter((team) => team.division === "Red")
             .map((team) => {
-              const link = "/team/" + team.id;
+              const link = "/team/" + team.teamID;
               return (
                 <Link
                   to={link}
                   style={{ color: "inherit", textDecoration: "inherit" }}
+                  key="teamLink 1"
                 >
                   <div
-                    key={team.id}
+                    key={team.teamID}
                     className="tiles"
                     onClick={() => handleTeamClick(team)}
                   >
                     <img className="team_image" src={team.logo} alt="logo" />
                     <h3 className="school_name_title">{team.schoolName}</h3>
-                    <strong className="team_name_title">{team.teamName}</strong>
+                    <strong className="team_name_title">
+                      {team.mascotName}
+                    </strong>
                     <small className="city_title">{team.city}</small>
                   </div>
                 </Link>
@@ -146,6 +181,7 @@ function TeamTiles({ setCurrentTeam, setRosterTeam }) {
         </div>
         <div
           href=""
+          ref={openRed}
           className="division_button"
           onClick={() => {
             const id = 0;
@@ -155,7 +191,6 @@ function TeamTiles({ setCurrentTeam, setRosterTeam }) {
           <FiChevronsDown style={{ fontSize: "1.5rem" }} />
         </div>
         <div>
-          {" "}
           {open ? (
             <div className="standings">
               <h3 className="standing_title">Standings</h3>
@@ -208,25 +243,28 @@ function TeamTiles({ setCurrentTeam, setRosterTeam }) {
           <GrStar style={{ fontSize: "2rem" }} />
         </div>
         <div className="team_tiles white">
-          {Teams.map((team) => {
+          {teamData.map((team) => {
             return team;
           })
             .filter((team) => team.division === "White")
             .map((team) => {
-              const link = "/team/" + team.id;
+              const link = "/team/" + team.teamID;
               return (
                 <Link
                   to={link}
                   style={{ color: "inherit", textDecoration: "inherit" }}
+                  key="teamLink 2"
                 >
                   <div
-                    key={team.id}
+                    key={team.teamID}
                     className="tiles"
                     onClick={() => handleTeamClick(team)}
                   >
                     <img className="team_image" src={team.logo} alt="logo" />
                     <h3 className="school_name_title">{team.schoolName}</h3>
-                    <strong className="team_name_title">{team.teamName}</strong>
+                    <strong className="team_name_title">
+                      {team.mascotName}
+                    </strong>
                     <small className="city_title">{team.city}</small>
                   </div>
                 </Link>
@@ -235,6 +273,7 @@ function TeamTiles({ setCurrentTeam, setRosterTeam }) {
         </div>
         <div
           href=""
+          ref={openWhite}
           className="division_button"
           onClick={() => {
             const id = 1;
@@ -244,7 +283,6 @@ function TeamTiles({ setCurrentTeam, setRosterTeam }) {
           <FiChevronsDown style={{ fontSize: "1.5rem" }} />
         </div>
         <div>
-          {" "}
           {open1 ? (
             <div className="standings">
               <h3 className="standing_title">Standings</h3>
@@ -299,25 +337,28 @@ function TeamTiles({ setCurrentTeam, setRosterTeam }) {
           <GrStar style={{ fontSize: "2rem" }} />
         </div>
         <div className="team_tiles blue">
-          {Teams.map((team) => {
+          {teamData.map((team) => {
             return team;
           })
             .filter((team) => team.division === "Blue")
             .map((team) => {
-              const link = "/team/" + team.id;
+              const link = "/team/" + team.teamID;
               return (
                 <Link
                   to={link}
                   style={{ color: "inherit", textDecoration: "inherit" }}
+                  key="teamLink 3"
                 >
                   <div
-                    key={team.id}
+                    key={team.teamID}
                     className="tiles"
                     onClick={() => handleTeamClick(team)}
                   >
                     <img className="team_image" src={team.logo} alt="logo" />
                     <h3 className="school_name_title">{team.schoolName}</h3>
-                    <strong className="team_name_title">{team.teamName}</strong>
+                    <strong className="team_name_title">
+                      {team.mascotName}
+                    </strong>
                     <small className="city_title">{team.city}</small>
                   </div>
                 </Link>
@@ -326,6 +367,7 @@ function TeamTiles({ setCurrentTeam, setRosterTeam }) {
         </div>
         <div
           href=""
+          ref={openBlue}
           className="division_button"
           onClick={() => {
             const id = 2;
@@ -335,7 +377,6 @@ function TeamTiles({ setCurrentTeam, setRosterTeam }) {
           <FiChevronsDown style={{ fontSize: "1.5rem" }} />
         </div>
         <div>
-          {" "}
           {open2 ? (
             <div className="standings">
               <h3 className="standing_title">Standings</h3>

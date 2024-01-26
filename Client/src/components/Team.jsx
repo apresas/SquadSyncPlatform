@@ -15,14 +15,20 @@ function Team({
   rosterTeam,
   setCurrentPlayer,
   currentPlayer,
+  teamData
 }) {
   // console.log(rosterTeam);
   // const primary_color = "White"
   // const secondary_color = "#031327"
+  // const primary_color = rosterTeam.primaryColor;
+  // const secondary_color = rosterTeam.secondaryColor;
   const primary_color = rosterTeam.primaryColor;
   const secondary_color = rosterTeam.secondaryColor;
   const [openModal, setOpenModal] = useState(false);
   const [teamLogo, setTeamLogo] = useState("");
+
+  const [primaryColor, setPrimaryColor] = useState()
+  const [secondaryColor, setSecondaryColor] = useState()
 
   useEffect(() => {
     {
@@ -31,6 +37,13 @@ function Team({
       );
     }
   }, [currentTeam]);
+
+  useEffect(() => {
+    {teamData.filter((data) => data.teamID === currentTeam.teamID).map((data) =>{
+      setPrimaryColor(data.primaryColor)
+      setSecondaryColor(data.secondaryColor)
+    })}
+  }, [])
 
   const checkCurrentPlayer = () => {
     setOpenModal(true);
@@ -46,8 +59,8 @@ function Team({
         open={openModal}
         currentPlayer={currentPlayer}
         onClose={closeModal}
-        primaryColor={primary_color}
-        secondaryColor={secondary_color}
+        primaryColor={primaryColor}
+        secondaryColor={secondaryColor}
         teamLogo={teamLogo}
       />
       <SponcerBar />
@@ -58,8 +71,8 @@ function Team({
           <div
             className="team_title_container"
             style={{
-              backgroundColor: `${primary_color}`,
-              color: `${secondary_color}`,
+              backgroundColor: `${primaryColor}`,
+              color: `${secondaryColor}`,
             }}
           >
             <img className="team_logo" src={currentTeam.logo} alt="" />
