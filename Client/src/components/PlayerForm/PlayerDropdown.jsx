@@ -17,7 +17,7 @@ function PlayerDropdown() {
         {logo ? <img src={logo} alt="logo" /> : null}
         <div className="player_dropdown_title">{dropdownTitle}</div>
         <div className="player_dropdown_control">
-        <span /> 
+          <span />
           <div className="player_arrow_btn">
             <IoChevronDown />
           </div>
