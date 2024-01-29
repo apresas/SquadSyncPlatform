@@ -1,8 +1,11 @@
 import express from 'express';
 import mysql from 'mysql2';
+import cors from 'cors';
 
 const port = 9200;
 const app = express();
+// app.use(cors())
+app.use(express.json(), cors())
 const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
@@ -29,6 +32,28 @@ app.get('/standings', (req, res) => {
 app.get('/players', (req, res) => {
     const q = "SELECT players.*, teams.schoolName FROM players INNER JOIN teams ON players.teamID = teams.teamID"
     db.query(q, (err, data) => {
+        if (err) return res.json(err)
+        return res.json(data)
+    })
+})
+
+app.post('/players', (req, res) => {
+    const q = "INSERT INTO players (`playerID`, `teamID`, `playerImage`, `firstName`, `lastName`, `jerseyNumber`, `position`, `height`, `weight`, `handedness`, `class`) VALUES(?)"
+    const values = [
+        req.body.playerID,
+        req.body.teamID,
+        req.body.playerImage,
+        req.body.firstName,
+        req.body.lastName,
+        req.body.jerseyNumber,
+        req.body.position,
+        req.body.height,
+        req.body.weight,
+        req.body.handedness,
+        req.body.class
+    ]
+
+    db.query(q, [values], (err, data) => {
         if (err) return res.json(err)
         return res.json(data)
     })

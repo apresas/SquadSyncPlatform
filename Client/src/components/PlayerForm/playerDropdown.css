@@ -14,6 +14,15 @@
     /* margin-top: 0.5rem; */
 }
 
+.player_dropdown_container input {
+  border: none;
+  user-select: none;
+}
+
+.player_dropdown_container input:focus {
+  display: none;
+}
+
 .player_dropdown_toggle {
     width: 100%;
     display: flex;
@@ -49,6 +58,7 @@
 }
 
 .player_dropdown_menu {
+  z-index: 1;
     position: absolute;
     border: 1px solid rgba(119, 136, 153, 0.5);
     top: 2.1rem;
@@ -60,7 +70,8 @@
     width: 100%;
     overflow: hidden;
     overflow-y: scroll;
-    height: 10.4rem;
+    max-height: 10.4rem;
+    height: fit-content;
   }
 
   .player_dropdown_menu::-webkit-scrollbar {
