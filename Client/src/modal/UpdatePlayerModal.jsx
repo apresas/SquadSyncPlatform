@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./updatePlayerModal.css";
 import PlayerDropdown from "../components/PlayerForm/playerDropdown";
-
 function UpdatePlayerModal({
   open,
   currentPlayer,
@@ -71,6 +70,32 @@ function UpdatePlayerModal({
       console.log(err);
     }
   };
+
+  useEffect(() => {
+    setUpdatedPlayer({
+      playerID: currentPlayer.playerID,
+      firstName: playerFirstName,
+      lastName: playerLastName,
+      height: playerHeight,
+      weight: playerWeight,
+      jerseyNumber: playerJerseyNumber,
+      teamID: selectedTeamID,
+      handedness: selectedHandedness,
+      position: selectedPosition,
+      class: selectedClass,
+    });
+  }, [
+    currentPlayer,
+    playerFirstName,
+    playerLastName,
+    playerHeight,
+    playerWeight,
+    playerJerseyNumber,
+    selectedTeamID,
+    selectedPosition,
+    selectedHandedness,
+    selectedClass,
+  ]);
 
   if (!open) {
     return null;
