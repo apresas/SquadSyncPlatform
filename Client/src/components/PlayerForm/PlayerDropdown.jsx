@@ -13,6 +13,7 @@ function PlayerDropdown({
   setSelectedClass,
   setSelectedHandedness,
   setSelectedJerseyNumber, 
+  currentPlayer
 }) {
   const [dropdownTitle, setDropdownTitle] = useState(`Select ${type}`);
   const [logo, setLogo] = useState();
@@ -22,22 +23,38 @@ function PlayerDropdown({
   };
 
   useEffect(() => {
-    if (type === "Position") {
+    if (type === "Position" || type === "Update Position") {
       setSelectedPosition(dropdownTitle);
-    } else if (type === "Class") {
+    } else if (type === "Class" || type === "Update Class") {
       setSelectedClass(dropdownTitle);
-    } else if (type === "Team") {
+    } else if (type === "Team" || type === "Update Team") {
       data.map((teamList) => {
         if (teamList.schoolName === dropdownTitle) {
           setSelectedTeamID(teamList.teamID);
         }
       });
-    } else if (type === "Handedness") {
+    } else if (type === "Handedness" || type === "Update Handedness") {
       setSelectedHandedness(dropdownTitle);
     } else if (type === "Jersey Number") {
       setSelectedJerseyNumber(dropdownTitle);
     }
   }, [dropdownTitle]);
+
+  useEffect(() => {
+    if (type === "Update Position") {
+      setDropdownTitle(currentPlayer.position)
+    } else if (type === "Update Class") {
+      setDropdownTitle(currentPlayer.class)
+    } else if (type === "Update Handedness") {
+      setDropdownTitle(currentPlayer.handedness)
+    } else if (type === "Update Team") {
+       {data.filter((data) => data.teamID === currentPlayer.teamID).map((data) => {
+        setDropdownTitle(data.schoolName)
+        setLogo(data.logo)
+       })}
+
+    }
+  }, [currentPlayer])
 
   // useEffect(() =>{
   //   if(type === "Team") {

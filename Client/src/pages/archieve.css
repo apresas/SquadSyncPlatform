@@ -13,3 +13,122 @@
     margin-top: 3rem;
     background-color: white;
 }
+
+.test_player_grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+    padding: 2rem;
+}
+
+.test_player_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-bg);
+    border: 1px solid lightgray;
+    padding: 2rem 0;
+    gap: 0.5rem;
+    position: relative;
+
+}
+
+.test_delete_btn {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    width: fit-content;
+    aspect-ratio: 1/1;
+    padding: 0.5rem;
+    font-size: 1.5rem;
+    background-color: inherit;
+    border: 1px solid lightgray;
+    color: red;
+}
+
+.test_update_btn {
+    position: absolute;
+    top: 0.5rem;
+    left: 0.5rem;
+    width: fit-content;
+    aspect-ratio: 1/1;
+    padding: 0.5rem;
+    font-size: 1.5rem;
+    background-color: inherit;
+    border: 1px solid lightgray;
+    color: green;
+}
+
+.test_portrait_container {
+    display: flex;
+    align-items: center;
+    border: 1px solid lightgray;
+    height: 7rem;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    overflow: hidden;
+    padding: 0.5rem;
+    position: relative;
+}
+
+.test_portrait_container img {
+    position: relative;
+    z-index: 1;
+}
+
+.test_portrait_container span {
+    z-index: 0;
+    position: absolute;
+    background-color: #999;
+    height: 1rem;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.test_player_info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.test_player_container small{
+    font-family: var(--font-sub-header);
+    font-weight: 300;
+    text-transform: uppercase;
+    font-size: 1rem;
+}
+
+.test_player_container h2, .test_player_container h1{
+    margin: 0;
+    font-family: var(--font-header);
+}
+
+.test_player_container h1 {
+    line-height: 1;
+}
+
+
+.test_player_logo {
+    height: 5rem;
+    padding: 1rem;
+}
+
+.test_player_sub {
+    display: grid;
+    grid-template-columns: 4fr 1fr 4fr 1fr 4fr;
+    align-items: center;
+    justify-items: center;
+    gap: 0.5rem;
+}
+
+.test_player_logo_sm {
+    height: fit-content;
+    max-height: 1.5rem;
+}
+.test_player_sub span {
+    height: 80%;
+    width: 1px;
+    background-color: darkgray;
+}

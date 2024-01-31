@@ -59,4 +59,35 @@ app.post('/players', (req, res) => {
     })
 })
 
+app.delete("/players/:id", (req, res) => {
+    const playerID = req.params.id;
+    const q = "DELETE FROM players WHERE playerID = ?"
+    db.query(q, [playerID], (err, data) => {
+        if (err) return res.json(err)
+        return res.json("Player has been deleted successfully")
+    });
+})
+
+app.put("/players/:playerID", (req, res) => {
+    const playerID = req.params.playerID;
+    const q = "UPDATE players SET `teamID` = ?, `firstName` = ?, `lastName` = ?, `jerseyNumber` = ?, `position`= ?, `height` = ?, `weight` = ?, `handedness` = ?, `class` = ? WHERE playerID = ?"
+    const values = [
+        req.body.teamID,
+        req.body.firstName,
+        req.body.lastName,
+        req.body.jerseyNumber,
+        req.body.position,
+        req.body.height,
+        req.body.weight,
+        req.body.handedness,
+        req.body.class
+        
+    ]
+
+    db.query(q, [...values, playerID], (err, data) => {
+        if (err) return res.json(err);
+        return res.json("Player has been updated successfully")
+    })
+})
+
 app.listen({port}, () => console.log(`listening on port ${port}`))

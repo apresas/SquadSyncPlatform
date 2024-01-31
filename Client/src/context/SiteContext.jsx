@@ -49,6 +49,13 @@ export const SiteProvider = ({ children }) => {
     setTeamData(res.data)
   }
 
+  const [testPlayers, setTestPlayers] = useState([]);
+
+  const getTestPlayers = async() => {
+    const res = await axios.get('http://localhost:9200/players')
+    setTestPlayers(res.data)
+  }
+
   useEffect(() => {
     // axios({
     //   method: "GET",
@@ -58,6 +65,7 @@ export const SiteProvider = ({ children }) => {
     //   setTeamData(res.data)
     // });
     getTeamData()
+    getTestPlayers()
   }, []);
 
   // console.log(defaultTeam)
@@ -88,7 +96,9 @@ export const SiteProvider = ({ children }) => {
         defaultTeam,
         setDefaultTeam,
         teamData,
-        getTeamData
+        getTeamData,
+        testPlayers,
+        getTestPlayers
       }}
     >
       {children}
