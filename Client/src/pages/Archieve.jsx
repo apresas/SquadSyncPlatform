@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
@@ -6,15 +6,24 @@ import PlayerForm from "../components/PlayerForm/PlayerForm";
 import SponcerBar from "../components/Sponcer/SponcerBar";
 import "./archieve.css";
 import playerPortrait from "../assets/Player_Icon.svg";
-import { MdDeleteOutline } from "react-icons/md";
 import { TbUserEdit } from "react-icons/tb";
-import UpdatePlayerModal from "../modal/UpdatePlayerModal"
+import { RiDeleteBin5Line } from "react-icons/ri";
+import UpdatePlayerModal from "../modal/UpdatePlayerModal";
+import PlayerDropdown from "../components/PlayerForm/PlayerDropdown";
+// import Dropdown from "react-dropdown"
+import "react-dropdown/style.css";
 
-function Archieve({ teamData, testPlayers, getTestPlayers }) {
-  console.log(testPlayers);
+function Archieve({
+  teamData,
+  testPlayers,
+  getTestPlayers,
+  getFilterTeam,
+  filteredPlayers,
+}) {
+  // console.log(testPlayers);
 
   const [openModal, setOpenModal] = useState(false);
-  const [currentPlayer, setCurrentPlayer] = useState({})
+  const [currentPlayer, setCurrentPlayer] = useState({});
 
   const handleDelete = async (playerID) => {
     try {
@@ -25,26 +34,47 @@ function Archieve({ teamData, testPlayers, getTestPlayers }) {
     }
   };
 
-
   const handleModalOpen = async (playerData) => {
-    setOpenModal(true)
-    setCurrentPlayer(playerData)
-    console.log(playerData);
-  }
+    setOpenModal(true);
+    setCurrentPlayer(playerData);
+    // console.log(playerData);
+  };
+
+  const [filterTeamID, setFilterTeamID] = useState();
 
   // console.log(currentPlayer)
 
+  useEffect(() => {
+    getFilterTeam(filterTeamID)
+  }, [filterTeamID]);
+
+  console.log(filteredPlayers)
+
   return (
     <>
-    <UpdatePlayerModal open={openModal} currentPlayer={currentPlayer} teamData={teamData} setOpenModal={setOpenModal} getTestPlayers={getTestPlayers}/>
+      <UpdatePlayerModal
+        open={openModal}
+        currentPlayer={currentPlayer}
+        teamData={teamData}
+        setOpenModal={setOpenModal}
+        getTestPlayers={getTestPlayers}
+      />
       <SponcerBar />
       <NavBar />
       <div className="archieve_container">
         <div className="archieve_content_container">
           <div>Archieve</div>
-          <PlayerForm teamData={teamData} getTestPlayers={getTestPlayers} />
+          <PlayerForm teamData={teamData} getTestPlayers={getTestPlayers} getFilterTeam={getFilterTeam} filterTeamID={filterTeamID}/>
+          <div className="player_manager_controls">
+            <h2 className="player_manager_title">Player Manager</h2>
+            <PlayerDropdown
+              type="Team"
+              data={teamData}
+              setSelectedTeamID={setFilterTeamID}
+            />
+          </div>
           <div className="test_player_grid">
-            {testPlayers
+            {filteredPlayers
               // .filter((player) => player.teamID === 7)
               .map((player) => (
                 <div className="test_player_container" key={player.playerID}>
@@ -52,9 +82,12 @@ function Archieve({ teamData, testPlayers, getTestPlayers }) {
                     className="test_delete_btn"
                     onClick={() => handleDelete(player.playerID)}
                   >
-                    <MdDeleteOutline />
+                    <RiDeleteBin5Line />
                   </button>
-                  <button className="test_update_btn" onClick={() => handleModalOpen(player)}>
+                  <button
+                    className="test_update_btn"
+                    onClick={() => handleModalOpen(player)}
+                  >
                     <TbUserEdit />
                   </button>
                   <div className="test_portrait_container">

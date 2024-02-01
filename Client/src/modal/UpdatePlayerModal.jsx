@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+/* eslint-disable react/prop-types */
+import { useState, useEffect } from "react";
 import axios from "axios";
 import "./updatePlayerModal.css";
 import PlayerDropdown from "../components/PlayerForm/playerDropdown";
@@ -9,8 +10,10 @@ function UpdatePlayerModal({
   setOpenModal,
   getTestPlayers,
 }) {
+  
   const [updatedPlayer, setUpdatedPlayer] = useState({
     playerID: currentPlayer.playerID,
+    playerImage: null,
     firstName: currentPlayer.firstName,
     lastName: currentPlayer.lastName,
     height: currentPlayer.height,
@@ -21,6 +24,7 @@ function UpdatePlayerModal({
     class: currentPlayer.class,
     teamID: currentPlayer.teamID,
   });
+  
 
   const [currentTeamTitle, setCurrentTeamTitle] = useState();
   const [selectedTeamID, setSelectedTeamID] = useState(currentPlayer.teamID);
@@ -54,7 +58,7 @@ function UpdatePlayerModal({
   ];
   const shootsCatches = [{ name: "L" }, { name: "R" }];
 
-  const submitUpdatedPlayer = async (e, id) => {
+  const submitUpdatedPlayer = async (e) => {
     e.preventDefault();
 
     try {
@@ -62,7 +66,7 @@ function UpdatePlayerModal({
         "http://localhost:9200/players/" + currentPlayer.playerID,
         updatedPlayer
       );
-      console.log("Player Added");
+      console.log("Player Updated");
       console.log(updatedPlayer);
       setOpenModal(false);
       getTestPlayers();
@@ -74,6 +78,7 @@ function UpdatePlayerModal({
   useEffect(() => {
     setUpdatedPlayer({
       playerID: currentPlayer.playerID,
+      playerImage: null,
       firstName: playerFirstName,
       lastName: playerLastName,
       height: playerHeight,
@@ -97,6 +102,24 @@ function UpdatePlayerModal({
     selectedClass,
   ]);
 
+  useEffect(() => {
+    setPlayerFirstName(currentPlayer.firstName);
+    setPlayerLastName(currentPlayer.lastName);
+    setPlayerHeight(currentPlayer.height);
+    setPlayerWeight(currentPlayer.weight);
+    setPlayerJerseyNumber(currentPlayer.jerseyNumber);
+    setSelectedTeamID(currentPlayer.teamID);
+    setSelectedPosition(currentPlayer.position);
+    setSelectedHandedness(currentPlayer.handedness);
+    setSelectedClass(currentPlayer.class)
+  }, [currentPlayer])
+
+//   useEffect(() => {
+//     console.log(updatedPlayer)
+//   }, [updatedPlayer])
+//   console.log(currentPlayer)
+//   console.log(playerFirstName)
+// console.log(updatedPlayer)
   if (!open) {
     return null;
   }

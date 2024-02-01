@@ -12,6 +12,15 @@
     width: 100%;
     margin-top: 3rem;
     background-color: white;
+    padding: 0 0 2rem;
+}
+
+.player_manager_title {
+    display: flex;
+    color: var(--color-bg);
+    font-family: var(--font-header);
+    /* padding: 0 2rem; */
+    margin: 0;
 }
 
 .test_player_grid {
@@ -34,30 +43,38 @@
 
 }
 
-.test_delete_btn {
+.test_update_btn, .test_delete_btn {
     position: absolute;
-    top: 0.5rem;
-    right: 0.5rem;
     width: fit-content;
     aspect-ratio: 1/1;
     padding: 0.5rem;
-    font-size: 1.5rem;
+    font-size: 1rem;
     background-color: inherit;
     border: 1px solid lightgray;
-    color: red;
+    color: gray;
+    transition: var(--transition-fast);
+}
+
+
+.test_delete_btn {
+    top: 0.5rem;
+    right: 0.5rem;
+    /* color: red; */
+}
+
+.test_delete_btn:hover {
+    color: var(--color-ohio-red);
 }
 
 .test_update_btn {
-    position: absolute;
     top: 0.5rem;
     left: 0.5rem;
-    width: fit-content;
-    aspect-ratio: 1/1;
-    padding: 0.5rem;
-    font-size: 1.5rem;
-    background-color: inherit;
-    border: 1px solid lightgray;
-    color: green;
+    /* color: green; */
+}
+
+.test_update_btn:hover {
+    color: mediumspringgreen;
+    border: 1px solid mediumspringgreen;
 }
 
 .test_portrait_container {
@@ -131,4 +148,14 @@
     height: 80%;
     width: 1px;
     background-color: darkgray;
+}
+
+.player_manager_controls {
+    display: grid;
+    grid-template-columns: 8fr 2fr;
+    align-items: flex-end;
+    justify-content: space-between;
+    /* width: 100%; */
+    margin-top: 2rem;
+    padding: 0 2rem;
 }

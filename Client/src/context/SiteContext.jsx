@@ -19,7 +19,6 @@ export const SiteProvider = ({ children }) => {
   const [filteredItem, setFilteredItem] = useState([]);
   const [defaultTeam, setDefaultTeam] = useState();
 
-
   const getDates = (startDate) => {
     const start = new Date(startDate);
     const end = new Date(addDays(start, 6));
@@ -29,32 +28,41 @@ export const SiteProvider = ({ children }) => {
   };
 
   const nextClick = () => {
-    const nextDay = addDays(selected, 7)
-    setSelected(nextDay)
-    getDates(nextDay)
-
-  }
+    const nextDay = addDays(selected, 7);
+    setSelected(nextDay);
+    getDates(nextDay);
+  };
 
   const prevClick = () => {
-    const prevDay = subDays(selected, 7)
-    setSelected(prevDay)
-    getDates(prevDay)
-
-  }
+    const prevDay = subDays(selected, 7);
+    setSelected(prevDay);
+    getDates(prevDay);
+  };
 
   const [teamData, setTeamData] = useState([]);
 
-  const getTeamData = async() => {
-    const res = await axios.get('http://localhost:9200/teams')
-    setTeamData(res.data)
-  }
+  const getTeamData = async () => {
+    const res = await axios.get("http://localhost:9200/teams");
+    setTeamData(res.data);
+  };
 
   const [testPlayers, setTestPlayers] = useState([]);
 
-  const getTestPlayers = async() => {
-    const res = await axios.get('http://localhost:9200/players')
-    setTestPlayers(res.data)
-  }
+  const getTestPlayers = async () => {
+    const res = await axios.get("http://localhost:9200/players");
+    setTestPlayers(res.data);
+  };
+
+  const [filteredPlayers, setFilteredPlayers] = useState([]);
+
+  const getFilterTeam = async (teamID) => {
+    try {
+      const res = await axios.get("http://localhost:9200/players/" + teamID);
+      setFilteredPlayers(res.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   useEffect(() => {
     // axios({
@@ -64,8 +72,8 @@ export const SiteProvider = ({ children }) => {
     //   // console.log(res.data);
     //   setTeamData(res.data)
     // });
-    getTeamData()
-    getTestPlayers()
+    getTeamData();
+    getTestPlayers();
   }, []);
 
   // console.log(defaultTeam)
@@ -85,7 +93,7 @@ export const SiteProvider = ({ children }) => {
         dateList,
         setDateList,
         getDates,
-        currentTeamTitle, 
+        currentTeamTitle,
         setCurrentTeamTitle,
         selected,
         setSelected,
@@ -98,7 +106,9 @@ export const SiteProvider = ({ children }) => {
         teamData,
         getTeamData,
         testPlayers,
-        getTestPlayers
+        getTestPlayers,
+        getFilterTeam,
+        filteredPlayers,
       }}
     >
       {children}

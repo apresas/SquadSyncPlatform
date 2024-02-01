@@ -40,7 +40,9 @@ function App() {
     getTeamData,
     teamData,
     testPlayers,
-    getTestPlayers
+    getTestPlayers,
+    getFilterTeam,
+    filteredPlayers,
   } = useSite();
   return (
     <>
@@ -96,7 +98,7 @@ function App() {
         <Route path="/awards" element={<PlayerAwards />} />
         <Route path="/allstar" element={<AllstarGame />} />
         <Route path="/history" element={<History />} />
-        <Route path="/archive" element={<Archieve teamData={teamData} testPlayers={testPlayers} getTestPlayers={getTestPlayers}/>} />
+        <Route path="/archive" element={<Archieve teamData={teamData} testPlayers={testPlayers} getTestPlayers={getTestPlayers} getFilterTeam={getFilterTeam} filteredPlayers={filteredPlayers}/>} />
         <Route path="/links" element={<Links />} />
         <Route path="/info" element={<LeagueInfo />} />
       </Routes>

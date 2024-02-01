@@ -4,7 +4,7 @@ import PlayerDropdown from "./playerDropdown";
 import axios from "axios";
 // import teamData from "../../data/teams.json";
 
-function PlayerForm({ teamData, getTestPlayers }) {
+function PlayerForm({ teamData, getTestPlayers, getFilterTeam, filterTeamID }) {
   const positions = [
     { name: "Forward" },
     { name: "Defense" },
@@ -93,6 +93,7 @@ function PlayerForm({ teamData, getTestPlayers }) {
     }
 
     getTestPlayers()
+    getFilterTeam(filterTeamID)
     generateID()
     // clearFields();
   };
