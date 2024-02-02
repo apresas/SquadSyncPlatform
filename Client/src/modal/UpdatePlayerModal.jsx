@@ -9,6 +9,8 @@ function UpdatePlayerModal({
   teamData,
   setOpenModal,
   getTestPlayers,
+  getFilterTeam,
+  filterTeamID
 }) {
   
   const [updatedPlayer, setUpdatedPlayer] = useState({
@@ -69,7 +71,8 @@ function UpdatePlayerModal({
       console.log("Player Updated");
       console.log(updatedPlayer);
       setOpenModal(false);
-      getTestPlayers();
+      // getTestPlayers();
+      getFilterTeam(filterTeamID)
     } catch (err) {
       console.log(err);
     }

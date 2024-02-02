@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import NavBar from "../components/NavBar";
@@ -10,8 +11,7 @@ import { TbUserEdit } from "react-icons/tb";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import UpdatePlayerModal from "../modal/UpdatePlayerModal";
 import PlayerDropdown from "../components/PlayerForm/PlayerDropdown";
-// import Dropdown from "react-dropdown"
-import "react-dropdown/style.css";
+
 
 function Archieve({
   teamData,
@@ -24,11 +24,12 @@ function Archieve({
 
   const [openModal, setOpenModal] = useState(false);
   const [currentPlayer, setCurrentPlayer] = useState({});
+  const [filterTeamID, setFilterTeamID] = useState();
 
   const handleDelete = async (playerID) => {
     try {
       await axios.delete("http://localhost:9200/players/" + playerID);
-      getTestPlayers();
+      getFilterTeam(filterTeamID);
     } catch (err) {
       console.log(err);
     }
@@ -40,7 +41,7 @@ function Archieve({
     // console.log(playerData);
   };
 
-  const [filterTeamID, setFilterTeamID] = useState();
+
 
   // console.log(currentPlayer)
 
@@ -58,6 +59,8 @@ function Archieve({
         teamData={teamData}
         setOpenModal={setOpenModal}
         getTestPlayers={getTestPlayers}
+        getFilterTeam={getFilterTeam}
+        filterTeamID={filterTeamID}
       />
       <SponcerBar />
       <NavBar />

@@ -37,6 +37,15 @@ app.get('/players', (req, res) => {
     })
 })
 
+app.get('/players/:teamID', (req, res) => {
+    const teamID = req.params.teamID
+    const q = "SELECT * FROM players WHERE teamID = ?"
+    db.query(q, [teamID], (err, data) => {
+        if (err) return res.json(err)
+        return res.json(data)
+    })
+})
+
 app.post('/players', (req, res) => {
     const q = "INSERT INTO players (`playerID`, `teamID`, `playerImage`, `firstName`, `lastName`, `jerseyNumber`, `position`, `height`, `weight`, `handedness`, `class`) VALUES(?)"
     const values = [
