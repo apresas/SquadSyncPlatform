@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
+/* eslint-disable react/prop-types */
+import { useState, useEffect} from "react";
 import "./playerDropdown.css";
 import PlayerDropdownMenu from "./playerDropdownMenu";
 import { IoChevronDown } from "react-icons/io5";
@@ -13,7 +14,8 @@ function PlayerDropdown({
   setSelectedClass,
   setSelectedHandedness,
   setSelectedJerseyNumber, 
-  currentPlayer
+  currentPlayer,
+  submitted,
 }) {
   const [dropdownTitle, setDropdownTitle] = useState(`Select ${type}`);
   const [logo, setLogo] = useState();
@@ -22,12 +24,23 @@ function PlayerDropdown({
     setOpen(!open);
   };
 
+
+  useEffect(() => {
+    if(submitted === true) {
+      setDropdownTitle(`Select ${type}`)
+      setLogo(null);
+    }
+  }, [submitted])
+
+
+
   useEffect(() => {
     if (type === "Position" || type === "Update Position") {
       setSelectedPosition(dropdownTitle);
     } else if (type === "Class" || type === "Update Class") {
       setSelectedClass(dropdownTitle);
     } else if (type === "Team" || type === "Update Team") {
+      setSelectedTeamID('')
       data.map((teamList) => {
         if (teamList.schoolName === dropdownTitle) {
           setSelectedTeamID(teamList.teamID);

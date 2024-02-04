@@ -61,3 +61,38 @@ gap: 0.5rem;
     box-shadow: 0 0 0 1px var(--color-ohio-blue);
 }
 
+.player_form_container span {
+    color: red;
+    font-family: var(--font-sub-header);
+    font-weight: 300;
+    display: none;
+}
+
+.player_form_container input:invalid[focused="true"] ~ span {
+    display: block;
+}
+
+.custom_select {
+    position: relative;
+    height: 2rem;
+}
+
+.custom_select select {
+    position: absolute;
+    background-color: white;
+    color: black;
+    border: 1px solid lightgray;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+
+.custom_select option{
+    color: black;
+    position: absolute;
+    padding: 1rem 0;
+}
+
+
+

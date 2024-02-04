@@ -29,9 +29,9 @@ function CareerStatsTable({currentPlayer}) {
     </thead>
     <tbody>
 
-        {currentPlayer.stats.careerStats.map((stats) => {
+        {/* {currentPlayer.stats.careerStats.map((stats, i) => {
           return (
-            <tr>
+            <tr key={i}>
             <td className="career_year_title">
               {stats.title.toUpperCase()}
             </td>
@@ -49,7 +49,7 @@ function CareerStatsTable({currentPlayer}) {
             </td>
             </tr>
           )
-        })}
+        })} */}
     </tbody>
   </table>
 

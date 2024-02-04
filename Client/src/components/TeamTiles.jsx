@@ -25,22 +25,7 @@ function TeamTiles({ setCurrentTeam, setRosterTeam, getTeamData, teamData }) {
 
   const { id } = useParams();
 
-  // const positionAccessor = (row) => {
-  //   return Number(row.position);
-  // };
-
-  // const [teamData, setTeamData] = useState();
-
-  // useEffect(() => {
-  //   getTeamData()
-  // }, []);
-
-  // useEffect(() => {
-  //   console.log("loading")
-  // }, [teamData])
-
-
-  console.log(teamData);
+  // console.log(teamData);
 
   const columns = useMemo(
     () => [
@@ -155,13 +140,13 @@ function TeamTiles({ setCurrentTeam, setRosterTeam, getTeamData, teamData }) {
             return team;
           })
             .filter((team) => team.division === "Red")
-            .map((team) => {
+            .map((team, i) => {
               const link = "/team/" + team.teamID;
               return (
                 <Link
                   to={link}
                   style={{ color: "inherit", textDecoration: "inherit" }}
-                  key="teamLink 1"
+                  key={i}
                 >
                   <div
                     key={team.teamID}
@@ -247,13 +232,13 @@ function TeamTiles({ setCurrentTeam, setRosterTeam, getTeamData, teamData }) {
             return team;
           })
             .filter((team) => team.division === "White")
-            .map((team) => {
+            .map((team, i) => {
               const link = "/team/" + team.teamID;
               return (
                 <Link
                   to={link}
                   style={{ color: "inherit", textDecoration: "inherit" }}
-                  key="teamLink 2"
+                  key={i}
                 >
                   <div
                     key={team.teamID}
@@ -341,13 +326,13 @@ function TeamTiles({ setCurrentTeam, setRosterTeam, getTeamData, teamData }) {
             return team;
           })
             .filter((team) => team.division === "Blue")
-            .map((team) => {
+            .map((team,  i) => {
               const link = "/team/" + team.teamID;
               return (
                 <Link
                   to={link}
                   style={{ color: "inherit", textDecoration: "inherit" }}
-                  key="teamLink 3"
+                  key={i}
                 >
                   <div
                     key={team.teamID}

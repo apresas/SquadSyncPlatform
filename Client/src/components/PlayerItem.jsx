@@ -1,10 +1,12 @@
 import React, { useEffect } from "react";
 import "./playerItem.css";
 
-function PlayerItem({roster, setCurrentPlayer, currentPlayer, checkCurrentPlayer}) {
+function PlayerItem({roster, setCurrentPlayer, currentPlayer, checkCurrentPlayer, getFilteredPlayer}) {
   const onPlayerClick = (player) => {
     setCurrentPlayer(player)
     checkCurrentPlayer();
+    getFilteredPlayer(player.playerID)
+    // console.log(player)
   }
 
 

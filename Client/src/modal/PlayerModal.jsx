@@ -37,15 +37,17 @@ function playerModal({
     position = "Goalie";
   }
 
-  if (currentPlayer.class === "2024") {
-    playerClass = "Senior";
-  } else if (currentPlayer.class === "2025") {
-    playerClass = "Junior";
-  } else if (currentPlayer.class === "2026") {
-    playerClass = "Sophomore";
-  } else {
-    playerClass = "Freshman";
-  }
+  // if (currentPlayer.class === "2024") {
+  //   playerClass = "Senior";
+  // } else if (currentPlayer.class === "2025") {
+  //   playerClass = "Junior";
+  // } else if (currentPlayer.class === "2026") {
+  //   playerClass = "Sophomore";
+  // } else {
+  //   playerClass = "Freshman";
+  // }
+
+  // console.log(currentPlayer)
   return (
     <>
       <div className="overlay" onClick={onClose}>
@@ -63,14 +65,14 @@ function playerModal({
                   {currentPlayer.firstName} {currentPlayer.lastName}
                 </h3>
                 <h2 className="modal_player_number">{currentPlayer.jerseyNumber}</h2>
-                <small className="player_class">{playerClass}</small>
+                <small className="player_class">{currentPlayer.class}</small>
                 <span className="info_divider" />
                 <div className="info_section_container">
                   <ul className="info_list">
                     <li>Height: <span>{height}</span></li>
-                    <li>Weight: <span>{weight}lbs</span></li>
-                    <li>Position: <span>{position}</span></li>
-                    <li>Handedness: <span>{handedness}</span></li>
+                    <li>Weight: <span>{currentPlayer.weight}lbs</span></li>
+                    <li>Position: <span>{currentPlayer.position}</span></li>
+                    <li>Handedness: <span>{currentPlayer.handedness}</span></li>
                   </ul>
                 </div>
               </div>

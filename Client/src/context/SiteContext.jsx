@@ -64,6 +64,16 @@ export const SiteProvider = ({ children }) => {
     }
   };
 
+  const [currentFilterPlayer, setCurrentFilterPlayer] = useState({})
+  const getFilteredPlayer = async(playerID) => {
+    try {
+      const res = await axios.get("http://localhost:9200/players/" + playerID);
+      setCurrentFilterPlayer(res.data);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   useEffect(() => {
     // axios({
     //   method: "GET",
@@ -109,6 +119,8 @@ export const SiteProvider = ({ children }) => {
         getTestPlayers,
         getFilterTeam,
         filteredPlayers,
+        getFilteredPlayer,
+        currentFilterPlayer
       }}
     >
       {children}

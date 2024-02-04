@@ -22,6 +22,13 @@ function PlayerForm({ teamData, getTestPlayers, getFilterTeam, filterTeamID }) {
   // const numbers = Array.from({ length: 99 }, (_, i) => i + 1);
   // const jerseyNumbers = numbers.map((n) => ({ name: n }));
 
+  const errorMessage = {
+    nameError:
+      "*Required* Name must only contain letters. No numbers or special characters.",
+    numbersError:
+      "*Required* Must only contain numbers. No letters or special characters",
+  };
+
   const [newPlayer, setNewPlayer] = useState({
     playerID: 0,
     firstName: "",
@@ -35,8 +42,10 @@ function PlayerForm({ teamData, getTestPlayers, getFilterTeam, filterTeamID }) {
     teamID: 0,
   });
 
+  const defaultTeamID = teamData.length + 1;
+
   const [currentTeamTitle, setCurrentTeamTitle] = useState();
-  const [selectedTeamID, setSelectedTeamID] = useState(0);
+  const [selectedTeamID, setSelectedTeamID] = useState('');
   const [selectedPosition, setSelectedPosition] = useState("");
   const [selectedClass, setSelectedClass] = useState("");
   const [newPlayerID, setNewPlayerID] = useState(0);
@@ -47,10 +56,20 @@ function PlayerForm({ teamData, getTestPlayers, getFilterTeam, filterTeamID }) {
   const [playerWeight, setPlayerWeight] = useState();
   const [playerJerseyNumber, setPlayerJerseyNumber] = useState();
 
+  const [submitted, setSubmitted] = useState(false);
+
+  const [focused, setFocused] = useState(false);
+
+  const handleFocus = () => {
+    setFocused(true);
+  };
+
   useEffect(() => {
-    const newID = Math.floor(100000 + Math.random() * 900000);
-    setNewPlayerID(newID);
+    // const newID = Math.floor(100000 + Math.random() * 900000);
+    // setNewPlayerID(newID);
+    generateID()
   }, []);
+
 
   const generateID = () => {
     const newID = Math.floor(100000 + Math.random() * 900000);
@@ -65,7 +84,7 @@ function PlayerForm({ teamData, getTestPlayers, getFilterTeam, filterTeamID }) {
       height: playerHeight,
       weight: playerWeight,
       jerseyNumber: playerJerseyNumber,
-      teamID: selectedTeamID,
+      teamID: Number(selectedTeamID),
       handedness: selectedHandedness,
       position: selectedPosition,
       class: selectedClass,
@@ -92,10 +111,10 @@ function PlayerForm({ teamData, getTestPlayers, getFilterTeam, filterTeamID }) {
       console.log(err);
     }
 
-    getTestPlayers()
-    getFilterTeam(filterTeamID)
-    generateID()
-    // clearFields();
+    // getTestPlayers();
+    getFilterTeam(filterTeamID);
+    generateID();
+    clearFields();
   };
 
   const clearFields = () => {
@@ -104,29 +123,83 @@ function PlayerForm({ teamData, getTestPlayers, getFilterTeam, filterTeamID }) {
     setPlayerHeight(undefined);
     setPlayerWeight(undefined);
     setPlayerJerseyNumber(undefined);
+    setSelectedTeamID('');
+    setSelectedPosition(undefined);
+    setSelectedHandedness(undefined);
+    setSelectedClass(undefined);
+    setSubmitted(true)
     generateID();
   };
 
   useEffect(() => {
     console.log(newPlayer);
+    setSubmitted(false)
   }, [newPlayer]);
 
+  // const [values, setValues] = useState({
+  //   playerID: newPlayerID,
+  //   teamID: selectedTeamID,
+  //   firstName: "",
+  //   lastName: "",
+  //   height: "",
+  //   weight: "",
+  //   jerseyNumber: 0,
+  //   position: selectedPosition,
+  //   handedness: selectedHandedness,
+  //   class: selectedClass,
+  // });
+
+  // const inputs = [
+  //   {
+  //     id: 1,
+  //     name: "firstName",
+  //     type: "text",
+  //     label: "First Name",
+  //     errorMessage:
+  //       "*Required* Name must only contain letters. No numbers or special characters.",
+  //     required: true,
+  //   },
+  //   {
+  //     id: 2,
+  //     name: "lastName",
+  //     type: "text",
+  //     label: "Last Name",
+  //     errorMessage:
+  //       "*Required* Name must only contain letters. No numbers or special characters.",
+  //     required: true,
+  //   },
+  //   {
+  //     id: 3,
+  //     name: "weight",
+  //     type: "number",
+  //     label: "Weight",
+  //     errorMessage:
+  //       "*Required* Must only contain numbers. No letters or special characters",
+  //     required: true,
+  //   },
+  //   {
+  //     id: 4,
+  //     name: "height",
+  //     type: "number",
+  //     label: "Height",
+  //     errorMessage:
+  //       "*Required* Must only contain numbers. No letters or special characters",
+  //     required: true,
+  //   },
+  //   {
+  //     id: 5,
+  //     name: "jerseyNumber",
+  //     type: "number",
+  //     label: "Jersey Number",
+  //     errorMessage:
+  //       "*Required* Must only contain numbers. No letters or special characters",
+  //     required: true,
+  //   },
+  // ];
+
   // const handleFormChange = (e) => {
-  //   setNewPlayer((player) => ({
-  //     ...player,
-  //     [e.target.name]: e.target.value,
-  //     playerID: newPlayerID,
-  //     position: selectedPosition,
-  //     handedness: selectedHandedness,
-  //     class: selectedClass,
-  //     teamID: selectedTeamID,
-  //   }));
+  //   setValues({ ...values, [e.target.name]: e.target.value });
   // };
-
-  // console.log(newPlayer);
-
-  // console.log(selectedClass)
-  // console.log(selectedPosition)
 
   return (
     <form className="player_form_container">
@@ -134,17 +207,14 @@ function PlayerForm({ teamData, getTestPlayers, getFilterTeam, filterTeamID }) {
       <div className="player_id_field">
         <div className="id_field field">
           <label htmlFor="">Player ID</label>
-          <input
-            type="text"
-            disabled="disabled"
-            value={newPlayerID}
-          />
+          <input type="text" disabled="disabled" value={newPlayerID} />
         </div>
         <div className="id_field field">
           <label htmlFor="">Team ID</label>
           <input
             type="text"
             disabled="disabled"
+            onChange={(e) => setSelectedTeamID(e.target.value)}
             value={selectedTeamID}
             name="teamID"
           />
@@ -156,16 +226,28 @@ function PlayerForm({ teamData, getTestPlayers, getFilterTeam, filterTeamID }) {
           <input
             name="firstName"
             type="text"
+            pattern="^[A-Za-z\-\.]{0,60}$"
+            required={true}
             onChange={(e) => setPlayerFirstName(e.target.value)}
+            value={playerFirstName || ""}
+            // onBlur={handleFocus}
+            // focused={focused.toString()}
           />
+          <span>{errorMessage.nameError}</span>
         </div>
         <div className="field">
           <label htmlFor="">Last Name</label>
           <input
             name="lastName"
             type="text"
+            pattern="^[A-Za-z\-]{0,60}$"
+            required={true}
             onChange={(e) => setPlayerLastName(e.target.value)}
+            value={playerLastName || ""}
+            // onBlur={handleFocus}
+            // focused={focused.toString()}
           />
+          <span>{errorMessage.nameError}</span>
         </div>
       </div>
       <div className="player_vitals_field">
@@ -174,16 +256,26 @@ function PlayerForm({ teamData, getTestPlayers, getFilterTeam, filterTeamID }) {
           <input
             name="height"
             type="number"
+            min={0}
+            max={100}
+            required={true}
             onChange={(e) => setPlayerHeight(e.target.value)}
+            value={playerHeight || ""}
           />
+          <span>{errorMessage.numbersError}</span>
         </div>
         <div className="field">
           <label htmlFor="">Weight (lbs)</label>
           <input
             name="weight"
             type="number"
+            min={0}
+            max={400}
+            required={true}
             onChange={(e) => setPlayerWeight(e.target.value)}
+            value={playerWeight || ""}
           />
+          <span>{errorMessage.numbersError}</span>
         </div>
       </div>
       <div className="field">
@@ -191,8 +283,13 @@ function PlayerForm({ teamData, getTestPlayers, getFilterTeam, filterTeamID }) {
         <input
           name="jerseyNumber"
           type="number"
+          min={1}
+          max={99}
+          required={true}
           onChange={(e) => setPlayerJerseyNumber(e.target.value)}
+          value={playerJerseyNumber || ""}
         />
+        <span>{errorMessage.numbersError}</span>
       </div>
       <div className="field dropdown_field_container">
         <PlayerDropdown
@@ -201,21 +298,25 @@ function PlayerForm({ teamData, getTestPlayers, getFilterTeam, filterTeamID }) {
           setSelectedTeamID={setSelectedTeamID}
           currentTeamTitle={currentTeamTitle}
           setCurrentTeamTitle={setCurrentTeamTitle}
+          submitted={submitted}
         />
         <PlayerDropdown
           data={positions}
           type="Position"
           setSelectedPosition={setSelectedPosition}
+          submitted={submitted}
         />
         <PlayerDropdown
           data={shootsCatches}
           type="Handedness"
           setSelectedHandedness={setSelectedHandedness}
+          submitted={submitted}
         />
         <PlayerDropdown
           data={years}
           type="Class"
           setSelectedClass={setSelectedClass}
+          submitted={submitted}
         />
       </div>
       <div className="player_form_controls">

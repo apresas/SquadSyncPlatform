@@ -159,21 +159,21 @@ function LeadersStatTile({ stats, type, division }) {
       <div className="leader_stats_points">
         {testData
           .sort((a, b) => (a.typeAttribute > b.typeAttribute ? -1 : 1))
-          .map((stats, index) => {
+          .map((stats, i) => {
             // statsArray.push(stats)
             return(
             <div
               ref={selectedStat}
-              key={stats.key}
+              key={i}
               onMouseEnter={() => {
                 onStatsHover(stats, type);
               }}
             >
               <LeaderStatsItem
               selected={selectedClass}
-                key={stats.playerID}
+                key={i}
                 stats={stats}
-                index={index}
+                index={i}
                 type={type}
               />
             </div>

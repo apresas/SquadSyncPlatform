@@ -43,6 +43,8 @@ function App() {
     getTestPlayers,
     getFilterTeam,
     filteredPlayers,
+    getFilteredPlayer,
+    currentFilterPlayer
   } = useSite();
   return (
     <>
@@ -68,6 +70,10 @@ function App() {
               setCurrentPlayer={setCurrentPlayer}
               currentPlayer={currentPlayer}
               teamData={teamData}
+              getFilterTeam={getFilterTeam}
+              filteredPlayers={filteredPlayers}
+              getFilteredPlayer={getFilteredPlayer}
+              currentFilterPlayer={currentFilterPlayer}
             />
           }
         />

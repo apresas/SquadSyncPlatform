@@ -12,7 +12,6 @@ import { RiDeleteBin5Line } from "react-icons/ri";
 import UpdatePlayerModal from "../modal/UpdatePlayerModal";
 import PlayerDropdown from "../components/PlayerForm/PlayerDropdown";
 
-
 function Archieve({
   teamData,
   testPlayers,
@@ -20,11 +19,11 @@ function Archieve({
   getFilterTeam,
   filteredPlayers,
 }) {
-  // console.log(testPlayers);
-
   const [openModal, setOpenModal] = useState(false);
   const [currentPlayer, setCurrentPlayer] = useState({});
   const [filterTeamID, setFilterTeamID] = useState();
+
+  const [filterDropdown, setFilterDropdown] = useState([]);
 
   const handleDelete = async (playerID) => {
     try {
@@ -40,16 +39,26 @@ function Archieve({
     setCurrentPlayer(playerData);
     // console.log(playerData);
   };
-
-
-
   // console.log(currentPlayer)
-
   useEffect(() => {
-    getFilterTeam(filterTeamID)
+    getFilterTeam(filterTeamID);
   }, [filterTeamID]);
 
-  console.log(filteredPlayers)
+  useEffect(() => {
+    let teamDropdownItem = [];
+    const all = {
+      teamID: "",
+      schoolName: "All Teams",
+      mascotName: "",
+      city: "",
+      division: "",
+    };
+    teamDropdownItem.push(all);
+    teamData.map((team) => teamDropdownItem.push(team));
+    setFilterDropdown(teamDropdownItem);
+  }, [teamData]);
+
+  console.log(filteredPlayers);
 
   return (
     <>
@@ -67,12 +76,17 @@ function Archieve({
       <div className="archieve_container">
         <div className="archieve_content_container">
           <div>Archieve</div>
-          <PlayerForm teamData={teamData} getTestPlayers={getTestPlayers} getFilterTeam={getFilterTeam} filterTeamID={filterTeamID}/>
+          <PlayerForm
+            teamData={teamData}
+            getTestPlayers={getTestPlayers}
+            getFilterTeam={getFilterTeam}
+            filterTeamID={filterTeamID}
+          />
           <div className="player_manager_controls">
             <h2 className="player_manager_title">Player Manager</h2>
             <PlayerDropdown
               type="Team"
-              data={teamData}
+              data={filterDropdown}
               setSelectedTeamID={setFilterTeamID}
             />
           </div>

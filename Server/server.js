@@ -37,6 +37,15 @@ app.get('/players', (req, res) => {
     })
 })
 
+// app.get('/players/:playerID', (req, res) => {
+//     const playerID = req.params.playerID
+//     const q = "SELECT * FROM players WHERE playerID = ?"
+//     db.query(q, [playerID], (err, data) => {
+//         if(err) return res.json(err)
+//         return res.json(data)
+//     })
+// })
+
 app.get('/players/:teamID', (req, res) => {
     const teamID = req.params.teamID
     const q = "SELECT * FROM players WHERE teamID = ?"

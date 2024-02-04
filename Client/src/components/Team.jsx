@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+/* eslint-disable react/prop-types */
+import { useState, useEffect } from "react";
 import "./team.css";
 import NavBar from "./NavBar";
 import SponcerBar from "./Sponcer/SponcerBar";
@@ -15,20 +16,24 @@ function Team({
   rosterTeam,
   setCurrentPlayer,
   currentPlayer,
-  teamData
+  teamData,
+  getFilterTeam,
+  filteredPlayers,
+  getFilteredPlayer,
+  currentFilterPlayer
 }) {
   // console.log(rosterTeam);
   // const primary_color = "White"
   // const secondary_color = "#031327"
   // const primary_color = rosterTeam.primaryColor;
   // const secondary_color = rosterTeam.secondaryColor;
-  const primary_color = rosterTeam.primaryColor;
-  const secondary_color = rosterTeam.secondaryColor;
+  // const primary_color = rosterTeam.primaryColor;
+  // const secondary_color = rosterTeam.secondaryColor;
   const [openModal, setOpenModal] = useState(false);
   const [teamLogo, setTeamLogo] = useState("");
 
-  const [primaryColor, setPrimaryColor] = useState()
-  const [secondaryColor, setSecondaryColor] = useState()
+  const [primaryColor, setPrimaryColor] = useState();
+  const [secondaryColor, setSecondaryColor] = useState();
 
   useEffect(() => {
     {
@@ -36,23 +41,30 @@ function Team({
         setTeamLogo(data.logo)
       );
     }
+    // getFilterTeam(currentTeam.teamID)
   }, [currentTeam]);
 
   useEffect(() => {
-    {teamData.filter((data) => data.teamID === currentTeam.teamID).map((data) =>{
-      setPrimaryColor(data.primaryColor)
-      setSecondaryColor(data.secondaryColor)
-    })}
-  }, [])
+    {
+      teamData
+        .filter((data) => data.teamID === currentTeam.teamID)
+        .map((data) => {
+          setPrimaryColor(data.primaryColor);
+          setSecondaryColor(data.secondaryColor);
+        });
+    }
+    getFilterTeam(currentTeam.teamID)
+  }, []);
 
   const checkCurrentPlayer = () => {
     setOpenModal(true);
-    // console.log(currentPlayer.stats)
   };
 
   const closeModal = () => {
     setOpenModal(false);
   };
+
+  // console.log(filteredPlayers)
   return (
     <>
       <PlayerModal
@@ -83,38 +95,44 @@ function Team({
           <div className="players_grid">
             <h2 className="grid_title">Forwards</h2>
             <div className="forwards_grid">
-              {rosterTeam.roster
-                .filter((roster) => roster.position === "F")
-                .map((roster) => (
+              {filteredPlayers
+                .filter((roster) => roster.position === "Forward")
+                .map((roster, i) => (
                   <PlayerItem
+                    key={i}
                     roster={roster}
                     setCurrentPlayer={setCurrentPlayer}
                     checkCurrentPlayer={checkCurrentPlayer}
                     currentPlayer={currentPlayer}
+                    getFilteredPlayer={getFilteredPlayer}
                   />
                 ))}
             </div>
             <h2 className="grid_title">Defensemen</h2>
             <div className="defense_grid">
-              {rosterTeam.roster
-                .filter((roster) => roster.position === "D")
-                .map((roster) => (
+              {filteredPlayers
+                .filter((roster) => roster.position === "Defense")
+                .map((roster, i) => (
                   <PlayerItem
+                    key={i}
                     roster={roster}
                     setCurrentPlayer={setCurrentPlayer}
                     checkCurrentPlayer={checkCurrentPlayer}
+                    getFilteredPlayer={getFilteredPlayer}
                   />
                 ))}
             </div>
             <h2 className="grid_title">Goalies</h2>
             <div className="goalies_grid">
-              {rosterTeam.roster
-                .filter((roster) => roster.position === "G")
-                .map((roster) => (
+              {filteredPlayers
+                .filter((roster) => roster.position === "Goalie")
+                .map((roster, i) => (
                   <PlayerItem
+                    key={i}
                     roster={roster}
                     setCurrentPlayer={setCurrentPlayer}
                     checkCurrentPlayer={checkCurrentPlayer}
+                    getFilteredPlayer={getFilteredPlayer}
                   />
                 ))}
             </div>
