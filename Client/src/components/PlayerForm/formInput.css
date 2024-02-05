@@ -1,0 +1,17 @@
+.formInput {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.formInput input {
+    background-color: white;
+    font-family: var(--font-main);
+    border: 1px solid lightgrey;
+    padding: 0.5rem 0.5rem;
+    color: var(--color-bg);
+}
+
+.formInput label {
+    font-family: var(--font-sub-header);
+}

@@ -10,7 +10,9 @@ import playerPortrait from "../assets/Player_Icon.svg";
 import { TbUserEdit } from "react-icons/tb";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import UpdatePlayerModal from "../modal/UpdatePlayerModal";
+import PlayerStatsModal from "../modal/PlayerStatsModal";
 import PlayerDropdown from "../components/PlayerForm/PlayerDropdown";
+import { Link, useParams } from "react-router-dom";
 
 function Archieve({
   teamData,
@@ -18,10 +20,13 @@ function Archieve({
   getTestPlayers,
   getFilterTeam,
   filteredPlayers,
+  setCurrentPlayer,
+  currentPlayer,
 }) {
   const [openModal, setOpenModal] = useState(false);
-  const [currentPlayer, setCurrentPlayer] = useState({});
+  // const [currentPlayer, setCurrentPlayer] = useState({});
   const [filterTeamID, setFilterTeamID] = useState();
+  const [openStats, setOpenStats] = useState(false);
 
   const [filterDropdown, setFilterDropdown] = useState([]);
 
@@ -34,12 +39,20 @@ function Archieve({
     }
   };
 
-  const handleModalOpen = async (playerData) => {
+  const handleModalOpen = async (e, playerData) => {
+    e.preventDefault();
+    e.stopPropagation();
     setOpenModal(true);
     setCurrentPlayer(playerData);
-    // console.log(playerData);
   };
-  // console.log(currentPlayer)
+
+  const handleStatsOpen = async (e, playerData) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setOpenStats(true);
+    setCurrentPlayer(playerData);
+  };
+  console.log(currentPlayer);
   useEffect(() => {
     getFilterTeam(filterTeamID);
   }, [filterTeamID]);
@@ -71,6 +84,15 @@ function Archieve({
         getFilterTeam={getFilterTeam}
         filterTeamID={filterTeamID}
       />
+      <PlayerStatsModal
+        open={openStats}
+        currentPlayer={currentPlayer}
+        teamData={teamData}
+        setOpenStats={setOpenStats}
+        getTestPlayers={getTestPlayers}
+        getFilterTeam={getFilterTeam}
+        filterTeamID={filterTeamID}
+      />
       <SponcerBar />
       <NavBar />
       <div className="archieve_container">
@@ -94,7 +116,11 @@ function Archieve({
             {filteredPlayers
               // .filter((player) => player.teamID === 7)
               .map((player) => (
-                <div className="test_player_container" key={player.playerID}>
+                <div
+                  className="test_player_container"
+                  key={player.playerID}
+                  onClick={(e) => handleStatsOpen(e, player)}
+                >
                   <button
                     className="test_delete_btn"
                     onClick={() => handleDelete(player.playerID)}
@@ -103,7 +129,7 @@ function Archieve({
                   </button>
                   <button
                     className="test_update_btn"
-                    onClick={() => handleModalOpen(player)}
+                    onClick={(e) => handleModalOpen(e, player)}
                   >
                     <TbUserEdit />
                   </button>

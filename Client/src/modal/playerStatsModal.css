@@ -1,0 +1,32 @@
+
+  .stats_player_info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+
+  .stats_player_info h1 {
+    font-family: var(--font-header);
+    margin: 0;
+    font-size: 2.5rem;
+    line-height: 0.9;
+  }
+
+  .stats_player_info small {
+    font-family: var(--font-sub-header);
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 300;
+  }
+
+  .player_stats_field {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+  }
+
+  .stats_team_logo {
+    height: 3rem;
+  }

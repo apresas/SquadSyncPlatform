@@ -104,7 +104,7 @@ function App() {
         <Route path="/awards" element={<PlayerAwards />} />
         <Route path="/allstar" element={<AllstarGame />} />
         <Route path="/history" element={<History />} />
-        <Route path="/archive" element={<Archieve teamData={teamData} testPlayers={testPlayers} getTestPlayers={getTestPlayers} getFilterTeam={getFilterTeam} filteredPlayers={filteredPlayers}/>} />
+        <Route path="/archive" element={<Archieve teamData={teamData} testPlayers={testPlayers} getTestPlayers={getTestPlayers} getFilterTeam={getFilterTeam} filteredPlayers={filteredPlayers} setCurrentPlayer={setCurrentPlayer} currentPlayer={currentPlayer}/>} />
         <Route path="/links" element={<Links />} />
         <Route path="/info" element={<LeagueInfo />} />
       </Routes>

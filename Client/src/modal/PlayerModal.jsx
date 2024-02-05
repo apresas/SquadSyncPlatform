@@ -1,4 +1,4 @@
-import React, { useMemo, useEffect } from "react";
+import { useEffect, useState } from "react";
 import "./playerModal.css";
 import { useTable, useSortBy } from "react-table";
 import { IoClose } from "react-icons/io5";
@@ -10,48 +10,30 @@ function playerModal({
   currentPlayer,
   primaryColor,
   secondaryColor,
-  teamLogo
+  teamLogo,
 }) {
+
+  const [convertedHeight, setConvertedHeight] = useState();
+
+  const convertHeight = (height) => {
+    let feet = Math.floor(height / 12);
+    let inches = height - feet * 12;
+    let newHeight = `${feet}'${inches}"`;
+    setConvertedHeight(newHeight);
+  };
+
+  useEffect(() => {
+    convertHeight(currentPlayer.height);
+  }, [currentPlayer]);
+
   if (!open) {
     return null;
   }
-  let position = "";
-  // let height = "6'1\"";
-  let weight = "155";
-  let handedness = "L";
-  let playerClass = "";
 
-
-  let rawHeight = (currentPlayer.height / 12).toFixed(2);
-  let heightArray = rawHeight.split('.');
-  let heightString = (heightArray[1] / 100 * 12).toString()
-  let heightInches = heightString.split('.')
-  const height = heightArray[0] + "'" + heightInches[0] + "\"";
-
-
-  if (currentPlayer.position === "F") {
-    position = "Forward";
-  } else if (currentPlayer.position === "D") {
-    position = "Defense";
-  } else {
-    position = "Goalie";
-  }
-
-  // if (currentPlayer.class === "2024") {
-  //   playerClass = "Senior";
-  // } else if (currentPlayer.class === "2025") {
-  //   playerClass = "Junior";
-  // } else if (currentPlayer.class === "2026") {
-  //   playerClass = "Sophomore";
-  // } else {
-  //   playerClass = "Freshman";
-  // }
-
-  // console.log(currentPlayer)
   return (
     <>
       <div className="overlay" onClick={onClose}>
-        <div className="modal_container" onClick={e => e.stopPropagation()}>
+        <div className="modal_container" onClick={(e) => e.stopPropagation()}>
           <div className="modal_content">
             <div className="modal_left">
               <div className="player_info">
@@ -64,15 +46,25 @@ function playerModal({
                 <h3 className="modal_player_name">
                   {currentPlayer.firstName} {currentPlayer.lastName}
                 </h3>
-                <h2 className="modal_player_number">{currentPlayer.jerseyNumber}</h2>
+                <h2 className="modal_player_number">
+                  {currentPlayer.jerseyNumber}
+                </h2>
                 <small className="player_class">{currentPlayer.class}</small>
                 <span className="info_divider" />
                 <div className="info_section_container">
                   <ul className="info_list">
-                    <li>Height: <span>{height}</span></li>
-                    <li>Weight: <span>{currentPlayer.weight}lbs</span></li>
-                    <li>Position: <span>{currentPlayer.position}</span></li>
-                    <li>Handedness: <span>{currentPlayer.handedness}</span></li>
+                    <li>
+                      Height: <span>{convertedHeight}</span>
+                    </li>
+                    <li>
+                      Weight: <span>{currentPlayer.weight}lbs</span>
+                    </li>
+                    <li>
+                      Position: <span>{currentPlayer.position}</span>
+                    </li>
+                    <li>
+                      Handedness: <span>{currentPlayer.handedness}</span>
+                    </li>
                   </ul>
                 </div>
               </div>
@@ -93,11 +85,11 @@ function playerModal({
               <div className="stats_container">
                 <div className="current_stats_container">
                   <h2 className="season_title">Season Stats</h2>
-                  <CurrentStatsTable currentPlayer={currentPlayer}/>
+                  <CurrentStatsTable currentPlayer={currentPlayer} />
                 </div>
                 <div className="career_stats_container">
                   <h2>Career Stats</h2>
-                  <CareerStatsTable currentPlayer={currentPlayer}/>
+                  <CareerStatsTable currentPlayer={currentPlayer} />
                 </div>
               </div>
             </div>
