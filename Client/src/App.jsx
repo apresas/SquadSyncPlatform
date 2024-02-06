@@ -45,7 +45,9 @@ function App() {
     filteredPlayers,
     getFilteredPlayer,
     currentFilterPlayer,
-    schedule
+    schedule,
+    gameCount,
+    setGameCount,
   } = useSite();
   return (
     <>
@@ -97,6 +99,8 @@ function App() {
               defaultTeam={defaultTeam}
               setDefaultTeam={setDefaultTeam}
               schedule={schedule}
+              gameCount={gameCount}
+              setGameCount={setGameCount}
             />
           }
         />

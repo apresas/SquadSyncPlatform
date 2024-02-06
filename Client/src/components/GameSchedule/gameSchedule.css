@@ -97,7 +97,13 @@
 
 .test_table_header {
     border-bottom: 1px solid lightgrey;
-    padding: 1rem;
+    padding: 1.5rem 3rem;
+    font-family: var(--font-header);
+    font-size: 1.25rem;
+}
+
+.test_table_header h2{
+    margin: 0;
 }
 
 .test_table_field_header {
@@ -128,6 +134,15 @@
     justify-content: center;
 }
 
+.test_hometeam, .test_awayteam {
+    gap: 0.5rem;
+}
+
 .test_awayteam img, .test_hometeam img {
     height: 2rem;
+}
+
+.test_score {
+    font-weight:700;
+    font-size: 1.25rem;
 }

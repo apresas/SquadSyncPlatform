@@ -17,7 +17,9 @@ function Schdule({
   filteredItem,
   defaultTeam,
   setDefaultTeam,
-  schedule
+  schedule,
+  gameCount,
+  setGameCount
 }) {
   return (
     <>
@@ -37,6 +39,8 @@ function Schdule({
         setDefaultTeam={setDefaultTeam}
         defaultTeam={defaultTeam}
         schedule={schedule}
+        gameCount={gameCount}
+        setGameCount={setGameCount}
       />
       <Footer />
     </>

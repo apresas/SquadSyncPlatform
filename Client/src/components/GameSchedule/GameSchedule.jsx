@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import { useState, useEffect, useRef } from "react";
 import DayTile from "./DayTile";
 import SchduleTable from "./ScheduleTable";
 import ScheduleFilterControls from "./ScheduleFilterControls";
@@ -7,6 +8,8 @@ import scheduleData from "../../data/schedule.json";
 import "./gameSchedule.css";
 import { FiChevronRight, FiChevronLeft } from "react-icons/fi";
 import { RiH1 } from "react-icons/ri";
+import TestGameItem from "./TestGameItem";
+import { DateTime } from "luxon";
 
 function GameSchedule({
   currentTeamTitle,
@@ -22,6 +25,8 @@ function GameSchedule({
   defaultTeam,
   setDefaultTeam,
   schedule,
+  gameCount,
+  setGameCount,
 }) {
   // const filterTable = (data) => {
   //   data.games
@@ -38,6 +43,31 @@ function GameSchedule({
 
   // console.log(filteredItem);
   // console.log(schedule)
+
+  const [gamesList, setGamesList] = useState([]);
+  let list = []
+  const filterGame = (game, date) => {
+      if(game.date === date) {
+        list.push(game)
+        // setGameCount(game)
+        // setGamesList(list)
+        return(game)
+      }
+      // console.log(gameCount)
+  };
+
+  useEffect(() => {
+    {
+      dateList.map((dates) => {
+        const filter = schedule.filter((games) => games.date === dates);
+        console.log(filter);
+      });
+    }
+    console.log(gamesList);
+  }, [dateList]);
+
+  // console.log(gamesList)
+
   return (
     <>
       <div className="schedule_container">
@@ -97,45 +127,59 @@ function GameSchedule({
             />
           </div>
           <div className="schedule_table">
-            {dateList.map((dateData, i) => (
-              <section key={i} className="schedule_section" id="s0">
-                <div className="test_table">
-                  <section className="test_table_header">
-                    <h2 key={i} className="test_table_date_title">
-                      {dateData}
-                    </h2>
-                  </section>
-                  <section className="test_table_field_header">
-                    <h3>Matchup</h3>
-                    <h3>Arena</h3>
-                    <h3>Time</h3>
-                    <h3>Score</h3>
-                  </section>
-                  {schedule
-                    .map((data) => data)
-                    .filter((data) => data.date === dateData)
-                    .map((data, i) => {
-                      return(
-                        <div key={i} className="test_game_item">
-                        <div className="test_hometeam">
-                          <img src="" alt="logo" />
-                          <h3>{data.homeTeam}</h3>
-                        </div>
-                        <span>@</span>
-                        <div className="test_awayteam">
-                          <img src="" alt="logo" />
-                          <h3>{data.awayTeam}</h3>
-                        </div>
-                        <p>{data.arena}</p>
-                        <p>{data.time}</p>
-                        <p>
-                          {data.homeScore} - {data.awayScore}
-                        </p>
-                      </div>
-                    )})}
-                </div>
-              </section>
-            ))}
+            {dateList.map((dateData, i) => {
+              const newDate = DateTime.fromISO(dateData).toFormat("DD");
+              const week = DateTime.fromISO(dateData).toFormat("EEE");
+              const title = week + ", " + newDate;
+              return (
+                <section key={i} className="schedule_section" id="s0">
+                  <div className="test_table">
+                    <section className="test_table_header">
+                      <h2 key={i} className="test_table_date_title">
+                        {title}
+                      </h2>
+                    </section>
+                    <section className="test_table_field_header">
+                      <h3>Matchup</h3>
+                      <h3>Arena</h3>
+                      <h3>Time</h3>
+                      <h3>Score</h3>
+                    </section>
+                    {schedule
+                      .map((data) => data)
+                      .filter((data) => filterGame(data, dateData))
+                      .map((data, i) => {
+                        return (
+                          <TestGameItem
+                            key={i}
+                            data={data}
+                            date={dateData}
+                            gamesList={list}
+                            gameCount={gameCount}
+                            setGameCount={setGameCount}
+                          />
+                          //   <div key={i} className="test_game_item">
+                          //   <div className="test_hometeam">
+                          //     <img src="" alt="logo" />
+                          //     <h3>{data.homeTeam}</h3>
+                          //   </div>
+                          //   <span>@</span>
+                          //   <div className="test_awayteam">
+                          //     <img src="" alt="logo" />
+                          //     <h3>{data.awayTeam}</h3>
+                          //   </div>
+                          //   <p>{data.arena}</p>
+                          //   <p>{data.time}</p>
+                          //   <p>
+                          //     {data.homeScore} - {data.awayScore}
+                          //   </p>
+                          // </div>
+                        );
+                      })}
+                  </div>
+                </section>
+              );
+            })}
             <section className="schedule_section" id="s1">
               {scheduleData
                 .filter((data) => data.date === dateList[0])
