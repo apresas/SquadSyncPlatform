@@ -84,3 +84,50 @@
     justify-content: center;
     width: 100%;
 }
+
+/* Test Section */
+
+.test_table {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border: 1px solid lightgrey;
+    width: 85%;
+}
+
+.test_table_header {
+    border-bottom: 1px solid lightgrey;
+    padding: 1rem;
+}
+
+.test_table_field_header {
+    display: grid;
+    grid-template-columns: 9fr 2fr 2fr 2fr;
+    /* justify-content: space-between; */
+    padding: 1rem;
+    border-bottom: 1px solid lightgrey;
+}
+.test_game_item {
+    display: grid;
+    grid-template-columns: 4fr 1fr 4fr 2fr 2fr 2fr;
+    align-items: center;
+    justify-items: center;
+    /* justify-content: space-between; */
+    background-color: var(--color-dark-white);
+    border-bottom: 1px solid lightgrey;
+    padding: 1rem;
+}
+
+.test_game_item:nth-last-of-type(odd) {
+    background-color: white;
+}
+
+.test_hometeam, .test_awayteam, .test_game_item span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.test_awayteam img, .test_hometeam img {
+    height: 2rem;
+}

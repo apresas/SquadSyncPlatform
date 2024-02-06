@@ -74,6 +74,14 @@ export const SiteProvider = ({ children }) => {
     }
   }
 
+  const [schedule, setSchedule] = useState([])
+  const getSchedule = async () => {
+    const res = await axios.get("http://localhost:9200/schedule")
+    setSchedule(res.data);
+  }
+
+  // console.log(schedule)
+
   useEffect(() => {
     // axios({
     //   method: "GET",
@@ -84,6 +92,7 @@ export const SiteProvider = ({ children }) => {
     // });
     getTeamData();
     getTestPlayers();
+    getSchedule()
   }, []);
 
   // console.log(defaultTeam)
@@ -120,7 +129,8 @@ export const SiteProvider = ({ children }) => {
         getFilterTeam,
         filteredPlayers,
         getFilteredPlayer,
-        currentFilterPlayer
+        currentFilterPlayer,
+        schedule
       }}
     >
       {children}

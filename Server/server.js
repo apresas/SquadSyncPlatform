@@ -21,6 +21,14 @@ app.get('/teams', (req, res) => {
     })
 })
 
+app.get('/schedule', (req, res) => {
+    const q = "SELECT * FROM teamSchedule"
+    db.query(q, (err, data) => {
+        if (err) return res.json(err)
+        return res.json(data)
+    })
+})
+
 app.get('/standings', (req, res) => {
     const q = "SELECT standings.*, teams.schoolName, teams.logo, teams.division FROM standings INNER JOIN teams ON standings.teamID = teams.teamID"
     db.query(q, (err, data) => {

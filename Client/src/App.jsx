@@ -44,7 +44,8 @@ function App() {
     getFilterTeam,
     filteredPlayers,
     getFilteredPlayer,
-    currentFilterPlayer
+    currentFilterPlayer,
+    schedule
   } = useSite();
   return (
     <>
@@ -95,6 +96,7 @@ function App() {
               filteredItem={filteredItem}
               defaultTeam={defaultTeam}
               setDefaultTeam={setDefaultTeam}
+              schedule={schedule}
             />
           }
         />
