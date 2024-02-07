@@ -11,6 +11,7 @@ import { RiH1 } from "react-icons/ri";
 import TestGameItem from "./TestGameItem";
 import { DateTime } from "luxon";
 import TestSchduleTable from "./TestSchduleTable";
+import AddScheduleModal from "../../modal/AddScheduleModal";
 
 function GameSchedule({
   currentTeamTitle,
@@ -24,10 +25,25 @@ function GameSchedule({
   setFilteredItem,
   filteredItem,
   setDefaultTeam,
-  teamData
+  teamData,
 }) {
+  const [selectedTeam, setSelectedTeam] = useState();
+  const [openModal, setOpenModal] = useState(false);
+
+  const handleModalOpen = async (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setOpenModal(true);
+  };
+
   return (
     <>
+      <AddScheduleModal
+        teamData={teamData}
+        selected={selected}
+        open={openModal}
+        setOpenModal={setOpenModal}
+      />
       <div className="schedule_container">
         <div className="schedule_content_container">
           <TitleBar title="Schedule" subtitle="2023-2024" />
@@ -39,6 +55,9 @@ function GameSchedule({
             selected={selected}
             nextClick={nextClick}
             prevClick={prevClick}
+            setSelectedTeam={setSelectedTeam}
+            teamData={teamData}
+            handleModalOpen={handleModalOpen}
           />
           <div className="day_tile_container">
             <DayTile
@@ -46,47 +65,62 @@ function GameSchedule({
               date={dateList[0]}
               scheduleData={scheduleData}
               filteredItem={filteredItem}
+              selectedTeam={selectedTeam}
             />
             <DayTile
               href={"#s1"}
               date={dateList[1]}
               scheduleData={scheduleData}
               filteredItem={filteredItem}
+              selectedTeam={selectedTeam}
             />
             <DayTile
               href={"#s2"}
               date={dateList[2]}
               scheduleData={scheduleData}
               filteredItem={filteredItem}
+              selectedTeam={selectedTeam}
             />
             <DayTile
               href={"#s3"}
               date={dateList[3]}
               scheduleData={scheduleData}
               filteredItem={filteredItem}
+              selectedTeam={selectedTeam}
             />
             <DayTile
               href={"#s4"}
               date={dateList[4]}
               scheduleData={scheduleData}
               filteredItem={filteredItem}
+              selectedTeam={selectedTeam}
             />
             <DayTile
               href={"#s5"}
               date={dateList[5]}
               scheduleData={scheduleData}
               filteredItem={filteredItem}
+              selectedTeam={selectedTeam}
             />
             <DayTile
               href={"#s6"}
               date={dateList[6]}
               scheduleData={scheduleData}
               filteredItem={filteredItem}
+              selectedTeam={selectedTeam}
             />
           </div>
           <div className="schedule_table">
             {dateList.map((dateData, i) => {
-              return <TestSchduleTable key={i} date={dateData} teamData={teamData} index={i}/>;
+              return (
+                <TestSchduleTable
+                  key={i}
+                  date={dateData}
+                  teamData={teamData}
+                  index={i}
+                  selectedTeam={selectedTeam}
+                />
+              );
             })}
             {/* <section className="schedule_section" id="s1">
               {scheduleData

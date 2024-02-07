@@ -16,6 +16,8 @@ function PlayerDropdown({
   setSelectedJerseyNumber, 
   currentPlayer,
   submitted,
+  setHomeID,
+  setAwayID
 }) {
   const [dropdownTitle, setDropdownTitle] = useState(`Select ${type}`);
   const [logo, setLogo] = useState();
@@ -50,6 +52,18 @@ function PlayerDropdown({
       setSelectedHandedness(dropdownTitle);
     } else if (type === "Jersey Number") {
       setSelectedJerseyNumber(dropdownTitle);
+    } else if (type === "Home Team") {
+      data.map((teamList) => {
+        if(teamList.schoolName === dropdownTitle) {
+          setHomeID(teamList.teamID);
+        }
+      })
+    } else if (type === "Away Team") {
+      data.map((teamList) => {
+        if(teamList.schoolName === dropdownTitle) {
+          setAwayID(teamList.teamID);
+        }
+      })
     }
   }, [dropdownTitle]);
 

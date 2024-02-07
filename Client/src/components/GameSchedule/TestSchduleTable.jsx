@@ -3,20 +3,31 @@ import TestGameItem from "./TestGameItem";
 import { DateTime } from "luxon";
 import axios from "axios";
 
-function TestSchduleTable({ date, teamData, index }) {
+function TestSchduleTable({ date, teamData, index, selectedTeam }) {
   const newDate = DateTime.fromISO(date).toFormat("DD");
   const week = DateTime.fromISO(date).toFormat("EEE");
   const title = week + ", " + newDate;
 
   const [filterSchedule, setFilterSchedule] = useState([]);
-  const getFilterSchedule = async (date) => {
+  const getFilterDate = async (date) => {
     const res = await axios.get("http://localhost:9200/schedule/" + date);
     setFilterSchedule(res.data);
   };
 
+  const getFilterSchedule = async (date, teamID) => {
+    const res = await axios.get(
+      "http://localhost:9200/schedule/" + date + "/" + teamID
+    );
+    setFilterSchedule(res.data);
+  };
+
   useEffect(() => {
-    getFilterSchedule(date);
-  }, [date]);
+    if (selectedTeam === undefined) {
+      getFilterDate(date);
+    } else {
+      getFilterSchedule(date, selectedTeam);
+    }
+  }, [date, selectedTeam]);
 
   return (
     <section className="schedule_section" id={`s${index}`}>

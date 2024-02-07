@@ -12,7 +12,7 @@ function PlayerDropdownItem({data, type, logo, setDropdownTitle, setLogo, setCur
 
         if(type === "Position") {
           itemName = data.name
-        } else if (type === "Team" || type === "Update Team") {
+        } else if (type === "Team" || type === "Update Team" || type === "Home Team" || type === "Away Team") {
           itemName = data.schoolName
         } else {
           itemName = data.name

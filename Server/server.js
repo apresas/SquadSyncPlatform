@@ -38,6 +38,17 @@ app.get('/schedule/:date', (req, res) => {
     })
 })
 
+app.get('/schedule/:date/:teamID/', (req, res) => {
+    const date = req.params.date
+    const homeID = req.params.teamID
+    const awayID = req.params.teamID
+    const q = "SELECT * FROM teamSchedule WHERE date = ? AND (homeID = ? || awayID = ?)"
+    db.query(q, [date, homeID, awayID], (err, data) => {
+        if (err) return res.json(err)
+        return res.json(data)
+    })
+})
+
 app.get('/standings', (req, res) => {
     const q = "SELECT standings.*, teams.schoolName, teams.logo, teams.division FROM standings INNER JOIN teams ON standings.teamID = teams.teamID"
     db.query(q, (err, data) => {

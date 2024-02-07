@@ -4,13 +4,17 @@ import "./dropdown.css";
 import { IoChevronDown } from "react-icons/io5";
 
 
-function Dropdown({ currentTeamTitle, setCurrentTeamTitle }) {
+function Dropdown({ currentTeamTitle, setCurrentTeamTitle, setSelectedTeam, teamData }) {
   const [dropdownTitle, setDropdownTitle] = useState(["Select Team"]);
   const [logo, setLogo] = useState();
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
     setOpen(!open);
   };
+
+  useEffect(() => {
+    setSelectedTeam(undefined);
+  }, [])
   // console.log(dropdownTitle)
   return (
     <div className="dropdown_container" onClick={handleOpen}>
@@ -22,7 +26,7 @@ function Dropdown({ currentTeamTitle, setCurrentTeamTitle }) {
           </div>
         </div>
       </div>
-      {open ? <DropdownMenu setDropdownTitle={setDropdownTitle} setCurrentTeamTitle={setCurrentTeamTitle} currentTeamTitle={currentTeamTitle} setLogo={setLogo} /> : null}
+      {open ? <DropdownMenu teamData={teamData} setSelectedTeam={setSelectedTeam} setDropdownTitle={setDropdownTitle} setCurrentTeamTitle={setCurrentTeamTitle} currentTeamTitle={currentTeamTitle} setLogo={setLogo} /> : null}
     </div>
   );
 }

@@ -5,7 +5,7 @@ import "./dayTile.css";
 import { DateTime } from "luxon";
 import axios from "axios";
 
-function DayTile({ href, date, scheduleData }) {
+function DayTile({ href, date, scheduleData, selectedTeam }) {
   const month = DateTime.fromISO(date).toFormat("M");
   const day = DateTime.fromISO(date).toFormat("d");
   const dayOfWeek = DateTime.fromISO(date).toFormat("EEE");
@@ -14,14 +14,30 @@ function DayTile({ href, date, scheduleData }) {
   const [gameCount, setGameCount] = useState(0);
 
   const [filterSchedule, setFilterSchedule] = useState([]);
-  const getFilterSchedule = async (date) => {
+  const getFilterDate = async (date) => {
     const res = await axios.get("http://localhost:9200/schedule/" + date);
+    setFilterSchedule(res.data);
+  };
+
+  const getFilterSchedule = async (date, teamID) => {
+    const res = await axios.get(
+      "http://localhost:9200/schedule/" + date + "/" + teamID
+    );
     setFilterSchedule(res.data);
   };
 
   useEffect(() => {
     getFilterSchedule(date);
   }, [date]);
+
+  useEffect(() => {
+    if (selectedTeam === undefined) {
+      getFilterDate(date);
+    } else {
+      getFilterSchedule(date, selectedTeam);
+    }
+  }, [date, selectedTeam]);
+
 
   useEffect(() => {
     setGameCount(filterSchedule.length)
