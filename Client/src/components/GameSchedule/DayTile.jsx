@@ -3,6 +3,7 @@ import { useEffect, useState} from "react";
 import { FaRegCalendar } from "react-icons/fa";
 import "./dayTile.css";
 import { DateTime } from "luxon";
+import axios from "axios";
 
 function DayTile({ href, date, scheduleData }) {
   const month = DateTime.fromISO(date).toFormat("M");
@@ -12,14 +13,25 @@ function DayTile({ href, date, scheduleData }) {
 
   const [gameCount, setGameCount] = useState(0);
 
+  const [filterSchedule, setFilterSchedule] = useState([]);
+  const getFilterSchedule = async (date) => {
+    const res = await axios.get("http://localhost:9200/schedule/" + date);
+    setFilterSchedule(res.data);
+  };
+
   useEffect(() => {
-    scheduleData.filter((sdate) => sdate.date === date).map((sdate) => {
-      // console.log(sdate)
-      setGameCount(sdate.games.length)
-      if (sdate === undefined) {
-        setGameCount(0)
-      }
-    })
+    getFilterSchedule(date);
+  }, [date]);
+
+  useEffect(() => {
+    setGameCount(filterSchedule.length)
+    // scheduleData.filter((sdate) => sdate.date === date).map((sdate) => {
+    //   // console.log(sdate)
+    //   setGameCount(sdate.games.length)
+    //   if (sdate === undefined) {
+    //     setGameCount(0)
+    //   }
+    // })
   })
 
   return (

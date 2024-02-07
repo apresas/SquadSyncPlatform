@@ -80,9 +80,6 @@ export const SiteProvider = ({ children }) => {
     setSchedule(res.data);
   }
 
-  const [gameCount, setGameCount] = useState([])
-
-  // console.log(schedule)
 
   useEffect(() => {
     // axios({
@@ -133,8 +130,6 @@ export const SiteProvider = ({ children }) => {
         getFilteredPlayer,
         currentFilterPlayer,
         schedule,
-        gameCount,
-        setGameCount,
       }}
     >
       {children}

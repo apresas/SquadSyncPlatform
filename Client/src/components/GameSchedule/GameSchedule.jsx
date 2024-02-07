@@ -10,6 +10,7 @@ import { FiChevronRight, FiChevronLeft } from "react-icons/fi";
 import { RiH1 } from "react-icons/ri";
 import TestGameItem from "./TestGameItem";
 import { DateTime } from "luxon";
+import TestSchduleTable from "./TestSchduleTable";
 
 function GameSchedule({
   currentTeamTitle,
@@ -22,52 +23,9 @@ function GameSchedule({
   prevClick,
   setFilteredItem,
   filteredItem,
-  defaultTeam,
   setDefaultTeam,
-  schedule,
-  gameCount,
-  setGameCount,
+  teamData
 }) {
-  // const filterTable = (data) => {
-  //   data.games
-  //     .map((data) => data)
-  //     .filter((data) => data.gameID === filteredItem.gameID)
-  // };
-
-  // useEffect(() => {
-  //   scheduleData
-  //     .filter((data) => data.date === dateList[0])
-  //     .map((data) => data)
-  //     .filter(filterTable);
-  // });
-
-  // console.log(filteredItem);
-  // console.log(schedule)
-
-  const [gamesList, setGamesList] = useState([]);
-  let list = []
-  const filterGame = (game, date) => {
-      if(game.date === date) {
-        list.push(game)
-        // setGameCount(game)
-        // setGamesList(list)
-        return(game)
-      }
-      // console.log(gameCount)
-  };
-
-  useEffect(() => {
-    {
-      dateList.map((dates) => {
-        const filter = schedule.filter((games) => games.date === dates);
-        console.log(filter);
-      });
-    }
-    console.log(gamesList);
-  }, [dateList]);
-
-  // console.log(gamesList)
-
   return (
     <>
       <div className="schedule_container">
@@ -84,43 +42,43 @@ function GameSchedule({
           />
           <div className="day_tile_container">
             <DayTile
-              href={"#s1"}
+              href={"#s0"}
               date={dateList[0]}
               scheduleData={scheduleData}
               filteredItem={filteredItem}
             />
             <DayTile
-              href={"#s2"}
+              href={"#s1"}
               date={dateList[1]}
               scheduleData={scheduleData}
               filteredItem={filteredItem}
             />
             <DayTile
-              href={"#s3"}
+              href={"#s2"}
               date={dateList[2]}
               scheduleData={scheduleData}
               filteredItem={filteredItem}
             />
             <DayTile
-              href={"#s4"}
+              href={"#s3"}
               date={dateList[3]}
               scheduleData={scheduleData}
               filteredItem={filteredItem}
             />
             <DayTile
-              href={"#s5"}
+              href={"#s4"}
               date={dateList[4]}
               scheduleData={scheduleData}
               filteredItem={filteredItem}
             />
             <DayTile
-              href={"#s6"}
+              href={"#s5"}
               date={dateList[5]}
               scheduleData={scheduleData}
               filteredItem={filteredItem}
             />
             <DayTile
-              href={"#s7"}
+              href={"#s6"}
               date={dateList[6]}
               scheduleData={scheduleData}
               filteredItem={filteredItem}
@@ -128,59 +86,9 @@ function GameSchedule({
           </div>
           <div className="schedule_table">
             {dateList.map((dateData, i) => {
-              const newDate = DateTime.fromISO(dateData).toFormat("DD");
-              const week = DateTime.fromISO(dateData).toFormat("EEE");
-              const title = week + ", " + newDate;
-              return (
-                <section key={i} className="schedule_section" id="s0">
-                  <div className="test_table">
-                    <section className="test_table_header">
-                      <h2 key={i} className="test_table_date_title">
-                        {title}
-                      </h2>
-                    </section>
-                    <section className="test_table_field_header">
-                      <h3>Matchup</h3>
-                      <h3>Arena</h3>
-                      <h3>Time</h3>
-                      <h3>Score</h3>
-                    </section>
-                    {schedule
-                      .map((data) => data)
-                      .filter((data) => filterGame(data, dateData))
-                      .map((data, i) => {
-                        return (
-                          <TestGameItem
-                            key={i}
-                            data={data}
-                            date={dateData}
-                            gamesList={list}
-                            gameCount={gameCount}
-                            setGameCount={setGameCount}
-                          />
-                          //   <div key={i} className="test_game_item">
-                          //   <div className="test_hometeam">
-                          //     <img src="" alt="logo" />
-                          //     <h3>{data.homeTeam}</h3>
-                          //   </div>
-                          //   <span>@</span>
-                          //   <div className="test_awayteam">
-                          //     <img src="" alt="logo" />
-                          //     <h3>{data.awayTeam}</h3>
-                          //   </div>
-                          //   <p>{data.arena}</p>
-                          //   <p>{data.time}</p>
-                          //   <p>
-                          //     {data.homeScore} - {data.awayScore}
-                          //   </p>
-                          // </div>
-                        );
-                      })}
-                  </div>
-                </section>
-              );
+              return <TestSchduleTable key={i} date={dateData} teamData={teamData} index={i}/>;
             })}
-            <section className="schedule_section" id="s1">
+            {/* <section className="schedule_section" id="s1">
               {scheduleData
                 .filter((data) => data.date === dateList[0])
                 .map((data) => data.games)
@@ -291,7 +199,7 @@ function GameSchedule({
                     setDefaultTeam={setDefaultTeam}
                   />
                 ))}
-            </section>
+            </section> */}
           </div>
           <div className="schedule_controller">
             <button className="schedule_btn" onClick={prevClick}>

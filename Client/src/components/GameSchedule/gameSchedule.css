@@ -124,7 +124,7 @@
     padding: 1rem;
 }
 
-.test_game_item:nth-last-of-type(odd) {
+.test_game_item:nth-of-type(even) {
     background-color: white;
 }
 
@@ -144,5 +144,19 @@
 
 .test_score {
     font-weight:700;
+    font-size: 1.25rem;
+}
+
+.no_games_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background-color: var(--color-dark-white);
+}
+
+.no_games_title {
+    margin: 1rem;
+    font-family: var(--font-header);
     font-size: 1.25rem;
 }
