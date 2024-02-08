@@ -3,7 +3,7 @@ import TestGameItem from "./TestGameItem";
 import { DateTime } from "luxon";
 import axios from "axios";
 
-function TestSchduleTable({ date, teamData, index, selectedTeam }) {
+function TestSchduleTable({ date, teamData, index, selectedTeam, gameSubmit }) {
   const newDate = DateTime.fromISO(date).toFormat("DD");
   const week = DateTime.fromISO(date).toFormat("EEE");
   const title = week + ", " + newDate;
@@ -27,7 +27,7 @@ function TestSchduleTable({ date, teamData, index, selectedTeam }) {
     } else {
       getFilterSchedule(date, selectedTeam);
     }
-  }, [date, selectedTeam]);
+  }, [date, selectedTeam, gameSubmit]);
 
   return (
     <section className="schedule_section" id={`s${index}`}>
@@ -35,12 +35,16 @@ function TestSchduleTable({ date, teamData, index, selectedTeam }) {
         <section className="test_table_header">
           <h2 className="test_table_date_title">{title}</h2>
         </section>
-        <section className="test_table_field_header">
-          <h3>Matchup</h3>
-          <h3>Arena</h3>
-          <h3>Time</h3>
-          <h3>Score</h3>
-        </section>
+        {filterSchedule.length > 0 ? (
+          <section className="test_table_field_header">
+            <h3>Home</h3>
+            <span/>
+            <h3>Away</h3>
+            <h3>Arena</h3>
+            <h3>Time</h3>
+            <h3>Score</h3>
+          </section>
+        ) : null}
         {filterSchedule.length > 0 ? (
           filterSchedule.map((data, i) => (
             <TestGameItem

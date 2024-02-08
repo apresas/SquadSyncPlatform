@@ -85,6 +85,7 @@
     border: 1px solid rgba(119, 136, 153, 0.5);
     color: gray;
     transition: var(--transition-fast);
+    line-height: 0.6;
 }
 
 .schedule_admin_btn:nth-of-type(1):hover {

@@ -31,7 +31,7 @@ app.get('/schedule', (req, res) => {
 
 app.get('/schedule/:date', (req, res) => {
     const date = req.params.date
-    const q = "SELECT * FROM teamSchedule WHERE date = ?"
+    const q = "SELECT * FROM schedule WHERE date = ? ORDER BY time ASC"
     db.query(q, [date], (err, data) => {
         if (err) return res.json(err)
         return res.json(data)
@@ -42,8 +42,27 @@ app.get('/schedule/:date/:teamID/', (req, res) => {
     const date = req.params.date
     const homeID = req.params.teamID
     const awayID = req.params.teamID
-    const q = "SELECT * FROM teamSchedule WHERE date = ? AND (homeID = ? || awayID = ?)"
+    const q = "SELECT * FROM schedule WHERE date = ? AND (homeID = ? || awayID = ?)"
     db.query(q, [date, homeID, awayID], (err, data) => {
+        if (err) return res.json(err)
+        return res.json(data)
+    })
+})
+
+app.post('/schedule', (req, res) => {
+    const q = "INSERT INTO schedule (`gameID`, `date`, `homeID`, `awayID`, `homeScore`, `awayScore`, `time`, `arena`) VALUES(?)"
+    const values = [
+        req.body.gameID,
+        req.body.date,
+        req.body.homeID,
+        req.body.awayID,
+        req.body.homeScore,
+        req.body.awayScore,
+        req.body.time,
+        req.body.arena
+    ]
+
+    db.query(q, [values], (err, data) => {
         if (err) return res.json(err)
         return res.json(data)
     })

@@ -53,7 +53,7 @@ function ScheduleFilterControls({
       {/* <button className="schedule_admin_btn" onClick={() => console.log("clicked")} ><MdOutlineEditCalendar /></button> */}
       <div className="date_picker_container">
         <div className="date_range_selector">
-          <button className="prev_btn">
+          <button className="prev_btn" onClick={prevClick}>
             <FiChevronLeft />
           </button>
           <button className="date_btn" onClick={handleOpen}>

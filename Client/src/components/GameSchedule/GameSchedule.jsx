@@ -26,6 +26,8 @@ function GameSchedule({
   filteredItem,
   setDefaultTeam,
   teamData,
+  gameSubmit,
+  setGameSubmit
 }) {
   const [selectedTeam, setSelectedTeam] = useState();
   const [openModal, setOpenModal] = useState(false);
@@ -36,6 +38,10 @@ function GameSchedule({
     setOpenModal(true);
   };
 
+  // useEffect(() => {
+  //   setGameSubmit(false)
+  // }, [])
+
   return (
     <>
       <AddScheduleModal
@@ -43,10 +49,12 @@ function GameSchedule({
         selected={selected}
         open={openModal}
         setOpenModal={setOpenModal}
+        gameSubmit={gameSubmit}
+        setGameSubmit={setGameSubmit}
       />
       <div className="schedule_container">
         <div className="schedule_content_container">
-          <TitleBar title="Schedule" subtitle="2023-2024" />
+          <TitleBar title="League Schedule" subtitle="2023-2024" />
           <ScheduleFilterControls
             setCurrentTeamTitle={setCurrentTeamTitle}
             currentTeamTitle={currentTeamTitle}
@@ -119,6 +127,7 @@ function GameSchedule({
                   teamData={teamData}
                   index={i}
                   selectedTeam={selectedTeam}
+                  gameSubmit={gameSubmit}
                 />
               );
             })}

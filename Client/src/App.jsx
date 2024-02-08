@@ -14,6 +14,7 @@ import History from "./pages/LeagueHistory";
 import Archieve from "./pages/Archieve";
 import Links from "./pages/Links";
 import About from "./pages/About";
+import Game from "./pages/Game";
 import { useSite } from "./context/SiteContext";
 
 function App() {
@@ -46,6 +47,8 @@ function App() {
     getFilteredPlayer,
     currentFilterPlayer,
     schedule,
+    gameSubmit,
+    setGameSubmit
   } = useSite();
   return (
     <>
@@ -98,6 +101,8 @@ function App() {
               setDefaultTeam={setDefaultTeam}
               schedule={schedule}
               teamData={teamData}
+              gameSubmit={gameSubmit}
+              setGameSubmit={setGameSubmit}
             />
           }
         />
@@ -110,6 +115,7 @@ function App() {
         <Route path="/archive" element={<Archieve teamData={teamData} testPlayers={testPlayers} getTestPlayers={getTestPlayers} getFilterTeam={getFilterTeam} filteredPlayers={filteredPlayers} setCurrentPlayer={setCurrentPlayer} currentPlayer={currentPlayer}/>} />
         <Route path="/links" element={<Links />} />
         <Route path="/info" element={<LeagueInfo />} />
+        <Route path="/game" element={<Game />} />
       </Routes>
     </>
   );

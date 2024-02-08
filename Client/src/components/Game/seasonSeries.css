@@ -1,0 +1,20 @@
+.seasonSeries_container {
+    padding-top: 1rem;
+}
+
+.seasonSeries_header, .seasonSeries_team_row, .seasonSeries_info_row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.seasonSeries_team_info {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.seasonSeries_tile_grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}

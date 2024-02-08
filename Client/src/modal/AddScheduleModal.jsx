@@ -4,8 +4,15 @@ import { format } from "date-fns";
 import PlayerDropdown from "../components/PlayerForm/playerDropdown";
 import { DayPicker } from "react-day-picker";
 import "react-day-picker/dist/style.css";
+import axios from "axios";
 
-function AddScheduleModal({ teamData, open, setOpenModal }) {
+function AddScheduleModal({
+  teamData,
+  open,
+  setOpenModal,
+  setGameSubmit,
+  gameSubmit
+}) {
   const [selected, setSelected] = useState();
 
   const [newGameID, setNewGameID] = useState();
@@ -16,9 +23,10 @@ function AddScheduleModal({ teamData, open, setOpenModal }) {
   const [awayID, setAwayID] = useState();
   const [homeScore, setHomeScore] = useState();
   const [awayScore, setAwayScore] = useState();
+  // const [gameSubmit, setGameSubmit] = useState(false);
 
   const [newGame, setNewGame] = useState({
-    date: new Date(),
+    date: "",
     arena: "",
     time: "",
     homeID: undefined,
@@ -35,7 +43,7 @@ function AddScheduleModal({ teamData, open, setOpenModal }) {
 
   useEffect(() => {
     generateID();
-  }, []);
+  }, [gameSubmit]);
 
   const generateID = () => {
     const newID = Math.floor(100000 + Math.random() * 900000);
@@ -55,6 +63,31 @@ function AddScheduleModal({ teamData, open, setOpenModal }) {
     });
   }, [newGameID, date, venue, time, homeScore, awayScore, homeID, awayID]);
 
+  const submitGame = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.post("http://localhost:9200/schedule", newGame);
+      console.log("Game Added");
+    } catch (err) {
+      console.log(err);
+    }
+    setGameSubmit(!gameSubmit);
+    clearFields();
+    setOpenModal(false);
+  };
+
+  const clearFields = () => {
+    // setNewGameID(undefined);
+    setDate("");
+    setSelected(new Date());
+    setVenue("");
+    setTime("");
+    setHomeID(undefined);
+    setAwayID(undefined);
+    setHomeScore(0);
+    setAwayScore(0);
+  };
+
   console.log(newGame);
 
   if (!open) {
@@ -63,7 +96,7 @@ function AddScheduleModal({ teamData, open, setOpenModal }) {
 
   return (
     <>
-      <div className="update_overlay">
+      <div className="games_overlay">
         <div className="update_container">
           <div className="update_content">
             <form className="player_form_container">
@@ -122,10 +155,7 @@ function AddScheduleModal({ teamData, open, setOpenModal }) {
                     />
                   </div>
                   <div className="update_player_form_controls">
-                    <button
-                      className="submit_player_btn"
-                      // onClick={submitUpdatedPlayer}
-                    >
+                    <button className="submit_player_btn" onClick={submitGame}>
                       Submit
                     </button>
                     <button

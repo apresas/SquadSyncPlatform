@@ -1,0 +1,14 @@
+.gameSummary_header {
+    display: flex;
+    /* width: 85%; */
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    border: 1px solid lightgrey;
+}
+
+.homeTeam, .awayTeam {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}

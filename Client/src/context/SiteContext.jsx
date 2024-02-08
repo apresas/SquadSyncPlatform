@@ -80,6 +80,8 @@ export const SiteProvider = ({ children }) => {
     setSchedule(res.data);
   }
 
+  const [gameSubmit, setGameSubmit] = useState(false);
+
 
   useEffect(() => {
     // axios({
@@ -93,6 +95,7 @@ export const SiteProvider = ({ children }) => {
     getTestPlayers();
     getSchedule()
   }, []);
+
 
   // console.log(defaultTeam)
 
@@ -130,6 +133,8 @@ export const SiteProvider = ({ children }) => {
         getFilteredPlayer,
         currentFilterPlayer,
         schedule,
+        gameSubmit,
+        setGameSubmit,
       }}
     >
       {children}

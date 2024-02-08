@@ -1,0 +1,40 @@
+.lineScore_container h2 {
+    margin-bottom: 0.5rem;
+}
+
+.lineScore_header, .lineScore_team_item {
+    display: grid;
+    grid-template-columns: 3fr 1fr 1fr 1fr 1fr;
+}
+
+.lineScore_header {
+    padding: 0.75rem 0;
+    border-top: 1px solid lightgrey;
+    border-bottom: 1px solid lightgrey;
+}
+
+.lineScore_team_item {
+    text-align: center;
+    border-bottom: 1px solid lightgrey;
+    padding: 0.25rem 0;
+}
+
+.lineScore_team_item p {
+    text-align: center;
+}
+
+.lineScore_homeTeam, .lineScore_awayTeam {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.lineScore_homeTeam img, .lineScore_awayTeam img{
+    width: 2.5rem;
+    aspect-ratio: 1/1;
+}
+
+.lineScore_homeTeam h2, .lineScore_awayTeam h2 {
+    font-size:1.25rem;
+    margin: 0;
+}
