@@ -1,9 +1,29 @@
-import React from 'react'
+import React from "react";
+import "./seasonSeriesTile.css";
 
-function SeasonSeriesTile() {
+function SeasonSeriesTile({homeScore, awayScore}) {
   return (
-    <div>SeasonSeriesTile</div>
-  )
+    <div className="seasonSeriesTile_container">
+      <div className="tile_team_container">
+        <div className="tile_team">
+          <img src="../../src/assets/Logos/Xavier_logo.svg" alt="Home Logo" />
+          <h3>ST.X</h3>
+        </div>
+        <h3>{homeScore}</h3>
+      </div>
+      <div className="tile_team_container">
+        <div className="tile_team">
+          <img src="../../src/assets/Logos/Moeller_logo.svg" alt="Home Logo" />
+          <h3>MOE</h3>
+        </div>
+        <h3>{awayScore}</h3>
+      </div>
+      <div className="tile_team_info">
+        <small>Final</small>
+        <small>Date</small>
+      </div>
+    </div>
+  );
 }
 
-export default SeasonSeriesTile
+export default SeasonSeriesTile;

@@ -31,7 +31,7 @@
 
 .gameSummary_grid {
     display: grid;
-    grid-template-columns: 3fr 1fr;
+    grid-template-columns: 2fr 1fr;
     /* width: 87%; */
     padding: 1rem 0;
 }

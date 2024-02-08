@@ -7,11 +7,11 @@ function seasonSeries() {
     <div className="seasonSeries_container">
       <section className="seasonSeries_header">
         <h2>Season Series</h2>
-        <small>AWY 0-0</small>
+        <small>TIE 1-1</small>
       </section>
       <section className="seasonSeries_tile_grid">
-        <SeasonSeriesTiles />
-        <SeasonSeriesTiles />
+        <SeasonSeriesTiles homeScore={4} awayScore={2}/>
+        <SeasonSeriesTiles homeScore={2} awayScore={5}/>
       </section>
     </div>
   );

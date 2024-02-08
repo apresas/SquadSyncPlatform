@@ -1,14 +1,34 @@
-import React from "react";
+import React, { useRef } from "react";
 import "./boxScore.css";
 
 function BoxScore() {
+  const homeRef = useRef();
+  const awayRef = useRef();
+
+  const handleHomeClick = () => {
+    awayRef.current.classList.remove("selected");
+    homeRef.current.classList.add("selected");
+  };
+
+  const handleAwayClick = () => {
+    awayRef.current.classList.add("selected");
+    homeRef.current.classList.remove("selected");
+  };
   return (
     <div className="boxScore_container">
       <section className="boxScore_header">
         <h2>Game Sheet</h2>
         <div className="boxScore_controls">
-          <button className="home_btn selected">Home Team</button>
-          <button className="away_btn">Away Team</button>
+          <button
+            className="home_btn selected"
+            ref={homeRef}
+            onClick={handleHomeClick}
+          >
+            Home Team
+          </button>
+          <button className="away_btn" ref={awayRef} onClick={handleAwayClick}>
+            Away Team
+          </button>
         </div>
       </section>
       <section className="boxScore_tables_container">
@@ -132,7 +152,7 @@ function BoxScore() {
               <th>PP</th>
               <th>SH</th>
               <th>GA</th>
-              <th>Save-Shots</th>
+              <th>SV-SH</th>
               <th>SV%</th>
             </tr>
           </thead>

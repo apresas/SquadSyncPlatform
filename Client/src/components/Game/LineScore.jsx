@@ -15,22 +15,22 @@ function LineScore() {
       <div className="lineScore_team_item">
         <div className="lineScore_homeTeam">
             <img src="../../src/assets/Logos/Xavier_logo.svg" alt="Home Logo" />
-            <h2>Home</h2>
+            <h2>ST.X</h2>
         </div>
+        <p>1</p>
         <p>0</p>
-        <p>0</p>
-        <p>0</p>
-        <p>0</p>
+        <p>1</p>
+        <p>2</p>
       </div>
       <div className="lineScore_team_item">
         <div className="lineScore_awayTeam">
-            <img src="../../src/assets/Logos/Moeller_logo.svg" alt="Away Logo" />
-            <h2>Away</h2>
+            <img src="../../src/assets/Logos/Moeller_logo.svg" alt="Home Logo" />
+            <h2>MOE</h2>
         </div>
-        <p>0</p>
-        <p>0</p>
-        <p>0</p>
-        <p>0</p>
+        <p>2</p>
+        <p>1</p>
+        <p>2</p>
+        <p>5</p>
       </div>
       {/* <table>
         <thead>
