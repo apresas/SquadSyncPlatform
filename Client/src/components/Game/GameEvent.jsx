@@ -15,7 +15,8 @@ function GameEvent({
   awayLoading,
   setCurrentEvents,
   currentEvents,
-  gameScore
+  gameScore,
+  eventSubmit
 }) {
   const goals = [
     {
@@ -80,6 +81,10 @@ function GameEvent({
     })}
 
   }, [gameEvents])
+
+  useEffect(() => {
+    getGameEvents(currentGame.gameID)
+  }, [eventSubmit])
 
   const getGameEvents = async (gameID) => {
     await axios

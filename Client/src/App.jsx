@@ -51,6 +51,10 @@ function App() {
     setGameSubmit,
     currentGame,
     setCurrentGame,
+    eventSubmit, 
+    setEventSubmit,
+    gameScore, 
+    setGameScore
   } = useSite();
   return (
     <>
@@ -139,6 +143,10 @@ function App() {
               teamData={teamData}
               getFilterTeam={getFilterTeam}
               filteredPlayers={filteredPlayers}
+              eventSubmit={eventSubmit}
+              setEventSubmit={setEventSubmit}
+              gameScore={gameScore}
+              setGameScore={setGameScore}
             />
           }
         />

@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react'
 import"./playerDropdownItem.css"
 
-function PlayerDropdownItem({data, type, logo, setDropdownTitle, setLogo, setCurrentTeamTitle}) {
+function PlayerDropdownItem({data, type, logo, setDropdownTitle, setLogo, setCurrentTeamTitle, setPlayerID}) {
   let itemName = ""  
+  let playerID = 0
   const itemClick = () => {
         setDropdownTitle(itemName);
         setLogo(logo);
+        setPlayerID(playerID)
         // setCurrentTeamTitle(itemName)
       };
 
@@ -18,7 +20,11 @@ function PlayerDropdownItem({data, type, logo, setDropdownTitle, setLogo, setCur
           itemName = data.firstName + " " + data.lastName + " #" + data.jerseyNumber
         } else if (type === "Periods") {
           itemName = data
-        } else {
+        } else if (type === "Goal Scorer" || type === "Primary Assist" || type === "Secondary Assist") {
+          itemName = data.firstName + " " + data.lastName + " #" + data.jerseyNumber 
+          playerID = data.playerID
+        }
+        else {
           itemName = data.name
         }
 

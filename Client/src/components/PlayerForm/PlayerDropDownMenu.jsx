@@ -10,6 +10,7 @@ function PlayerDropDownMenu({
   currentTeamTitle,
   setLogo,
   type, 
+  setPlayerID,
 }) {
 
   return (
@@ -24,6 +25,7 @@ function PlayerDropDownMenu({
             setCurrentTeamTitle={setCurrentTeamTitle}
             currentTeamTitle={currentTeamTitle}
             setLogo={setLogo}
+            setPlayerID={setPlayerID}
           />
         </li>
       ))}

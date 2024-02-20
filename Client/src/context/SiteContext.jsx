@@ -20,6 +20,11 @@ export const SiteProvider = ({ children }) => {
   const [filteredItem, setFilteredItem] = useState([]);
   const [defaultTeam, setDefaultTeam] = useState();
 
+  const [gameScore, setGameScore] = useState({
+    homeScores: 0,
+    awayScores: 0
+  })
+
   const getDates = (startDate) => {
     const start = new Date(startDate);
     const end = new Date(addDays(start, 6));
@@ -82,6 +87,7 @@ export const SiteProvider = ({ children }) => {
   }
 
   const [gameSubmit, setGameSubmit] = useState(false);
+  const [eventSubmit, setEventSubmit] = useState(false);
 
 
   useEffect(() => {
@@ -137,7 +143,11 @@ export const SiteProvider = ({ children }) => {
         gameSubmit,
         setGameSubmit,
         currentGame,
-        setCurrentGame
+        setCurrentGame,
+        eventSubmit, 
+        setEventSubmit,
+        gameScore, 
+        setGameScore
       }}
     >
       {children}

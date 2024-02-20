@@ -113,13 +113,34 @@ app.get('/events', (req, res) => {
 
 app.get('/events/:gameID', (req, res) => {
     const gameID = req.params.gameID
-    const q = "SELECT * FROM game_events WHERE gameID = ?"
+    const q = "SELECT * FROM game_events WHERE gameID = ? ORDER BY homeScore, awayScore ASC"
     db.query(q, [gameID], (err, data) => {
         if (err) return res.json(err)
         return res.json(data)
     })
 })
 
+app.post('/events', (req, res) => {
+    const q = "INSERT INTO game_events (`eventID`, `gameID`, `scoreTeam`, `scorerID`, `primaryAssistID`, `secondaryAssistID`, `homeScore`, `awayScore`, `gameTime`, `period`, `type`) VALUES(?)"
+    const values = [
+        req.body.eventID,
+        req.body.gameID,
+        req.body.scoreTeam,
+        req.body.scorerID,
+        req.body.primaryAssistID,
+        req.body.secondaryAssistID,
+        req.body.homeScore,
+        req.body.awayScore,
+        req.body.gameTime,
+        req.body.period,
+        req.body.type
+    ]
+
+    db.query(q, [values], (err, data) => {
+        if (err) return res.json(err)
+        return res.json(data)
+    })
+})
 
 // app.get('/players/:playerID', (req, res) => {
 //     const playerID = req.params.playerID
