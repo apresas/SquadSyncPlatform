@@ -3,7 +3,7 @@ import TestGameItem from "./TestGameItem";
 import { DateTime } from "luxon";
 import axios from "axios";
 
-function TestSchduleTable({ date, teamData, index, selectedTeam, gameSubmit }) {
+function TestSchduleTable({ date, teamData, index, selectedTeam, gameSubmit, setCurrentGame }) {
   const newDate = DateTime.fromISO(date).toFormat("DD");
   const week = DateTime.fromISO(date).toFormat("EEE");
   const title = week + ", " + newDate;
@@ -52,6 +52,7 @@ function TestSchduleTable({ date, teamData, index, selectedTeam, gameSubmit }) {
               data={data}
               teamData={teamData}
               noGame={false}
+              setCurrentGame={setCurrentGame}
             />
           ))
         ) : (

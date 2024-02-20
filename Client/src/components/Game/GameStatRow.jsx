@@ -1,9 +1,10 @@
 import React from "react";
 import './gameStatRow.css'
 
-function GameStatRow({title, homeValue, awayValue}) {
-    const awayAverage = (homeValue/(homeValue + awayValue))*100
-    const homeAverage = (awayValue/(awayValue + homeValue))*100
+function GameStatRow({title, homeValue, awayValue, homeColor, awayColor}) {
+    const awayAverage = (awayValue/(homeValue + awayValue))*100
+    const homeAverage = (homeValue/(awayValue + homeValue))*100
+
   return (
     <div className="gameStat_row">
       <div className="stat_info">
@@ -12,8 +13,8 @@ function GameStatRow({title, homeValue, awayValue}) {
         <h2>{awayValue}</h2>
       </div>
       <div className="stat_bar">
-        <span className="home_bar" style={{width: `${homeAverage}%`}}/>
-        <span className="away_bar" style={{width: `${awayAverage}%`}}/>
+        <span className="home_bar" style={{width: `${homeAverage}%`, backgroundColor: `${homeColor}`}}/>
+        <span className="away_bar" style={{width: `${awayAverage}%`, backgroundColor: `${awayColor}`}}/>
       </div>
     </div>
   );

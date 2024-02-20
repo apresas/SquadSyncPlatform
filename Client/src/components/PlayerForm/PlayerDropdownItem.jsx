@@ -12,8 +12,12 @@ function PlayerDropdownItem({data, type, logo, setDropdownTitle, setLogo, setCur
 
         if(type === "Position") {
           itemName = data.name
-        } else if (type === "Team" || type === "Update Team" || type === "Home Team" || type === "Away Team") {
+        } else if (type === "Team" || type === "Update Team" || type === "Home Team" || type === "Away Team" || type === "Scoring Team") {
           itemName = data.schoolName
+        } else if (type === "Filtered Players") {
+          itemName = data.firstName + " " + data.lastName + " #" + data.jerseyNumber
+        } else if (type === "Periods") {
+          itemName = data
         } else {
           itemName = data.name
         }

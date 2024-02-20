@@ -88,7 +88,7 @@ function AddScheduleModal({
     setAwayScore(0);
   };
 
-  console.log(newGame);
+  // console.log(newGame);
 
   if (!open) {
     return null;

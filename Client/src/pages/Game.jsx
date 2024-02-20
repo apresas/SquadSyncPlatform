@@ -4,12 +4,12 @@ import Footer from "../components/Footer";
 import GameSummary from "../components/Game/GameSummary";
 import SponcerBar from "../components/Sponcer/SponcerBar";
 
-function Game() {
+function Game({currentGame, teamData, getFilterTeam, filteredPlayers}) {
   return (
     <>
       <SponcerBar />
       <NavBar />
-      <GameSummary />
+      <GameSummary currentGame={currentGame} teamData={teamData} getFilterTeam={getFilterTeam} filteredPlayers={filteredPlayers} />
       <Footer />
     </>
   );

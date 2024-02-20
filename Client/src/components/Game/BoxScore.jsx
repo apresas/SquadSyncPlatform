@@ -1,7 +1,7 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import "./boxScore.css";
 
-function BoxScore() {
+function BoxScore({currentGame, homeTeam, awayTeam}) {
   const homeRef = useRef();
   const awayRef = useRef();
 
@@ -24,10 +24,10 @@ function BoxScore() {
             ref={homeRef}
             onClick={handleHomeClick}
           >
-            Home Team
+            {homeTeam.schoolName}
           </button>
           <button className="away_btn" ref={awayRef} onClick={handleAwayClick}>
-            Away Team
+            {awayTeam.schoolName}
           </button>
         </div>
       </section>

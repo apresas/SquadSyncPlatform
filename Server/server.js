@@ -1,6 +1,9 @@
 import express from 'express';
 import mysql from 'mysql2';
 import cors from 'cors';
+import dotenv from 'dotenv';
+
+dotenv.config()
 
 const port = 9200;
 const app = express();
@@ -11,6 +14,11 @@ const db = mysql.createConnection({
     user: 'root',
     password: 'Tyler0710!',
     database: "squadsynctest"
+    // host: process.env.HOST,
+    // user: process.env.USER,
+    // password: process.env.PASSWORD,
+    // database: process.env.DATABASE,
+    // port: process.env.DB_PORT
 })
 
 app.get('/teams', (req, res) => {
@@ -49,6 +57,17 @@ app.get('/schedule/:date/:teamID/', (req, res) => {
     })
 })
 
+// app.get('/schedule/:teamID/:teamID', (req, res) => {
+//     const homeID = req.params.teamID
+//     const awayID = req.params.teamID
+//     const q = "SELECT * FROM schedule WHERE (homeID = ? || awayID = ?) AND (homeID = ? || awayID = ?)"
+//     db.query(q, [homeID, awayID], (err, data) => {
+//         if (err) return res.json(err)
+//         return res.json(data)
+//     })
+// })
+
+
 app.post('/schedule', (req, res) => {
     const q = "INSERT INTO schedule (`gameID`, `date`, `homeID`, `awayID`, `homeScore`, `awayScore`, `time`, `arena`) VALUES(?)"
     const values = [
@@ -84,6 +103,24 @@ app.get('/players', (req, res) => {
     })
 })
 
+app.get('/events', (req, res) => {
+    const q = "SELECT * FROM game_events"
+    db.query(q, (err, data) => {
+        if (err) return res.json(err)
+        return res.json(data)
+    })
+})
+
+app.get('/events/:gameID', (req, res) => {
+    const gameID = req.params.gameID
+    const q = "SELECT * FROM game_events WHERE gameID = ?"
+    db.query(q, [gameID], (err, data) => {
+        if (err) return res.json(err)
+        return res.json(data)
+    })
+})
+
+
 // app.get('/players/:playerID', (req, res) => {
 //     const playerID = req.params.playerID
 //     const q = "SELECT * FROM players WHERE playerID = ?"
@@ -97,6 +134,16 @@ app.get('/players/:teamID', (req, res) => {
     const teamID = req.params.teamID
     const q = "SELECT * FROM players WHERE teamID = ?"
     db.query(q, [teamID], (err, data) => {
+        if (err) return res.json(err)
+        return res.json(data)
+    })
+})
+
+app.get('/players/:homeID/:awayID', (req, res) => {
+    const homeID = req.params.homeID
+    const awayID = req.params.awayID
+    const q = "SELECT * FROM players WHERE teamID = ? & teamID = ?"
+    db.query(q, [parseInt(homeID), parseInt(awayID)], (err, data) => {
         if (err) return res.json(err)
         return res.json(data)
     })

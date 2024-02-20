@@ -49,7 +49,7 @@ function playerModal({
                 <h2 className="modal_player_number">
                   {currentPlayer.jerseyNumber}
                 </h2>
-                <small className="player_class">{currentPlayer.class}</small>
+                <small className="player_class">{currentPlayer.class.toUpperCase()}</small>
                 <span className="info_divider" />
                 <div className="info_section_container">
                   <ul className="info_list">

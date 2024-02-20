@@ -17,7 +17,10 @@ function PlayerDropdown({
   currentPlayer,
   submitted,
   setHomeID,
-  setAwayID
+  setAwayID,
+  setScoringID,
+  setScoringPlayerID,
+  setEventPeriod
 }) {
   const [dropdownTitle, setDropdownTitle] = useState(`Select ${type}`);
   const [logo, setLogo] = useState();
@@ -64,6 +67,14 @@ function PlayerDropdown({
           setAwayID(teamList.teamID);
         }
       })
+    } else if (type === "Scoring Team") {
+      data.map((teamList) => {
+        if(teamList.schoolName === dropdownTitle) {
+          setScoringID(teamList.teamID);
+        }
+      })
+    } else if(type === "Periods") {
+      setEventPeriod(dropdownTitle)
     }
   }, [dropdownTitle]);
 

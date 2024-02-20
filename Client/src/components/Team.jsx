@@ -8,6 +8,7 @@ import PlayerItem from "./PlayerItem";
 import rosterData from "../data/rosterData.json";
 import PlayerModal from "../modal/PlayerModal";
 import Teams from "../data/teams.json";
+import PlayerTile from "./PlayerTile/PlayerTile";
 
 function Team({
   id,
@@ -20,7 +21,7 @@ function Team({
   getFilterTeam,
   filteredPlayers,
   getFilteredPlayer,
-  currentFilterPlayer
+  currentFilterPlayer,
 }) {
   // console.log(rosterTeam);
   // const primary_color = "White"
@@ -53,7 +54,7 @@ function Team({
           setSecondaryColor(data.secondaryColor);
         });
     }
-    getFilterTeam(currentTeam.teamID)
+    getFilterTeam(currentTeam.teamID);
   }, []);
 
   const checkCurrentPlayer = () => {
@@ -95,7 +96,7 @@ function Team({
           <div className="players_grid">
             <h2 className="grid_title">Forwards</h2>
             <div className="forwards_grid">
-              {filteredPlayers
+              {/* {filteredPlayers
                 .filter((roster) => roster.position === "Forward")
                 .map((roster, i) => (
                   <PlayerItem
@@ -106,11 +107,24 @@ function Team({
                     currentPlayer={currentPlayer}
                     getFilteredPlayer={getFilteredPlayer}
                   />
+                ))} */}
+
+              {filteredPlayers
+                .filter((roster) => roster.position === "Forward")
+                .map((roster, i) => (
+                  <PlayerTile
+                    key={i}
+                    player={roster}
+                    teamData={teamData}
+                    setCurrentPlayer={setCurrentPlayer}
+                    checkCurrentPlayer={checkCurrentPlayer}
+                    getFilteredPlayer={getFilteredPlayer}
+                  />
                 ))}
             </div>
             <h2 className="grid_title">Defensemen</h2>
             <div className="defense_grid">
-              {filteredPlayers
+              {/* {filteredPlayers
                 .filter((roster) => roster.position === "Defense")
                 .map((roster, i) => (
                   <PlayerItem
@@ -120,16 +134,41 @@ function Team({
                     checkCurrentPlayer={checkCurrentPlayer}
                     getFilteredPlayer={getFilteredPlayer}
                   />
+                ))} */}
+
+              {filteredPlayers
+                .filter((roster) => roster.position === "Defense")
+                .map((roster, i) => (
+                  <PlayerTile
+                    key={i}
+                    player={roster}
+                    teamData={teamData}
+                    setCurrentPlayer={setCurrentPlayer}
+                    checkCurrentPlayer={checkCurrentPlayer}
+                    getFilteredPlayer={getFilteredPlayer}
+                  />
                 ))}
             </div>
             <h2 className="grid_title">Goalies</h2>
             <div className="goalies_grid">
-              {filteredPlayers
+              {/* {filteredPlayers
                 .filter((roster) => roster.position === "Goalie")
                 .map((roster, i) => (
                   <PlayerItem
                     key={i}
                     roster={roster}
+                    setCurrentPlayer={setCurrentPlayer}
+                    checkCurrentPlayer={checkCurrentPlayer}
+                    getFilteredPlayer={getFilteredPlayer}
+                  />
+                ))} */}
+              {filteredPlayers
+                .filter((roster) => roster.position === "Goalie")
+                .map((roster, i) => (
+                  <PlayerTile
+                    key={i}
+                    player={roster}
+                    teamData={teamData}
                     setCurrentPlayer={setCurrentPlayer}
                     checkCurrentPlayer={checkCurrentPlayer}
                     getFilteredPlayer={getFilteredPlayer}

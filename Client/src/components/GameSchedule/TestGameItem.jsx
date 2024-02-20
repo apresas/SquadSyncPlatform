@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
+import { Link, useParams } from "react-router-dom";
 
-function TestGameItem({ data, teamData }) {
+function TestGameItem({ data, teamData, setCurrentGame }) {
   const [homeLogo, setHomeLogo] = useState();
   const [awayLogo, setAwayLogo] = useState();
   const [homeName, setHomeName] = useState();
   const [awayName, setAwayName] = useState();
   const [time, setTime] = useState();
+
+  const { id } = useParams();
 
   useEffect(() => {
     {
@@ -30,8 +33,21 @@ function TestGameItem({ data, teamData }) {
     setTime(timeString12hr);
   }, [data]);
 
+  const link = "/game/" + data.gameID;
+
+  const handleGameClick = () => {
+    setCurrentGame(data)
+  }
+
+  
+
   return (
-    <div className="test_game_item" onClick={()=> {console.log(data)}}>
+    <div className="game_item_container" onClick={handleGameClick}>
+    <Link
+    to={link}
+    style={{ color: "inherit", textDecoration: "inherit", backgroundColor: "inherit" }}
+    >
+    <div className="test_game_item">
       <div className="test_hometeam">
         <h3>{homeName}</h3>
         <img src={homeLogo} alt="logo" />
@@ -46,6 +62,8 @@ function TestGameItem({ data, teamData }) {
       <p className="test_score">
         {data.homeScore} - {data.awayScore}
       </p>
+    </div>
+    </Link>
     </div>
   );
 }

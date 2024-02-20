@@ -1,0 +1,175 @@
+.gameEvent_container {
+    /* border: 1px solid lightgray; */
+}
+
+.gameEvent_header_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 0.5rem;
+}
+
+/* .gameEvent_controls {
+    width: 55%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    border-radius: 7px;
+    overflow: hidden;
+} */
+
+/* .gameEvent_controls button {
+    border-radius: 0;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: inherit;
+    border: 1px solid lightgrey;
+    color: var(--color-bg);
+} */
+
+.gameEvent_controls {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    border: 1px solid lightgray;
+    width: 25rem;
+    border-radius: 7px;
+    overflow: hidden;
+}
+
+.gameEvent_home_btn, .gameEvent_away_btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: inherit;
+    padding: 1rem;
+    color: var(--color-bg);
+    height: 1.75rem;
+    border-radius: 0;
+    transition: var(--transition-fast);
+    border: none;
+}
+
+.gameEvent_home_btn{
+    border-right: 1px solid lightgrey;
+}
+
+.selected {
+    background-color: var(--color-bg);
+    color: white;
+}
+
+.gameEvent_content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.gameEvent_tile_container {
+    display: grid;
+    grid-template-rows: repeat(2, 1fr);
+    border: 1px solid lightgrey;
+}
+
+.gameEvent_tile_content {
+    display: flex;
+    padding: 1rem;
+    gap: 1.5rem;
+}
+
+.gameEvent_event_container {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.gameEvent_event {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.gameEvent_event p {
+    margin: 0;
+}
+
+.gameEvent_event_container img {
+    width: 3rem;
+    aspect-ratio: 1/1;
+}
+
+.gameEvent_time_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.gameEvent_time_container p{
+margin: 0;
+}
+
+.gameEvent_banner {
+    /* background-color: red; */
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    color: white;
+    overflow: hidden;
+}
+
+.home_banner_logo, .away_banner_logo {
+    position: absolute;
+    opacity: 0;
+    width: 10rem;
+}
+
+.away_banner_logo {
+    right: 1.5rem;
+    opacity: 0.5;
+}
+
+.home_banner_logo {
+    left: 1.5rem;
+}
+
+.gameEvent_icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.gameEvent_icon p{
+    margin: 0;
+}
+
+.gameEvent_icon_container {
+    color: var(--color-ohio-red);
+}
+
+.gameEvent_homeTeam, .gameEvent_awayTeam {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.gameEvent_homeTeam img, .gameEvent_awayTeam img {
+    width: 3rem;
+    aspect-ratio: 1/1;
+}
+
+.gameEvent_homeTeam {
+    opacity: 0.5;
+}
+
+.assist_container {
+    display: flex;
+    align-items: center;
+}
+
+.gameEvent_add_btn {
+    /* display: none; */
+}

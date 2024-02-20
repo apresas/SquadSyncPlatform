@@ -36,7 +36,6 @@ function ScheduleFilterControls({
 
   const handleOpen = () => {
     setOpen(!open);
-    console.log("clicked");
   };
 
   let header = "";

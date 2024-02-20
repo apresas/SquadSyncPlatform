@@ -23,6 +23,10 @@
     text-align: center;
 }
 
+.lineScore_team_item p:last-of-type {
+    font-weight: 700;
+}
+
 .lineScore_homeTeam, .lineScore_awayTeam {
     display: flex;
     align-items: center;

@@ -1,7 +1,107 @@
-import React from "react";
-import './lineScore.css'
+import React, { useState, useEffect, useRef } from "react";
+import "./lineScore.css";
 
-function LineScore() {
+function LineScore({ homeTeam, awayTeam, lineScore, gameScore }) {
+  // console.log(currentEvents);
+
+  // console.log(lineScore);
+
+  // const [firstHomeScore, setFirstHomeScore] = useState(0);
+  // const [secondHomeScore, setSecondHomeScore] = useState(0);
+  // const [thirdHomeScore, setThirdHomeScore] = useState(0);
+
+  // const [firstAwayScore, setFirstAwayScore] = useState(0);
+  // const [secondAwayScore, setSecondAwayScore] = useState(0);
+  // const [thirdAwayScore, setThirdAwayScore] = useState(0);
+
+  // useEffect(() => {
+  //   getHomeFirst()
+  //   getHomeSecond()
+  //   getHomeThird()
+  //   getAwayFirst()
+  //   getAwaySecond()
+  //   getAwayThird()
+  // }, [currentEvents]);
+
+  // useEffect(() => {
+  //   setGameScores({
+  //     homeScore: firstHomeScore + secondHomeScore + thirdHomeScore,
+  //     awayScore: firstAwayScore + secondAwayScore + thirdAwayScore
+  //   })
+  // }, [firstHomeScore, secondHomeScore, thirdHomeScore, firstAwayScore, secondAwayScore, thirdAwayScore])
+
+  // const getHomeFirst = () => {
+  //   let count = 0;
+  //   {
+  //     currentEvents.map((event) => {
+  //       if (event.scoreTeam === homeTeam.teamID && event.period === '1st') {
+  //         count += 1;
+  //       }
+  //     });
+  //   }
+  //   setFirstHomeScore(count);
+  // }
+
+  // const getHomeSecond = () => {
+  //   let count = 0;
+  //   {
+  //     currentEvents.map((event) => {
+  //       if (event.scoreTeam === homeTeam.teamID && event.period === '2nd') {
+  //         count += 1;
+  //       }
+  //     });
+  //   }
+  //   setSecondHomeScore(count);
+  // }
+
+  // const getHomeThird = () => {
+  //   let count = 0;
+  //   {
+  //     currentEvents.map((event) => {
+  //       if (event.scoreTeam === homeTeam.teamID && event.period === '3rd') {
+  //         count += 1;
+  //       }
+  //     });
+  //   }
+  //   setThirdHomeScore(count);
+  // }
+
+  // const getAwayFirst = () => {
+  //   let count = 0;
+  //   {
+  //     currentEvents.map((event) => {
+  //       if (event.scoreTeam === awayTeam.teamID && event.period === '1st') {
+  //         count += 1;
+  //       }
+  //     });
+  //   }
+  //   setFirstAwayScore(count);
+  // }
+
+  // const getAwaySecond = () => {
+  //   let count = 0;
+  //   {
+  //     currentEvents.map((event) => {
+  //       if (event.scoreTeam === awayTeam.teamID && event.period === '2nd') {
+  //         count += 1;
+  //       }
+  //     });
+  //   }
+  //   setSecondAwayScore(count);
+  // }
+
+  // const getAwayThird = () => {
+  //   let count = 0;
+  //   {
+  //     currentEvents.map((event) => {
+  //       if (event.scoreTeam === awayTeam.teamID && event.period === '3rd') {
+  //         count += 1;
+  //       }
+  //     });
+  //   }
+  //   setThirdAwayScore(count);
+  // }
+
   return (
     <div className="lineScore_container">
       <h2>Line Score</h2>
@@ -14,23 +114,23 @@ function LineScore() {
       </div>
       <div className="lineScore_team_item">
         <div className="lineScore_homeTeam">
-            <img src="../../src/assets/Logos/Xavier_logo.svg" alt="Home Logo" />
-            <h2>ST.X</h2>
+          <img src={homeTeam.logo} alt="Home Logo" />
+          <h2>{homeTeam.mascotName}</h2>
         </div>
-        <p>1</p>
-        <p>0</p>
-        <p>1</p>
-        <p>2</p>
+        <p>{lineScore.homeScore.first}</p>
+        <p>{lineScore.homeScore.second}</p>
+        <p>{lineScore.homeScore.third}</p>
+        <p>{gameScore.homeScore}</p>
       </div>
       <div className="lineScore_team_item">
         <div className="lineScore_awayTeam">
-            <img src="../../src/assets/Logos/Moeller_logo.svg" alt="Home Logo" />
-            <h2>MOE</h2>
+          <img src={awayTeam.logo} alt="Home Logo" />
+          <h2>{awayTeam.mascotName}</h2>
         </div>
-        <p>2</p>
-        <p>1</p>
-        <p>2</p>
-        <p>5</p>
+        <p>{lineScore.awayScore.first}</p>
+        <p>{lineScore.awayScore.second}</p>
+        <p>{lineScore.awayScore.third}</p>
+        <p>{gameScore.awayScore}</p>
       </div>
       {/* <table>
         <thead>

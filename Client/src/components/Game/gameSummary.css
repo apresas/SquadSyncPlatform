@@ -33,7 +33,7 @@
     display: grid;
     grid-template-columns: 2fr 1fr;
     /* width: 87%; */
-    padding: 1rem 0;
+    padding: 1.5rem 0;
 }
 
 .gameSummary_main_content {
@@ -43,4 +43,5 @@
 .gameSummary_side_content {
     padding: 1rem;
     border: 1px solid lightgrey;
+    height: fit-content;
 }

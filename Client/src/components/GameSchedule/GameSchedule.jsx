@@ -12,7 +12,6 @@ import TestGameItem from "./TestGameItem";
 import { DateTime } from "luxon";
 import TestSchduleTable from "./TestSchduleTable";
 import AddScheduleModal from "../../modal/AddScheduleModal";
-
 function GameSchedule({
   currentTeamTitle,
   setCurrentTeamTitle,
@@ -27,7 +26,8 @@ function GameSchedule({
   setDefaultTeam,
   teamData,
   gameSubmit,
-  setGameSubmit
+  setGameSubmit,
+  setCurrentGame
 }) {
   const [selectedTeam, setSelectedTeam] = useState();
   const [openModal, setOpenModal] = useState(false);
@@ -128,6 +128,7 @@ function GameSchedule({
                   index={i}
                   selectedTeam={selectedTeam}
                   gameSubmit={gameSubmit}
+                  setCurrentGame={setCurrentGame}
                 />
               );
             })}

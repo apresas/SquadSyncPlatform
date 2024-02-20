@@ -48,7 +48,9 @@ function App() {
     currentFilterPlayer,
     schedule,
     gameSubmit,
-    setGameSubmit
+    setGameSubmit,
+    currentGame,
+    setCurrentGame,
   } = useSite();
   return (
     <>
@@ -103,6 +105,7 @@ function App() {
               teamData={teamData}
               gameSubmit={gameSubmit}
               setGameSubmit={setGameSubmit}
+              setCurrentGame={setCurrentGame}
             />
           }
         />
@@ -112,10 +115,33 @@ function App() {
         <Route path="/awards" element={<PlayerAwards />} />
         <Route path="/allstar" element={<AllstarGame />} />
         <Route path="/history" element={<History />} />
-        <Route path="/archive" element={<Archieve teamData={teamData} testPlayers={testPlayers} getTestPlayers={getTestPlayers} getFilterTeam={getFilterTeam} filteredPlayers={filteredPlayers} setCurrentPlayer={setCurrentPlayer} currentPlayer={currentPlayer}/>} />
+        <Route
+          path="/archive"
+          element={
+            <Archieve
+              teamData={teamData}
+              testPlayers={testPlayers}
+              getTestPlayers={getTestPlayers}
+              getFilterTeam={getFilterTeam}
+              filteredPlayers={filteredPlayers}
+              setCurrentPlayer={setCurrentPlayer}
+              currentPlayer={currentPlayer}
+            />
+          }
+        />
         <Route path="/links" element={<Links />} />
         <Route path="/info" element={<LeagueInfo />} />
-        <Route path="/game" element={<Game />} />
+        <Route
+          path="/game/:id"
+          element={
+            <Game
+              currentGame={currentGame}
+              teamData={teamData}
+              getFilterTeam={getFilterTeam}
+              filteredPlayers={filteredPlayers}
+            />
+          }
+        />
       </Routes>
     </>
   );

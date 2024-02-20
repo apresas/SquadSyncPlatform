@@ -107,13 +107,21 @@
   padding: 1rem;
   border-bottom: 1px solid lightgrey;
 }
+
+.game_item_container{
+  background-color: var(--color-dark-white);
+}
+
+.game_item_container:nth-of-type(even){
+  background-color: white;
+}
+
 .test_game_item {
   position: relative;
   display: grid;
   grid-template-columns: 4fr 1fr 4fr 2fr 2fr 2fr;
   align-items: center;
   justify-items: center;
-  background-color: var(--color-dark-white);
   border-bottom: 1px solid lightgrey;
   padding: 1rem;
   transition: var(--transition-fast);
@@ -140,10 +148,6 @@
   transition: var(--transition-fast);
   width: 100%;
   opacity: 1;
-}
-
-.test_game_item:nth-of-type(even) {
-  background-color: white;
 }
 
 .test_game_item:last-of-type {

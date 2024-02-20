@@ -20,7 +20,8 @@ function Schdule({
   schedule,
   teamData,
   gameSubmit,
-  setGameSubmit
+  setGameSubmit,
+  setCurrentGame
 }) {
   return (
     <>
@@ -43,6 +44,7 @@ function Schdule({
         teamData={teamData}
         gameSubmit={gameSubmit}
         setGameSubmit={setGameSubmit}
+        setCurrentGame={setCurrentGame}
       />
       <Footer />
     </>

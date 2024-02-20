@@ -14,6 +14,7 @@ export const SiteProvider = ({ children }) => {
   const [currentPlayer, setCurrentPlayer] = useState({});
   const [dateList, setDateList] = useState([]);
   const [currentTeamTitle, setCurrentTeamTitle] = useState();
+  const [currentGame, setCurrentGame] = useState();
 
   const [selected, setSelected] = useState();
   const [filteredItem, setFilteredItem] = useState([]);
@@ -135,6 +136,8 @@ export const SiteProvider = ({ children }) => {
         schedule,
         gameSubmit,
         setGameSubmit,
+        currentGame,
+        setCurrentGame
       }}
     >
       {children}
