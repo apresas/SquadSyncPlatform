@@ -39,7 +39,7 @@ app.get('/schedule', (req, res) => {
 
 app.get('/schedule/:date', (req, res) => {
     const date = req.params.date
-    const q = "SELECT * FROM schedule WHERE date = ? ORDER BY time ASC"
+    const q = "SELECT * FROM schedule WHERE date = ? ORDER BY time, date ASC"
     db.query(q, [date], (err, data) => {
         if (err) return res.json(err)
         return res.json(data)
@@ -50,7 +50,7 @@ app.get('/schedule/:date/:teamID/', (req, res) => {
     const date = req.params.date
     const homeID = req.params.teamID
     const awayID = req.params.teamID
-    const q = "SELECT * FROM schedule WHERE date = ? AND (homeID = ? || awayID = ?)"
+    const q = "SELECT * FROM schedule WHERE date = ? AND (homeID = ? || awayID = ?) ORDER BY time, date ASC"
     db.query(q, [date, homeID, awayID], (err, data) => {
         if (err) return res.json(err)
         return res.json(data)
@@ -115,6 +115,15 @@ app.get('/events/:gameID', (req, res) => {
     const gameID = req.params.gameID
     const q = "SELECT * FROM game_events WHERE gameID = ? ORDER BY homeScore, awayScore ASC"
     db.query(q, [gameID], (err, data) => {
+        if (err) return res.json(err)
+        return res.json(data)
+    })
+})
+
+app.get('/events/:scorerID', (req, res) => {
+    const scorerID = req.params.scorerID
+    const q = "SELECT * FROM game_events WHERE scorerID = ?"
+    db.query(q, [scorerID], (err, data) => {
         if (err) return res.json(err)
         return res.json(data)
     })

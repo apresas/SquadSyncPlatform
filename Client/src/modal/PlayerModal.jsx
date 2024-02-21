@@ -4,6 +4,7 @@ import { useTable, useSortBy } from "react-table";
 import { IoClose } from "react-icons/io5";
 import CurrentStatsTable from "../components/currentStatsTable";
 import CareerStatsTable from "../components/CareerStatsTable";
+import axios from "axios";
 function playerModal({
   open,
   onClose,
@@ -12,8 +13,14 @@ function playerModal({
   secondaryColor,
   teamLogo,
 }) {
-
   const [convertedHeight, setConvertedHeight] = useState();
+
+  const [playerStats, setPlayerStats] = useState({
+    games: 0,
+    goals: 0,
+    assists: 0,
+    points: 0,
+  });
 
   const convertHeight = (height) => {
     let feet = Math.floor(height / 12);
@@ -23,8 +30,59 @@ function playerModal({
   };
 
   useEffect(() => {
+    getPlayerStats();
+    console.log(currentPlayer.playerID);
+  }, [currentPlayer]);
+
+  const getPlayerStats = async () => {
+    const stats = {
+      games: 0,
+      goals: 0,
+      assists: 0,
+      points: 0,
+    };
+    await axios
+      .get("http://localhost:9200/events")
+      .then((res) => {
+        const goals = res.data.filter(
+          (goal) => goal.scorerID === currentPlayer.playerID
+        );
+        const assists = res.data.filter(
+          (assist) =>
+            assist.primaryAssistID === currentPlayer.playerID ||
+            assist.secondaryAssistID === currentPlayer.playerID
+        );
+        const points = goals.length + assists.length;
+        stats.goals = goals.length;
+        stats.assists = assists.length;
+        stats.points = points;
+      })
+      .catch((err) => console.log(err));
+
+    await axios
+      .get("http://localhost:9200/schedule")
+      .then((res) => {
+        const gamesPlayed = res.data.filter(
+          (games) =>
+            games.homeID === currentPlayer.teamID ||
+            games.awayID === currentPlayer.teamID
+        );
+        stats.games = gamesPlayed.length;
+      })
+      .catch((err) => console.log(err));
+
+    setPlayerStats({
+      games: stats.games,
+      goals: stats.goals,
+      assists: stats.assists,
+      points: stats.points,
+    });
+  };
+
+  useEffect(() => {
     convertHeight(currentPlayer.height);
   }, [currentPlayer]);
+  console.log(currentPlayer);
 
   if (!open) {
     return null;
@@ -49,7 +107,9 @@ function playerModal({
                 <h2 className="modal_player_number">
                   {currentPlayer.jerseyNumber}
                 </h2>
-                <small className="player_class">{currentPlayer.class.toUpperCase()}</small>
+                <small className="player_class">
+                  {currentPlayer.class.toUpperCase()}
+                </small>
                 <span className="info_divider" />
                 <div className="info_section_container">
                   <ul className="info_list">
@@ -85,7 +145,10 @@ function playerModal({
               <div className="stats_container">
                 <div className="current_stats_container">
                   <h2 className="season_title">Season Stats</h2>
-                  <CurrentStatsTable currentPlayer={currentPlayer} />
+                  <CurrentStatsTable
+                    currentPlayer={currentPlayer}
+                    playerStats={playerStats}
+                  />
                 </div>
                 <div className="career_stats_container">
                   <h2>Career Stats</h2>

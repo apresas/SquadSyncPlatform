@@ -5,7 +5,7 @@ import "./dayTile.css";
 import { DateTime } from "luxon";
 import axios from "axios";
 
-function DayTile({ href, date, scheduleData, selectedTeam }) {
+function DayTile({ href, date, scheduleData, selectedTeam, filteredItem }) {
   const month = DateTime.fromISO(date).toFormat("M");
   const day = DateTime.fromISO(date).toFormat("d");
   const dayOfWeek = DateTime.fromISO(date).toFormat("EEE");
@@ -49,6 +49,7 @@ function DayTile({ href, date, scheduleData, selectedTeam }) {
     //   }
     // })
   })
+
 
   return (
     <a className="day_container" href={href}>

@@ -1,7 +1,7 @@
 import React from 'react'
 import "./currentStatsTable.css";
 
-function currentStatsTable({currentPlayer}) {
+function currentStatsTable({currentPlayer, playerStats}) {
   let columnHead1 = "G";
   let columnHead2 = "A";
   let columnHead3 = "P";
@@ -31,10 +31,10 @@ function currentStatsTable({currentPlayer}) {
         <td className="current_year_title">
           2023-24
         </td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
+        <td>{playerStats.games}</td>
+        <td>{playerStats.goals}</td>
+        <td>{playerStats.assists}</td>
+        <td>{playerStats.points}</td>
         {/* <td>{currentPlayer.stats.currentSeason.gamesPlayed}</td>
         <td>{currentPlayer.stats.currentSeason.goals}</td>
         <td>{currentPlayer.stats.currentSeason.assists}</td>

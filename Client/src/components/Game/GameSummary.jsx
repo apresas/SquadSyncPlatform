@@ -47,6 +47,8 @@ function GameSummary({
 
   const [currentEvents, setCurrentEvents] = useState([]);
 
+    // const [gameEvents, setGameEvents] = useState([]);
+
   // const [gameScore, setGameScore] = useState({
   //   homeScores: 0,
   //   awayScores: 0
@@ -178,7 +180,8 @@ function GameSummary({
 
   useEffect(() => {
     setScores();
-  }, [homeTeam, awayTeam, currentEvents, eventSubmit]);
+  }, [homeTeam, awayTeam, gameEvents, eventSubmit]);
+
 
   useEffect(() => {
     setGameScore({
@@ -202,7 +205,7 @@ function GameSummary({
     let awayThird = 0;
 
     {
-      currentEvents.map((event) => {
+      gameEvents.map((event) => {
         if (event.scoreTeam === homeTeam.teamID && event.period === "1st") {
           homeFirst += 1;
         } else if (
@@ -339,6 +342,8 @@ function GameSummary({
                   setCurrentEvents={setCurrentEvents}
                   gameScore={gameScore}
                   eventSubmit={eventSubmit}
+                  gameEvents={gameEvents}
+                  setGameEvents={setGameEvents}
                 />
               </section>
               <section className="gameSummary_side_content">

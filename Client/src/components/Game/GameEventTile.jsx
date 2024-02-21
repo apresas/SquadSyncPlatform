@@ -265,11 +265,13 @@ function GameEventTile({
               {goalScorer.jerseyNumber}
             </h3>
             <div className="assist_container">
-              <p>
-                Assists: {primaryAssistPlayer.firstName}{" "}
-                {primaryAssistPlayer.lastName} #
-                {primaryAssistPlayer.jerseyNumber}
-              </p>
+              {primaryAssistPlayer.playerID === "" ? <p>Unassisted</p> : (
+                <p>
+                  Assists: {primaryAssistPlayer.firstName}{" "}
+                  {primaryAssistPlayer.lastName} #
+                  {primaryAssistPlayer.jerseyNumber}
+                </p>
+              )}
               {secondaryAssistPlayer.playerID === "" ? null : (
                 <p>
                   , {secondaryAssistPlayer.firstName}{" "}

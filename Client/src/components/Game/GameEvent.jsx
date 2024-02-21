@@ -16,7 +16,9 @@ function GameEvent({
   setCurrentEvents,
   currentEvents,
   gameScore,
-  eventSubmit
+  eventSubmit,
+  setGameEvents,
+  gameEvents,
 }) {
   const goals = [
     {
@@ -53,7 +55,7 @@ function GameEvent({
 
   // const score = useRef(0)
 
-  const [gameEvents, setGameEvents] = useState([]);
+  // const [gameEvents, setGameEvents] = useState([]);
   // const [currentEvents, setCurrentEvents] = useState([]);
 
   useEffect(() => {

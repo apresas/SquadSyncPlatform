@@ -16,6 +16,7 @@ function GameSchedule({
   currentTeamTitle,
   setCurrentTeamTitle,
   dateList,
+  setDateList,
   getDates,
   selected,
   setSelected,
@@ -38,9 +39,11 @@ function GameSchedule({
     setOpenModal(true);
   };
 
-  // useEffect(() => {
-  //   setGameSubmit(false)
-  // }, [])
+  useEffect(() => {
+    // setDateList()
+    // setGameSubmit(false)
+    getDates(new Date())
+  }, [])
 
   return (
     <>

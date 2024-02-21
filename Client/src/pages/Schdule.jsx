@@ -8,6 +8,7 @@ function Schdule({
   setCurrentTeamTitle,
   currentTeamTitle,
   dateList,
+  setDateList,
   getDates,
   selected,
   setSelected,
@@ -31,6 +32,7 @@ function Schdule({
         setCurrentTeamTitle={setCurrentTeamTitle}
         currentTeamTitle={currentTeamTitle}
         dateList={dateList}
+        setDateList={setDateList}
         getDates={getDates}
         selected={selected}
         setSelected={setSelected}
