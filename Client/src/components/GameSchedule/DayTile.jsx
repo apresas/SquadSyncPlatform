@@ -5,7 +5,7 @@ import "./dayTile.css";
 import { DateTime } from "luxon";
 import axios from "axios";
 
-function DayTile({ href, date, scheduleData, selectedTeam, filteredItem }) {
+function DayTile({ href, date, selectedTeam }) {
   const month = DateTime.fromISO(date).toFormat("M");
   const day = DateTime.fromISO(date).toFormat("d");
   const dayOfWeek = DateTime.fromISO(date).toFormat("EEE");
@@ -41,14 +41,7 @@ function DayTile({ href, date, scheduleData, selectedTeam, filteredItem }) {
 
   useEffect(() => {
     setGameCount(filterSchedule.length)
-    // scheduleData.filter((sdate) => sdate.date === date).map((sdate) => {
-    //   // console.log(sdate)
-    //   setGameCount(sdate.games.length)
-    //   if (sdate === undefined) {
-    //     setGameCount(0)
-    //   }
-    // })
-  })
+  }, [filterSchedule.length])
 
 
   return (

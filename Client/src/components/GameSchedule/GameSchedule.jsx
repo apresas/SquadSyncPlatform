@@ -1,30 +1,23 @@
 /* eslint-disable react/prop-types */
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import DayTile from "./DayTile";
-import SchduleTable from "./ScheduleTable";
 import ScheduleFilterControls from "./ScheduleFilterControls";
 import TitleBar from "../TitleBar";
 import scheduleData from "../../data/schedule.json";
 import "./gameSchedule.css";
 import { FiChevronRight, FiChevronLeft } from "react-icons/fi";
-import { RiH1 } from "react-icons/ri";
-import TestGameItem from "./TestGameItem";
-import { DateTime } from "luxon";
 import TestSchduleTable from "./TestSchduleTable";
 import AddScheduleModal from "../../modal/AddScheduleModal";
 function GameSchedule({
   currentTeamTitle,
   setCurrentTeamTitle,
   dateList,
-  setDateList,
   getDates,
   selected,
   setSelected,
   nextClick,
   prevClick,
-  setFilteredItem,
   filteredItem,
-  setDefaultTeam,
   teamData,
   gameSubmit,
   setGameSubmit,

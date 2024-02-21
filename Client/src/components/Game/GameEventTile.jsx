@@ -1,7 +1,6 @@
-import React, { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import "./gameEvent.css";
 import { LuSiren } from "react-icons/lu";
-import axios from "axios";
 
 function GameEventTile({
   homeTeam,
@@ -9,11 +8,8 @@ function GameEventTile({
   homeRoster,
   awayRoster,
   data,
-  filteredPlayers,
-  length,
   homeLoading,
   awayLoading,
-  events,
 }) {
   const [bannerColor, setBannerColor] = useState();
   const [homeLogoOpacity, setHomeLogoOpacity] = useState(0);
@@ -22,36 +18,6 @@ function GameEventTile({
   const [awayOpacity, setAwayOpacity] = useState(1);
   const [eventLogo, setEventLogo] = useState();
 
-  const homeScore = useRef(0);
-  const awayScore = useRef(0);
-  // const score = useRef({
-  //   homeScore: 0,
-  //   awayScore: 0,
-  // });
-
-  // const [homeScore, setHomeScore] = useState(0)
-  // const [awayScore, setAwayScore] = useState(0)
-
-  // const [testHomeScore, setTestHomeScore] = useState(0)
-  // const [testAwayScore, setTestAwayScore] = useState(0)
-
-  // const score = useRef({
-  //   homeScore: homeScore,
-  //   awayScore: awayScore,
-  // })
-
-  const [testHomeScore, setTestHomeScore] = useState(0);
-  const [testAwayScore, setTestAwayScore] = useState(0);
-
-  const prevHomeScore = useRef(0);
-  const prevAwayScore = useRef(0);
-
-  const updateScore = (homeScore, awayScore) => {
-    setTestHomeScore(homeScore);
-    setTestAwayScore(awayScore);
-  };
-
-  const count = useRef(0);
   const [goalScorer, setGoalScorer] = useState({
     playerID: "",
     firstName: "",
@@ -72,50 +38,26 @@ function GameEventTile({
   });
 
   useEffect(() => {
-    prevAwayScore.current = testAwayScore;
-    prevHomeScore.current = testHomeScore;
-  }, [testAwayScore, testHomeScore]);
-
-  useEffect(() => {
     if (data.scoreTeam === homeTeam.teamID) {
       setBannerColor(homeTeam.primaryColor);
       setHomeLogoOpacity(0.5);
       setAwayOpacity(0.5);
       setEventLogo(homeTeam.logo);
-      // setTestHomeScore((score) => score + 1)
-      // homeScore.current += 1;
-      // awayScore.current += 0;
     } else if (data.scoreTeam === awayTeam.teamID) {
       setBannerColor(awayTeam.primaryColor);
       setAwayLogoOpacity(0.5);
       setHomeOpacity(0.5);
       setEventLogo(awayTeam.logo);
-      // setTestAwayScore((score) => score + 1)
-      // homeScore.current += 0;
-      // awayScore.current += 1;
     }
-
-    // if(data.type === "HOME") {
-    //   homeScore.current = 1;
-    //   awayScore.current = 1;
-    // }
-    // if(data.type === "AWAY") {
-    //   awayScore.current = 1;
-    //   homeScore.current = 0;
-    // }
-
-    // {events.forEach((event) => {
-    //   if(event.type === "HOME"){
-    //     let count = 0
-    //     count += 1
-    //     console.log(count)
-    //     setTestHomeScore(count)
-    //   } else if(event.type === "AWAY")
-    //   setTestAwayScore((score) => score + 1)
-
-    // })}
-    // count.current += 1
-  }, []);
+  }, [
+    awayTeam.logo,
+    awayTeam.primaryColor,
+    awayTeam.teamID,
+    data.scoreTeam,
+    homeTeam.logo,
+    homeTeam.primaryColor,
+    homeTeam.teamID,
+  ]);
 
   useEffect(() => {
     if (homeLoading === false) {
@@ -148,14 +90,11 @@ function GameEventTile({
           }
         });
       }
-      // homeScore.current += 1;
-      // let scoreCount = 0
-      // scoreCount += 1;
-      // setHomeScore(scoreCount)
     }
+
     if (awayLoading === false) {
       {
-        awayRoster.map((player, i) => {
+        awayRoster.map((player) => {
           if (player.playerID === data.scorerID) {
             setGoalScorer({
               teamID: player.teamID,
@@ -183,35 +122,18 @@ function GameEventTile({
           }
         });
       }
-      // awayScore.current += 1;
-      // setAwayScore(() => + 1)
     } else {
       setGoalScorer({ firstName: "Loading..." });
     }
-  }, [homeLoading, awayLoading]);
-
-  useEffect(() => {
-    updateScore(
-      (homeScore) => homeScore + 1,
-      (awayScore) => awayScore + 1
-    );
-  }, [goalScorer]);
-
-  // console.log(data.homeScore)
-
-  // console.log(testHomeScore)
-  // console.log(events)
-
-  // console.log(count)
-  // console.log(score)
-
-  // console.log(homeScore)
-  // console.log(awayScore)
-
-  // console.log(testHomeScore)
-
-  // console.log(`prevAwayScore: ${prevAwayScore.current} newAwayScore: ${testAwayScore}`)
-  // console.log(`prevHomeScore: ${prevHomeScore.current} newHomeScore: ${testHomeScore}`)
+  }, [
+    homeLoading,
+    awayLoading,
+    homeRoster,
+    data.scorerID,
+    data.primaryAssistID,
+    data.secondaryAssistID,
+    awayRoster,
+  ]);
 
   return (
     <div className="gameEvent_tile_container">
@@ -265,7 +187,9 @@ function GameEventTile({
               {goalScorer.jerseyNumber}
             </h3>
             <div className="assist_container">
-              {primaryAssistPlayer.playerID === "" ? <p>Unassisted</p> : (
+              {primaryAssistPlayer.playerID === "" ? (
+                <p>Unassisted</p>
+              ) : (
                 <p>
                   Assists: {primaryAssistPlayer.firstName}{" "}
                   {primaryAssistPlayer.lastName} #

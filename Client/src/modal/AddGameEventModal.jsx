@@ -1,13 +1,12 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import { useState, useEffect } from "react";
 import PlayerDropdown from "../components/PlayerForm/playerDropdown";
 import "./addGameEventModal.css";
 import axios from "axios";
-import { useParams } from "react-router-dom";
 
 function addGameEventModal({
   homeTeam,
   awayTeam,
-  teamData,
   open,
   setOpenModal,
   setScoringID,
@@ -15,23 +14,23 @@ function addGameEventModal({
   setPrimaryID,
   setSecondaryID,
   getFilterTeam,
-  filteredPlayers,
-  setScoringPlayerID,
   scoringID,
   goalID,
   primaryID,
   secondaryID,
-  currentEvents,
   currentGame,
   homeRoster,
   awayRoster,
   gameScore,
-  setGameScore,
   setEventSubmit, 
   eventSubmit, 
   teams
 }) {
   const [newEventID, setNewEventID] = useState();
+
+  const homePlayers = Array.from(homeRoster)
+  const awayPlayers = Array.from(awayRoster)
+  const allPlayers = homePlayers.concat(awayPlayers)
 
   const [newEvent, setNewEvent] = useState({
     eventID: newEventID,
@@ -46,38 +45,16 @@ function addGameEventModal({
     period: "",
     type: "",
   });
-  const [eventTeams, setEventTeams] = useState([]);
-  const periods = ["1st", "2nd", "3rd"];
-  const [eventPlayers, setEventPlayers] = useState([]);
-  const [eventPeriod, setEventPeriod] = useState();
 
-  const [homeLoading, setHomeLoading] = useState(false);
-  const [awayLoading, setAwayLoading] = useState(false);
+  const periods = ["1st", "2nd", "3rd"];
+  const [eventPlayers, setEventPlayers] = useState(allPlayers);
+  const [eventPeriod, setEventPeriod] = useState();
 
   const [minutes, setMinutes] = useState()
   const [seconds, setSeconds] = useState()
   const [time, setTime] = useState()
 
   const [currentGameID, setCurrentGameID] = useState()
-
-  const [lastScore, setLastScore] = useState({
-    home: 0,
-    away: 0,
-  });
-
-  const [dataType, setDataType] = useState("")
-
-  const homePlayers = Array.from(homeRoster)
-  const awayPlayers = Array.from(awayRoster)
-  const allPlayers = homePlayers.concat(awayPlayers)
-
-  const home = Array.from(homeTeam)
-  const away = Array.from(awayTeam)
-  const allTeams = home.concat(away) 
-
-  // useEffect(() => {
-  //   generateID();
-  // }, []);
 
   const generateID = () => {
     const newID = Math.floor(100000 + Math.random() * 900000);
@@ -93,31 +70,13 @@ function addGameEventModal({
   }, [eventSubmit])
 
   useEffect(() => {
-    let teamsList = [];
-    teamsList.push(homeTeam);
-    teamsList.push(awayTeam);
-    setEventTeams(teamsList);
-    getEventPlayers(homeTeam.teamID, awayTeam.teamID);
     setCurrentGameID(currentGame.gameID)
-    // getFilterTeam(homeTeam.teamID);
-  }, []);
+  }, [currentGame.gameID]);
 
-  // useEffect(() => {
-  //   // getFilterTeam(scoringID);
-  //   // console.log(scoringID)
-  //   getFilteredEventPlayers(scoringID);
-  // }, [scoringID]);
-
-  const [lastEvent, setLastEvent] = useState({});
-
-  useEffect(() => {
-    setLastEvent(currentEvents[currentEvents.length - 1]);
-  }, [open]);
 
   const handleClose = () => {
     setOpenModal(false);
     clearFields()
-
   };
 
   const clearFields = () => {
@@ -134,28 +93,28 @@ function addGameEventModal({
     })
   }
 
-  const getEventPlayers = async (homeID, awayID) => {
-    let playerList = [];
-    setHomeLoading(true);
-    await axios
-      .get("http://localhost:9200/players/" + homeID)
-      .then((res) => {
-        // setEventPlayers(res.data);
-        playerList.push(...res.data);
-      })
-      .catch((err) => console.log(err))
-      .finally(() => setHomeLoading(false));
-    setAwayLoading(true);
-    await axios
-      .get("http://localhost:9200/players/" + awayID)
-      .then((res) => {
-        playerList.push(...res.data);
-      })
-      .catch((err) => console.log(err))
-      .finally(() => setAwayLoading(false));
+  // const getEventPlayers = async (homeID, awayID) => {
+  //   let playerList = [];
+  //   setHomeLoading(true);
+  //   await axios
+  //     .get("http://localhost:9200/players/" + homeID)
+  //     .then((res) => {
+  //       // setEventPlayers(res.data);
+  //       playerList.push(...res.data);
+  //     })
+  //     .catch((err) => console.log(err))
+  //     .finally(() => setHomeLoading(false));
+  //   setAwayLoading(true);
+  //   await axios
+  //     .get("http://localhost:9200/players/" + awayID)
+  //     .then((res) => {
+  //       playerList.push(...res.data);
+  //     })
+  //     .catch((err) => console.log(err))
+  //     .finally(() => setAwayLoading(false));
 
-    setEventPlayers(playerList);
-  };
+  //   setEventPlayers(playerList);
+  // };
 
   const getFilteredEventPlayers = async (teamID) => {
     await axios
@@ -166,12 +125,12 @@ function addGameEventModal({
       .catch((err) => console.log(err));
   };
 
-  const getTestScore = (lastEvent) => {
-    setLastScore({
-      home: lastEvent.homeScore,
-      away: lastEvent.awayScore,
-    });
-  };
+  // const getTestScore = (lastEvent) => {
+  //   setLastScore({
+  //     home: lastEvent.homeScore,
+  //     away: lastEvent.awayScore,
+  //   });
+  // };
 
   useEffect(() => {
     if(scoringID === homeTeam.teamID) {
@@ -182,9 +141,9 @@ function addGameEventModal({
       getFilteredEventPlayers(scoringID)
     } else {
       console.log("no team selected")
-      getEventPlayers(homeTeam.teamID, awayTeam.teamID)
+      // getEventPlayers(homeTeam.teamID, awayTeam.teamID)
     }
-  }, [scoringID])
+  }, [awayTeam.teamID, homeTeam.teamID, scoringID])
 
   // console.log(`${lastScore.home} - ${lastScore.away}`)
 
@@ -226,7 +185,7 @@ function addGameEventModal({
       period: eventPeriod,
       type: type,
     })
-  }, [newEventID, currentGameID, scoringID, goalID, primaryID, secondaryID, eventPeriod, time, type, gameScore])
+  }, [newEventID, currentGameID, scoringID, goalID, primaryID, secondaryID, eventPeriod, time, type, gameScore, homeTeam.teamID, awayTeam.teamID, newScore.home, newScore.away])
 
 
   const submitEvent = async (e) => {
@@ -238,23 +197,10 @@ function addGameEventModal({
     } catch (err) {
       console.log(err);
     }
-    // setGameScore({
-    //   homeScore: newPlayer.homeScore,
-    //   awayScore: newPlayer.awayScore
-    // })
     setEventSubmit(!eventSubmit);
     clearFields();
     setOpenModal(false);
   };
-
-  console.log(gameScore)
-  // console.log(newEvent);
-  // console.log(newEventID);
-
-  // console.log(allPlayers)
-
-  // console.log(teams)
-
 
   if (!open) {
     return null;
@@ -273,7 +219,6 @@ function addGameEventModal({
                     data={teams}
                     type="Scoring Team"
                     setScoringID={setScoringID}
-                    //   setAwayID={setAwayID}
                   />
                 </div>
                 <div className="event_dropdown">
@@ -282,8 +227,6 @@ function addGameEventModal({
                     data={eventPlayers}
                     type="Goal Scorer"
                     setGoalID={setGoalID}
-
-                    //   setAwayID={setAwayID}
                   />
                 </div>
               </div>

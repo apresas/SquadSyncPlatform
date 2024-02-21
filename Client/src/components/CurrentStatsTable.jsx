@@ -1,4 +1,3 @@
-import React from 'react'
 import "./currentStatsTable.css";
 
 function currentStatsTable({currentPlayer, playerStats}) {
@@ -6,7 +5,7 @@ function currentStatsTable({currentPlayer, playerStats}) {
   let columnHead2 = "A";
   let columnHead3 = "P";
 
-  if(currentPlayer.position === "G") {
+  if(currentPlayer.position === "Goalie") {
     columnHead1 = "W"
     columnHead2 = "GAA"
     columnHead3 = "SV%"
@@ -35,10 +34,6 @@ function currentStatsTable({currentPlayer, playerStats}) {
         <td>{playerStats.goals}</td>
         <td>{playerStats.assists}</td>
         <td>{playerStats.points}</td>
-        {/* <td>{currentPlayer.stats.currentSeason.gamesPlayed}</td>
-        <td>{currentPlayer.stats.currentSeason.goals}</td>
-        <td>{currentPlayer.stats.currentSeason.assists}</td>
-        <td>{currentPlayer.stats.currentSeason.points}</td> */}
       </tr>
     </tbody>
   </table>

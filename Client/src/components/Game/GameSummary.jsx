@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import TitleBar from "../TitleBar";
 import GameHeader from "./GameHeader";
-import BoxScore from "./BoxScore";
+// import BoxScore from "./BoxScore";
 import LineScore from "./LineScore";
 import GameStats from "./GameStats";
 import SeasonSeries from "./SeasonSeries";
@@ -23,13 +23,10 @@ function GameSummary({
 }) {
   const [homeTeam, setHomeTeam] = useState({});
   const [awayTeam, setAwayTeam] = useState({});
-  const [homeResult, setHomeResult] = useState();
-  const [awayResult, setAwayResult] = useState();
   const [scoringID, setScoringID] = useState();
   const [goalID, setGoalID] = useState();
   const [primaryID, setPrimaryID] = useState();
   const [secondaryID, setSecondaryID] = useState();
-  const [scoringPlayerID, setScoringPlayerID] = useState();
 
   const [homeRoster, setHomeRoster] = useState([]);
   const [awayRoster, setAwayRoster] = useState([]);
@@ -45,27 +42,20 @@ function GameSummary({
 
   const [gameEvents, setGameEvents] = useState([]);
 
-  const [currentEvents, setCurrentEvents] = useState([]);
-
-    // const [gameEvents, setGameEvents] = useState([]);
-
-  // const [gameScore, setGameScore] = useState({
-  //   homeScores: 0,
-  //   awayScores: 0
-  // })
-
-  const setResult = (homeScore, awayScore) => {
-    if (homeScore > awayScore) {
-      setHomeResult("WIN");
-      setAwayResult("LOSE");
-    } else if (homeScore === awayScore) {
-      setHomeResult("TIE");
-      setAwayResult("TIE");
-    } else {
-      setHomeResult("LOSE");
-      setAwayResult("WIN");
-    }
-  };
+  // const [homeResult, setHomeResult] = useState();
+  // const [awayResult, setAwayResult] = useState();
+  // const setResult = (homeScore, awayScore) => {
+  //   if (homeScore > awayScore) {
+  //     setHomeResult("WIN");
+  //     setAwayResult("LOSE");
+  //   } else if (homeScore === awayScore) {
+  //     setHomeResult("TIE");
+  //     setAwayResult("TIE");
+  //   } else {
+  //     setHomeResult("LOSE");
+  //     setAwayResult("WIN");
+  //   }
+  // };
 
   const [openModal, setOpenModal] = useState(false);
 
@@ -121,17 +111,6 @@ function GameSummary({
   // };
 
   useEffect(() => {
-    // teamData.map((data) => {
-    //   if(data.teamID === currentGame.homeID) {
-    //     home.current = data;
-    //     setHomeTeam(data)
-    //   }
-    //   if(data.teamID === currentGame.awayID) {
-    //     away.current = data;
-    //     setAwayTeam(data)
-    //   }
-    // })
-
     {
       teamData
         .map((data) => data)
@@ -151,10 +130,10 @@ function GameSummary({
         });
     }
 
-    setResult(currentGame.homeScore, currentGame.awayScore);
+    // setResult(currentGame.homeScore, currentGame.awayScore);
     getGameEvents(currentGame.gameID);
     formatGameDate(currentGame.date);
-  }, []);
+  }, [currentGame.awayID, currentGame.awayScore, currentGame.date, currentGame.gameID, currentGame.homeID, currentGame.homeScore, teamData]);
 
   useEffect(() => {
     let teamList = [];
@@ -194,7 +173,7 @@ function GameSummary({
         lineScore.awayScore.second +
         lineScore.awayScore.third,
     });
-  }, [lineScore]);
+  }, [lineScore, setGameScore]);
 
   const setScores = () => {
     let homeFirst = 0;
@@ -253,17 +232,17 @@ function GameSummary({
   //   console.log(`home: ${homeResult} ` + `away: ${awayResult}`);
   // }, [homeResult, awayResult]);
 
-  useEffect(() => {
-    let eventList = [];
-    {
-      gameEvents
-        .filter((event) => event.gameID === currentGame.gameID)
-        .forEach((event) => {
-          eventList.push(event);
-        });
-    }
-    setCurrentEvents(eventList);
-  }, [gameEvents]);
+  // useEffect(() => {
+  //   let eventList = [];
+  //   {
+  //     gameEvents
+  //       .filter((event) => event.gameID === currentGame.gameID)
+  //       .forEach((event) => {
+  //         eventList.push(event);
+  //       });
+  //   }
+  //   setCurrentEvents(eventList);
+  // }, [gameEvents]);
 
   const getGameEvents = async (gameID) => {
     await axios
@@ -293,24 +272,20 @@ function GameSummary({
         awayTeam={awayTeam}
         open={openModal}
         setOpenModal={setOpenModal}
-        teamData={teamData}
         setScoringID={setScoringID}
         setGoalID={setGoalID}
         setPrimaryID={setPrimaryID}
         setSecondaryID={setSecondaryID}
         getFilterTeam={getFilterTeam}
-        filteredPlayers={filteredPlayers}
-        setScoringPlayerID={setScoringPlayerID}
         scoringID={scoringID}
         goalID={goalID}
         primaryID={primaryID}
         secondaryID={secondaryID}
-        currentEvents={currentEvents}
+        // currentEvents={currentEvents}
         currentGame={currentGame}
         homeRoster={homeRoster}
         awayRoster={awayRoster}
         gameScore={gameScore}
-        setGameScore={setGameScore}
         setEventSubmit={setEventSubmit}
         eventSubmit={eventSubmit}
         teams={teams}
@@ -338,8 +313,8 @@ function GameSummary({
                   filteredPlayers={filteredPlayers}
                   homeLoading={homeLoading}
                   awayLoading={awayLoading}
-                  currentEvents={currentEvents}
-                  setCurrentEvents={setCurrentEvents}
+                  // currentEvents={currentEvents}
+                  // setCurrentEvents={setCurrentEvents}
                   gameScore={gameScore}
                   eventSubmit={eventSubmit}
                   gameEvents={gameEvents}

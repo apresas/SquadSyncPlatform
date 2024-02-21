@@ -1,6 +1,6 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import { useEffect, useState } from "react";
 import "./playerModal.css";
-import { useTable, useSortBy } from "react-table";
 import { IoClose } from "react-icons/io5";
 import CurrentStatsTable from "../components/currentStatsTable";
 import CareerStatsTable from "../components/CareerStatsTable";
@@ -31,7 +31,6 @@ function playerModal({
 
   useEffect(() => {
     getPlayerStats();
-    console.log(currentPlayer.playerID);
   }, [currentPlayer]);
 
   const getPlayerStats = async () => {
@@ -82,7 +81,7 @@ function playerModal({
   useEffect(() => {
     convertHeight(currentPlayer.height);
   }, [currentPlayer]);
-  console.log(currentPlayer);
+
 
   if (!open) {
     return null;

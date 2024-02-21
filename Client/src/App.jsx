@@ -13,7 +13,6 @@ import AllstarGame from "./pages/AllstarGame";
 import History from "./pages/LeagueHistory";
 import Archieve from "./pages/Archieve";
 import Links from "./pages/Links";
-import About from "./pages/About";
 import Game from "./pages/Game";
 import { useSite } from "./context/SiteContext";
 

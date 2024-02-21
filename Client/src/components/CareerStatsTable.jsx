@@ -1,4 +1,3 @@
-import React from "react";
 import "./careerStatsTable.css";
 
 function CareerStatsTable({ currentPlayer }) {
@@ -6,7 +5,7 @@ function CareerStatsTable({ currentPlayer }) {
   let columnHead2 = "A";
   let columnHead3 = "P";
 
-  if (currentPlayer.position === "G") {
+  if (currentPlayer.position === "Goalie") {
     columnHead1 = "W";
     columnHead2 = "GAA";
     columnHead3 = "SV%";
@@ -28,27 +27,6 @@ function CareerStatsTable({ currentPlayer }) {
         </tr>
       </thead>
       <tbody>
-        {/* {currentPlayer.stats.careerStats.map((stats, i) => {
-          return (
-            <tr key={i}>
-            <td className="career_year_title">
-              {stats.title.toUpperCase()}
-            </td>
-            <td>
-              {stats.gamesPlayed}
-            </td>
-            <td>
-              {stats.goals}
-            </td>
-            <td>
-              {stats.assists}
-            </td>
-            <td>
-              {stats.points}
-            </td>
-            </tr>
-          )
-        })} */}
         <tr>
           <td className="career_year_title">SR <span>(23-24)</span></td>
           <td>0</td>

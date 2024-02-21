@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { DateTime } from "luxon";
 import "./scheduleFilterControls.css";
 import { FiChevronRight, FiChevronLeft } from "react-icons/fi";
 import Dropdown from "../Dropdown/Dropdown";
 import { format } from "date-fns";
 import { GrTableAdd } from "react-icons/gr";
-import { MdOutlineEditCalendar } from "react-icons/md";
 import { DayPicker } from "react-day-picker";
 import "react-day-picker/dist/style.css";
 
