@@ -10,6 +10,7 @@ import GameEvent from "./GameEvent";
 import "./gameSummary.css";
 import AddGameEventModal from "../../modal/AddGameEventModal";
 import { DateTime } from "luxon";
+import { useLocation } from "react-router-dom"
 
 function GameSummary({
   currentGame,
@@ -20,6 +21,11 @@ function GameSummary({
   setEventSubmit,
   gameScore,
   setGameScore,
+  getFilterGame,
+  getTeamData,
+  getCurrentTeam,
+  filterTeam,
+  filterGame
 }) {
   const [homeTeam, setHomeTeam] = useState({});
   const [awayTeam, setAwayTeam] = useState({});
@@ -42,6 +48,12 @@ function GameSummary({
 
   const [gameEvents, setGameEvents] = useState([]);
 
+  const [game, setGame] = useState({})
+
+
+  const location = useLocation();
+  const currentGameID = parseInt(location.pathname.split("/")[2]);
+  // console.log(currentGameID);
   // const [homeResult, setHomeResult] = useState();
   // const [awayResult, setAwayResult] = useState();
   // const setResult = (homeScore, awayScore) => {
@@ -90,6 +102,14 @@ function GameSummary({
     }
   };
 
+  const getFilteredGame = async (gameID) => {
+    await axios
+    .get("http://localhost:9200/schedule/" + gameID)
+    .then((res) => {
+      setGame(res.data)
+    })
+  }
+
   // const getTeamRosters = async (homeID, awayID) => {
   //   setIsLoading(true)
   //   await axios
@@ -111,29 +131,50 @@ function GameSummary({
   // };
 
   useEffect(() => {
-    {
-      teamData
-        .map((data) => data)
-        .filter((data) => data.teamID === currentGame.homeID)
-        .map((data) => {
-          home.current = data;
-          setHomeTeam(data);
-        });
-    }
-    {
-      teamData
-        .map((data) => data)
-        .filter((data) => data.teamID === currentGame.awayID)
-        .map((data) => {
-          away.current = data;
-          setAwayTeam(data);
-        });
-    }
+    getFilterGame(currentGameID)
+    getTeamData()
+    getHomeTeam(currentGame.homeID)
+    getAwayTeam(currentGame.awayID)
+    getFilteredGame(currentGameID)
+  }, [])
+
+  // console.log(currentGame)
+  // console.log(filterGame)
+
+  const getHomeTeam = async(teamID) => {
+    const res = await axios.get("http://localhost:9200/teams/" + teamID);
+    setHomeTeam(...res.data);
+  }
+
+  const getAwayTeam = async(teamID) => {
+    const res = await axios.get("http://localhost:9200/teams/" + teamID);
+    setAwayTeam(...res.data);
+  }
+
+  useEffect(() => {
+    // {
+    //   teamData
+    //     .map((data) => data)
+    //     .filter((data) => data.teamID === currentGame.homeID)
+    //     .map((data) => {
+    //       home.current = data;
+    //       setHomeTeam(data);
+    //     });
+    // }
+    // {
+    //   teamData
+    //     .map((data) => data)
+    //     .filter((data) => data.teamID === currentGame.awayID)
+    //     .map((data) => {
+    //       away.current = data;
+    //       setAwayTeam(data);
+    //     });
+    // }
 
     // setResult(currentGame.homeScore, currentGame.awayScore);
-    getGameEvents(currentGame.gameID);
+    getGameEvents(currentGameID);
     formatGameDate(currentGame.date);
-  }, [currentGame.awayID, currentGame.awayScore, currentGame.date, currentGame.gameID, currentGame.homeID, currentGame.homeScore, teamData]);
+  }, [currentGame.awayID, currentGame.awayScore, currentGame.date, currentGameID, currentGame.homeID, currentGame.homeScore, teamData]);
 
   useEffect(() => {
     let teamList = [];
@@ -253,7 +294,7 @@ function GameSummary({
       .catch((err) => console.log(err));
   };
 
-  console.log(teams);
+  // console.log(teams);
 
   const formatGameDate = (date) => {
     const newDate = DateTime.fromISO(date).toFormat("DD");
@@ -264,6 +305,12 @@ function GameSummary({
 
   // console.log(gameScore)
   // console.log(lineScore)
+  // console.log(teamData)
+
+  // console.log(filterTeam)
+  // console.log(game)
+  // console.log(homeTeam)
+  // console.log(awayTeam)
 
   return (
     <>
@@ -296,6 +343,7 @@ function GameSummary({
           <div className="gameSummary_app_container">
             <h2>{dateTitle}</h2>
             <GameHeader
+            currentGame={currentGame}
               homeTeam={homeTeam}
               awayTeam={awayTeam}
               gameScore={gameScore}
@@ -319,6 +367,7 @@ function GameSummary({
                   eventSubmit={eventSubmit}
                   gameEvents={gameEvents}
                   setGameEvents={setGameEvents}
+                  currentGameID={currentGameID}
                 />
               </section>
               <section className="gameSummary_side_content">

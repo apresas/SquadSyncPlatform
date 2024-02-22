@@ -1,5 +1,6 @@
 import React from "react";
 import playerPortrait from "../../assets/Player_Icon.svg";
+import "./playerTile.css"
 
 function PlayerTile({ player, teamData, setCurrentPlayer, checkCurrentPlayer, getFilteredPlayer }) {
     const onPlayerClick = (player) => {
@@ -8,23 +9,23 @@ function PlayerTile({ player, teamData, setCurrentPlayer, checkCurrentPlayer, ge
         getFilteredPlayer(player.playerID)
       }
   return (
-    <div className="test_player_container" onClick={() => onPlayerClick(player)}>
-      <div className="test_portrait_container">
-        <img src={playerPortrait} alt="" className="test_player_image" />
+    <div className="player_container" onClick={() => onPlayerClick(player)}>
+      <div className="portrait_container">
+        <img src={playerPortrait} alt="" className="player_image" />
         <span />
       </div>
-      <div className="test_player_info">
+      <div className="playerTile_info">
         <h2>
           {player.firstName} {player.lastName}
         </h2>
         <h1>{player.jerseyNumber}</h1>
       </div>
-      <div className="test_player_sub">
+      <div className="player_sub">
         {teamData
           .filter((data) => data.teamID === player.teamID)
           .map((data) => (
             <img
-              className="test_player_logo_sm"
+              className="player_logo_sm"
               key={player.playerID}
               src={data.logo}
               alt="teamLogo"

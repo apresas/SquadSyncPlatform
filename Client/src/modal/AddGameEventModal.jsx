@@ -134,13 +134,13 @@ function addGameEventModal({
 
   useEffect(() => {
     if(scoringID === homeTeam.teamID) {
-      console.log("home team selected")
+      // console.log("home team selected")
       getFilteredEventPlayers(scoringID)
     } else if(scoringID === awayTeam.teamID) {
-      console.log("away team selected")
+      // console.log("away team selected")
       getFilteredEventPlayers(scoringID)
     } else {
-      console.log("no team selected")
+      // console.log("no team selected")
       // getEventPlayers(homeTeam.teamID, awayTeam.teamID)
     }
   }, [awayTeam.teamID, homeTeam.teamID, scoringID])
@@ -171,7 +171,7 @@ function addGameEventModal({
         away: gameScore.awayScore + 1
       })
     }
-    console.log(`EventID: ${newEventID}, GameID: ${currentGameID}, ScoringTeam: ${scoringID}, GoalID: ${goalID}, PrimaryID: ${primaryID}, SecondaryID: ${secondaryID} HomeScore: ${newScore.home} AwayScore: ${newScore.away}, Period: ${eventPeriod}, GameTime: ${time} Type: ${type} `)
+    // console.log(`EventID: ${newEventID}, GameID: ${currentGameID}, ScoringTeam: ${scoringID}, GoalID: ${goalID}, PrimaryID: ${primaryID}, SecondaryID: ${secondaryID} HomeScore: ${newScore.home} AwayScore: ${newScore.away}, Period: ${eventPeriod}, GameTime: ${time} Type: ${type} `)
     setNewEvent({
       eventID: newEventID,
       gameID: currentGameID,
@@ -197,6 +197,16 @@ function addGameEventModal({
     } catch (err) {
       console.log(err);
     }
+
+    try {
+      await axios 
+      .put("http://localhost:9200/schedule/" + currentGame.gameID, newScore)
+      console.log("score updated")
+    } catch (err) {
+      console.log(err);
+    }
+
+
     setEventSubmit(!eventSubmit);
     clearFields();
     setOpenModal(false);

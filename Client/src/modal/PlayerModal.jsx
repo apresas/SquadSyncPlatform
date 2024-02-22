@@ -9,9 +9,7 @@ function playerModal({
   open,
   onClose,
   currentPlayer,
-  primaryColor,
-  secondaryColor,
-  teamLogo,
+  filterTeam
 }) {
   const [convertedHeight, setConvertedHeight] = useState();
 
@@ -131,11 +129,11 @@ function playerModal({
             <div
               className="modal_right"
               style={{
-                backgroundColor: `${primaryColor}`,
-                color: `${secondaryColor}`,
+                backgroundColor: `${filterTeam.primaryColor}`,
+                color: `${filterTeam.secondaryColor}`,
               }}
             >
-              <img src={teamLogo} alt="" className="team_logo_bg" />
+              <img src={filterTeam.logo} alt="" className="team_logo_bg" />
               <div className="modal_controls">
                 <div className="close_btn_container">
                   <IoClose onClick={onClose} style={{ fontSize: "2.25rem" }} />

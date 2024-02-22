@@ -29,6 +29,15 @@ app.get('/teams', (req, res) => {
     })
 })
 
+app.get('/teams/:teamID', (req, res) => {
+    const teamID = req.params.teamID
+    const q = "SELECT * FROM teams WHERE teamID = ?"
+    db.query(q, [teamID], (err, data) => {
+        if (err) return res.json(err)
+        return res.json(data)
+    })
+})
+
 app.get('/schedule', (req, res) => {
     const q = "SELECT * FROM teamSchedule"
     db.query(q, (err, data) => {
@@ -56,6 +65,17 @@ app.get('/schedule/:date/:teamID/', (req, res) => {
         return res.json(data)
     })
 })
+
+
+app.get('/schedule/:gameID', (req, res) => {
+    const gameID = req.params.gameID
+    const q = 'SELECT * FROM schedule WHERE gameID = ?'
+    db.query(q, [gameID], (err, data) => {
+        if (err) return res.json(err)
+        return res.json(data)
+    })
+})
+
 
 // app.get('/schedule/:teamID/:teamID', (req, res) => {
 //     const homeID = req.params.teamID
@@ -86,6 +106,23 @@ app.post('/schedule', (req, res) => {
         return res.json(data)
     })
 })
+
+
+app.put("/schedule/:gameID", (req, res) => {
+    const gameID = req.params.gameID;
+    const q = "UPDATE schedule SET `homeScore` = ?, `awayScore` = ? WHERE gameID = ?"
+    const values = [
+        req.body.home,
+        req.body.away
+    ]
+
+    db.query(q, [...values, gameID], (err, data) => {
+        if (err) return res.json(err);
+        return res.json("Score has been updated successfully")
+    })
+})
+
+
 
 app.get('/standings', (req, res) => {
     const q = "SELECT standings.*, teams.schoolName, teams.logo, teams.division FROM standings INNER JOIN teams ON standings.teamID = teams.teamID"

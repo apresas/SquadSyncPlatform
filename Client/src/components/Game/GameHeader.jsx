@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./gameHeader.css";
 
 function GameHeader({currentGame, homeTeam, awayTeam, gameScore}) {
+  // console.log(currentGame);
   return (
     <section className="gameSummary_header">
       <div className="homeTeam">

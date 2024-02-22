@@ -53,7 +53,11 @@ function App() {
     eventSubmit, 
     setEventSubmit,
     gameScore, 
-    setGameScore
+    setGameScore,
+    filterTeam, 
+    getCurrentTeam,
+    getFilterGame,
+    filterGame
   } = useSite();
   return (
     <>
@@ -75,6 +79,7 @@ function App() {
           element={
             <TeamPage
               currentTeam={currentTeam}
+              setCurrentTeam={setCurrentTeam}
               rosterTeam={rosterTeam}
               setCurrentPlayer={setCurrentPlayer}
               currentPlayer={currentPlayer}
@@ -83,6 +88,8 @@ function App() {
               filteredPlayers={filteredPlayers}
               getFilteredPlayer={getFilteredPlayer}
               currentFilterPlayer={currentFilterPlayer}
+              filterTeam={filterTeam}
+              getCurrentTeam={getCurrentTeam}
             />
           }
         />
@@ -140,12 +147,17 @@ function App() {
             <Game
               currentGame={currentGame}
               teamData={teamData}
+              getTeamData={getTeamData}
               getFilterTeam={getFilterTeam}
               filteredPlayers={filteredPlayers}
               eventSubmit={eventSubmit}
               setEventSubmit={setEventSubmit}
               gameScore={gameScore}
               setGameScore={setGameScore}
+              getFilterGame={getFilterGame}
+              getCurrentTeam={getCurrentTeam}
+              filterTeam={filterTeam}
+              filterGame={filterGame}
             />
           }
         />

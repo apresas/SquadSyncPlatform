@@ -14,11 +14,13 @@ export const SiteProvider = ({ children }) => {
   const [currentPlayer, setCurrentPlayer] = useState({});
   const [dateList, setDateList] = useState([]);
   const [currentTeamTitle, setCurrentTeamTitle] = useState();
-  const [currentGame, setCurrentGame] = useState();
+  const [currentGame, setCurrentGame] = useState({});
 
   const [selected, setSelected] = useState();
   const [filteredItem, setFilteredItem] = useState([]);
   const [defaultTeam, setDefaultTeam] = useState();
+
+  const [filterTeam, setFilterTeam] = useState({});
 
   const [gameScore, setGameScore] = useState({
     homeScores: 0,
@@ -52,6 +54,11 @@ export const SiteProvider = ({ children }) => {
     setTeamData(res.data);
   };
 
+  const getCurrentTeam = async (teamID) => {
+    const res = await axios.get("http://localhost:9200/teams/" + teamID);
+    setFilterTeam(...res.data);
+  }
+
   const [testPlayers, setTestPlayers] = useState([]);
 
   const getTestPlayers = async () => {
@@ -84,6 +91,12 @@ export const SiteProvider = ({ children }) => {
   const getSchedule = async () => {
     const res = await axios.get("http://localhost:9200/schedule")
     setSchedule(res.data);
+  }
+  
+  const [filterGame, setFilterGame] = useState({})
+  const getFilterGame = async (gameID) => {
+    const res = await axios.get("http://localhost:9200/schedule/" + gameID)
+    setFilterGame(res.data)
   }
 
   const [gameSubmit, setGameSubmit] = useState(false);
@@ -147,7 +160,11 @@ export const SiteProvider = ({ children }) => {
         eventSubmit, 
         setEventSubmit,
         gameScore, 
-        setGameScore
+        setGameScore,
+        getCurrentTeam,
+        filterTeam,
+        getFilterGame,
+        filterGame
       }}
     >
       {children}

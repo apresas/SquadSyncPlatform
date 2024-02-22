@@ -4,6 +4,7 @@ import Team from "../components/Team";
 
 function TeamPage({
   currentTeam,
+  setCurrentTeam,
   rosterTeam,
   setCurrentPlayer,
   currentPlayer,
@@ -11,7 +12,9 @@ function TeamPage({
   getFilterTeam,
   filteredPlayers,
   getFilteredPlayer,
-  currentFilterPlayer
+  currentFilterPlayer,
+  getCurrentTeam,
+  filterTeam
 }) {
   const { id } = useParams(currentTeam.id);
   return (
@@ -19,6 +22,7 @@ function TeamPage({
       id={currentTeam.id}
       pageID={id}
       currentTeam={currentTeam}
+      setCurrentTeam={setCurrentTeam}
       rosterTeam={rosterTeam}
       setCurrentPlayer={setCurrentPlayer}
       currentPlayer={currentPlayer}
@@ -27,6 +31,8 @@ function TeamPage({
       getFilterTeam={getFilterTeam}
       getFilteredPlayer={getFilteredPlayer}
       currentFilterPlayer={currentFilterPlayer}
+      getCurrentTeam={getCurrentTeam}
+      filterTeam={filterTeam}
     />
   );
 }

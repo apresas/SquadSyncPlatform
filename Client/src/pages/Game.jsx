@@ -4,12 +4,40 @@ import Footer from "../components/Footer";
 import GameSummary from "../components/Game/GameSummary";
 import SponcerBar from "../components/Sponcer/SponcerBar";
 
-function Game({currentGame, teamData, getFilterTeam, filteredPlayers, eventSubmit, setEventSubmit, gameScore, setGameScore}) {
+function Game({
+  currentGame,
+  teamData,
+  getFilterTeam,
+  filteredPlayers,
+  eventSubmit,
+  setEventSubmit,
+  gameScore,
+  setGameScore,
+  getFilterGame,
+  getTeamData,
+  getCurrentTeam,
+  filterTeam, 
+  filterGame
+}) {
   return (
     <>
       <SponcerBar />
       <NavBar />
-      <GameSummary currentGame={currentGame} teamData={teamData} getFilterTeam={getFilterTeam} filteredPlayers={filteredPlayers} eventSubmit={eventSubmit} setEventSubmit={setEventSubmit} gameScore={gameScore} setGameScore={setGameScore}/>
+      <GameSummary
+        currentGame={currentGame}
+        teamData={teamData}
+        getFilterTeam={getFilterTeam}
+        filteredPlayers={filteredPlayers}
+        eventSubmit={eventSubmit}
+        setEventSubmit={setEventSubmit}
+        gameScore={gameScore}
+        setGameScore={setGameScore}
+        getFilterGame={getFilterGame}
+        getTeamData={getTeamData}
+        getCurrentTeam={getCurrentTeam}
+        filterTeam={filterTeam}
+        filterGame={filterGame}
+      />
       <Footer />
     </>
   );

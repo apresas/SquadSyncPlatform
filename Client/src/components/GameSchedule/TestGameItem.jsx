@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function TestGameItem({ data, teamData, setCurrentGame }) {
   const [homeLogo, setHomeLogo] = useState();
@@ -8,7 +8,7 @@ function TestGameItem({ data, teamData, setCurrentGame }) {
   const [awayName, setAwayName] = useState();
   const [time, setTime] = useState();
 
-  const { id } = useParams();
+  // const { id } = useParams();
 
   useEffect(() => {
     {

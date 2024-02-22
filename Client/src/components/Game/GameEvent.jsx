@@ -1,4 +1,4 @@
-import  { useEffect, useRef } from "react";
+import  { useEffect } from "react";
 import GameEventTile from "./GameEventTile";
 import "./gameEvent.css";
 import axios from "axios";
@@ -13,11 +13,13 @@ function GameEvent({
   awayRoster,
   homeLoading,
   awayLoading,
-  setCurrentEvents,
   eventSubmit,
   setGameEvents,
   gameEvents,
+  currentGameID
 }) {
+
+  // console.log(currentGameID)
 
   // useEffect(() => {
   //   let eventList = [];
@@ -29,12 +31,13 @@ function GameEvent({
   //   setCurrentEvents(eventList);
   // }, [currentGame.gameID, gameEvents, setCurrentEvents])
 
+
   useEffect(() => {
-    getGameEvents(currentGame.gameID);
+    getGameEvents(currentGameID);
   }, [currentGame]);
 
   useEffect(() => {
-    getGameEvents(currentGame.gameID)
+    getGameEvents(currentGameID)
   }, [eventSubmit])
 
   const getGameEvents = async (gameID) => {
@@ -60,7 +63,7 @@ function GameEvent({
       </header>
       <section className="gameEvent_content">
         {gameEvents
-        .filter((event) => event.gameID === currentGame.gameID)
+        .filter((event) => event.gameID === currentGameID)
         .map((data, i) => {
           return (
             <GameEventTile
