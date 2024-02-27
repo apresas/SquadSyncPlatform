@@ -106,6 +106,7 @@
   grid-template-columns: 4fr 1fr 4fr 2fr 2fr 2fr;
   padding: 1rem;
   border-bottom: 1px solid lightgrey;
+  text-align: center;
 }
 
 .game_item_container{

@@ -5,6 +5,10 @@
     transition: var(--transition-fast);
 }
 
+.current{
+    background-color: var(--color-dark-white);
+}
+
 .seasonSeriesTile_container:hover {
     /* border: 1px solid var(--color-ohio-red); */
     background-color: var(--color-dark-white);

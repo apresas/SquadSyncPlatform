@@ -9,6 +9,7 @@
 
 .lineScore_header {
     padding: 0.75rem 0;
+    text-align: center;
     border-top: 1px solid lightgrey;
     border-bottom: 1px solid lightgrey;
 }
@@ -41,4 +42,8 @@
 .lineScore_homeTeam h2, .lineScore_awayTeam h2 {
     font-size:1.25rem;
     margin: 0;
+}
+
+#lineScore_title {
+    margin-bottom: 0.5rem;
 }

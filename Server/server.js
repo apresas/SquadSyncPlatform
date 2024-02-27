@@ -69,6 +69,7 @@ app.get('/schedule/:date/:teamID/', (req, res) => {
 
 app.get('/schedule/:gameID', (req, res) => {
     const gameID = req.params.gameID
+    console.log(req.params.gameID)
     const q = 'SELECT * FROM schedule WHERE gameID = ?'
     db.query(q, [gameID], (err, data) => {
         if (err) return res.json(err)
@@ -108,7 +109,7 @@ app.post('/schedule', (req, res) => {
 })
 
 
-app.put("/schedule/:gameID", (req, res) => {
+app.put('/schedule/:gameID', (req, res) => {
     const gameID = req.params.gameID;
     const q = "UPDATE schedule SET `homeScore` = ?, `awayScore` = ? WHERE gameID = ?"
     const values = [
@@ -165,6 +166,25 @@ app.get('/events/:scorerID', (req, res) => {
         return res.json(data)
     })
 })
+
+app.get('/gameStats', (req, res) => {
+    const q = "SELECT * FROM game_stats"
+    db.query(q, (err, data) => {
+        if (err) return res.json(err)
+        return res.json(data)
+    })
+})
+
+
+app.get('/gameStats/:gameID', (req, res) => {
+    const gameID = req.params.gameID
+    const q = "SELECT * FROM game_stats WHERE gameID = ?"
+    db.query(q, [gameID], (err, data) => {
+        if (err) return res.json(err)
+        return res.json(data)
+    })
+})
+
 
 app.post('/events', (req, res) => {
     const q = "INSERT INTO game_events (`eventID`, `gameID`, `scoreTeam`, `scorerID`, `primaryAssistID`, `secondaryAssistID`, `homeScore`, `awayScore`, `gameTime`, `period`, `type`) VALUES(?)"

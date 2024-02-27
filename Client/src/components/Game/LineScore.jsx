@@ -104,7 +104,7 @@ function LineScore({ homeTeam, awayTeam, lineScore, gameScore }) {
 
   return (
     <div className="lineScore_container">
-      <h2>Line Score</h2>
+      <h2 id="lineScore_title">Line Score</h2>
       <div className="lineScore_header">
         <span></span>
         <h3>1st</h3>

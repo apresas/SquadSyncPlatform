@@ -1,28 +1,107 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./seasonSeriesTile.css";
+import { DateTime } from "luxon";
+import { Link } from "react-router-dom"
 
-function SeasonSeriesTile({homeScore, awayScore, homeTeam, awayTeam}) {
+function SeasonSeriesTile({
+  homeScore,
+  awayScore,
+  date,
+  game,
+  teamData,
+  currentGame
+}) {
+
+  console.log(game)
+
+  const [currentTile, setCurrentTile] = useState("seasonSeriesTile_container")
+
+  const [link, setLink] = useState()
+
+  const [home, setHome] = useState(
+    {
+      logo: "",
+      abbrev: "",
+    }
+  )
+  const [away, setAway] = useState(
+    {
+      logo: "",
+      abbrev: "",
+    }
+  )
+
+  const [tileDate, setTileDate] = useState()
+
+  useEffect(() => {
+    setTeams(teamData)
+    formatGameDate(date)
+    setCurrent(currentGame.date, game.date)
+    setGameLink(game)
+  }, [game])
+
+  const formatGameDate = (date) => {
+    const newDate = DateTime.fromISO(date).toFormat("DD");
+    setTileDate(newDate);
+  };
+
+  const setTeams = (teams) => {
+    {teams.map((team) => {
+      if(team.teamID === game.homeID) {
+        setHome({
+          logo: team.logo,
+          abbrev: team.abbrev
+        })
+      } else if(team.teamID === game.awayID) {
+        setAway({
+          logo: team.logo,
+          abbrev: team.abbrev
+        })
+      }
+    })}
+  }
+
+  const setCurrent = (date, gameDate) => {
+    if(date === gameDate) {
+      setCurrentTile("seasonSeriesTile_container current")
+    } else {
+      setCurrentTile("seasonSeriesTile_container")
+    }
+  }
+
+  const setGameLink = (game) => {
+    const link = "/game/" + game.gameID;
+    setLink(link)
+  }
+
+  
+
   return (
-    <div className="seasonSeriesTile_container">
+    <Link
+    to={link}
+    style={{ color: "inherit", textDecoration: "inherit", backgroundColor: "inherit" }}
+    >
+    <div className={currentTile}>
       <div className="tile_team_container">
         <div className="tile_team">
-          <img src={homeTeam.logo} alt="Home Logo" />
-          <h3>ST.X</h3>
+          <img src={home.logo} alt="Home Logo" />
+          <h3>{home.abbrev}</h3>
         </div>
         <h3>{homeScore}</h3>
       </div>
       <div className="tile_team_container">
         <div className="tile_team">
-          <img src={awayTeam.logo} alt="Home Logo" />
-          <h3>MOE</h3>
+          <img src={away.logo} alt="Home Logo" />
+          <h3>{away.abbrev}</h3>
         </div>
         <h3>{awayScore}</h3>
       </div>
       <div className="tile_team_info">
         <small>Final</small>
-        <small>Date</small>
+        <small>{tileDate}</small>
       </div>
     </div>
+    </Link>
   );
 }
 

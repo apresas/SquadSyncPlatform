@@ -10,7 +10,7 @@ import GameEvent from "./GameEvent";
 import "./gameSummary.css";
 import AddGameEventModal from "../../modal/AddGameEventModal";
 import { DateTime } from "luxon";
-import { useLocation } from "react-router-dom"
+import { useLocation } from "react-router-dom";
 
 function GameSummary({
   currentGame,
@@ -25,7 +25,7 @@ function GameSummary({
   getTeamData,
   getCurrentTeam,
   filterTeam,
-  filterGame
+  filterGame,
 }) {
   const [homeTeam, setHomeTeam] = useState({});
   const [awayTeam, setAwayTeam] = useState({});
@@ -48,12 +48,12 @@ function GameSummary({
 
   const [gameEvents, setGameEvents] = useState([]);
 
-  const [game, setGame] = useState({})
-
+  const [game, setGame] = useState({});
 
   const location = useLocation();
   const currentGameID = parseInt(location.pathname.split("/")[2]);
-  // console.log(currentGameID);
+
+
   // const [homeResult, setHomeResult] = useState();
   // const [awayResult, setAwayResult] = useState();
   // const setResult = (homeScore, awayScore) => {
@@ -102,13 +102,12 @@ function GameSummary({
     }
   };
 
-  const getFilteredGame = async (gameID) => {
-    await axios
-    .get("http://localhost:9200/schedule/" + gameID)
-    .then((res) => {
-      setGame(res.data)
-    })
-  }
+  // const getFilteredGame = async (gameID) => {
+  //   await axios.get("http://localhost:9200/schedule/" + gameID).then((res) => {
+  //     console.log(res.data);
+  //     setGame(res.data);
+  //   });
+  // };
 
   // const getTeamRosters = async (homeID, awayID) => {
   //   setIsLoading(true)
@@ -131,25 +130,35 @@ function GameSummary({
   // };
 
   useEffect(() => {
-    getFilterGame(currentGameID)
-    getTeamData()
-    getHomeTeam(currentGame.homeID)
-    getAwayTeam(currentGame.awayID)
-    getFilteredGame(currentGameID)
-  }, [])
+    getFilterGame(currentGameID);
+    getTeamData();
+    getCurrentGame(currentGameID);
+    // getHomeTeam(currentGame.homeID);
+    // getAwayTeam(currentGame.awayID);
+    // setTestID(parseInt(location.pathname.split("/")[2]))
+    // getFilteredGame(currentGameID);
+  }, []);
 
-  // console.log(currentGame)
-  // console.log(filterGame)
+  useEffect(() => {
+    getCurrentGame(currentGameID);
+    console.log(currentGameID)
+  }, [currentGameID])
 
-  const getHomeTeam = async(teamID) => {
+  useEffect(() => {
+    getHomeTeam(game.homeID);
+    getAwayTeam(game.awayID);
+    formatGameDate(game.date)
+  }, [game])
+
+  const getHomeTeam = async (teamID) => {
     const res = await axios.get("http://localhost:9200/teams/" + teamID);
     setHomeTeam(...res.data);
-  }
+  };
 
-  const getAwayTeam = async(teamID) => {
+  const getAwayTeam = async (teamID) => {
     const res = await axios.get("http://localhost:9200/teams/" + teamID);
     setAwayTeam(...res.data);
-  }
+  };
 
   useEffect(() => {
     // {
@@ -173,8 +182,16 @@ function GameSummary({
 
     // setResult(currentGame.homeScore, currentGame.awayScore);
     getGameEvents(currentGameID);
-    formatGameDate(currentGame.date);
-  }, [currentGame.awayID, currentGame.awayScore, currentGame.date, currentGameID, currentGame.homeID, currentGame.homeScore, teamData]);
+    // formatGameDate(currentGame.date);
+  }, [
+    currentGame.awayID,
+    currentGame.awayScore,
+    currentGame.date,
+    currentGameID,
+    currentGame.homeID,
+    currentGame.homeScore,
+    teamData,
+  ]);
 
   useEffect(() => {
     let teamList = [];
@@ -183,6 +200,7 @@ function GameSummary({
     teamList.push(homeTeam);
     teamList.push(awayTeam);
     setTeams(teamList);
+    getSeasonSeries();
   }, [homeTeam, awayTeam]);
 
   const [lineScore, setLineScore] = useState({
@@ -201,7 +219,6 @@ function GameSummary({
   useEffect(() => {
     setScores();
   }, [homeTeam, awayTeam, gameEvents, eventSubmit]);
-
 
   useEffect(() => {
     setGameScore({
@@ -294,6 +311,27 @@ function GameSummary({
       .catch((err) => console.log(err));
   };
 
+  const [games, setGames] = useState([]);
+
+  const getSeasonSeries = async () => {
+    let gameList = [];
+    await axios
+      .get("http://localhost:9200/schedule")
+      .then((res) => {
+        gameList = Array.from(res.data);
+      })
+      .catch((err) => console.log(err));
+
+    const filterGames = gameList.filter(
+      (game) =>
+        (game.homeID === homeTeam.teamID || game.awayID === homeTeam.teamID) &&
+        (game.homeID === awayTeam.teamID || game.awayID === awayTeam.teamID)
+    );
+    setGames(filterGames);
+  };
+
+  console.log(games)
+
   // console.log(teams);
 
   const formatGameDate = (date) => {
@@ -303,6 +341,19 @@ function GameSummary({
     setDateTitle(title);
   };
 
+  const getCurrentGame = async(currentGameID) => {
+    let gameList = [];
+    await axios
+    .get("http://localhost:9200/schedule")
+    .then((res) => {
+      gameList = Array.from(res.data);
+    })
+    .catch((err) => console.log(err));
+
+    const game = gameList.filter((game) => game.gameID === currentGameID)
+    setGame(...game)  
+  }
+
   // console.log(gameScore)
   // console.log(lineScore)
   // console.log(teamData)
@@ -311,6 +362,7 @@ function GameSummary({
   // console.log(game)
   // console.log(homeTeam)
   // console.log(awayTeam)
+
 
   return (
     <>
@@ -343,7 +395,7 @@ function GameSummary({
           <div className="gameSummary_app_container">
             <h2>{dateTitle}</h2>
             <GameHeader
-            currentGame={currentGame}
+              currentGame={currentGame}
               homeTeam={homeTeam}
               awayTeam={awayTeam}
               gameScore={gameScore}
@@ -378,14 +430,16 @@ function GameSummary({
                   lineScore={lineScore}
                 />
                 <GameStats
-                  currentGame={currentGame}
+                  currentGame={game}
                   homeTeam={homeTeam}
                   awayTeam={awayTeam}
                 />
                 <SeasonSeries
-                  currentGame={currentGame}
+                  games={games}
+                  currentGame={game}
                   homeTeam={homeTeam}
                   awayTeam={awayTeam}
+                  teamData={teamData}
                 />
               </section>
             </div>
