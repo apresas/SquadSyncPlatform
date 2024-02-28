@@ -78,15 +78,15 @@ app.get('/schedule/:gameID', (req, res) => {
 })
 
 
-// app.get('/schedule/:teamID/:teamID', (req, res) => {
-//     const homeID = req.params.teamID
-//     const awayID = req.params.teamID
-//     const q = "SELECT * FROM schedule WHERE (homeID = ? || awayID = ?) AND (homeID = ? || awayID = ?)"
-//     db.query(q, [homeID, awayID], (err, data) => {
-//         if (err) return res.json(err)
-//         return res.json(data)
-//     })
-// })
+app.get('/schedule/:teamID/:teamID', (req, res) => {
+    const homeID = req.params.teamID
+    const awayID = req.params.teamID
+    const q = "SELECT * FROM schedule WHERE (homeID = ? || awayID = ?) AND (homeID = ? || awayID = ?)"
+    db.query(q, [homeID, awayID], (err, data) => {
+        if (err) return res.json(err)
+        return res.json(data)
+    })
+})
 
 
 app.post('/schedule', (req, res) => {
