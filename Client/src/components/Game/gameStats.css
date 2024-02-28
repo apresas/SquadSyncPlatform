@@ -1,0 +1,51 @@
+.gameStats_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem 0;
+}
+
+.gameStats_header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.gameStats_header img {
+  width: 3rem;
+  aspect-ratio: 1/1;
+}
+
+.gameStats_content {
+  width: 100%;
+}
+
+.gameStats_controls {
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 1rem 0;
+}
+
+.gameStats_controls button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: inherit;
+  color: var(--color-bg);
+  border: 1px solid lightgray;
+  font-size: 1.25rem;
+  padding: 0.75rem;
+  aspect-ratio: 1/1;
+  transition: var(--transition-fast);
+}
+
+.gameStats_controls button:hover {
+  /* color: var(--color-ohio-red); */
+  border: 1px solid lightgray;
+  background-color: var(--color-dark-white);
+  transition: var(--transition-fast);
+}
+

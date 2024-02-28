@@ -1,9 +1,12 @@
 .filter_controls_container {
   display: flex;
   align-items: center;
+  justify-content: center;
   margin: 2rem 0 1rem;
   gap: 1rem;
   user-select: none;
+  width: 85%;
+  position: relative;
 }
 
 .date_range_selector, .team_selector {
@@ -61,10 +64,40 @@
 }
 .popup_container {
     position: absolute;
+    z-index: 1;
     background-color: white;
     border: 1px solid rgba(119, 136, 153, 0.5);
     border-radius: 7px;
     right: -1.25rem;
     top: 3.5rem;
+}
+
+.schedule_admin_btn {
+    /* display: flex;
+    align-items: center;
+    justify-content: center; */
+    position: absolute;
+    right: 0;
+    width: 3rem;
+    aspect-ratio: 1/1;
+    padding: 0.5rem;
+    font-size: 1rem;
+    background-color: white;
+    border: 1px solid rgba(119, 136, 153, 0.5);
+    color: gray;
+    transition: var(--transition-fast);
+    line-height: 0.6;
+}
+
+.schedule_admin_btn:nth-of-type(1):hover {
+    color: mediumspringgreen;
+    border: 1px solid mediumspringgreen;
+    transition: var(--transition-fast);
+}
+
+.schedule_admin_btn:nth-of-type(2):hover {
+    color: dodgerblue;
+    border: 1px solid dodgerblue;
+    transition: var(--transition-fast);
 }
 

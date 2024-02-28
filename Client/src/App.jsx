@@ -13,7 +13,7 @@ import AllstarGame from "./pages/AllstarGame";
 import History from "./pages/LeagueHistory";
 import Archieve from "./pages/Archieve";
 import Links from "./pages/Links";
-import About from "./pages/About";
+import Game from "./pages/Game";
 import { useSite } from "./context/SiteContext";
 
 function App() {
@@ -45,7 +45,22 @@ function App() {
     filteredPlayers,
     getFilteredPlayer,
     currentFilterPlayer,
-    schedule
+    schedule,
+    gameSubmit,
+    setGameSubmit,
+    currentGame,
+    setCurrentGame,
+    eventSubmit, 
+    setEventSubmit,
+    gameScore, 
+    setGameScore,
+    filterTeam, 
+    getCurrentTeam,
+    getFilterGame,
+    filterGame,
+    teamLoading,
+    getRecord,
+    record
   } = useSite();
   return (
     <>
@@ -67,6 +82,7 @@ function App() {
           element={
             <TeamPage
               currentTeam={currentTeam}
+              setCurrentTeam={setCurrentTeam}
               rosterTeam={rosterTeam}
               setCurrentPlayer={setCurrentPlayer}
               currentPlayer={currentPlayer}
@@ -75,6 +91,9 @@ function App() {
               filteredPlayers={filteredPlayers}
               getFilteredPlayer={getFilteredPlayer}
               currentFilterPlayer={currentFilterPlayer}
+              filterTeam={filterTeam}
+              getCurrentTeam={getCurrentTeam}
+              teamLoading={teamLoading}
             />
           }
         />
@@ -97,6 +116,10 @@ function App() {
               defaultTeam={defaultTeam}
               setDefaultTeam={setDefaultTeam}
               schedule={schedule}
+              teamData={teamData}
+              gameSubmit={gameSubmit}
+              setGameSubmit={setGameSubmit}
+              setCurrentGame={setCurrentGame}
             />
           }
         />
@@ -106,9 +129,45 @@ function App() {
         <Route path="/awards" element={<PlayerAwards />} />
         <Route path="/allstar" element={<AllstarGame />} />
         <Route path="/history" element={<History />} />
-        <Route path="/archive" element={<Archieve teamData={teamData} testPlayers={testPlayers} getTestPlayers={getTestPlayers} getFilterTeam={getFilterTeam} filteredPlayers={filteredPlayers} setCurrentPlayer={setCurrentPlayer} currentPlayer={currentPlayer}/>} />
+        <Route
+          path="/archive"
+          element={
+            <Archieve
+              teamData={teamData}
+              testPlayers={testPlayers}
+              getTestPlayers={getTestPlayers}
+              getFilterTeam={getFilterTeam}
+              filteredPlayers={filteredPlayers}
+              setCurrentPlayer={setCurrentPlayer}
+              currentPlayer={currentPlayer}
+            />
+          }
+        />
         <Route path="/links" element={<Links />} />
         <Route path="/info" element={<LeagueInfo />} />
+        <Route
+          path="/game/:id"
+          element={
+            <Game
+              currentGame={currentGame}
+              teamData={teamData}
+              getTeamData={getTeamData}
+              getFilterTeam={getFilterTeam}
+              filteredPlayers={filteredPlayers}
+              eventSubmit={eventSubmit}
+              setEventSubmit={setEventSubmit}
+              gameScore={gameScore}
+              setGameScore={setGameScore}
+              getFilterGame={getFilterGame}
+              getCurrentTeam={getCurrentTeam}
+              filterTeam={filterTeam}
+              filterGame={filterGame}
+              getRecord={getRecord}
+              record={record}
+              schedule={schedule}
+            />
+          }
+        />
       </Routes>
     </>
   );

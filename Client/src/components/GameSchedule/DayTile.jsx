@@ -3,8 +3,9 @@ import { useEffect, useState} from "react";
 import { FaRegCalendar } from "react-icons/fa";
 import "./dayTile.css";
 import { DateTime } from "luxon";
+import axios from "axios";
 
-function DayTile({ href, date, scheduleData }) {
+function DayTile({ href, date, selectedTeam }) {
   const month = DateTime.fromISO(date).toFormat("M");
   const day = DateTime.fromISO(date).toFormat("d");
   const dayOfWeek = DateTime.fromISO(date).toFormat("EEE");
@@ -12,15 +13,36 @@ function DayTile({ href, date, scheduleData }) {
 
   const [gameCount, setGameCount] = useState(0);
 
+  const [filterSchedule, setFilterSchedule] = useState([]);
+  const getFilterDate = async (date) => {
+    const res = await axios.get("http://localhost:9200/schedule/" + date);
+    setFilterSchedule(res.data);
+  };
+
+  const getFilterSchedule = async (date, teamID) => {
+    const res = await axios.get(
+      "http://localhost:9200/schedule/" + date + "/" + teamID
+    );
+    setFilterSchedule(res.data);
+  };
+
   useEffect(() => {
-    scheduleData.filter((sdate) => sdate.date === date).map((sdate) => {
-      // console.log(sdate)
-      setGameCount(sdate.games.length)
-      if (sdate === undefined) {
-        setGameCount(0)
-      }
-    })
-  })
+    getFilterSchedule(date);
+  }, [date]);
+
+  useEffect(() => {
+    if (selectedTeam === undefined) {
+      getFilterDate(date);
+    } else {
+      getFilterSchedule(date, selectedTeam);
+    }
+  }, [date, selectedTeam]);
+
+
+  useEffect(() => {
+    setGameCount(filterSchedule.length)
+  }, [filterSchedule.length])
+
 
   return (
     <a className="day_container" href={href}>

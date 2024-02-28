@@ -1,5 +1,4 @@
 /* eslint-disable react/prop-types */
-import React, { useState } from "react";
 import { DateTime } from "luxon";
 import TableItem from "./TableItem";
 import TableHeader from "./TableHeader";
@@ -10,10 +9,7 @@ function ScheduleTable({
   gameData,
   date,
   filterTeam,
-  filteredItem,
   setFilteredItem,
-  defaultTeam,
-  setDefaultTeam,
 }) {
   const newDate = DateTime.fromISO(date).toFormat("DD");
   const week = DateTime.fromISO(date).toFormat("EEE");

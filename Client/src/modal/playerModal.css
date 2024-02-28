@@ -10,6 +10,7 @@
   }
 
   .modal_container {
+    position: relative;
     width: 60rem;
     height: 40rem;
     background: white;
@@ -17,6 +18,18 @@
     border-radius: 15px;
     overflow: hidden;
     /* padding: 2rem; */
+  }
+
+  .modal_texture {
+    position: absolute;
+    top: 30%;
+    right: 0;
+    left: 0;
+    height: 100%;
+    opacity: 0.10;
+    mix-blend-mode: overlay;
+    z-index: 0;
+    /* transform: rotate(180deg); */
   }
 
   .modal_content {
@@ -39,8 +52,8 @@
     position: absolute;
     height:25rem;
     width: 25rem;
-    opacity: 0.30;
-    z-index: 0;
+    opacity: 0.45;
+    z-index: 1;
   }
 
   .modal_left {

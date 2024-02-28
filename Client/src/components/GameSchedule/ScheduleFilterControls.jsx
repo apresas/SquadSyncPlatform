@@ -1,14 +1,25 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { DateTime } from "luxon";
 import "./scheduleFilterControls.css";
 import { FiChevronRight, FiChevronLeft } from "react-icons/fi";
 import Dropdown from "../Dropdown/Dropdown";
 import { format } from "date-fns";
-
+import { GrTableAdd } from "react-icons/gr";
 import { DayPicker } from "react-day-picker";
 import "react-day-picker/dist/style.css";
 
-function ScheduleFilterControls({ currentTeamTitle, setCurrentTeamTitle, getDates, selected, setSelected, prevClick, nextClick }) {
+function ScheduleFilterControls({
+  currentTeamTitle,
+  setCurrentTeamTitle,
+  getDates,
+  selected,
+  setSelected,
+  prevClick,
+  nextClick,
+  setSelectedTeam,
+  teamData,
+  handleModalOpen,
+}) {
   const [open, setOpen] = useState(false);
 
   const handleDayClick = (day) => {
@@ -24,7 +35,6 @@ function ScheduleFilterControls({ currentTeamTitle, setCurrentTeamTitle, getDate
 
   const handleOpen = () => {
     setOpen(!open);
-    console.log("clicked");
   };
 
   let header = "";
@@ -35,8 +45,10 @@ function ScheduleFilterControls({ currentTeamTitle, setCurrentTeamTitle, getDate
     header = format(selected, "PP") + " - " + format(endDate, "PP");
   }
 
+
   return (
     <div className="filter_controls_container">
+      {/* <button className="schedule_admin_btn" onClick={() => console.log("clicked")} ><MdOutlineEditCalendar /></button> */}
       <div className="date_picker_container">
         <div className="date_range_selector">
           <button className="prev_btn" onClick={prevClick}>
@@ -58,7 +70,10 @@ function ScheduleFilterControls({ currentTeamTitle, setCurrentTeamTitle, getDate
       <Dropdown
         currentTeamTitle={currentTeamTitle}
         setCurrentTeamTitle={setCurrentTeamTitle}
+        setSelectedTeam={setSelectedTeam}
+        teamData={teamData}
       />
+      <button className="schedule_admin_btn" onClick={handleModalOpen}><GrTableAdd /></button>
     </div>
   );
 }

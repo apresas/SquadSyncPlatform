@@ -2,12 +2,12 @@ import NavBar from "../components/NavBar";
 import GameSchedule from "../components/GameSchedule/GameSchedule";
 import SponcerBar from "../components/Sponcer/SponcerBar";
 import Footer from "../components/Footer";
-import { useEffect } from "react";
 
 function Schdule({
   setCurrentTeamTitle,
   currentTeamTitle,
   dateList,
+  setDateList,
   getDates,
   selected,
   setSelected,
@@ -17,7 +17,11 @@ function Schdule({
   filteredItem,
   defaultTeam,
   setDefaultTeam,
-  schedule
+  schedule,
+  teamData,
+  gameSubmit,
+  setGameSubmit,
+  setCurrentGame
 }) {
   return (
     <>
@@ -27,6 +31,7 @@ function Schdule({
         setCurrentTeamTitle={setCurrentTeamTitle}
         currentTeamTitle={currentTeamTitle}
         dateList={dateList}
+        setDateList={setDateList}
         getDates={getDates}
         selected={selected}
         setSelected={setSelected}
@@ -37,6 +42,10 @@ function Schdule({
         setDefaultTeam={setDefaultTeam}
         defaultTeam={defaultTeam}
         schedule={schedule}
+        teamData={teamData}
+        gameSubmit={gameSubmit}
+        setGameSubmit={setGameSubmit}
+        setCurrentGame={setCurrentGame}
       />
       <Footer />
     </>

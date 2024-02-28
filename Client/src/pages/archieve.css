@@ -44,11 +44,11 @@
 
 }
 
-.test_player_container:hover {
-    /* transform: scale(1.04); */
+/* .test_player_container:hover {
+    transform: scale(1.04);
     border: 2px solid var(--color-ohio-blue);
     transition: var(--transition-fast);
-}
+} */
 
 .test_update_btn, .test_delete_btn {
     position: absolute;

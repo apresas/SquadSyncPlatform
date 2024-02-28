@@ -1,0 +1,49 @@
+.games_overlay {
+    background-color: rgba(2, 14, 29, 0.85);
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
+
+.date_time_field {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+}
+
+.venue_time_field {
+    display: grid;
+    height: 95%;
+    align-items: flex-start;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    padding-top: 1rem;
+}
+
+.date_picker_field {
+    align-items: start;
+    justify-items: center;
+}
+
+.date_picker_field .rdp-months {
+    border: 1px solid lightgrey;
+    width: fit-content;
+    padding: 1rem;
+}
+
+.rdp-caption_label {
+    font-family: var(--font-header);
+}
+
+.field h3 {
+    align-self: flex-start;
+    font-size: 1rem;
+    font-family: var(--font-sub-header);
+    font-weight: 400;
+    margin-bottom: 0.25rem;
+}
+

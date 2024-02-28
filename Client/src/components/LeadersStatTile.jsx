@@ -141,7 +141,7 @@ function LeadersStatTile({ stats, type, division }) {
     <div className="points_column">
       <div className="points_header">
         <img className="stats_logo" src={currentStats.logo} alt="team logo" />
-        <div className="stats_player_info">
+        <div className="leader_player_info">
           <h4 className="stats_points_title">{typeTitle}</h4>
           <div className="stats_name_title">
             {currentStats.firstName}

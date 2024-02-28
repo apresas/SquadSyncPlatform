@@ -1,0 +1,38 @@
+.gameSummary_header {
+    display: flex;
+    /* width: 85%; */
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    border: 1px solid lightgrey;
+}
+
+.gameSummary_header h1{
+    margin: 0;
+    font-size: 4.5rem;
+}
+
+.header_result {
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+}
+
+.homeTeam, .awayTeam {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.homeTeam img, .awayTeam img {
+    width: 5rem;
+    aspect-ratio: 1/1;
+}
+
+.gameSummary_header_home_info {
+    text-align: left;
+}
+
+.gameSummary_header_away_info {
+    text-align: right;
+}

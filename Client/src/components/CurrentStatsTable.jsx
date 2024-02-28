@@ -1,12 +1,11 @@
-import React from 'react'
 import "./currentStatsTable.css";
 
-function currentStatsTable({currentPlayer}) {
+function currentStatsTable({currentPlayer, playerStats}) {
   let columnHead1 = "G";
   let columnHead2 = "A";
   let columnHead3 = "P";
 
-  if(currentPlayer.position === "G") {
+  if(currentPlayer.position === "Goalie") {
     columnHead1 = "W"
     columnHead2 = "GAA"
     columnHead3 = "SV%"
@@ -31,10 +30,10 @@ function currentStatsTable({currentPlayer}) {
         <td className="current_year_title">
           2023-24
         </td>
-        {/* <td>{currentPlayer.stats.currentSeason.gamesPlayed}</td>
-        <td>{currentPlayer.stats.currentSeason.goals}</td>
-        <td>{currentPlayer.stats.currentSeason.assists}</td>
-        <td>{currentPlayer.stats.currentSeason.points}</td> */}
+        <td>{playerStats.games}</td>
+        <td>{playerStats.goals}</td>
+        <td>{playerStats.assists}</td>
+        <td>{playerStats.points}</td>
       </tr>
     </tbody>
   </table>

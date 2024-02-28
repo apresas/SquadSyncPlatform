@@ -114,12 +114,10 @@ function Archieve({
           </div>
           <div className="test_player_grid">
             {filteredPlayers
-              // .filter((player) => player.teamID === 7)
               .map((player) => (
                 <div
                   className="test_player_container"
                   key={player.playerID}
-                  onClick={(e) => handleStatsOpen(e, player)}
                 >
                   <button
                     className="test_delete_btn"
@@ -163,7 +161,6 @@ function Archieve({
                     <span />
                     <small>{player.class}</small>
                   </div>
-                  {/* {player} */}
                 </div>
               ))}
           </div>

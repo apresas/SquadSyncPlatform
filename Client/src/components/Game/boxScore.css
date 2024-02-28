@@ -1,0 +1,77 @@
+.boxScore_container {
+    /* padding: 1rem; */
+    width: 100%;
+    font-family: var(--font-main);
+}
+
+.boxScore_header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 0;
+}
+
+.boxScore_controls {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    border: 1px solid lightgray;
+    width: 25rem;
+    border-radius: 7px;
+    overflow: hidden;
+}
+
+.home_btn, .away_btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: inherit;
+    padding: 1rem;
+    color: var(--color-bg);
+    height: 1.75rem;
+    border-radius: 0;
+    transition: var(--transition-fast);
+    border: none;
+}
+
+.boxScore_tables_container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.boxScore_tables_container table {
+    width: 100%;
+    border-top: 1px solid lightgrey;
+    border-bottom: 1px solid lightgrey;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+.player_row td, .player_row th{
+    padding: 1rem 0;
+    border-bottom: 1px solid lightgrey;
+}
+
+.player_row td:first-of-type, .player_row th:first-of-type{
+    border-right: 1px solid lightgrey;
+}
+
+
+/* .gameSheet_table_forwards tbody tr td{
+    text-align: center;
+} */
+
+
+
+.home_btn {
+    border-right: 1px solid lightgrey;
+}
+
+.selected {
+    background-color: var(--color-bg);
+    color: white;
+}
+
+.home_btn:hover, .away_btn:hover {
+    border: none;
+}
