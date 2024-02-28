@@ -53,10 +53,21 @@ export const SiteProvider = ({ children }) => {
     const res = await axios.get("http://localhost:9200/teams");
     setTeamData(res.data);
   };
-
+  
+  const [teamLoading, setTeamLoading] = useState(false);
   const getCurrentTeam = async (teamID) => {
-    const res = await axios.get("http://localhost:9200/teams/" + teamID);
-    setFilterTeam(...res.data);
+    setTeamLoading(true)
+    await axios.get("http://localhost:9200/teams/" + teamID)
+    .then((res) => {
+      setFilterTeam(...res.data)
+    })
+    .catch((err) => console.log(err))
+    .finally(() => {
+      setTimeout(() => {
+        setTeamLoading(false)
+      }, 550)
+    })
+    // setFilterTeam(...res.data);
   }
 
   const [testPlayers, setTestPlayers] = useState([]);
@@ -91,6 +102,67 @@ export const SiteProvider = ({ children }) => {
   const getSchedule = async () => {
     const res = await axios.get("http://localhost:9200/schedule")
     setSchedule(res.data);
+  }
+
+  const [record, setRecord] = useState({
+    home: "0-0-0",
+    away: "0-0-0"
+  })
+  const getRecord = (homeID, awayID) => {
+    let homeWins = 0
+    let homeLoses = 0
+    let homeTies = 0
+    let awayWins = 0
+    let awayLoses = 0
+    let awayTies = 0
+    schedule.filter((schedule) => schedule.homeID === homeID || schedule.awayID === homeID).map((schedule) => {
+      if (schedule.homeID === homeID) {
+        if(schedule.homeScore > schedule.awayScore) {
+          homeWins += 1
+        } else if(schedule.homeScore === schedule.awayScore && schedule.homeScore !== null && schedule.awayScore !== null) {
+          homeTies += 1
+        } else if (schedule.homeScore < schedule.awayScore) {
+          homeLoses += 1
+        }
+      }
+      if (schedule.awayID === homeID) {
+        if(schedule.awayScore > schedule.homeScore) {
+          homeWins += 1
+        } else if (schedule.awayScore === schedule.homeScore && schedule.homeScore !== null && schedule.awayScore !== null) {
+          homeTies += 1
+        } else if (schedule.awayScore < schedule.homeScore) {
+          homeLoses +=1
+        }
+      }
+    })
+
+    schedule.filter((schedule) => schedule.homeID === awayID || schedule.awayID === awayID).map((schedule) => {
+      if (schedule.homeID === awayID) {
+        if(schedule.homeScore > schedule.awayScore) {
+          awayWins += 1
+        } else if(schedule.homeScore === schedule.awayScore && schedule.homeScore !== null && schedule.awayScore !== null) {
+          awayTies += 1
+        } else if (schedule.homeScore < schedule.awayScore) {
+          awayLoses += 1
+        }
+      }
+      if (schedule.awayID === awayID) {
+        if(schedule.awayScore > schedule.homeScore) {
+          awayWins += 1
+        } else if (schedule.awayScore === schedule.homeScore && schedule.homeScore !== null && schedule.awayScore !== null) {
+          awayTies += 1
+        } else if (schedule.awayScore < schedule.homeScore) {
+          awayLoses +=1
+        }
+      }
+    })
+
+    const homeRecord = homeWins + "-" + homeLoses + "-" + homeTies
+    const awayRecord = awayWins + "-" + awayLoses + "-" + awayTies
+    setRecord({
+      home: homeRecord,
+      away: awayRecord
+    })
   }
   
   const [filterGame, setFilterGame] = useState({})
@@ -164,7 +236,10 @@ export const SiteProvider = ({ children }) => {
         getCurrentTeam,
         filterTeam,
         getFilterGame,
-        filterGame
+        filterGame,
+        teamLoading,
+        getRecord,
+        record
       }}
     >
       {children}

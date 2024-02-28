@@ -3,7 +3,7 @@ import "./gameStats.css";
 import GameStatRow from './GameStatRow'
 import { MdPostAdd } from "react-icons/md";
 import axios from "axios";
-function GameStats({currentGame, homeTeam, awayTeam}) {
+function GameStats({currentGame, homeTeam, awayTeam, gameScore}) {
 
   const [gameStats, setGameStats] = useState({
     gameStatID: 0,
@@ -50,7 +50,8 @@ function GameStats({currentGame, homeTeam, awayTeam}) {
     formatPIM(gameStats.homeMinors, gameStats.awayMinors)
     formatPP(gameStats.homeMinors, gameStats.awayMinors, gameStats.homePPG, gameStats.awayPPG)
     formatFO(gameStats.homeFaceoff, gameStats.awayFaceoff)
-  }, [gameStats])
+    formatSV( gameScore.homeScore, gameScore.awayScore, gameStats.homeShots, gameStats.awayShots)
+  }, [gameStats, gameScore])
 
   useEffect(() => {
     formatPK(homePP, awayPP)
@@ -122,6 +123,15 @@ function GameStats({currentGame, homeTeam, awayTeam}) {
     // console.log(awayRounded)
   }
 
+  const formatSV = (homeScore, awayScore, homeShots, awayShots) => {
+    const awaySaves = (homeShots - homeScore)
+    const awaySVPct = parseFloat(((awaySaves / homeShots)).toFixed(3))
+    console.log(`Away Saves: ${awaySaves}, Away Save%: ${awaySVPct}`)
+    const homeSaves = (awayShots - awayScore)
+    const homeSVPct = parseFloat(((homeSaves / awayShots)).toFixed(3))
+    console.log(`Home Saves: ${homeSaves}, Home Save%: ${homeSVPct}`)
+  }
+
   return (
     <div className="gameStats_container">
       <div className="gameStats_header">
@@ -130,16 +140,16 @@ function GameStats({currentGame, homeTeam, awayTeam}) {
         <img src={awayTeam.logo} alt="Home Logo" />
       </div>
       <div className="gameStats_content">
-      <GameStatRow title="Shots on Goal" homeValue={gameStats.homeShots} awayValue={gameStats.awayShots} homeColor={homeTeam.primaryColor} awayColor={awayTeam.primaryColor}/>
-      <GameStatRow title="Faceoff %" homeValue={homeFO} awayValue={awayFO} homeColor={homeTeam.primaryColor} awayColor={awayTeam.primaryColor}/>
-      <GameStatRow title="Powerplays" homeValue={gameStats.homePP} awayValue={gameStats.awayPP} homeColor={homeTeam.primaryColor} awayColor={awayTeam.primaryColor}/>
-      <GameStatRow title="Powerplay %" homeValue={homePP} awayValue={awayPP} homeColor={homeTeam.primaryColor} awayColor={awayTeam.primaryColor}/>
-      <GameStatRow title="Penalty Minutes" homeValue={homePIMs} awayValue={awayPIMs} homeColor={homeTeam.primaryColor} awayColor={awayTeam.primaryColor}/>
-      <GameStatRow title="Penalty Kill %" homeValue={homePK} awayValue={awayPK} homeColor={homeTeam.primaryColor} awayColor={awayTeam.primaryColor}/>
-      <GameStatRow title="Hits" homeValue={gameStats.homeHits} awayValue={gameStats.awayHits} homeColor={homeTeam.primaryColor} awayColor={awayTeam.primaryColor}/>
-      <GameStatRow title="Blocked Shots" homeValue={gameStats.homeBlocks} awayValue={gameStats.awayBlocks} homeColor={homeTeam.primaryColor} awayColor={awayTeam.primaryColor}/>
-      <GameStatRow title="Giveaways" homeValue={gameStats.homeGiveaways} awayValue={gameStats.awayGiveaway} homeColor={homeTeam.primaryColor} awayColor={awayTeam.primaryColor}/>
-      <GameStatRow title="Takeaways" homeValue={gameStats.homeTakeaway} awayValue={gameStats.awayTakeaway} homeColor={homeTeam.primaryColor} awayColor={awayTeam.primaryColor}/>
+      <GameStatRow title="Shots on Goal" homeValue={gameStats.homeShots} awayValue={gameStats.awayShots} homeColor={homeTeam.primaryColor} awayColor={awayTeam.primaryColor} percentage={false}/>
+      <GameStatRow title="Faceoff %" homeValue={homeFO} awayValue={awayFO} homeColor={homeTeam.primaryColor} awayColor={awayTeam.primaryColor} percentage={true}/>
+      <GameStatRow title="Powerplays" homeValue={gameStats.homePP} awayValue={gameStats.awayPP} homeColor={homeTeam.primaryColor} awayColor={awayTeam.primaryColor} percentage={false}/>
+      <GameStatRow title="Powerplay %" homeValue={homePP} awayValue={awayPP} homeColor={homeTeam.primaryColor} awayColor={awayTeam.primaryColor} percentage={true}/>
+      <GameStatRow title="Penalty Minutes" homeValue={homePIMs} awayValue={awayPIMs} homeColor={homeTeam.primaryColor} awayColor={awayTeam.primaryColor} percentage={false}/>
+      <GameStatRow title="Penalty Kill %" homeValue={homePK} awayValue={awayPK} homeColor={homeTeam.primaryColor} awayColor={awayTeam.primaryColor} percentage={true}/>
+      <GameStatRow title="Hits" homeValue={gameStats.homeHits} awayValue={gameStats.awayHits} homeColor={homeTeam.primaryColor} awayColor={awayTeam.primaryColor} percentage={false}/>
+      <GameStatRow title="Blocked Shots" homeValue={gameStats.homeBlocks} awayValue={gameStats.awayBlocks} homeColor={homeTeam.primaryColor} awayColor={awayTeam.primaryColor} percentage={false}/>
+      <GameStatRow title="Giveaways" homeValue={gameStats.homeGiveaways} awayValue={gameStats.awayGiveaway} homeColor={homeTeam.primaryColor} awayColor={awayTeam.primaryColor} percentage={false}/>
+      <GameStatRow title="Takeaways" homeValue={gameStats.homeTakeaway} awayValue={gameStats.awayTakeaway} homeColor={homeTeam.primaryColor} awayColor={awayTeam.primaryColor} percentage={false}/>
       </div>
       <div className="gameStats_controls">
       <button><MdPostAdd /></button>

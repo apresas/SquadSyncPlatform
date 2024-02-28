@@ -18,7 +18,7 @@ function ScheduleFilterControls({
   nextClick,
   setSelectedTeam,
   teamData,
-  handleModalOpen
+  handleModalOpen,
 }) {
   const [open, setOpen] = useState(false);
 

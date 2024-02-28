@@ -11,6 +11,7 @@ import "./gameSummary.css";
 import AddGameEventModal from "../../modal/AddGameEventModal";
 import { DateTime } from "luxon";
 import { useLocation } from "react-router-dom";
+import LoadingOverlay from "../Loading/LoadingOverlay";
 
 function GameSummary({
   currentGame,
@@ -26,6 +27,9 @@ function GameSummary({
   getCurrentTeam,
   filterTeam,
   filterGame,
+  getRecord,
+  record,
+  schedule
 }) {
   const [homeTeam, setHomeTeam] = useState({});
   const [awayTeam, setAwayTeam] = useState({});
@@ -53,6 +57,7 @@ function GameSummary({
   const location = useLocation();
   const currentGameID = parseInt(location.pathname.split("/")[2]);
 
+  const [isLoading, setIsLoading] = useState(false);
 
   // const [homeResult, setHomeResult] = useState();
   // const [awayResult, setAwayResult] = useState();
@@ -141,14 +146,13 @@ function GameSummary({
 
   useEffect(() => {
     getCurrentGame(currentGameID);
-    console.log(currentGameID)
-  }, [currentGameID])
+  }, [currentGameID]);
 
   useEffect(() => {
     getHomeTeam(game.homeID);
     getAwayTeam(game.awayID);
-    formatGameDate(game.date)
-  }, [game])
+    formatGameDate(game.date);
+  }, [game]);
 
   const getHomeTeam = async (teamID) => {
     const res = await axios.get("http://localhost:9200/teams/" + teamID);
@@ -201,6 +205,7 @@ function GameSummary({
     teamList.push(awayTeam);
     setTeams(teamList);
     getSeasonSeries();
+    getRecord(homeTeam.teamID, awayTeam.teamID)
   }, [homeTeam, awayTeam]);
 
   const [lineScore, setLineScore] = useState({
@@ -330,10 +335,6 @@ function GameSummary({
     setGames(filterGames);
   };
 
-  console.log(games)
-
-  // console.log(teams);
-
   const formatGameDate = (date) => {
     const newDate = DateTime.fromISO(date).toFormat("DD");
     const week = DateTime.fromISO(date).toFormat("EEE");
@@ -341,18 +342,24 @@ function GameSummary({
     setDateTitle(title);
   };
 
-  const getCurrentGame = async(currentGameID) => {
+  const getCurrentGame = async (currentGameID) => {
+    setIsLoading(true);
     let gameList = [];
     await axios
-    .get("http://localhost:9200/schedule")
-    .then((res) => {
-      gameList = Array.from(res.data);
-    })
-    .catch((err) => console.log(err));
+      .get("http://localhost:9200/schedule")
+      .then((res) => {
+        gameList = Array.from(res.data);
+      })
+      .catch((err) => console.log(err))
+      .finally(() => {
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 550);
+      });
 
-    const game = gameList.filter((game) => game.gameID === currentGameID)
-    setGame(...game)  
-  }
+    const game = gameList.filter((game) => game.gameID === currentGameID);
+    setGame(...game);
+  };
 
   // console.log(gameScore)
   // console.log(lineScore)
@@ -362,7 +369,6 @@ function GameSummary({
   // console.log(game)
   // console.log(homeTeam)
   // console.log(awayTeam)
-
 
   return (
     <>
@@ -389,63 +395,70 @@ function GameSummary({
         eventSubmit={eventSubmit}
         teams={teams}
       />
-      <div className="gameSummary_container">
-        <div className="gameSummary_content_container">
-          <TitleBar title="Game Summary" subtitle="2023-2024" />
-          <div className="gameSummary_app_container">
-            <h2>{dateTitle}</h2>
-            <GameHeader
-              currentGame={currentGame}
-              homeTeam={homeTeam}
-              awayTeam={awayTeam}
-              gameScore={gameScore}
-            />
-            <div className="gameSummary_grid">
-              <section className="gameSummary_main_content">
-                {/* <BoxScore currentGame={currentGame} homeTeam={homeTeam} awayTeam={awayTeam}/> */}
-                <GameEvent
-                  homeTeam={homeTeam}
-                  awayTeam={awayTeam}
-                  homeRoster={homeRoster}
-                  awayRoster={awayRoster}
-                  handleModalOpen={handleModalOpen}
-                  currentGame={currentGame}
-                  filteredPlayers={filteredPlayers}
-                  homeLoading={homeLoading}
-                  awayLoading={awayLoading}
-                  // currentEvents={currentEvents}
-                  // setCurrentEvents={setCurrentEvents}
-                  gameScore={gameScore}
-                  eventSubmit={eventSubmit}
-                  gameEvents={gameEvents}
-                  setGameEvents={setGameEvents}
-                  currentGameID={currentGameID}
-                />
-              </section>
-              <section className="gameSummary_side_content">
-                <LineScore
-                  homeTeam={homeTeam}
-                  awayTeam={awayTeam}
-                  gameScore={gameScore}
-                  lineScore={lineScore}
-                />
-                <GameStats
-                  currentGame={game}
-                  homeTeam={homeTeam}
-                  awayTeam={awayTeam}
-                />
-                <SeasonSeries
-                  games={games}
-                  currentGame={game}
-                  homeTeam={homeTeam}
-                  awayTeam={awayTeam}
-                  teamData={teamData}
-                />
-              </section>
+      {isLoading ? (
+        <LoadingOverlay />
+      ) : (
+        <div className="gameSummary_container">
+          <div className="gameSummary_content_container">
+            <TitleBar title="Game Summary" subtitle="2023-2024" />
+            <div className="gameSummary_app_container">
+              <h2>{dateTitle}</h2>
+              <GameHeader
+                currentGame={currentGame}
+                homeTeam={homeTeam}
+                awayTeam={awayTeam}
+                gameScore={gameScore}
+                record={record}
+              />
+              <div className="gameSummary_grid">
+                <section className="gameSummary_main_content">
+                  {/* <BoxScore currentGame={currentGame} homeTeam={homeTeam} awayTeam={awayTeam}/> */}
+                  <GameEvent
+                    homeTeam={homeTeam}
+                    awayTeam={awayTeam}
+                    homeRoster={homeRoster}
+                    awayRoster={awayRoster}
+                    handleModalOpen={handleModalOpen}
+                    currentGame={currentGame}
+                    filteredPlayers={filteredPlayers}
+                    homeLoading={homeLoading}
+                    awayLoading={awayLoading}
+                    // currentEvents={currentEvents}
+                    // setCurrentEvents={setCurrentEvents}
+                    gameScore={gameScore}
+                    eventSubmit={eventSubmit}
+                    gameEvents={gameEvents}
+                    setGameEvents={setGameEvents}
+                    currentGameID={currentGameID}
+                  />
+                </section>
+                <section className="gameSummary_side_content">
+                  <LineScore
+                    homeTeam={homeTeam}
+                    awayTeam={awayTeam}
+                    gameScore={gameScore}
+                    lineScore={lineScore}
+                  />
+                  <GameStats
+                    currentGame={game}
+                    homeTeam={homeTeam}
+                    awayTeam={awayTeam}
+                    gameScore={gameScore}
+                  />
+                  <SeasonSeries
+                    games={games}
+                    currentGame={game}
+                    homeTeam={homeTeam}
+                    awayTeam={awayTeam}
+                    teamData={teamData}
+                    gameScore={gameScore}
+                  />
+                </section>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      )}
     </>
   );
 }

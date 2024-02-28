@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import DayTile from "./DayTile";
 import ScheduleFilterControls from "./ScheduleFilterControls";
 import TitleBar from "../TitleBar";
@@ -8,6 +8,7 @@ import "./gameSchedule.css";
 import { FiChevronRight, FiChevronLeft } from "react-icons/fi";
 import TestSchduleTable from "./TestSchduleTable";
 import AddScheduleModal from "../../modal/AddScheduleModal";
+import LoadingOverlay from "../Loading/LoadingOverlay";
 function GameSchedule({
   currentTeamTitle,
   setCurrentTeamTitle,
@@ -25,6 +26,10 @@ function GameSchedule({
 }) {
   const [selectedTeam, setSelectedTeam] = useState();
   const [openModal, setOpenModal] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  // let isLoading = false;
+
+  // const isLoading = useRef(false);
 
   const handleModalOpen = async (e) => {
     e.preventDefault();
@@ -37,6 +42,8 @@ function GameSchedule({
     // setGameSubmit(false)
     getDates(new Date())
   }, [])
+
+  console.log(isLoading)
 
   return (
     <>
@@ -62,6 +69,7 @@ function GameSchedule({
             setSelectedTeam={setSelectedTeam}
             teamData={teamData}
             handleModalOpen={handleModalOpen}
+            isLoading={isLoading}
           />
           <div className="day_tile_container">
             <DayTile
@@ -114,6 +122,7 @@ function GameSchedule({
               selectedTeam={selectedTeam}
             />
           </div>
+          {isLoading ? <LoadingOverlay /> :
           <div className="schedule_table">
             {dateList.map((dateData, i) => {
               return (
@@ -125,6 +134,8 @@ function GameSchedule({
                   selectedTeam={selectedTeam}
                   gameSubmit={gameSubmit}
                   setCurrentGame={setCurrentGame}
+                  isLoading={isLoading}
+                  setIsLoading={setIsLoading}
                 />
               );
             })}
@@ -241,6 +252,7 @@ function GameSchedule({
                 ))}
             </section> */}
           </div>
+          }
           <div className="schedule_controller">
             <button className="schedule_btn" onClick={prevClick}>
               <FiChevronLeft /> Previous

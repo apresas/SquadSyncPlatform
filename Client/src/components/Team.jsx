@@ -8,6 +8,7 @@ import PlayerModal from "../modal/PlayerModal";
 import PlayerTile from "./PlayerTile/PlayerTile";
 import TeamHeader from "../components/Team/TeamHeader";
 import { useLocation } from "react-router-dom";
+import LoadingOverlay from "./Loading/LoadingOverlay";
 
 function Team({
   setCurrentPlayer,
@@ -17,7 +18,8 @@ function Team({
   filteredPlayers,
   getFilteredPlayer,
   getCurrentTeam,
-  filterTeam
+  filterTeam,
+  teamLoading
 }) {
 
   const [openModal, setOpenModal] = useState(false);
@@ -51,11 +53,13 @@ function Team({
       />
       <SponcerBar />
       <NavBar />
+      {teamLoading ? <LoadingOverlay /> : 
       <div className="team_container">
         <div className="team_content_container">
           <TeamHeader
             filterTeam={filterTeam}
           />
+          <div className="header_bar" style={{backgroundColor: `${filterTeam.secondaryColor}`}}/>
           <div className="players_grid">
             <h2 className="grid_title">Forwards</h2>
             <div className="forwards_grid">
@@ -105,6 +109,7 @@ function Team({
           </div>
         </div>
       </div>
+      }
       <Footer />
     </>
   );

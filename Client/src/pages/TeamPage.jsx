@@ -14,7 +14,8 @@ function TeamPage({
   getFilteredPlayer,
   currentFilterPlayer,
   getCurrentTeam,
-  filterTeam
+  filterTeam,
+  teamLoading
 }) {
   const { id } = useParams(currentTeam.id);
   return (
@@ -33,6 +34,7 @@ function TeamPage({
       currentFilterPlayer={currentFilterPlayer}
       getCurrentTeam={getCurrentTeam}
       filterTeam={filterTeam}
+      teamLoading={teamLoading}
     />
   );
 }

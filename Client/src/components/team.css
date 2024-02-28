@@ -20,16 +20,25 @@
 }
 
 .team_title_container {
+    position: relative;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     align-items: center;
     padding: 2rem 0;
+    overflow: hidden;
     /* background-color: white; */
 }
 
+.header_bar {
+    height: 7px;
+    width: 100%;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.20);
+}
+
 .school_title {
+    z-index: 1;
     font-family: var(--font-header);
     /* margin-bottom: 0; */
     margin: 0;
@@ -39,6 +48,7 @@
 }
 
 .team_title {
+    z-index: 1;
     font-family: var(--font-sub-header);
     margin: 0;
     font-weight: 300;
@@ -48,7 +58,18 @@
     font-size: 1.5rem;
 }
 
+.header_texture {
+    z-index: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0.15;
+    mix-blend-mode: overlay;
+}
+
 .team_logo {
+    z-index: 1;
     margin-bottom: 1rem;
     /* height: 7rem; */
     width: 8rem;

@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./seasonSeries.css";
 import SeasonSeriesTiles from "./SeasonSeriesTile";
-import axios from "axios";
 
-function seasonSeries({ currentGame, games, teamData }) {
-  console.log(games)
+function seasonSeries({ currentGame, games, teamData, gameScore}) {
   return (
     <div className="seasonSeries_container">
       <section className="seasonSeries_header">
@@ -22,6 +20,7 @@ function seasonSeries({ currentGame, games, teamData }) {
               game={game}
               teamData={teamData}
               currentGame={currentGame}
+              gameScore={gameScore}
             />
           );
         })}

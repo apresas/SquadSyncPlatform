@@ -17,7 +17,10 @@ function Game({
   getTeamData,
   getCurrentTeam,
   filterTeam, 
-  filterGame
+  filterGame,
+  getRecord,
+  record,
+  schedule
 }) {
   return (
     <>
@@ -37,6 +40,9 @@ function Game({
         getCurrentTeam={getCurrentTeam}
         filterTeam={filterTeam}
         filterGame={filterGame}
+        getRecord={getRecord}
+        record={record}
+        schedule={schedule}
       />
       <Footer />
     </>

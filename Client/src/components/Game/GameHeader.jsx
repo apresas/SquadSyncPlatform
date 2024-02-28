@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from "react";
 import "./gameHeader.css";
 
-function GameHeader({currentGame, homeTeam, awayTeam, gameScore}) {
-  // console.log(currentGame);
+function GameHeader({ homeTeam, awayTeam, gameScore, record }) {
   return (
     <section className="gameSummary_header">
       <div className="homeTeam">
@@ -10,7 +8,7 @@ function GameHeader({currentGame, homeTeam, awayTeam, gameScore}) {
         <div className="gameSummary_header_home_info">
           <small>{homeTeam.mascotName}</small>
           <h3>{homeTeam.schoolName}</h3>
-          <small>12-4-1</small>
+          <small>{record.home}</small>
         </div>
       </div>
       <div className="header_result">
@@ -22,7 +20,7 @@ function GameHeader({currentGame, homeTeam, awayTeam, gameScore}) {
         <div className="gameSummary_header_away_info">
           <small>{awayTeam.mascotName}</small>
           <h3>{awayTeam.schoolName}</h3>
-          <small>10-5-2</small>
+          <small>{record.away}</small>
         </div>
         <img src={awayTeam.logo} alt="Away Logo" />
       </div>

@@ -17,6 +17,7 @@
     margin: 1rem 0 1.5rem;
     letter-spacing: 0.02rem;
     position: relative;
+    text-align: center;
 }
 
 .leagueLeaders_division_title::after, .leagueLeaders_division_title::before {

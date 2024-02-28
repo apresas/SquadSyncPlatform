@@ -5,12 +5,7 @@ import { IoClose } from "react-icons/io5";
 import CurrentStatsTable from "../components/currentStatsTable";
 import CareerStatsTable from "../components/CareerStatsTable";
 import axios from "axios";
-function playerModal({
-  open,
-  onClose,
-  currentPlayer,
-  filterTeam
-}) {
+function playerModal({ open, onClose, currentPlayer, filterTeam }) {
   const [convertedHeight, setConvertedHeight] = useState();
 
   const [playerStats, setPlayerStats] = useState({
@@ -80,7 +75,6 @@ function playerModal({
     convertHeight(currentPlayer.height);
   }, [currentPlayer]);
 
-
   if (!open) {
     return null;
   }
@@ -134,6 +128,7 @@ function playerModal({
               }}
             >
               <img src={filterTeam.logo} alt="" className="team_logo_bg" />
+              <img className="modal_texture" src="../../src/assets/modal_texture.png" alt="" />
               <div className="modal_controls">
                 <div className="close_btn_container">
                   <IoClose onClick={onClose} style={{ fontSize: "2.25rem" }} />

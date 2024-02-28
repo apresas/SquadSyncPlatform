@@ -57,7 +57,10 @@ function App() {
     filterTeam, 
     getCurrentTeam,
     getFilterGame,
-    filterGame
+    filterGame,
+    teamLoading,
+    getRecord,
+    record
   } = useSite();
   return (
     <>
@@ -90,6 +93,7 @@ function App() {
               currentFilterPlayer={currentFilterPlayer}
               filterTeam={filterTeam}
               getCurrentTeam={getCurrentTeam}
+              teamLoading={teamLoading}
             />
           }
         />
@@ -158,6 +162,9 @@ function App() {
               getCurrentTeam={getCurrentTeam}
               filterTeam={filterTeam}
               filterGame={filterGame}
+              getRecord={getRecord}
+              record={record}
+              schedule={schedule}
             />
           }
         />
