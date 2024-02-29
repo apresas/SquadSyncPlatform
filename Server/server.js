@@ -1,25 +1,24 @@
 import express from 'express';
+import dotenv from 'dotenv';
 import mysql from 'mysql2';
 import cors from 'cors';
-import dotenv from 'dotenv';
+
+import scheduleRoutes from './routes/schedule.js'
 
 dotenv.config()
 
-const port = 9200;
+const port = process.env.PORT;
 const app = express();
 // app.use(cors())
 app.use(express.json(), cors())
 const db = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'Tyler0710!',
-    database: "squadsynctest"
-    // host: process.env.HOST,
-    // user: process.env.USER,
-    // password: process.env.PASSWORD,
-    // database: process.env.DATABASE,
-    // port: process.env.DB_PORT
+    host: process.env.HOST,
+    user: process.env.USER,
+    password: process.env.PASSWORD,
+    database: process.env.DATABASE
 })
+
+app.use("/test", scheduleRoutes)
 
 app.get('/teams', (req, res) => {
     const q = "SELECT * FROM teams"
@@ -78,15 +77,15 @@ app.get('/schedule/:gameID', (req, res) => {
 })
 
 
-app.get('/schedule/:teamID/:teamID', (req, res) => {
-    const homeID = req.params.teamID
-    const awayID = req.params.teamID
-    const q = "SELECT * FROM schedule WHERE (homeID = ? || awayID = ?) AND (homeID = ? || awayID = ?)"
-    db.query(q, [homeID, awayID], (err, data) => {
-        if (err) return res.json(err)
-        return res.json(data)
-    })
-})
+// app.get('/schedule/:teamID/:teamID', (req, res) => {
+//     const homeID = req.params.teamID
+//     const awayID = req.params.teamID
+//     const q = "SELECT * FROM schedule WHERE (homeID = ? || awayID = ?) AND (homeID = ? || awayID = ?)"
+//     db.query(q, [homeID, awayID], (err, data) => {
+//         if (err) return res.json(err)
+//         return res.json(data)
+//     })
+// })
 
 
 app.post('/schedule', (req, res) => {
