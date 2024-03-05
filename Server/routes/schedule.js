@@ -1,8 +1,16 @@
-import express from 'express';
-import scheduleControllers from '../controllers/schedule.controller.js'
+const express = require('express');
+const scheduleControllers = require('../controllers/schedule.controller.js')
 
 const router = express.Router();
 
-router.get("/", scheduleControllers.index);
+router.post("/", scheduleControllers.save);
 
-export default router;
+router.get("/:id", scheduleControllers.show);
+
+router.get('/', scheduleControllers.index);
+
+router.patch('/:id', scheduleControllers.update);
+
+router.delete('/:id', scheduleControllers.destroy);
+
+module.exports = router;              

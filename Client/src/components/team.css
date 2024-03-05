@@ -45,6 +45,7 @@
     font-size: 3rem;
     font-weight: 700;
     line-height: 1;
+    letter-spacing: var(--header-spacing);
 }
 
 .team_title {

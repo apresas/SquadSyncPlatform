@@ -36,53 +36,50 @@ function TestSchduleTable({ date, teamData, index, selectedTeam, gameSubmit, set
     setFilterSchedule(res.data);
   };
 
-  const getSchedule = async () => {
-    await axios.get("http://localhost:9200/schedule")
-    .then((res) => {
-      setSchedule(res.data)
-    })
-    .catch((err) => console.log(err));
-  }
+  // const getSchedule = async () => {
+  //   await axios.get("http://localhost:9200/schedule")
+  //   .then((res) => {
+  //     setSchedule(res.data)
+  //   })
+  //   .catch((err) => console.log(err));
+  // }
 
-  useEffect(() => {
-    getSchedule()
-  }, [])
+  // useEffect(() => {
+  //   getSchedule()
+  // }, [])
 
-  useEffect(() => {
-    getRecord(9)
-  }, [schedule])
+  // useEffect(() => {
+  //   getRecord(9)
+  // }, [schedule])
 
-  const getRecord = (teamID) => {
-    let wins = 0
-    let loses = 0
-    let ties = 0
-    schedule.filter((schedule) => schedule.homeID === teamID || schedule.awayID === teamID).map((schedule) => {
-      if (schedule.homeID === teamID) {
-        if(schedule.homeScore > schedule.awayScore) {
-          wins += 1
-        } else if(schedule.homeScore === schedule.awayScore && schedule.homeScore !== null && schedule.awayScore !== null) {
-          ties += 1
-        } else if (schedule.homeScore < schedule.awayScore) {
-          loses += 1
-        }
-      }
-      if (schedule.awayID === teamID) {
-        if(schedule.awayScore > schedule.homeScore) {
-          wins += 1
-        } else if (schedule.awayScore === schedule.homeScore && schedule.homeScore !== null && schedule.awayScore !== null) {
-          ties += 1
-        } else if (schedule.awayScore < schedule.homeScore) {
-          loses +=1
-        }
-      }
-    })
+  // const getRecord = (teamID) => {
+  //   let wins = 0
+  //   let loses = 0
+  //   let ties = 0
+  //   schedule.filter((schedule) => schedule.homeID === teamID || schedule.awayID === teamID).map((schedule) => {
+  //     if (schedule.homeID === teamID) {
+  //       if(schedule.homeScore > schedule.awayScore) {
+  //         wins += 1
+  //       } else if(schedule.homeScore === schedule.awayScore && schedule.homeScore !== null && schedule.awayScore !== null) {
+  //         ties += 1
+  //       } else if (schedule.homeScore < schedule.awayScore) {
+  //         loses += 1
+  //       }
+  //     }
+  //     if (schedule.awayID === teamID) {
+  //       if(schedule.awayScore > schedule.homeScore) {
+  //         wins += 1
+  //       } else if (schedule.awayScore === schedule.homeScore && schedule.homeScore !== null && schedule.awayScore !== null) {
+  //         ties += 1
+  //       } else if (schedule.awayScore < schedule.homeScore) {
+  //         loses +=1
+  //       }
+  //     }
+  //   })
 
-    const record = wins + "-" + loses + "-" + ties
-    console.log(record)
-    // console.log(`wins: ${wins}`)
-    // console.log(`loses: ${loses}`)
-    // console.log(`ties: ${ties}`)
-  }
+  //   const record = wins + "-" + loses + "-" + ties
+  //   console.log(record)
+  // }
 
   useEffect(() => {
     if (selectedTeam === undefined) {

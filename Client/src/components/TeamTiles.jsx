@@ -132,8 +132,9 @@ function TeamTiles({ setCurrentTeam, setRosterTeam, getTeamData, teamData }) {
       </div> */}
       <section className="divisions">
         <h2 className="divisions_title">Red Division</h2>
-        <div className="star">
-          <GrStar style={{ fontSize: "2rem" }} />
+        <div className="div_icon">
+          <img src="../../src/assets/DivisionIcons/red_div_icon_v3.svg" alt="" />
+          {/* <GrStar style={{ fontSize: "2rem" }} /> */}
         </div>
         <div className="team_tiles red">
           {teamData.map((team) => {
@@ -224,8 +225,8 @@ function TeamTiles({ setCurrentTeam, setRosterTeam, getTeamData, teamData }) {
       </section>
       <section className="divisions">
         <h2 className="divisions_title">White Division</h2>
-        <div className="star">
-          <GrStar style={{ fontSize: "2rem" }} />
+        <div className="div_icon">
+        <img src="../../src/assets/DivisionIcons/white_div_icon_v3.svg" alt="" />
         </div>
         <div className="team_tiles white">
           {teamData.map((team) => {
@@ -318,8 +319,8 @@ function TeamTiles({ setCurrentTeam, setRosterTeam, getTeamData, teamData }) {
       </section>
       <section className="divisions">
         <h2 className="divisions_title">Blue Division</h2>
-        <div className="star">
-          <GrStar style={{ fontSize: "2rem" }} />
+        <div className="div_icon">
+        <img src="../../src/assets/DivisionIcons/blue_div_icon_v3.svg" alt="" />
         </div>
         <div className="team_tiles blue">
           {teamData.map((team) => {

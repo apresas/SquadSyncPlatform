@@ -33,12 +33,14 @@ function SeasonSeriesTile({
     formatGameDate(date);
     setCurrent(currentGame.date, game.date);
     setGameLink(game);
+
   }, [game]);
 
   const formatGameDate = (date) => {
     const newDate = DateTime.fromISO(date).toFormat("DD");
     setTileDate(newDate);
   };
+
 
   const setTeams = (teams) => {
     {

@@ -2,7 +2,7 @@
   "development": {
     "username": "root",
     "password": "Tyler0710!",
-    "database": "squadsynctest",
+    "database": "squadsync",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },

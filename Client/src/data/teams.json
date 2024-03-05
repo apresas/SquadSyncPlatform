@@ -62,7 +62,7 @@
         "schoolName": "Olentangy",
         "city": "Lewis Center",
         "division": "White",
-        "logo": "../../src/assets/Logos/Olentangy_logo.svg"
+        "logo": "../../src/assets/Logos/Olentangy_logo_v3.svg"
     },
     {
         "id": 8,
@@ -86,7 +86,7 @@
         "schoolName": "Olentangy Orange",
         "city": "Lewis Center",
         "division": "White",
-        "logo": "../../src/assets/Logos/Orange_logo.svg"
+        "logo": "../../src/assets/Logos/Orange_logo_v2.svg"
     },
     {
         "id": 11,

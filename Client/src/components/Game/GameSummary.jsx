@@ -307,6 +307,10 @@ function GameSummary({
   //   setCurrentEvents(eventList);
   // }, [gameEvents]);
 
+  useEffect(() => {
+    // setNewGameScore(currentGameID, gameScore)
+  }, [gameScore])
+
   const getGameEvents = async (gameID) => {
     await axios
       .get("http://localhost:9200/events/" + gameID)
@@ -361,12 +365,21 @@ function GameSummary({
     setGame(...game);
   };
 
+  const setNewGameScore = async(currentGameID, gameScore) => {
+    try {
+      await axios 
+      .put("http://localhost:9200/schedule/" + currentGameID, gameScore)
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   // console.log(gameScore)
   // console.log(lineScore)
   // console.log(teamData)
 
   // console.log(filterTeam)
-  // console.log(game)
+  console.log(games)
   // console.log(homeTeam)
   // console.log(awayTeam)
 
@@ -387,6 +400,7 @@ function GameSummary({
         primaryID={primaryID}
         secondaryID={secondaryID}
         // currentEvents={currentEvents}
+        currentGameID={currentGameID}
         currentGame={currentGame}
         homeRoster={homeRoster}
         awayRoster={awayRoster}

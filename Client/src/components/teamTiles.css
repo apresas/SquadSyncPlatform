@@ -27,6 +27,12 @@
   font-family: var(--font-header);
   margin-top: 0;
   letter-spacing: 0.02rem;
+  /* letter-spacing: var(--header-spacing); */
+}
+
+.divisions_title {
+  margin-bottom: 1.75rem;
+
 }
 
 /* .divisions:nth-child(even) {
@@ -45,12 +51,17 @@
     text-decoration: underline;
 } */
 
-.star {
+.div_icon {
   position: absolute;
-  top: 3rem;
+  top: 3.25rem;
   background-color: white;
   /* color: var(--color-nav); */
   color: lightslategray;
+}
+
+.div_icon img {
+  height: 3rem;
+  padding: 0 0.5rem;
 }
 
 .divisions .red {
@@ -125,7 +136,7 @@
 
 .tiles {
   display: grid;
-  grid-template-rows: 5fr 1fr 1fr 1fr;
+  grid-template-rows: 6fr 1fr 1fr 2fr;
   align-items: center;
   justify-items: center;
   background-color: white;
@@ -146,17 +157,19 @@
   font-size: 0.9rem;
   font-style: bold;
   margin: 0;
+  line-height: 0.8;
 }
 
 .team_name_title {
   font-size: 0.75rem;
   font-weight: 500;
+  /* line-height: 0.8; */
 }
 
 .team_image {
   height: 4rem;
   width: 4.25rem;
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.5rem;
 }
 .city_title {
   font-size: 0.65rem;

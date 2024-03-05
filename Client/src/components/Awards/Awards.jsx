@@ -11,8 +11,10 @@ function Awards() {
     <div className="awards_container">
       <div className="awards_content_container">
         <TitleBar title="All League Awards" subtitle="2023-2024" />
+        <div className="all_league_section">
         <div className="section_container">
-          <h2 className="section_title">First Team</h2>
+          <h2 className="section_title" id="title">First Team</h2>
+          <h3 className="section_sub_title">All CHC</h3>
           <div className="first_team_container">
             {playerAwards
               .filter((data) => data.category === "firstTeam")
@@ -22,7 +24,8 @@ function Awards() {
           </div>
         </div>
         <div className="section_container">
-          <h2 className="section_title">Second Team</h2>
+          <h2 className="section_title" id="title">Second Team</h2>
+          <h3 className="section_sub_title">All CHC</h3>
           <div className="second_team_container">
             {playerAwards
               .filter((data) => data.category === "secondTeam")
@@ -31,7 +34,8 @@ function Awards() {
               ))}
           </div>
         </div>
-        <div className="section_container">
+        </div>
+        <div className="section_container" id="all_league_section">
           <h2 className="section_title">All Division Team</h2>
           <div className="all_league_container">
             <div className="all_division_container">
@@ -95,7 +99,7 @@ function Awards() {
             </div>
           </div>
         </div>
-        <div className="section_container">
+        <div className="section_container" id="honorable_section">
         <h2 className="section_title">Honorable Mentions</h2>
         {/* <div className="honorable_mention_container"> */}
           <HonorableMention />

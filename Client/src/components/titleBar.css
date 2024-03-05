@@ -13,6 +13,7 @@
 .title_bar_container h1 {
     font-family: var(--font-header);
     margin: 0;
+    letter-spacing: var(--header-spacing);
 }
 
 .title_bar_container h3 {

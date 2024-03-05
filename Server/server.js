@@ -1,15 +1,26 @@
-import express from 'express';
-import dotenv from 'dotenv';
-import mysql from 'mysql2';
-import cors from 'cors';
+// import express from 'express';
+// import dotenv from 'dotenv';
+// import mysql from 'mysql2';
+// import cors from 'cors';
+// import bodyParser from 'body-parser';
 
-import scheduleRoutes from './routes/schedule.js'
+// import scheduleRoutes from './routes/schedule.js'
+
+const express = require('express')
+const dotenv = require('dotenv')
+const mysql = require('mysql2')
+const cors = require('cors')
+const bodyParser = require('body-parser')
+
+const scheduleRoutes = require('./routes/schedule.js')
+const testUsersRoutes = require('./routes/testUsers.js')
 
 dotenv.config()
 
+
+
 const port = process.env.PORT;
 const app = express();
-// app.use(cors())
 app.use(express.json(), cors())
 const db = mysql.createConnection({
     host: process.env.HOST,
@@ -18,7 +29,10 @@ const db = mysql.createConnection({
     database: process.env.DATABASE
 })
 
+app.use(bodyParser.json())
+
 app.use("/test", scheduleRoutes)
+app.use("/testUsers", testUsersRoutes)
 
 app.get('/teams', (req, res) => {
     const q = "SELECT * FROM teams"
@@ -112,8 +126,8 @@ app.put('/schedule/:gameID', (req, res) => {
     const gameID = req.params.gameID;
     const q = "UPDATE schedule SET `homeScore` = ?, `awayScore` = ? WHERE gameID = ?"
     const values = [
-        req.body.home,
-        req.body.away
+        req.body.homeScore,
+        req.body.awayScore
     ]
 
     db.query(q, [...values, gameID], (err, data) => {
@@ -287,5 +301,8 @@ app.put("/players/:playerID", (req, res) => {
         return res.json("Player has been updated successfully")
     })
 })
+
+
+
 
 app.listen({port}, () => console.log(`listening on port ${port}`))

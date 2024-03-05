@@ -25,23 +25,33 @@ function AwardItem({
     getLogo(player)
   }, [player])
 
+  
+
   return (
-    <div className="award_item_container">
-      <div className="position_box">
-      <div className="star_container">
+    <div className="award_item_container" style={{backgroundColor: `${color}`, borderColor: `${color}`}}>
+      {/* <div className="position_box"> */}
+      {/* <div className="star_container">
         <GrStar />
         <GrStar />
         <GrStar />
-        </div>
-        <h3>{player.position}</h3>
-      </div>
-      <div className="award_logo_container" style={{backgroundColor: `${color}`}}>
+        </div> */}
+        {/* <h3>{player.position}</h3> */}
+      {/* </div> */}
+      <div className="award_logo_container">
         <img src={`${logo}`} alt="logo" />
       </div>
       <div className="award_item_info">
         <h2>{player.firstName} {player.lastName}</h2>
         <h3>{player.teamName}</h3>
         <h4>{player.class}</h4>
+      </div>
+      <div className="award_position_container" style={{color: `${color}`}}>
+        <h3>{player.position}</h3>
+              <div className="star_container">
+        <GrStar />
+        <GrStar />
+        <GrStar />
+        </div>
       </div>
     </div>
   );

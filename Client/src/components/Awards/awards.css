@@ -10,12 +10,21 @@
     font-family: var(--font-header);
 }
 
+.all_league_section {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: 81%;
+    gap: 1rem;
+}
+
 .section_container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     margin-top: 2rem;
+    background-color: white;
+    border: 1px solid lightgrey;
 }
 
 .awards_content_container {
@@ -28,12 +37,18 @@
     color: var(--color-bg);
     margin-top: 2rem;
     font-family: var(--font-main);
+    padding-bottom: 4rem;
 }
 
 .first_team_container, .second_team_container {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 0.5rem;
+    width: 85%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    /* grid-template-columns: repeat(6, 1fr); */
+    /* gap: 0.5rem; */
 }
 
 .all_league_container, .honorable_mention_container {
@@ -46,6 +61,12 @@
     font-size: 2.25rem;
 }
 
+.section_sub_title {
+    font-size: 1.5rem;
+}
+ #title {
+    margin-bottom: 0;
+ }
 .awards_title {
     display: flex;
     flex-direction: column;
@@ -61,3 +82,10 @@
     margin: 0;
 }
 
+#all_league_section {
+    padding: 0 2rem 2rem;
+}
+
+#honorable_section {
+    padding: 0 2rem 2rem;
+}

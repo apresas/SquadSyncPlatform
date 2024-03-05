@@ -22,6 +22,9 @@
   --font-sub-header: "Teko";
   --font-main: 'Rajdhani';
 
+  --header-spacing: 0.05rem;
+  /* --font-header: "Kdam Thmor Pro"; */
+
   --color-bg: #031327;
   --color-nav: #002654;
   --color-white: rgb(245, 245, 252);

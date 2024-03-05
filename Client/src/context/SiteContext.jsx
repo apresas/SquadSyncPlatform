@@ -174,6 +174,18 @@ export const SiteProvider = ({ children }) => {
   const [gameSubmit, setGameSubmit] = useState(false);
   const [eventSubmit, setEventSubmit] = useState(false);
 
+  const setTest = async() => {
+    const test = {
+      title: 'test'
+    }
+    try {
+      await axios.post("http://localhost:9200/test", test);
+      console.log("Event Added");
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
 
   useEffect(() => {
     // axios({
@@ -183,6 +195,7 @@ export const SiteProvider = ({ children }) => {
     //   // console.log(res.data);
     //   setTeamData(res.data)
     // });
+    // setTest();
     getTeamData();
     getTestPlayers();
     getSchedule()
