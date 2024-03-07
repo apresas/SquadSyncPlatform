@@ -50,16 +50,16 @@ export const SiteProvider = ({ children }) => {
   const [teamData, setTeamData] = useState([]);
 
   const getTeamData = async () => {
-    const res = await axios.get("http://localhost:9200/teams");
+    const res = await axios.get("http://localhost:9200/team");
     setTeamData(res.data);
   };
   
   const [teamLoading, setTeamLoading] = useState(false);
   const getCurrentTeam = async (teamID) => {
     setTeamLoading(true)
-    await axios.get("http://localhost:9200/teams/" + teamID)
+    await axios.get("http://localhost:9200/team/" + teamID)
     .then((res) => {
-      setFilterTeam(...res.data)
+      setFilterTeam(res.data)
     })
     .catch((err) => console.log(err))
     .finally(() => {

@@ -48,12 +48,12 @@ function SeasonSeriesTile({
         if (team.teamID === game.homeID) {
           setHome({
             logo: team.logo,
-            abbrev: team.abbrev,
+            abbrev: team.abbreviation,
           });
         } else if (team.teamID === game.awayID) {
           setAway({
             logo: team.logo,
-            abbrev: team.abbrev,
+            abbrev: team.abbreviation,
           });
         }
       });

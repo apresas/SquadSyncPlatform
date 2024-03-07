@@ -12,6 +12,12 @@ module.exports = {
       title: {
         type: Sequelize.STRING
       },
+      userID: {
+        type: Sequelize.INTEGER
+      },
+      category: {
+        type: Sequelize.INTEGER
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

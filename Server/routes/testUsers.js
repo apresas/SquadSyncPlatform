@@ -1,11 +1,11 @@
 const express = require('express');
-const scheduleControllers = require('../controllers/schedule.controller.js')
+const testControllers = require('../controllers/test.controller.js')
 
 const router = express.Router();
 
-router.get('/', scheduleControllers.index)
+router.get('/', testControllers.index)
 
-router.get('/:userID', scheduleControllers.showByUser);
+router.get('/:userID', testControllers.showByUser);
 
 module.exports = router; 
 

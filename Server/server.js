@@ -1,24 +1,11 @@
-// import express from 'express';
-// import dotenv from 'dotenv';
-// import mysql from 'mysql2';
-// import cors from 'cors';
-// import bodyParser from 'body-parser';
-
-// import scheduleRoutes from './routes/schedule.js'
-
 const express = require('express')
 const dotenv = require('dotenv')
 const mysql = require('mysql2')
 const cors = require('cors')
 const bodyParser = require('body-parser')
 
-const scheduleRoutes = require('./routes/schedule.js')
-const testUsersRoutes = require('./routes/testUsers.js')
-
+// Config DB Connection
 dotenv.config()
-
-
-
 const port = process.env.PORT;
 const app = express();
 app.use(express.json(), cors())
@@ -28,11 +15,49 @@ const db = mysql.createConnection({
     password: process.env.PASSWORD,
     database: process.env.DATABASE
 })
-
 app.use(bodyParser.json())
 
-app.use("/test", scheduleRoutes)
+// Routes Imports
+const testRoutes = require('./routes/test.js')
+const testUsersRoutes = require('./routes/testUsers.js')
+
+const gameRoutes = require('./routes/game.js')
+const gamesByDateRoutes = require('./routes/gamesByDate.js')
+const gamesByTeamRoutes = require('./routes/gamesByTeam.js')
+
+const teamRoutes = require('./routes/team.js')
+
+const eventRoutes = require('./routes/event.js')
+const eventByGameRoutes = require('./routes/eventByGame.js')
+const eventByGoalRoutes = require('./routes/eventByGoal.js')
+
+const playerRoutes = require('./routes/player.js')
+const playerByTeamRoutes = require('./routes/playerByTeam.js')
+
+const gameStatRoutes = require('./routes/gameStat.js')
+const gameStatByGameRoutes = require('./routes/gameStatByGame.js')
+
+// Routes
+app.use("/test", testRoutes)
 app.use("/testUsers", testUsersRoutes)
+
+app.use("/game", gameRoutes)
+app.use("/gamesByDate", gamesByDateRoutes)
+app.use("/gamesByTeam", gamesByTeamRoutes)
+
+app.use("/team", teamRoutes)
+
+app.use("/event", eventRoutes)
+app.use("/eventByGame", eventByGameRoutes)
+app.use("/eventByGoal", eventByGoalRoutes)
+
+app.use("/player", playerRoutes)
+app.use("/playerByTeam", playerByTeamRoutes)
+
+app.use("/gameStat", gameStatRoutes)
+app.use("/gameStatByGame", gameStatByGameRoutes)
+
+
 
 app.get('/teams', (req, res) => {
     const q = "SELECT * FROM teams"
