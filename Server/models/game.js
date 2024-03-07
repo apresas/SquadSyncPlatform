@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         primaryKey: true,
     },
-    date: DataTypes.INTEGER,
+    date: DataTypes.STRING,
     homeID: DataTypes.INTEGER,
     awayID: DataTypes.INTEGER,
     homeScore: DataTypes.INTEGER,

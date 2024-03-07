@@ -1,16 +1,14 @@
 import { useState, useMemo, useEffect, useRef } from "react";
-import axios from "axios";
 import "./teamTiles.css";
 import Teams from "../data/teams.json";
 import standings from "../data/standing.json";
 import TitleBar from "./TitleBar";
 import { FiChevronsDown } from "react-icons/fi";
-import { GrStar } from "react-icons/gr";
 import { useTable, useSortBy } from "react-table";
 import { Link, useParams } from "react-router-dom";
 import rosterData from "../data/rosterData.json";
 
-function TeamTiles({ setCurrentTeam, setRosterTeam, getTeamData, teamData }) {
+function TeamTiles({ setCurrentTeam, setRosterTeam, getTeamData, teamData, getDates }) {
   const openRed = useRef(false)
   const openWhite = useRef(false)
   const openBlue = useRef(false)
@@ -78,6 +76,10 @@ function TeamTiles({ setCurrentTeam, setRosterTeam, getTeamData, teamData }) {
     ],
     []
   );
+
+  useEffect(() => {
+    getDates(new Date())
+  }, [])
 
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
     useTable({ columns, data }, useSortBy);

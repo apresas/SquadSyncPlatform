@@ -2,7 +2,7 @@ const models = require("../models");
 const { Op } = require("sequelize");
 
 function index(req, res) {
-  models.Game.findAll()
+  models.Game.findAll({order:[['time', 'ASC']]})
     .then((result) => {
       res.status(200).json(result);
     })
@@ -57,7 +57,7 @@ function show(req, res) {
 function showByDate(req, res) {
   const date = req.params.date;
 
-  models.Game.findAll({ where: { date: date } })
+  models.Game.findAll({ where: { date: date }, order:[['time', 'ASC']] })
     .then((result) => {
       res.status(200).json(result);
     })
@@ -78,6 +78,7 @@ function showDateTeam(req, res) {
         { [Op.or]: [{ homeID: teamID }, { awayID: teamID }] },
       ],
     },
+    order:[['time', 'ASC']]
   })
     .then((result) => {
       res.status(200).json(result);
@@ -97,7 +98,7 @@ function showByTeamID(req, res) {
       {homeID: teamID},
       {awayID: teamID}
     ]
-   } })
+   }, order:[['date', 'ASC'],['time', 'ASC']]  })
     .then((result) => {
       res.status(200).json(result);
     })

@@ -15,13 +15,17 @@ function DayTile({ href, date, selectedTeam }) {
 
   const [filterSchedule, setFilterSchedule] = useState([]);
   const getFilterDate = async (date) => {
-    const res = await axios.get("http://localhost:9200/schedule/" + date);
+    // const res = await axios.get("http://localhost:9200/schedule/" + date);
+    const res = await axios.get("http://localhost:9200/gamesByDate/" + date);
     setFilterSchedule(res.data);
   };
 
   const getFilterSchedule = async (date, teamID) => {
+    // const res = await axios.get(
+    //   "http://localhost:9200/schedule/" + date + "/" + teamID
+    // );
     const res = await axios.get(
-      "http://localhost:9200/schedule/" + date + "/" + teamID
+      "http://localhost:9200/gamesByDate/" + date + "/" + teamID
     );
     setFilterSchedule(res.data);
   };

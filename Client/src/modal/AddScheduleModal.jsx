@@ -26,6 +26,7 @@ function AddScheduleModal({
   // const [gameSubmit, setGameSubmit] = useState(false);
 
   const [newGame, setNewGame] = useState({
+    gameID: 0,
     date: "",
     arena: "",
     time: "",
@@ -66,7 +67,8 @@ function AddScheduleModal({
   const submitGame = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:9200/schedule", newGame);
+      // await axios.post("http://localhost:9200/schedule", newGame);
+      await axios.post("http://localhost:9200/game", newGame);
       console.log("Game Added");
     } catch (err) {
       console.log(err);

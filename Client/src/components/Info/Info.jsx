@@ -1,8 +1,11 @@
-import React from "react";
+import {useEffect} from "react";
 import TitleBar from "../TitleBar";
 import "./info.css";
 
-function Info() {
+function Info({getDates}) {
+  useEffect(() => {
+    getDates(new Date())
+  }, [])
   return (
     <div className="info_container">
       <div className="info_content_container">

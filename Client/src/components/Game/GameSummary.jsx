@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import TitleBar from "../TitleBar";
 import GameHeader from "./GameHeader";
@@ -24,12 +24,9 @@ function GameSummary({
   setGameScore,
   getFilterGame,
   getTeamData,
-  getCurrentTeam,
-  filterTeam,
-  filterGame,
   getRecord,
   record,
-  schedule
+  getDates
 }) {
   const [homeTeam, setHomeTeam] = useState({});
   const [awayTeam, setAwayTeam] = useState({});
@@ -42,8 +39,8 @@ function GameSummary({
   const [awayRoster, setAwayRoster] = useState([]);
   const [teams, setTeams] = useState([]);
 
-  const home = useRef();
-  const away = useRef();
+  // const home = useRef();
+  // const away = useRef();
 
   const [dateTitle, setDateTitle] = useState();
 
@@ -138,6 +135,7 @@ function GameSummary({
     getFilterGame(currentGameID);
     getTeamData();
     getCurrentGame(currentGameID);
+    getDates(new Date())
     // getHomeTeam(currentGame.homeID);
     // getAwayTeam(currentGame.awayID);
     // setTestID(parseInt(location.pathname.split("/")[2]))
@@ -155,13 +153,15 @@ function GameSummary({
   }, [game]);
 
   const getHomeTeam = async (teamID) => {
-    const res = await axios.get("http://localhost:9200/teams/" + teamID);
-    setHomeTeam(...res.data);
+    const res = await axios.get("http://localhost:9200/team/" + teamID);
+    setHomeTeam(res.data);
+    // setHomeTeam(...res.data);
   };
 
   const getAwayTeam = async (teamID) => {
-    const res = await axios.get("http://localhost:9200/teams/" + teamID);
-    setAwayTeam(...res.data);
+    const res = await axios.get("http://localhost:9200/team/" + teamID);
+    setAwayTeam(res.data);
+    // setAwayTeam(...res.data);
   };
 
   useEffect(() => {
@@ -348,11 +348,13 @@ function GameSummary({
 
   const getCurrentGame = async (currentGameID) => {
     setIsLoading(true);
-    let gameList = [];
+    // let gameList = [];
     await axios
-      .get("http://localhost:9200/schedule")
+      // .get("http://localhost:9200/schedule")
+      .get("http://localhost:9200/game/" + currentGameID)
       .then((res) => {
-        gameList = Array.from(res.data);
+        // gameList = Array.from(res.data);
+        setGame(res.data)
       })
       .catch((err) => console.log(err))
       .finally(() => {
@@ -361,18 +363,19 @@ function GameSummary({
         }, 550);
       });
 
-    const game = gameList.filter((game) => game.gameID === currentGameID);
-    setGame(...game);
+    // const game = gameList.filter((game) => game.gameID === currentGameID);
+    // setGame(...game);
+    
   };
 
-  const setNewGameScore = async(currentGameID, gameScore) => {
-    try {
-      await axios 
-      .put("http://localhost:9200/schedule/" + currentGameID, gameScore)
-    } catch (err) {
-      console.log(err);
-    }
-  }
+  // const setNewGameScore = async(currentGameID, gameScore) => {
+  //   try {
+  //     await axios 
+  //     .put("http://localhost:9200/schedule/" + currentGameID, gameScore)
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // }
 
   // console.log(gameScore)
   // console.log(lineScore)

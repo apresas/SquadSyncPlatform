@@ -43,7 +43,7 @@ function GameSchedule({
     getDates(new Date())
   }, [])
 
-  console.log(isLoading)
+  // console.log(isLoading)
 
   return (
     <>

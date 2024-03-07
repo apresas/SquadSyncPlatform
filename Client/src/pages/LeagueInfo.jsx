@@ -4,12 +4,12 @@ import SponcerBar from "../components/Sponcer/SponcerBar";
 import Footer from "../components/Footer";
 import Info from "../components/Info/Info";
 
-function LeagueInfo() {
+function LeagueInfo({ getDates }) {
   return (
     <>
       <SponcerBar />
       <NavBar />
-      <Info />
+      <Info getDates={getDates} />
       <Footer />
     </>
   );

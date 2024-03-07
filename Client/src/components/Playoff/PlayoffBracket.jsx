@@ -1,10 +1,13 @@
-import React from "react";
+import { useEffect } from "react";
 import BracketLayout from "./BracketLayout";
 import "./playoffBracket.css";
 import TitleBar from "../TitleBar";
 import ConsolationBracket from "./ConsolationBracket";
 
-function PlayoffBracket() {
+function PlayoffBracket({getDates}) {
+useEffect(() => {
+  getDates(new Date());
+}, [])
   return (
     <div className="playoff_bracket_container">
       <div className="playoff_bracket_content_container">

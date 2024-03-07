@@ -1,4 +1,4 @@
-import React from "react";
+import { useEffect} from "react";
 import "./awards.css";
 import AwardItem from "./AwardItem";
 import TitleBar from "../TitleBar";
@@ -6,7 +6,10 @@ import HonorableMention from "./HonorableMention";
 import AllDivisionItem from "./AllDivisionItem";
 import playerAwards from "../../data/playerAwards.json";
 
-function Awards() {
+function Awards({getDates}) {
+  useEffect(() => {
+    getDates(new Date())
+  }, [])
   return (
     <div className="awards_container">
       <div className="awards_content_container">
@@ -18,8 +21,8 @@ function Awards() {
           <div className="first_team_container">
             {playerAwards
               .filter((data) => data.category === "firstTeam")
-              .map((data) => (
-                <AwardItem key={data.playerID} player={data} />
+              .map((data, i) => (
+                <AwardItem key={i} player={data} />
               ))}
           </div>
         </div>
@@ -29,8 +32,8 @@ function Awards() {
           <div className="second_team_container">
             {playerAwards
               .filter((data) => data.category === "secondTeam")
-              .map((data) => (
-                <AwardItem key={data.playerID} player={data} />
+              .map((data, i) => (
+                <AwardItem key={i} player={data} />
               ))}
           </div>
         </div>
@@ -52,8 +55,8 @@ function Awards() {
                     (data) =>
                       data.category === "allDivision" && data.division === "Red"
                   )
-                  .map((data) => (
-                    <AllDivisionItem player={data} />
+                  .map((data, i) => (
+                    <AllDivisionItem key={i} player={data} />
                   ))}
               </div>
             </div>
@@ -72,8 +75,8 @@ function Awards() {
                       data.category === "allDivision" &&
                       data.division === "White"
                   )
-                  .map((data) => (
-                    <AllDivisionItem player={data} />
+                  .map((data, i) => (
+                    <AllDivisionItem key={i} player={data} />
                   ))}
               </div>
             </div>
@@ -92,8 +95,8 @@ function Awards() {
                       data.category === "allDivision" &&
                       data.division === "Blue"
                   )
-                  .map((data) => (
-                    <AllDivisionItem player={data} />
+                  .map((data, i) => (
+                    <AllDivisionItem key={i} player={data} />
                   ))}
               </div>
             </div>

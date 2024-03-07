@@ -172,6 +172,7 @@ function addGameEventModal({
         awayScore: gameScore.awayScore + 1
       })
     }
+    console.log(type)
     // console.log(`EventID: ${newEventID}, GameID: ${currentGameID}, ScoringTeam: ${scoringID}, GoalID: ${goalID}, PrimaryID: ${primaryID}, SecondaryID: ${secondaryID} HomeScore: ${newScore.home} AwayScore: ${newScore.away}, Period: ${eventPeriod}, GameTime: ${time} Type: ${type} `)
     setNewEvent({
       eventID: newEventID,
@@ -194,7 +195,7 @@ function addGameEventModal({
     console.log(newEvent)
     console.log(newScore)
     try {
-      await axios.post("http://localhost:9200/events", newEvent);
+      await axios.post("http://localhost:9200/event", newEvent);
       console.log("Event Added");
     } catch (err) {
       console.log(err);

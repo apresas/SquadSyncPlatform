@@ -16,7 +16,8 @@ function TestSchduleTable({ date, teamData, index, selectedTeam, gameSubmit, set
   const getFilterDate = async (date) => {
     // setIsLoading(true)
     await axios
-    .get("http://localhost:9200/schedule/" + date)
+    // .get("http://localhost:9200/schedule/" + date)
+    .get("http://localhost:9200/gamesByDate/" + date)
     .then((res) => {
       setFilterSchedule(res.data);
     })
@@ -31,7 +32,8 @@ function TestSchduleTable({ date, teamData, index, selectedTeam, gameSubmit, set
 
   const getFilterSchedule = async (date, teamID) => {
     const res = await axios.get(
-      "http://localhost:9200/schedule/" + date + "/" + teamID
+      // "http://localhost:9200/schedule/" + date + "/" + teamID
+      "http://localhost:9200/gamesByDate/" + date + "/" + teamID
     );
     setFilterSchedule(res.data);
   };

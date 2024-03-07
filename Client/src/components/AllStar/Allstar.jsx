@@ -1,10 +1,13 @@
-import React from "react";
+import {useEffect} from "react";
 import "./allstar.css";
 import allStarRoster from "../../data/allstarRoster.json";
 import TitleBar from "../TitleBar";
 import AllstarPlayer from "./AllstarPlayer";
 
-function Allstar() {
+function Allstar({getDates}) {
+  useEffect(() => {
+    getDates(new Date())
+  }, [])
   return (
     <div className="allstar_container">
       <div className="allstar_content_container">
