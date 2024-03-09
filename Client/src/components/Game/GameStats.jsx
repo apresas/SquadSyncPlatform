@@ -126,10 +126,10 @@ function GameStats({currentGame, homeTeam, awayTeam, gameScore}) {
   const formatSV = (homeScore, awayScore, homeShots, awayShots) => {
     const awaySaves = (homeShots - homeScore)
     const awaySVPct = parseFloat(((awaySaves / homeShots)).toFixed(3))
-    console.log(`Away Saves: ${awaySaves}, Away Save%: ${awaySVPct}`)
+    // console.log(`Away Saves: ${awaySaves}, Away Save%: ${awaySVPct}`)
     const homeSaves = (awayShots - awayScore)
     const homeSVPct = parseFloat(((homeSaves / awayShots)).toFixed(3))
-    console.log(`Home Saves: ${homeSaves}, Home Save%: ${homeSVPct}`)
+    // console.log(`Home Saves: ${homeSaves}, Home Save%: ${homeSVPct}`)
   }
 
   return (

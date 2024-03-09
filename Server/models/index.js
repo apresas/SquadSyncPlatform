@@ -60,6 +60,11 @@ const Test = sequelize.define("Test", {
 });
 
 const Game = sequelize.define("Game", {
+  gameID: {
+    type: Sequelize.DataTypes.INTEGER,
+    allowNull: false,
+    primaryKey: true,
+  },
   date: { type: Sequelize.DataTypes.STRING },
   homeID: { type: Sequelize.DataTypes.INTEGER },
   awayID: { type: Sequelize.DataTypes.INTEGER },
@@ -67,6 +72,7 @@ const Game = sequelize.define("Game", {
   awayScore: { type: Sequelize.DataTypes.INTEGER, allowNull: true },
   time: { type: Sequelize.DataTypes.STRING },
   arena: { type: Sequelize.DataTypes.STRING },
+  final: { type: Sequelize.DataTypes.BOOLEAN, allowNull: true },
 });
 
 const Team = sequelize.define("Team", {
@@ -98,7 +104,7 @@ const Event = sequelize.define("Event", {
   secondaryAssistID: { type: Sequelize.DataTypes.INTEGER },
   homeScore: { type: Sequelize.DataTypes.INTEGER },
   awayScore: { type: Sequelize.DataTypes.INTEGER },
-  gameTime: { type: Sequelize.DataTypes.STRING },
+  gameTime: { type: Sequelize.DataTypes.FLOAT },
   period: { type: Sequelize.DataTypes.STRING },
   type: { type: Sequelize.DataTypes.STRING },
 });
@@ -163,7 +169,7 @@ const GameStats = sequelize.define("GameStats", {
 //   console.log("Error Syncing Table and Model")
 // })
 
-// Event.sync()
+// Event.sync({force: true})
 //   .then(() => {
 //     console.log("Table and Model Synced Successfully");
 //   })

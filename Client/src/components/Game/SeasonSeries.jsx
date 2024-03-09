@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import "./seasonSeries.css";
 import SeasonSeriesTiles from "./SeasonSeriesTile";
 
-function seasonSeries({ currentGame, games, teamData, gameScore, homeTeam, awayTeam}) {
+function seasonSeries({ currentGame, games, teamData, gameScore, homeTeam, awayTeam, status, gameEvents}) {
 
   const [seriesRecord, setSeriesRecord] = useState({
     team: "",
@@ -21,22 +21,63 @@ function seasonSeries({ currentGame, games, teamData, gameScore, homeTeam, awayT
     })
   }, [gameScore])
 
+
+
   useEffect(() => {
-    getSeriesRecord()
+    getSeriesRecord(homeTeam.teamID, awayTeam.teamID)
   }, [games])
 
-  const getSeriesRecord = () => {
-    {games.map((game) => {
-      let home = 0
-      let away = 0
-      if (game.homeScore > game.awayScore) {
-        home += 1
-        setSeriesRecord({team: homeTeam.abbrev, record: home + " - " + away})
-      } else if(game.awayScore > game.homeScore) {
-        away += 1
-        setSeriesRecord({team: awayTeam.abbrev, record: away + " - " + home})
+  const getSeriesRecord = (homeID, awayID) => {
+    let teamOneWins = 0
+    let teamTwoWins = 0
+
+    {games.filter((game) => game.homeID === homeID || game.awayID === homeID).map((game) => {
+      if (game.homeID === homeID) {
+        if(game.homeScore > game.awayScore) {
+          teamOneWins += 1
+        } 
+      }
+      if (game.awayID === homeID) {
+        if(game.awayScore > game.homeScore) {
+          teamOneWins += 1
+        } 
       }
     })}
+
+    
+    {games.filter((game) => game.homeID === awayID || game.awayID === awayID).map((game) => {
+      if (game.homeID === awayID) {
+        if(game.homeScore > game.awayScore) {
+          teamTwoWins += 1
+        } 
+      }
+      if (game.awayID === awayID) {
+        if(game.awayScore > game.homeScore) {
+          teamTwoWins += 1
+        } 
+      }
+    })}
+
+    // console.log(teamOneWins)
+    // console.log(teamTwoWins)
+
+    if(teamOneWins > teamTwoWins) {
+      setSeriesRecord({
+        team: homeTeam.abbreviation,
+        record: teamOneWins + "-" + teamTwoWins
+      })
+    } else if(teamTwoWins > teamOneWins) {
+      setSeriesRecord({
+        team: awayTeam.abbreviation,
+        record: teamTwoWins + "-" + teamOneWins
+      })
+    } else if (teamOneWins === teamTwoWins) {
+      setSeriesRecord({
+        team: "TIE",
+        record: teamTwoWins + "-" + teamOneWins
+      })
+    }
+
   }
   return (
     <div className="seasonSeries_container">
@@ -56,6 +97,8 @@ function seasonSeries({ currentGame, games, teamData, gameScore, homeTeam, awayT
               teamData={teamData}
               currentGame={currentGame}
               gameScore={gameScore}
+              status={status}
+              gameEvents={gameEvents}
             />
           );
         })}

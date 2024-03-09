@@ -32,7 +32,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       gameTime: {
-        type: Sequelize.STRING
+        type: Sequelize.FLOAT
       },
       period: {
         type: Sequelize.STRING

@@ -25,7 +25,7 @@ module.exports = (sequelize, DataTypes) => {
     secondaryAssistID: DataTypes.INTEGER,
     homeScore: DataTypes.INTEGER,
     awayScore: DataTypes.INTEGER,
-    gameTime: DataTypes.STRING,
+    gameTime: DataTypes.FLOAT,
     period: DataTypes.STRING,
     type: DataTypes.STRING
   }, {

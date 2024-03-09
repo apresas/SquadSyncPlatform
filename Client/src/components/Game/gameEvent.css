@@ -120,6 +120,10 @@
   margin: 0;
 }
 
+.gameEvent_title {
+  line-height: 0.8;
+}
+
 .gameEvent_banner {
   /* background-color: red; */
   position: relative;
@@ -212,21 +216,48 @@
     transition: var(--transition-fast);
   }
 
+  .final {
+    display: none;
+  }
+
   .gameEvent_add_btn span {
     font-family: var(--font-header);
     font-size: 1rem;
   }
 
-  .gameEvent_add_btn:hover {
+  .gameEvent_add_btn:hover, .final_btn:hover {
     border: 1px solid lightgray;
     transition: var(--transition-fast);
     background-color: var(--color-dark-white)
   }
 
+  .final_btn {
+    background-color: inherit;
+    border: 1px solid lightgray;
+    border-radius: 0;
+    color: var(--color-bg);
+    font-family: var(--font-header);
+    width: 100%;
+    transition: var(--transition-fast);
+  }
+
+  .final_selected:hover {
+    background-color: var(--color-ohio-red);
+    transition: var(--transition-fast);
+  }
+
+  .final_selected {
+    background-color: var(--color-ohio-blue);
+    color: white;
+    transition: var(--transition-fast);
+  }
+
 .gameEvent_controls {
     width: 100%;
     display: flex;
+    flex-direction: column;
     align-items: flex-end;
     justify-content: flex-end;
+    gap: 0.5rem;
     padding: 0.5rem 0;
 }

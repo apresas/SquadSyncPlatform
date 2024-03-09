@@ -23,6 +23,7 @@ function save(req, res) {
     awayScore: req.body.awayScore,
     time: req.body.time,
     arena: req.body.arena,
+    final: req.body.final
   };
   console.log(game);
   models.Game.create(game)
@@ -109,16 +110,44 @@ function showByTeamID(req, res) {
     });
 }
 
+function showBySeries(req, res) {
+  const homeID = req.params.homeID;
+  const awayID = req.params.awayID;
+  models.Game.findAll({ where: {
+    [Op.or]: [{
+      [Op.and]: [
+      {homeID: homeID},
+      {awayID: awayID}]},
+      {
+      [Op.and]: [
+        {homeID: awayID},
+        {awayID: homeID}
+      ]
+  }], 
+
+
+   }, order:[['date', 'ASC'],['time', 'ASC']]  })
+    .then((result) => {
+      res.status(200).json(result);
+    })
+    .catch((err) => {
+      res.status(500).json({
+        message: "something went wrong",
+      });
+    });
+}
+
 function update(req, res) {
   const gameID = req.params.gameID;
   updatedGame = {
-    date: req.params.date,
-    homeID: req.params.homeID,
-    awayID: req.params.awayID,
-    homeScore: req.params.homeScore,
-    awayScore: req.params.awayScore,
-    time: req.params.time,
-    arena: req.params.arena,
+    date: req.body.date,
+    homeID: req.body.homeID,
+    awayID: req.body.awayID,
+    homeScore: req.body.homeScore,
+    awayScore: req.body.awayScore,
+    time: req.body.time,
+    arena: req.body.arena,
+    final: req.body.final
   };
 
   models.Game.update(updatedGame, { where: { gameID: gameID } })
@@ -161,5 +190,6 @@ module.exports = {
 
   showByDate: showByDate,
   showDateTeam: showDateTeam,
-  showByTeamID:showByTeamID
+  showByTeamID:showByTeamID,
+  showBySeries: showBySeries
 };

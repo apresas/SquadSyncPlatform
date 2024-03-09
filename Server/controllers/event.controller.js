@@ -1,4 +1,5 @@
 const models = require("../models");
+const { Op } = require("sequelize");
 
 function index(req, res) {
   models.Event.findAll()
@@ -59,7 +60,7 @@ function showByGameID(req, res) {
   const gameID = req.params.gameID;
   models.Event.findAll({ where: { 
     gameID: gameID
-   } })
+   }, order:[['period', 'ASC'],['gameTime', 'DESC']]})
     .then((result) => {
       res.status(200).json(result);
     })

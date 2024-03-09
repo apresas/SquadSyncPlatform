@@ -81,7 +81,7 @@ export const SiteProvider = ({ children }) => {
 
   const getFilterTeam = async (teamID) => {
     try {
-      const res = await axios.get("http://localhost:9200/players/" + teamID);
+      const res = await axios.get("http://localhost:9200/playerByTeam/" + teamID);
       setFilteredPlayers(res.data);
     } catch (err) {
       console.log(err);
@@ -100,7 +100,7 @@ export const SiteProvider = ({ children }) => {
 
   const [schedule, setSchedule] = useState([])
   const getSchedule = async () => {
-    const res = await axios.get("http://localhost:9200/schedule")
+    const res = await axios.get("http://localhost:9200/game")
     setSchedule(res.data);
   }
 

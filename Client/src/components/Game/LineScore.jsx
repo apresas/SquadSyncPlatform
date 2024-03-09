@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import "./lineScore.css";
 
-function LineScore({ homeTeam, awayTeam, lineScore, gameScore }) {
+function LineScore({ homeTeam, awayTeam, lineScore, gameScore, status }) {
   // console.log(currentEvents);
 
   // console.log(lineScore);
@@ -102,6 +102,16 @@ function LineScore({ homeTeam, awayTeam, lineScore, gameScore }) {
   //   setThirdAwayScore(count);
   // }
 
+  const [gameStatus, setGameStatus] = useState()
+
+  useEffect(() => {
+    if(status === "Final") {
+      setGameStatus("F")
+    } else {
+      setGameStatus("T")
+    }
+  }, [status])
+
   return (
     <div className="lineScore_container">
       <h2 id="lineScore_title">Line Score</h2>
@@ -110,7 +120,7 @@ function LineScore({ homeTeam, awayTeam, lineScore, gameScore }) {
         <h3>1st</h3>
         <h3>2nd</h3>
         <h3>3rd</h3>
-        <h3>T</h3>
+        <h3>{gameStatus}</h3>
       </div>
       <div className="lineScore_team_item">
         <div className="lineScore_homeTeam">

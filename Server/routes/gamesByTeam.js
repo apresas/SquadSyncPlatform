@@ -7,4 +7,6 @@ router.get('/', gameControllers.index);
 
 router.get("/:teamID", gameControllers.showByTeamID)
 
+router.get("/:homeID/:awayID", gameControllers.showBySeries)
+
 module.exports = router; 

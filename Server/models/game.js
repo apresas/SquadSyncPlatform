@@ -24,7 +24,8 @@ module.exports = (sequelize, DataTypes) => {
     homeScore: DataTypes.INTEGER,
     awayScore: DataTypes.INTEGER,
     time: DataTypes.STRING,
-    arena: DataTypes.STRING
+    arena: DataTypes.STRING,
+    final: DataTypes.BOOLEAN
   }, {
     sequelize,
     modelName: 'Game',

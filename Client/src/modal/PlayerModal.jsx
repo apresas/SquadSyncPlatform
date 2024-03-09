@@ -34,10 +34,10 @@ function playerModal({ open, onClose, currentPlayer, filterTeam }) {
       points: 0,
     };
     await axios
-      .get("http://localhost:9200/events")
+      .get("http://localhost:9200/event")
       .then((res) => {
         const goals = res.data.filter(
-          (goal) => goal.scorerID === currentPlayer.playerID
+          (goal) => goal.goalID === currentPlayer.playerID
         );
         const assists = res.data.filter(
           (assist) =>
@@ -52,7 +52,7 @@ function playerModal({ open, onClose, currentPlayer, filterTeam }) {
       .catch((err) => console.log(err));
 
     await axios
-      .get("http://localhost:9200/schedule")
+      .get("http://localhost:9200/gamesByTeam/" + currentPlayer.teamID)
       .then((res) => {
         const gamesPlayed = res.data.filter(
           (games) =>

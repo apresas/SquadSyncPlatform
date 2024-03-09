@@ -1,6 +1,7 @@
 import "./gameHeader.css";
 
-function GameHeader({ homeTeam, awayTeam, gameScore, record }) {
+function GameHeader({ homeTeam, awayTeam, gameScore, record, status }) {
+  // console.log(record)
   return (
     <section className="gameSummary_header">
       <div className="homeTeam">
@@ -13,7 +14,7 @@ function GameHeader({ homeTeam, awayTeam, gameScore, record }) {
       </div>
       <div className="header_result">
         <h1 className="header_home_score">{gameScore.homeScore}</h1>
-        <h3 className="gameSummary_header_time">Final</h3>
+        <h3 className="gameSummary_header_time">{status}</h3>
         <h1 className="header_away_score">{gameScore.awayScore}</h1>
       </div>
       <div className="awayTeam">

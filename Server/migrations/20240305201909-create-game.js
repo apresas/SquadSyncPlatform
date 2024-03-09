@@ -33,6 +33,9 @@ module.exports = {
       arena: {
         type: Sequelize.STRING
       },
+      final: {
+        type: Sequelize.BOOLEAN
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

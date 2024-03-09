@@ -18,7 +18,6 @@ function addGameEventModal({
   goalID,
   primaryID,
   secondaryID,
-  currentGame,
   currentGameID,
   homeRoster,
   awayRoster,
@@ -36,13 +35,13 @@ function addGameEventModal({
   const [newEvent, setNewEvent] = useState({
     eventID: newEventID,
     gameID: currentGameID,
-    scoreTeam: "",
-    scorerID: "",
+    scoringTeam: "",
+    goalID: "",
     primaryAssistID: "",
     secondaryAssistID: "",
     homeScore: 0,
     awayScore: 0,
-    gameTime: "",
+    gameTime: 0,
     period: "",
     type: "",
   });
@@ -63,7 +62,8 @@ function addGameEventModal({
   };
 
   useEffect(() => {
-    setTime(minutes + ":" + seconds)
+    const newTime = parseFloat(minutes + '.' + seconds);
+    setTime(newTime)
   }, [minutes, seconds])
 
   useEffect(() => {
@@ -119,7 +119,7 @@ function addGameEventModal({
 
   const getFilteredEventPlayers = async (teamID) => {
     await axios
-      .get("http://localhost:9200/players/" + teamID)
+      .get("http://localhost:9200/playerByTeam/" + teamID)
       .then((res) => {
         setEventPlayers(res.data);
       })
@@ -172,13 +172,13 @@ function addGameEventModal({
         awayScore: gameScore.awayScore + 1
       })
     }
-    console.log(type)
+    // console.log(type)
     // console.log(`EventID: ${newEventID}, GameID: ${currentGameID}, ScoringTeam: ${scoringID}, GoalID: ${goalID}, PrimaryID: ${primaryID}, SecondaryID: ${secondaryID} HomeScore: ${newScore.home} AwayScore: ${newScore.away}, Period: ${eventPeriod}, GameTime: ${time} Type: ${type} `)
     setNewEvent({
       eventID: newEventID,
       gameID: currentGameID,
-      scoreTeam: scoringID,
-      scorerID: goalID,
+      scoringTeam: scoringID,
+      goalID: goalID,
       primaryAssistID: primaryID,
       secondaryAssistID: secondaryID,
       homeScore: newScore.homeScore,
@@ -189,11 +189,15 @@ function addGameEventModal({
     })
   }, [newEventID, currentGameID, scoringID, goalID, primaryID, secondaryID, eventPeriod, time, type, gameScore, homeTeam.teamID, awayTeam.teamID, newScore.homeScore, newScore.awayScore])
 
+  useEffect(() => {
+    // console.log(gameScore)
+    updateScore()
+  }, [gameScore])
 
   const submitEvent = async (e) => {
     e.preventDefault();
-    console.log(newEvent)
-    console.log(newScore)
+    // console.log(newEvent)
+    // console.log(newScore)
     try {
       await axios.post("http://localhost:9200/event", newEvent);
       console.log("Event Added");
@@ -201,13 +205,13 @@ function addGameEventModal({
       console.log(err);
     }
 
-    try {
-      await axios 
-      .put("http://localhost:9200/schedule/" + currentGameID, newScore)
-      console.log("score updated")
-    } catch (err) {
-      console.log(err);
-    }
+    // try {
+    //   await axios 
+    //   .put("http://localhost:9200/schedule/" + currentGameID, newScore)
+    //   console.log("score updated")
+    // } catch (err) {
+    //   console.log(err);
+    // }
 
 
     setEventSubmit(!eventSubmit);
@@ -215,7 +219,12 @@ function addGameEventModal({
     setOpenModal(false);
   };
 
-  console.log(newScore)
+  const updateScore = async() => {
+    await axios
+    .patch("http://localhost:9200/game/" + currentGameID, gameScore)
+    .catch(err => {console.log(err)})
+  }
+
   if (!open) {
     return null;
   }

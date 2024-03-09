@@ -34,6 +34,7 @@ function AddScheduleModal({
     awayID: undefined,
     homeScore: 0,
     awayScore: 0,
+    final: false
   });
 
   const handleDayClick = (day) => {
@@ -61,6 +62,7 @@ function AddScheduleModal({
       awayID: awayID,
       homeScore: homeScore,
       awayScore: awayScore,
+      final: false
     });
   }, [newGameID, date, venue, time, homeScore, awayScore, homeID, awayID]);
 
