@@ -57,6 +57,7 @@ function SeasonSeriesTile({
   // }, [gameScore])
 
   useEffect(() => {
+    console.log(gameScore)
     getScore(game.gameID)
   }, [status, gameScore])
 

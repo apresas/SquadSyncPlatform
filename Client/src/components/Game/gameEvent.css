@@ -221,7 +221,8 @@
   }
 
   .gameEvent_add_btn span {
-    font-family: var(--font-header);
+    font-family: var(--font-sub-header);
+    font-weight: 400;
     font-size: 1rem;
   }
 
@@ -236,7 +237,8 @@
     border: 1px solid lightgray;
     border-radius: 0;
     color: var(--color-bg);
-    font-family: var(--font-header);
+    font-family: var(--font-sub-header);
+    font-weight: 400;
     width: 100%;
     transition: var(--transition-fast);
   }
@@ -249,7 +251,9 @@
   .final_selected {
     background-color: var(--color-ohio-blue);
     color: white;
-    transition: var(--transition-fast);
+    transition: var(--transition);
+    font-family: var(--font-header);
+    font-size: 1.5rem;
   }
 
 .gameEvent_controls {

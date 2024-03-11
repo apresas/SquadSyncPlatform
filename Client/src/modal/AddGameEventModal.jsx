@@ -24,7 +24,8 @@ function addGameEventModal({
   gameScore,
   setEventSubmit, 
   eventSubmit, 
-  teams
+  teams,
+  gameEvents
 }) {
   const [newEventID, setNewEventID] = useState();
 
@@ -190,9 +191,26 @@ function addGameEventModal({
   }, [newEventID, currentGameID, scoringID, goalID, primaryID, secondaryID, eventPeriod, time, type, gameScore, homeTeam.teamID, awayTeam.teamID, newScore.homeScore, newScore.awayScore])
 
   useEffect(() => {
-    // console.log(gameScore)
-    updateScore()
-  }, [gameScore])
+  //   if(eventSubmit){
+  //   updateScore()
+  // }
+
+  updateScore()
+  }, [gameEvents])
+
+  const getCurrentGame = async() => {
+    let score = {
+      homeScore: 0,
+      awayScore: 0
+    }
+    await axios
+    .get("http://localhost:9200/game/" + currentGameID)
+    .then((res) => {
+      score.homeScore = res.data.homeScore,
+      score.awayScore = res.data.awayScore
+      updateScore(score)
+    })
+  }
 
   const submitEvent = async (e) => {
     e.preventDefault();
@@ -201,6 +219,7 @@ function addGameEventModal({
     try {
       await axios.post("http://localhost:9200/event", newEvent);
       console.log("Event Added");
+      setEventSubmit(true)
     } catch (err) {
       console.log(err);
     }
@@ -223,7 +242,10 @@ function addGameEventModal({
     await axios
     .patch("http://localhost:9200/game/" + currentGameID, gameScore)
     .catch(err => {console.log(err)})
+    setEventSubmit(false)
   }
+
+  // console.log(eventSubmit)
 
   if (!open) {
     return null;
@@ -285,7 +307,7 @@ function addGameEventModal({
                   <div id="time-input">
                     <input type="text" id="hours" max="2" dir="rtl" onChange={(e) => setMinutes(e.target.value)} />
                     <div id="colon">
-                      <span> : </span>
+                      :
                     </div>
                     <input type="text" id="minutes" max="2" onChange={(e) => setSeconds(e.target.value)} />
                   </div>
@@ -302,8 +324,8 @@ function addGameEventModal({
               </div>
             </form>
             <section className="event_controls">
-              <button onClick={submitEvent}>Submit</button>
-              <button onClick={handleClose}>Cancel</button>
+              <button className="submit_btn btn" onClick={submitEvent}>Submit</button>
+              <button className="cancel_btn btn" onClick={handleClose}>Cancel</button>
             </section>
           </div>
         </div>

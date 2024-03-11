@@ -82,6 +82,30 @@ button:focus-visible {
   /* outline: 4px auto -webkit-focus-ring-color; */
 }
 
+.btn {
+  font-family: var(--font-sub-header);
+  font-weight: 400;
+  border: 1px solid lightgrey;
+  background-color: inherit;
+  color: var(--color-bg);
+  padding: 0.5rem 4rem;
+  transition: var(--transition-fast);
+  border-radius: 5px;
+  margin-top: 0.5rem;
+}
+
+.submit_btn:hover {
+  transition: var(--transition-fast);
+  border: 1px solid mediumspringgreen;
+  color: mediumspringgreen;
+}
+
+.cancel_btn:hover {
+  transition: var(--transition-fast);
+  border: 1px solid var(--color-ohio-red);
+  color: var(--color-ohio-red);
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

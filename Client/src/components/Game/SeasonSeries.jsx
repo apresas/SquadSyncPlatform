@@ -2,12 +2,12 @@ import { useState, useEffect } from "react";
 import "./seasonSeries.css";
 import SeasonSeriesTiles from "./SeasonSeriesTile";
 
-function seasonSeries({ currentGame, games, teamData, gameScore, homeTeam, awayTeam, status, gameEvents}) {
+function seasonSeries({ currentGame, games, teamData, gameScore, homeTeam, awayTeam, status, gameEvents, seriesRecord}) {
 
-  const [seriesRecord, setSeriesRecord] = useState({
-    team: "",
-    record: ""
-  })
+  // const [seriesRecord, setSeriesRecord] = useState({
+  //   team: "",
+  //   record: ""
+  // })
 
   const [score, setScore] = useState({
     homeScore: 0,
@@ -23,62 +23,62 @@ function seasonSeries({ currentGame, games, teamData, gameScore, homeTeam, awayT
 
 
 
-  useEffect(() => {
-    getSeriesRecord(homeTeam.teamID, awayTeam.teamID)
-  }, [games])
+  // useEffect(() => {
+  //   getSeriesRecord(homeTeam.teamID, awayTeam.teamID)
+  // }, [games])
 
-  const getSeriesRecord = (homeID, awayID) => {
-    let teamOneWins = 0
-    let teamTwoWins = 0
+  // const getSeriesRecord = (homeID, awayID) => {
+  //   let teamOneWins = 0
+  //   let teamTwoWins = 0
 
-    {games.filter((game) => game.homeID === homeID || game.awayID === homeID).map((game) => {
-      if (game.homeID === homeID) {
-        if(game.homeScore > game.awayScore) {
-          teamOneWins += 1
-        } 
-      }
-      if (game.awayID === homeID) {
-        if(game.awayScore > game.homeScore) {
-          teamOneWins += 1
-        } 
-      }
-    })}
+  //   {games.filter((game) => game.homeID === homeID || game.awayID === homeID).map((game) => {
+  //     if (game.homeID === homeID) {
+  //       if(game.homeScore > game.awayScore) {
+  //         teamOneWins += 1
+  //       } 
+  //     }
+  //     if (game.awayID === homeID) {
+  //       if(game.awayScore > game.homeScore) {
+  //         teamOneWins += 1
+  //       } 
+  //     }
+  //   })}
 
     
-    {games.filter((game) => game.homeID === awayID || game.awayID === awayID).map((game) => {
-      if (game.homeID === awayID) {
-        if(game.homeScore > game.awayScore) {
-          teamTwoWins += 1
-        } 
-      }
-      if (game.awayID === awayID) {
-        if(game.awayScore > game.homeScore) {
-          teamTwoWins += 1
-        } 
-      }
-    })}
+  //   {games.filter((game) => game.homeID === awayID || game.awayID === awayID).map((game) => {
+  //     if (game.homeID === awayID) {
+  //       if(game.homeScore > game.awayScore) {
+  //         teamTwoWins += 1
+  //       } 
+  //     }
+  //     if (game.awayID === awayID) {
+  //       if(game.awayScore > game.homeScore) {
+  //         teamTwoWins += 1
+  //       } 
+  //     }
+  //   })}
 
-    // console.log(teamOneWins)
-    // console.log(teamTwoWins)
+  //   // console.log(teamOneWins)
+  //   // console.log(teamTwoWins)
 
-    if(teamOneWins > teamTwoWins) {
-      setSeriesRecord({
-        team: homeTeam.abbreviation,
-        record: teamOneWins + "-" + teamTwoWins
-      })
-    } else if(teamTwoWins > teamOneWins) {
-      setSeriesRecord({
-        team: awayTeam.abbreviation,
-        record: teamTwoWins + "-" + teamOneWins
-      })
-    } else if (teamOneWins === teamTwoWins) {
-      setSeriesRecord({
-        team: "TIE",
-        record: teamTwoWins + "-" + teamOneWins
-      })
-    }
+  //   if(teamOneWins > teamTwoWins) {
+  //     setSeriesRecord({
+  //       team: homeTeam.abbreviation,
+  //       record: teamOneWins + "-" + teamTwoWins
+  //     })
+  //   } else if(teamTwoWins > teamOneWins) {
+  //     setSeriesRecord({
+  //       team: awayTeam.abbreviation,
+  //       record: teamTwoWins + "-" + teamOneWins
+  //     })
+  //   } else {
+  //     setSeriesRecord({
+  //       team: "TIE",
+  //       record: teamTwoWins + "-" + teamOneWins
+  //     })
+  //   }
 
-  }
+  // }
   return (
     <div className="seasonSeries_container">
       <section className="seasonSeries_header">

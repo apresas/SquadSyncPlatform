@@ -9,6 +9,7 @@ import SeasonSeries from "./SeasonSeries";
 import GameEvent from "./GameEvent";
 import "./gameSummary.css";
 import AddGameEventModal from "../../modal/AddGameEventModal";
+import GameStatsModal from "../../modal/gameStatsModal";
 import { DateTime } from "luxon";
 import { useLocation } from "react-router-dom";
 import LoadingOverlay from "../Loading/LoadingOverlay";
@@ -57,6 +58,32 @@ function GameSummary({
   const [isLoading, setIsLoading] = useState(false);
 
   const [status, setStatus] = useState("TBD");
+
+  const [games, setGames] = useState([]);
+
+  const [gameStatsSubmit, setGameStatsSubmit] = useState(false)
+
+  const [gameStats, setGameStats] = useState({
+    homeShots: 0,
+    awayShots: 0,
+    homeFO: 0, 
+    awayFO: 0,
+    homePP: 0,
+    awayPP: 0,
+    homePPG: 0,
+    awayPPG: 0,
+    homeMinors: 0,
+    awayMinors: 0,
+    homeMajors: 0,
+    awayMajors: 0,
+    homeHits: 0,
+    awayHits: 0,
+    homeBlocks: 0,
+    awayBlocks: 0,
+    homeGiveaways: 0,
+    awayGiveaways: 0,
+    isNull: true,
+  })
   // const [homeResult, setHomeResult] = useState();
   // const [awayResult, setAwayResult] = useState();
   // const setResult = (homeScore, awayScore) => {
@@ -72,12 +99,51 @@ function GameSummary({
   //   }
   // };
 
+  const [isFinal, setIsFinal] = useState(false);
+
   const [openModal, setOpenModal] = useState(false);
+
+  const [openStatsModal, setOpenStatsModal] = useState(false);
 
   const handleModalOpen = async (e) => {
     e.preventDefault();
     setOpenModal(true);
   };
+
+  const handleStatsOpen = async (e) => {
+    e.preventDefault();
+    setOpenStatsModal(true);
+  };
+
+  const getGameStats = async () => {
+    await axios
+    .get("http://localhost:9200/gameStatByGame/" + currentGameID)
+    .then((res) => {
+      {res.data.map((stat) => {
+        setGameStats({
+          homeShots: stat.homeShots,
+          awayShots: stat.awayShots,
+          homeFO: stat.homeFaceoff, 
+          awayFO: stat.awayFaceoff,
+          homePP: stat.homePP,
+          awayPP: stat.awayPP,
+          homePPG: stat.homePPG,
+          awayPPG: stat.awayPPG,
+          homeMinors: stat.homeMinors,
+          awayMinors: stat.awayMinors,
+          homeMajors: stat.homeMajors,
+          awayMajors: stat.awayMajors,
+          homeHits: stat.homeHits,
+          awayHits: stat.awayHits,
+          homeBlocks: stat.homeBlocks,
+          awayBlocks: stat.awayBlocks,
+          homeGiveaways: stat.homeGiveaways,
+          awayGiveaways: stat.awayGiveaways,
+          isNull: false
+        })
+      })}
+    }).catch((err) => {console.log(err)});
+  }
 
   const getHomeRoster = async (teamID) => {
     if (teamID !== undefined) {
@@ -135,7 +201,6 @@ function GameSummary({
   useEffect(() => {
     getFilterGame(currentGameID);
     getTeamData();
-    getCurrentGame(currentGameID);
     getDates(new Date());
     // getHomeTeam(currentGame.homeID);
     // getAwayTeam(currentGame.awayID);
@@ -147,66 +212,67 @@ function GameSummary({
     getCurrentGame(currentGameID);
   }, [currentGameID]);
 
-  useEffect(() => {
-    getHomeTeam(game.homeID);
-    getAwayTeam(game.awayID);
-    formatGameDate(game.date);
-  }, [game]);
+  // useEffect(() => {
+  //   getHomeTeam(game.homeID);
+  //   getAwayTeam(game.awayID);
+  //   formatGameDate(game.date);
+  // }, [game]);
 
-  const getHomeTeam = async (teamID) => {
-    const res = await axios.get("http://localhost:9200/team/" + teamID);
-    setHomeTeam(res.data);
-    // setHomeTeam(...res.data);
-  };
+  // const getHomeTeam = async (teamID) => {
+  //   const res = await axios.get("http://localhost:9200/team/" + teamID);
+  //   setHomeTeam(res.data);
+  //   // setHomeTeam(...res.data);
+  // };
 
-  const getAwayTeam = async (teamID) => {
-    const res = await axios.get("http://localhost:9200/team/" + teamID);
-    setAwayTeam(res.data);
-    // setAwayTeam(...res.data);
-  };
+  // const getAwayTeam = async (teamID) => {
+  //   const res = await axios.get("http://localhost:9200/team/" + teamID);
+  //   setAwayTeam(res.data);
+  //   // setAwayTeam(...res.data);
+  // };
 
-  useEffect(() => {
-    // {
-    //   teamData
-    //     .map((data) => data)
-    //     .filter((data) => data.teamID === currentGame.homeID)
-    //     .map((data) => {
-    //       home.current = data;
-    //       setHomeTeam(data);
-    //     });
-    // }
-    // {
-    //   teamData
-    //     .map((data) => data)
-    //     .filter((data) => data.teamID === currentGame.awayID)
-    //     .map((data) => {
-    //       away.current = data;
-    //       setAwayTeam(data);
-    //     });
-    // }
+  // useEffect(() => {
+  //   // {
+  //   //   teamData
+  //   //     .map((data) => data)
+  //   //     .filter((data) => data.teamID === currentGame.homeID)
+  //   //     .map((data) => {
+  //   //       home.current = data;
+  //   //       setHomeTeam(data);
+  //   //     });
+  //   // }
+  //   // {
+  //   //   teamData
+  //   //     .map((data) => data)
+  //   //     .filter((data) => data.teamID === currentGame.awayID)
+  //   //     .map((data) => {
+  //   //       away.current = data;
+  //   //       setAwayTeam(data);
+  //   //     });
+  //   // }
 
-    // setResult(currentGame.homeScore, currentGame.awayScore);
-    getGameEvents(currentGameID);
-    // formatGameDate(currentGame.date);
-  }, [
-    currentGame.awayID,
-    currentGame.awayScore,
-    currentGame.date,
-    currentGameID,
-    currentGame.homeID,
-    currentGame.homeScore,
-    teamData,
-  ]);
+  //   // setResult(currentGame.homeScore, currentGame.awayScore);
+  //   getGameEvents(currentGameID);
+  //   // formatGameDate(currentGame.date);
+  // }, [
+  //   currentGame.awayID,
+  //   currentGame.awayScore,
+  //   currentGame.date,
+  //   currentGameID,
+  //   currentGame.homeID,
+  //   currentGame.homeScore,
+  //   teamData,
+  // ]);
 
-  useEffect(() => {
-    let teamList = [];
-    getHomeRoster(homeTeam.teamID);
-    getAwayRoster(awayTeam.teamID);
-    teamList.push(homeTeam);
-    teamList.push(awayTeam);
-    setTeams(teamList);
+  // useEffect(() => {
+  //   let teamList = [];
+  //   // getHomeRoster(homeTeam.teamID);
+  //   // getAwayRoster(awayTeam.teamID);
+  //   teamList.push(homeTeam);
+  //   teamList.push(awayTeam);
+  //   setTeams(teamList);
+  //   // getGameSummary(homeTeam.teamID, awayTeam.teamID)
 
-  }, [homeTeam, awayTeam]);
+  // }, [homeTeam, awayTeam]);
 
   const [lineScore, setLineScore] = useState({
     homeScore: {
@@ -223,9 +289,14 @@ function GameSummary({
 
   useEffect(() => {
     setScores();
-    getRecord(homeTeam.teamID, awayTeam.teamID);
-    getSeasonSeries(homeTeam.teamID, awayTeam.teamID);
+    // getRecord(homeTeam.teamID, awayTeam.teamID);
+    // getSeasonSeries(homeTeam.teamID, awayTeam.teamID);
   }, [homeTeam, awayTeam, gameEvents, eventSubmit]);
+
+  // useEffect(() => {
+  //   getRecord(homeTeam.teamID, awayTeam.teamID);
+  //   // getSeasonSeries(homeTeam.teamID, awayTeam.teamID);
+  // }, [gameEvents, eventSubmit])
 
   useEffect(() => {
     setGameScore({
@@ -309,20 +380,18 @@ function GameSummary({
   //   setCurrentEvents(eventList);
   // }, [gameEvents]);
 
-  useEffect(() => {
-    // setNewGameScore(currentGameID, gameScore)
-  }, [gameScore]);
+  // useEffect(() => {
+  //   // setNewGameScore(currentGameID, gameScore)
+  // }, [gameScore]);
 
-  const getGameEvents = async (gameID) => {
-    await axios
-      .get("http://localhost:9200/eventByGame/" + gameID)
-      .then((res) => {
-        setGameEvents(res.data);
-      })
-      .catch((err) => console.log(err));
-  };
-
-  const [games, setGames] = useState([]);
+  // const getGameEvents = async (gameID) => {
+  //   await axios
+  //     .get("http://localhost:9200/eventByGame/" + gameID)
+  //     .then((res) => {
+  //       setGameEvents(res.data);
+  //     })
+  //     .catch((err) => console.log(err));
+  // };
 
   // const getSeasonSeries = async () => {
   //   let gameList = [];
@@ -341,35 +410,39 @@ function GameSummary({
   //   setGames(filterGames);
   // };
 
-  const getSeasonSeries = async (homeID, awayID) => {
-    // let gameList = [];
-    // const endPoints = [
-    //   "http://localhost:9200/gamesByTeam/" + homeID,
-    //   "http://localhost:9200/gamesByTeam/" + awayID,
-    // ];
-    // console.log(endPoints);
-    await axios
-    .get("http://localhost:9200/gamesByTeam/" + homeID + "/" + awayID)
-    .then((res) => {
-      // console.log(res.data);
-      setGames(res.data)
-    })
-      .catch((err) => console.log(err));
-    // setGames(gameList);
+  // const getSeasonSeries = async (homeID, awayID) => {
+  //   // let gameList = [];
+  //   // const endPoints = [
+  //   //   "http://localhost:9200/gamesByTeam/" + homeID,
+  //   //   "http://localhost:9200/gamesByTeam/" + awayID,
+  //   // ];
+  //   // console.log(endPoints);
+  //   await axios
+  //   .get("http://localhost:9200/gamesByTeam/" + homeID + "/" + awayID)
+  //   .then((res) => {
+  //     // console.log(res.data);
+  //     setGames(res.data)
+  //   })
+  //     .catch((err) => console.log(err));
+  //   // setGames(gameList);
 
-    // .get(endPoints.map((endpoint) => axios.get(endpoint)))
-    // .then(axios.spread((game1, game2) => {
-    //   console.log(game1.data);
-    //   console.log(game2.data);
-    //   setGames(game1.data)
-    // }))
-    // const filterGames = gameList.filter(
-    //   (game) =>
-    //     (game.homeID === homeTeam.teamID || game.awayID === homeTeam.teamID) &&
-    //     (game.homeID === awayTeam.teamID || game.awayID === awayTeam.teamID)
-    // );
-    // setGames(filterGames);
-  };
+  //   // .get(endPoints.map((endpoint) => axios.get(endpoint)))
+  //   // .then(axios.spread((game1, game2) => {
+  //   //   console.log(game1.data);
+  //   //   console.log(game2.data);
+  //   //   setGames(game1.data)
+  //   // }))
+  //   // const filterGames = gameList.filter(
+  //   //   (game) =>
+  //   //     (game.homeID === homeTeam.teamID || game.awayID === homeTeam.teamID) &&
+  //   //     (game.homeID === awayTeam.teamID || game.awayID === awayTeam.teamID)
+  //   // );
+  //   // setGames(filterGames);
+  // };
+
+  useEffect(() => {
+    getGameStats()
+  }, [gameStatsSubmit])
 
   const formatGameDate = (date) => {
     const newDate = DateTime.fromISO(date).toFormat("DD");
@@ -386,18 +459,168 @@ function GameSummary({
       .get("http://localhost:9200/game/" + currentGameID)
       .then((res) => {
         // gameList = Array.from(res.data);
+        if (res.data.final === true) {
+          setIsFinal(true);
+        } else if (res.data.final === false) {
+          setIsFinal(false);
+        }
         setGame(res.data);
+        getGameSummary(res.data.homeID, res.data.awayID, res.data.date);
+        getGameStats()
       })
-      .catch((err) => console.log(err))
+      .catch((err) => console.log(err));
+    // .finally(() => {
+    //   setTimeout(() => {
+    //     setIsLoading(false);
+    //   }, 550);
+    // });
+
+    // const game = gameList.filter((game) => game.gameID === currentGameID);
+    // setGame(...game);
+  };
+
+  const [seriesRecord, setSeriesRecord] = useState({
+    team: "",
+    record: "",
+  });
+
+  const getGameSummary = async (homeID, awayID, date) => {
+    formatGameDate(date);
+    let endPoints = [
+      // "http://localhost:9200/game/" + currentGameID,
+
+      "http://localhost:9200/gamesByTeam/" + homeID + "/" + awayID,
+      "http://localhost:9200/eventByGame/" + currentGameID,
+      "http://localhost:9200/team/" + homeID,
+      "http://localhost:9200/team/" + awayID,
+    ];
+    let teamList = [];
+
+    await Promise.all(endPoints.map((endPoint) => axios.get(endPoint)))
+      .then(
+        axios.spread(
+          (
+            { data: series },
+            { data: events },
+            { data: homeTeam },
+            { data: awayTeam }
+          ) => {
+            setGames(series);
+            setGameEvents(events);
+            setHomeTeam(homeTeam);
+            setAwayTeam(awayTeam);
+            getHomeRoster(homeTeam.teamID);
+            getAwayRoster(awayTeam.teamID);
+            teamList.push(homeTeam);
+            teamList.push(awayTeam);
+            setTeams(teamList);
+            console.log({ series, events, homeTeam, awayTeam });
+            // getSeriesRecord(homeTeam.teamID, awayTeam.teamID, series, homeTeam, awayTeam)
+            // getRecord(homeTeam.teamID, awayTeam.teamID);
+          }
+        )
+      )
+      .catch((err) => {
+        console.log(err);
+      })
       .finally(() => {
         setTimeout(() => {
           setIsLoading(false);
         }, 550);
       });
-
-    // const game = gameList.filter((game) => game.gameID === currentGameID);
-    // setGame(...game);
   };
+
+  useEffect(() => {
+    getSeriesRecord(
+      homeTeam.teamID,
+      awayTeam.teamID,
+      games,
+      homeTeam,
+      awayTeam
+    );
+    getRecord(homeTeam.teamID, awayTeam.teamID);
+  }, [gameEvents]);
+
+  const getSeriesRecord = (homeID, awayID, series, homeTeam, awayTeam) => {
+    let teamOneWins = 0;
+    let teamTwoWins = 0;
+
+    // console.log(series);
+
+    {
+      series
+        .filter((game) => game.homeID === homeID || game.awayID === homeID)
+        .map((game) => {
+          if (game.homeID === homeID) {
+            if (game.homeScore > game.awayScore) {
+              teamOneWins += 1;
+            }
+          }
+          if (game.awayID === homeID) {
+            if (game.awayScore > game.homeScore) {
+              teamOneWins += 1;
+            }
+          }
+        });
+    }
+
+    {
+      series
+        .filter((game) => game.homeID === awayID || game.awayID === awayID)
+        .map((game) => {
+          if (game.homeID === awayID) {
+            if (game.homeScore > game.awayScore) {
+              teamTwoWins += 1;
+            }
+          }
+          if (game.awayID === awayID) {
+            if (game.awayScore > game.homeScore) {
+              teamTwoWins += 1;
+            }
+          }
+        });
+    }
+
+    // console.log(teamOneWins)
+    // console.log(teamTwoWins)
+
+    if (teamOneWins > teamTwoWins) {
+      setSeriesRecord({
+        team: homeTeam.abbreviation,
+        record: teamOneWins + "-" + teamTwoWins,
+      });
+    }
+    if (teamTwoWins > teamOneWins) {
+      setSeriesRecord({
+        team: awayTeam.abbreviation,
+        record: teamTwoWins + "-" + teamOneWins,
+      });
+    }
+    if (teamOneWins === teamTwoWins) {
+      setSeriesRecord({
+        team: "TIE",
+        record: teamTwoWins + "-" + teamOneWins,
+      });
+    }
+  };
+
+  // useEffect(() => {
+  //   // if(eventSubmit){
+  //   //   updateScore()
+  //   // }
+  //   updateScore()
+  // }, [gameScore])
+
+  // const updateScore = async(homeScore, awayScore) => {
+  //   let score = {homeScore: homeScore, awayScore: awayScore}
+  //   await axios
+  //   .patch("http://localhost:9200/game/" + currentGameID, score)
+  //   .catch(err => {console.log(err)})
+
+  //   setEventSubmit(false)
+  // }
+
+  // console.log(seriesRecord)
 
   // const setNewGameScore = async(currentGameID, gameScore) => {
   //   try {
@@ -414,8 +637,9 @@ function GameSummary({
 
   // console.log(filterTeam)
   // console.log(games);
-  // console.log(homeTeam)
-  // console.log(awayTeam)
+  // console.log(homeRoster)
+  // console.log(awayRoster)
+  // console.log(currentGame)
 
   return (
     <>
@@ -442,7 +666,9 @@ function GameSummary({
         setEventSubmit={setEventSubmit}
         eventSubmit={eventSubmit}
         teams={teams}
+        gameEvents={gameEvents}
       />
+      <GameStatsModal homeTeam={homeTeam} awayTeam={awayTeam} open={openStatsModal} setOpenModal={setOpenStatsModal} currentGameID={currentGameID} gameStatsSubmit={gameStatsSubmit} setGameStatsSubmit={setGameStatsSubmit}/>
       {isLoading ? (
         <LoadingOverlay />
       ) : (
@@ -452,7 +678,7 @@ function GameSummary({
             <div className="gameSummary_app_container">
               <h2>{dateTitle}</h2>
               <GameHeader
-                currentGame={currentGame}
+                game={game}
                 homeTeam={homeTeam}
                 awayTeam={awayTeam}
                 gameScore={gameScore}
@@ -469,7 +695,6 @@ function GameSummary({
                     awayRoster={awayRoster}
                     handleModalOpen={handleModalOpen}
                     currentGame={currentGame}
-                    final={currentGame.final}
                     filteredPlayers={filteredPlayers}
                     homeLoading={homeLoading}
                     awayLoading={awayLoading}
@@ -481,6 +706,8 @@ function GameSummary({
                     setGameEvents={setGameEvents}
                     currentGameID={currentGameID}
                     setStatus={setStatus}
+                    isFinal={isFinal}
+                    setIsFinal={setIsFinal}
                   />
                 </section>
                 <section className="gameSummary_side_content">
@@ -496,6 +723,9 @@ function GameSummary({
                     homeTeam={homeTeam}
                     awayTeam={awayTeam}
                     gameScore={gameScore}
+                    handleStatsOpen={handleStatsOpen}
+                    gameStats={gameStats}
+                    gameStatsSubmit={gameStatsSubmit}
                   />
                   <SeasonSeries
                     games={games}
@@ -506,6 +736,7 @@ function GameSummary({
                     gameScore={gameScore}
                     status={status}
                     gameEvents={gameEvents}
+                    seriesRecord={seriesRecord}
                   />
                 </section>
               </div>

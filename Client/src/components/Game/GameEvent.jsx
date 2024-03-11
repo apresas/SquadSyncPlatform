@@ -20,13 +20,14 @@ function GameEvent({
   gameEvents,
   currentGameID,
   setStatus, 
+  isFinal, 
+  setIsFinal
 }) {
   const homeButton = useRef();
   const awayButton = useRef();
   const addBtnRef = useRef();
   const finalRef = useRef();
 
-  const [isFinal, setIsFinal] = useState(false)
   const [gameStatus, setGameStatus] = useState(false)
   // console.log(currentGameID)
 
@@ -42,11 +43,16 @@ function GameEvent({
 
   useEffect(() => {
     getGameStatus(currentGameID)
+    if(isFinal) {
+      finalRef.current.className = "final_btn final_selected"
+    } else if (!isFinal) {
+      finalRef.current.className = "final_btn"
+    }
   }, [])
 
-  useEffect(() => {
-    getGameEvents(currentGameID);
-  }, [currentGameID]);
+  // useEffect(() => {
+  //   getGameEvents(currentGameID);
+  // }, [currentGameID]);
 
   useEffect(() => {
     getGameEvents(currentGameID);

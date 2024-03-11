@@ -1,7 +1,7 @@
 import "./gameHeader.css";
 
-function GameHeader({ homeTeam, awayTeam, gameScore, record, status }) {
-  // console.log(record)
+function GameHeader({game, homeTeam, awayTeam, gameScore, record, status }) {
+  console.log(record)
   return (
     <section className="gameSummary_header">
       <div className="homeTeam">

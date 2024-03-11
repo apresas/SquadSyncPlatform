@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 import "./gameStats.css";
 import GameStatRow from './GameStatRow'
 import { MdPostAdd } from "react-icons/md";
+import { BiSolidEdit } from "react-icons/bi";
 import axios from "axios";
-function GameStats({currentGame, homeTeam, awayTeam, gameScore}) {
+function GameStats({currentGame, homeTeam, awayTeam, gameScore, handleStatsOpen, gameStats, gameStatsSubmit}) {
 
-  const [gameStats, setGameStats] = useState({
+  const [currentGameStats, setCurrentGameStats] = useState({
     gameStatID: 0,
     gameID: currentGame.gameID,
     homeShots: 0,
@@ -42,59 +43,59 @@ function GameStats({currentGame, homeTeam, awayTeam, gameScore}) {
   const [homePK, setHomePK] = useState(0)
   const [awayPK, setAwayPK] = useState(0)
 
-  useEffect(() => {
-    getGameStats(currentGame.gameID)
-  }, [currentGame.gameID])
+  // useEffect(() => {
+  //   getGameStats(currentGame.gameID)
+  // }, [currentGame.gameID])
 
   useEffect(() => {
     formatPIM(gameStats.homeMinors, gameStats.awayMinors)
     formatPP(gameStats.homeMinors, gameStats.awayMinors, gameStats.homePPG, gameStats.awayPPG)
-    formatFO(gameStats.homeFaceoff, gameStats.awayFaceoff)
+    formatFO(gameStats.homeFO, gameStats.awayFO)
     formatSV( gameScore.homeScore, gameScore.awayScore, gameStats.homeShots, gameStats.awayShots)
-  }, [gameStats, gameScore])
+  }, [gameStats, gameStatsSubmit, gameScore])
 
   useEffect(() => {
     formatPK(homePP, awayPP)
   }, [homePP, awayPP])
 
-  const getGameStats = async (gameID) => {
-    await axios
-      .get("http://localhost:9200/gameStats/" + gameID)
-      .then((res) => {
-        {res.data.map((data) => {
-          setGameStats({
-            gameStatID: data.gameStatID,
-            gameID: currentGame.gameID,
-            homeShots: data.home_shots,
-            awayShots: data.away_shots,
-            homeFaceoff: data.home_faceoff,
-            awayFaceoff: data.away_faceoff,
-            homePP: data.home_pp,
-            awayPP: data.away_pp,
-            homePPG: data.home_ppg,
-            awayPPG: data.away_ppg,
-            homeMinors: data.home_minors,
-            awayMinors: data.away_minors,
-            homeMajors: data.home_majors,
-            awayMajors: data.away_majors,
-            homeHits: data.home_hits,
-            awayHits: data.away_hits,
-            homeBlocks: data.home_blocks,
-            awayBlocks: data.away_blocks,
-            homeGiveaways: data.home_giveaways,
-            awayGiveaway: data.away_giveaways,
-            homeTakeaway: data.home_takeaways,
-            awayTakeaway: data.away_takeaways,
-          });
-        })}
-      })
-      .catch((err) => console.log(err));
-  };
+  // const getGameStats = async (gameID) => {
+  //   await axios
+  //     .get("http://localhost:9200/currentGameStats/" + gameID)
+  //     .then((res) => {
+  //       {res.data.map((data) => {
+  //         setCurrentGameStats({
+  //           gameStatID: data.gameStatID,
+  //           gameID: currentGame.gameID,
+  //           homeShots: data.home_shots,
+  //           awayShots: data.away_shots,
+  //           homeFaceoff: data.home_faceoff,
+  //           awayFaceoff: data.away_faceoff,
+  //           homePP: data.home_pp,
+  //           awayPP: data.away_pp,
+  //           homePPG: data.home_ppg,
+  //           awayPPG: data.away_ppg,
+  //           homeMinors: data.home_minors,
+  //           awayMinors: data.away_minors,
+  //           homeMajors: data.home_majors,
+  //           awayMajors: data.away_majors,
+  //           homeHits: data.home_hits,
+  //           awayHits: data.away_hits,
+  //           homeBlocks: data.home_blocks,
+  //           awayBlocks: data.away_blocks,
+  //           homeGiveaways: data.home_giveaways,
+  //           awayGiveaway: data.away_giveaways,
+  //           homeTakeaway: data.home_takeaways,
+  //           awayTakeaway: data.away_takeaways,
+  //         });
+  //       })}
+  //     })
+  //     .catch((err) => console.log(err));
+  // };
 
-  const formatPIM = (homePenalties, awayPenalties) => {
-    const homePIMS = homePenalties * 2
+  const formatPIM = (homeMinors, awayMinors) => {
+    const homePIMS = homeMinors * 2
     setHomePIMs(homePIMS)
-    const awayPIMS = awayPenalties * 2
+    const awayPIMS = awayMinors * 2
     setAwayPIMs(awayPIMS)
   }
 
@@ -126,10 +127,10 @@ function GameStats({currentGame, homeTeam, awayTeam, gameScore}) {
   const formatSV = (homeScore, awayScore, homeShots, awayShots) => {
     const awaySaves = (homeShots - homeScore)
     const awaySVPct = parseFloat(((awaySaves / homeShots)).toFixed(3))
-    // console.log(`Away Saves: ${awaySaves}, Away Save%: ${awaySVPct}`)
+    console.log(`Away Saves: ${awaySaves}, Away Save%: ${awaySVPct}`)
     const homeSaves = (awayShots - awayScore)
     const homeSVPct = parseFloat(((homeSaves / awayShots)).toFixed(3))
-    // console.log(`Home Saves: ${homeSaves}, Home Save%: ${homeSVPct}`)
+    console.log(`Home Saves: ${homeSaves}, Home Save%: ${homeSVPct}`)
   }
 
   return (
@@ -148,11 +149,11 @@ function GameStats({currentGame, homeTeam, awayTeam, gameScore}) {
       <GameStatRow title="Penalty Kill %" homeValue={homePK} awayValue={awayPK} homeColor={homeTeam.primaryColor} awayColor={awayTeam.primaryColor} percentage={true}/>
       <GameStatRow title="Hits" homeValue={gameStats.homeHits} awayValue={gameStats.awayHits} homeColor={homeTeam.primaryColor} awayColor={awayTeam.primaryColor} percentage={false}/>
       <GameStatRow title="Blocked Shots" homeValue={gameStats.homeBlocks} awayValue={gameStats.awayBlocks} homeColor={homeTeam.primaryColor} awayColor={awayTeam.primaryColor} percentage={false}/>
-      <GameStatRow title="Giveaways" homeValue={gameStats.homeGiveaways} awayValue={gameStats.awayGiveaway} homeColor={homeTeam.primaryColor} awayColor={awayTeam.primaryColor} percentage={false}/>
-      <GameStatRow title="Takeaways" homeValue={gameStats.homeTakeaway} awayValue={gameStats.awayTakeaway} homeColor={homeTeam.primaryColor} awayColor={awayTeam.primaryColor} percentage={false}/>
+      <GameStatRow title="Giveaways" homeValue={gameStats.homeGiveaways} awayValue={gameStats.awayGiveaways} homeColor={homeTeam.primaryColor} awayColor={awayTeam.primaryColor} percentage={false}/>
+      <GameStatRow title="Takeaways" homeValue={gameStats.awayGiveaways} awayValue={gameStats.homeGiveaways} homeColor={homeTeam.primaryColor} awayColor={awayTeam.primaryColor} percentage={false}/>
       </div>
       <div className="gameStats_controls">
-      <button><MdPostAdd /></button>
+        {gameStats.isNull === true ? <button className="gameStat_add_btn" onClick={handleStatsOpen}><MdPostAdd /></button> : <button className="gameStat_update_btn"onClick={handleStatsOpen}><BiSolidEdit /></button>}
       </div>
     </div>
   );
