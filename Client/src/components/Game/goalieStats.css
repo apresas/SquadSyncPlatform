@@ -1,0 +1,117 @@
+.goalieStats_container {
+    padding-bottom: 1rem;
+}
+
+.goalie_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid lightgray;
+  border-bottom: 1px solid lightgray;
+  padding: 0.5rem;
+}
+
+.goalie_stat_grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 1rem 0.5rem;
+    background-color: var(--color-item-white);
+    
+}
+
+.awayGoalie_section {
+    border-bottom: 1px solid lightgrey;
+}
+
+.goalie_stat_header, .goalie_stat_body {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.goalie_header img {
+    width: 2.5rem;
+    aspect-ratio: 1/1;
+}
+
+.goalie_stat_header h4 {
+    text-align: center;
+}
+
+.goalie_stat_body {
+    text-align: center;
+}
+
+.goalie_stat_player {
+    display: flex;
+    gap: 0.5rem;
+    font-size: 1.25rem;
+    grid-row: 1/span 2;
+    align-self: center;
+    font-weight: 400;
+    font-family: var(--font-sub-header);
+}
+
+.goalie_stat_player h4 {
+    display: flex;
+    font-size: 1.25rem;
+    grid-row: 1/span 2;
+    align-self: center;
+    font-weight: 400;
+    font-family: var(--font-sub-header);
+}
+
+.goalie_stat_player span {
+    width: 1px;
+    background-color: lightgray;
+}
+
+
+.goalie_row {
+  display: grid;
+  grid-template-columns: 4fr 1fr 1fr 1fr;
+  text-align: center;
+}
+
+.goalie_row th:first-of-type, .goalie_row td:first-of-type {
+  text-align: left;
+}
+
+.goalie_table {
+  width: 100%;
+}
+
+.goalie_table td {
+    width: 100%;
+}
+
+.goalieStats_controls {
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    padding: 1rem 0 0;
+    gap: 0.5rem;
+  }
+
+.goalieStats_controls button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: inherit;
+    color: var(--color-bg);
+    border: 1px solid lightgray;
+    font-size: 1.25rem;
+    padding: 0.75rem;
+    aspect-ratio: 1/1;
+    transition: var(--transition-fast);
+  }
+  
+  .goalieStats_controls button:hover {
+    /* color: var(--color-ohio-red); */
+    border: 1px solid lightgray;
+    background-color: var(--color-dark-white);
+    transition: var(--transition-fast);
+  }
+  
+
+

@@ -7,6 +7,7 @@ import LineScore from "./LineScore";
 import GameStats from "./GameStats";
 import SeasonSeries from "./SeasonSeries";
 import GameEvent from "./GameEvent";
+import GoalieStats from "./GoalieStats";
 import "./gameSummary.css";
 import AddGameEventModal from "../../modal/AddGameEventModal";
 import GameStatsModal from "../../modal/gameStatsModal";
@@ -29,6 +30,7 @@ function GameSummary({
   record,
   getDates,
 }) {
+  const [type, setType] = useState("ADD");
   const [homeTeam, setHomeTeam] = useState({});
   const [awayTeam, setAwayTeam] = useState({});
   const [scoringID, setScoringID] = useState();
@@ -61,12 +63,13 @@ function GameSummary({
 
   const [games, setGames] = useState([]);
 
-  const [gameStatsSubmit, setGameStatsSubmit] = useState(false)
+  const [gameStatsSubmit, setGameStatsSubmit] = useState(false);
 
   const [gameStats, setGameStats] = useState({
+    gameStatsID: 0,
     homeShots: 0,
     awayShots: 0,
-    homeFO: 0, 
+    homeFO: 0,
     awayFO: 0,
     homePP: 0,
     awayPP: 0,
@@ -83,7 +86,7 @@ function GameSummary({
     homeGiveaways: 0,
     awayGiveaways: 0,
     isNull: true,
-  })
+  });
   // const [homeResult, setHomeResult] = useState();
   // const [awayResult, setAwayResult] = useState();
   // const setResult = (homeScore, awayScore) => {
@@ -110,40 +113,48 @@ function GameSummary({
     setOpenModal(true);
   };
 
-  const handleStatsOpen = async (e) => {
+  const handleStatsOpen = async (e, type) => {
     e.preventDefault();
+    console.log(type);
+    setType(type);
     setOpenStatsModal(true);
   };
 
   const getGameStats = async () => {
     await axios
-    .get("http://localhost:9200/gameStatByGame/" + currentGameID)
-    .then((res) => {
-      {res.data.map((stat) => {
-        setGameStats({
-          homeShots: stat.homeShots,
-          awayShots: stat.awayShots,
-          homeFO: stat.homeFaceoff, 
-          awayFO: stat.awayFaceoff,
-          homePP: stat.homePP,
-          awayPP: stat.awayPP,
-          homePPG: stat.homePPG,
-          awayPPG: stat.awayPPG,
-          homeMinors: stat.homeMinors,
-          awayMinors: stat.awayMinors,
-          homeMajors: stat.homeMajors,
-          awayMajors: stat.awayMajors,
-          homeHits: stat.homeHits,
-          awayHits: stat.awayHits,
-          homeBlocks: stat.homeBlocks,
-          awayBlocks: stat.awayBlocks,
-          homeGiveaways: stat.homeGiveaways,
-          awayGiveaways: stat.awayGiveaways,
-          isNull: false
-        })
-      })}
-    }).catch((err) => {console.log(err)});
-  }
+      .get("http://localhost:9200/gameStatByGame/" + currentGameID)
+      .then((res) => {
+        {
+          res.data.map((stat) => {
+            setGameStats({
+              gameStatsID: stat.gameStatsID,
+              homeShots: stat.homeShots,
+              awayShots: stat.awayShots,
+              homeFO: stat.homeFaceoff,
+              awayFO: stat.awayFaceoff,
+              homePP: stat.homePP,
+              awayPP: stat.awayPP,
+              homePPG: stat.homePPG,
+              awayPPG: stat.awayPPG,
+              homeMinors: stat.homeMinors,
+              awayMinors: stat.awayMinors,
+              homeMajors: stat.homeMajors,
+              awayMajors: stat.awayMajors,
+              homeHits: stat.homeHits,
+              awayHits: stat.awayHits,
+              homeBlocks: stat.homeBlocks,
+              awayBlocks: stat.awayBlocks,
+              homeGiveaways: stat.homeGiveaways,
+              awayGiveaways: stat.awayGiveaways,
+              isNull: false,
+            });
+          });
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   const getHomeRoster = async (teamID) => {
     if (teamID !== undefined) {
@@ -441,8 +452,16 @@ function GameSummary({
   // };
 
   useEffect(() => {
-    getGameStats()
-  }, [gameStatsSubmit])
+    // if(gameStatsSubmit) {
+    //   getGameSummary()
+    // }
+    console.log(gameStatsSubmit);
+    getGameStats();
+  }, [gameStatsSubmit]);
+
+  useEffect(() => {
+    setGameStatsSubmit(true);
+  }, [gameStats]);
 
   const formatGameDate = (date) => {
     const newDate = DateTime.fromISO(date).toFormat("DD");
@@ -466,7 +485,6 @@ function GameSummary({
         }
         setGame(res.data);
         getGameSummary(res.data.homeID, res.data.awayID, res.data.date);
-        getGameStats()
       })
       .catch((err) => console.log(err));
     // .finally(() => {
@@ -515,7 +533,14 @@ function GameSummary({
             teamList.push(awayTeam);
             setTeams(teamList);
             console.log({ series, events, homeTeam, awayTeam });
-            // getSeriesRecord(homeTeam.teamID, awayTeam.teamID, series, homeTeam, awayTeam)
+            getGameStats();
+            getSeriesRecord(
+              homeTeam.teamID,
+              awayTeam.teamID,
+              series,
+              homeTeam,
+              awayTeam
+            );
             // getRecord(homeTeam.teamID, awayTeam.teamID);
           }
         )
@@ -539,7 +564,7 @@ function GameSummary({
       awayTeam
     );
     getRecord(homeTeam.teamID, awayTeam.teamID);
-  }, [gameEvents]);
+  }, [games]);
 
   const getSeriesRecord = (homeID, awayID, series, homeTeam, awayTeam) => {
     let teamOneWins = 0;
@@ -641,6 +666,8 @@ function GameSummary({
   // console.log(awayRoster)
   // console.log(currentGame)
 
+  console.log(status);
+
   return (
     <>
       <AddGameEventModal
@@ -668,7 +695,19 @@ function GameSummary({
         teams={teams}
         gameEvents={gameEvents}
       />
-      <GameStatsModal homeTeam={homeTeam} awayTeam={awayTeam} open={openStatsModal} setOpenModal={setOpenStatsModal} currentGameID={currentGameID} gameStatsSubmit={gameStatsSubmit} setGameStatsSubmit={setGameStatsSubmit}/>
+      <GameStatsModal
+        homeTeam={homeTeam}
+        awayTeam={awayTeam}
+        open={openStatsModal}
+        setOpenModal={setOpenStatsModal}
+        currentGameID={currentGameID}
+        gameStatsSubmit={gameStatsSubmit}
+        setGameStatsSubmit={setGameStatsSubmit}
+        setType={setType}
+        type={type}
+        gameStats={gameStats}
+        setGameStats={setGameStats}
+      />
       {isLoading ? (
         <LoadingOverlay />
       ) : (
@@ -726,6 +765,16 @@ function GameSummary({
                     handleStatsOpen={handleStatsOpen}
                     gameStats={gameStats}
                     gameStatsSubmit={gameStatsSubmit}
+                    status={status}
+                  />
+                  <GoalieStats
+                    homeTeam={homeTeam}
+                    awayTeam={awayTeam}
+                    gameStats={gameStats}
+                    status={status}
+                    gameScore={gameScore}
+                    homeRoster={homeRoster}
+                    awayRoster={awayRoster}
                   />
                   <SeasonSeries
                     games={games}

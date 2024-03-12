@@ -33,6 +33,7 @@
   --color-ohio-blue: #0047ab;
   --color-dark-white: #e1e2f0;
   --color-border: rgba(119, 136, 153, 0.5);
+  --color-item-white: #efeffa;
 
   --transition: all 300ms ease-in-out;
   --transition-fast: all 200ms ease-in-out;

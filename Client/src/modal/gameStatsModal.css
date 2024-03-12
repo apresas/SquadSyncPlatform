@@ -76,6 +76,7 @@
 
 .title_logo {
     width: 3rem;
+    aspect-ratio: 1/1;
 }
 
 .stats_controls {
@@ -93,4 +94,12 @@
     display: flex;
     flex-direction: column;
     /* width: 100%; */
+}
+
+.stats_modal_title {
+    grid-column: 1 / span 2;
+}
+
+.stats_modal_title h2{
+    margin-top: 0;
 }
