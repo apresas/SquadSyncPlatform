@@ -5,7 +5,7 @@ import { IoClose } from "react-icons/io5";
 import CurrentStatsTable from "../components/currentStatsTable";
 import CareerStatsTable from "../components/CareerStatsTable";
 import axios from "axios";
-function playerModal({ open, onClose, currentPlayer, filterTeam }) {
+function playerModal({ open, onClose, currentPlayer, filterTeam, type }) {
   const [convertedHeight, setConvertedHeight] = useState();
 
   const [playerStats, setPlayerStats] = useState({
@@ -14,6 +14,10 @@ function playerModal({ open, onClose, currentPlayer, filterTeam }) {
     assists: 0,
     points: 0,
   });
+
+  const [goalieStats, setGoalieStats] = useState([]);
+  const [gaaString, setGaaString] = useState("")
+  const [wins, setWins] = useState(0)
 
   const convertHeight = (height) => {
     let feet = Math.floor(height / 12);
@@ -24,7 +28,12 @@ function playerModal({ open, onClose, currentPlayer, filterTeam }) {
 
   useEffect(() => {
     getPlayerStats();
+    getGoalieStats();
   }, [currentPlayer]);
+
+  useEffect(() => {
+    getWins()
+  }, [goalieStats]);
 
   const getPlayerStats = async () => {
     const stats = {
@@ -71,9 +80,111 @@ function playerModal({ open, onClose, currentPlayer, filterTeam }) {
     });
   };
 
+  const getGoalieStats = async () => {
+    await axios
+      .get("http://localhost:9200/goalieStatByPlayer/" + currentPlayer.playerID)
+      .then((res) => {
+        setGoalieStats(res.data);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const getWins = async () => {
+    let wins = 0;
+    let games = []
+    {goalieStats.map((stat) => {
+      games.push(stat.gameID)
+    })}
+
+    let endpoints = []
+    {games.map((game) => {
+      endpoints.push("http://localhost:9200/game/" + game)
+    })}
+
+    let playerGame = []
+    await axios.all(endpoints.map((endPoint) => axios.get(endPoint)))
+    .then(
+      axios.spread(
+        (
+          ...allData
+        ) => {
+          {allData.map((data) => {
+            playerGame.push(data.data)
+          })}
+
+        }
+      )
+    )
+    .catch((err) => {
+      console.log(err);
+    })
+
+    {playerGame.map((data) => {
+      if(data.homeID === currentPlayer.teamID) {
+        if(data.homeScore > data.awayScore) {
+          wins += 1
+        }
+      } else if(data.awayID === currentPlayer.teamID) {
+        if(data.awayScore > data.homeScore) {
+          wins += 1
+        }
+      }
+    })}
+    setWins(wins)
+};
+
   useEffect(() => {
     convertHeight(currentPlayer.height);
   }, [currentPlayer]);
+
+  const [currentGoalieStats, setCurrentGoalieStats] = useState({
+    games: 0,
+    wins: 0,
+    gaa: 0,
+    sa: 0,
+    svPct: 0,
+  });
+
+  useEffect(() => {
+    let ga = 0;
+    let sa = 0
+    if(goalieStats.length === 0) {
+      setCurrentGoalieStats({
+        games: 0,
+        wins: 0,
+        gaa: 0,
+        sa: 0,
+        svPct: 0
+      })
+    } else {
+    {
+      goalieStats.map((stat) => {
+        const rawPct =
+          (stat.shotsAgainst - stat.goalsAgainst) / stat.shotsAgainst;
+        const svPct = parseFloat(rawPct.toFixed(3));
+        const gp = goalieStats.length;
+        ga += stat.goalsAgainst;
+        sa += stat.shotsAgainst;
+        const gaa = parseFloat((ga / gp).toFixed(2));
+        let gaaString = ""
+        if(gaa.toString().length === 1) {
+          gaaString = (gaa + ".00").toString()
+        } else if(gaa.toString().length === 3) {
+          gaaString = (gaa + "0").toString()
+        } else {
+          gaaString = gaa.toString()
+        }
+
+        setCurrentGoalieStats({
+          games: gp,
+          wins: wins,
+          gaa: gaaString,
+          sa: sa,
+          svPct: svPct,
+        });
+      });
+    }}
+  }, [goalieStats, currentPlayer, wins]);
 
   if (!open) {
     return null;
@@ -128,7 +239,11 @@ function playerModal({ open, onClose, currentPlayer, filterTeam }) {
               }}
             >
               <img src={filterTeam.logo} alt="" className="team_logo_bg" />
-              <img className="modal_texture" src="../../src/assets/modal_texture.png" alt="" />
+              <img
+                className="modal_texture"
+                src="../../src/assets/modal_texture.png"
+                alt=""
+              />
               <div className="modal_controls">
                 <div className="close_btn_container">
                   <IoClose onClick={onClose} style={{ fontSize: "2.25rem" }} />
@@ -140,6 +255,9 @@ function playerModal({ open, onClose, currentPlayer, filterTeam }) {
                   <CurrentStatsTable
                     currentPlayer={currentPlayer}
                     playerStats={playerStats}
+                    goalieStats={goalieStats}
+                    currentGoalieStats={currentGoalieStats}
+                    type={type}
                   />
                 </div>
                 <div className="career_stats_container">

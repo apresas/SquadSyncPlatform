@@ -37,6 +37,10 @@ const playerByTeamRoutes = require('./routes/playerByTeam.js')
 const gameStatRoutes = require('./routes/gameStat.js')
 const gameStatByGameRoutes = require('./routes/gameStatByGame.js')
 
+const goalieStatRoutes = require('./routes/goalieStat.js')
+const goalieStatByGameRoutes = require('./routes/goalieStatByGame.js')
+const goalieStatByPlayerRoutes = require('./routes/goalieStatByPlayer.js')
+
 // Routes
 app.use("/test", testRoutes)
 app.use("/testUsers", testUsersRoutes)
@@ -56,6 +60,10 @@ app.use("/playerByTeam", playerByTeamRoutes)
 
 app.use("/gameStat", gameStatRoutes)
 app.use("/gameStatByGame", gameStatByGameRoutes)
+
+app.use("/goalieStat", goalieStatRoutes)
+app.use("/goalieStatByGame", goalieStatByGameRoutes)
+app.use("/goalieStatByPlayer", goalieStatByPlayerRoutes)
 
 
 

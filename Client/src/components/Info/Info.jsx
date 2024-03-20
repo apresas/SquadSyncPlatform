@@ -9,7 +9,7 @@ function Info({getDates}) {
   return (
     <div className="info_container">
       <div className="info_content_container">
-        <TitleBar title="League Info" />
+        <TitleBar title="League Info" subtitle="Capital Hockey Conference"/>
         <div className="league_info_container">
           <h2>About the Capital Hockey Conference</h2>
           <p>
@@ -252,13 +252,14 @@ function Info({getDates}) {
           </p>
           <table className="total_championship_table">
             <thead>
+            <th colspan="6">League Titles</th>
               <tr>
-                <td></td>
-                <td>Regular Season Title</td>
-                <td>Blue Jackets Cup Title</td>
-                <td>State Final Four</td>
-                <td>State Finalist</td>
-                <td>State Champion</td>
+                <td style={{width: '300px'}}>Team Name</td>
+                <td style={{width: '120px'}}>Regular Season Title</td>
+                <td style={{width: '120px'}}>Blue Jackets Cup Title</td>
+                <td style={{width: '120px'}}>State Final Four</td>
+                <td style={{width: '120px'}}>State Finalist</td>
+                <td style={{width: '120px'}}>State Champion</td>
               </tr>
             </thead>
             <tbody>
@@ -361,143 +362,143 @@ function Info({getDates}) {
             <thead>
             <th colspan="3">Previous Varsity Champions</th>
               <tr>
-                <td>Season</td>
-                <td>Regular Season Champion</td>
-                <td>Blue Jackets Cup Champion</td>
+                <td style={{width: '25%'}}>Season</td>
+                <td style={{width: '50%', textAlign: 'center'}}>Regular Season Champion</td>
+                <td style={{width: '25%',  textAlign: 'center'}}>Blue Jackets Cup Champion</td>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td>2022-23</td>
                 <td>
-                  <ul>
-                    <li>Red - Olentangy Liberty</li>
-                    <li>White - Olentangy</li>
-                    <li>Blue - Gahanna</li>
+                  <ul style={{display: 'flex', flexDirection: 'row', gap: "1rem", justifyContent: 'center'}}>
+                    <li><span>Red:</span> Olentangy Liberty</li>
+                    <li><span>White:</span> Olentangy</li>
+                    <li><span>Blue:</span> Gahanna</li>
                   </ul>
                 </td>
-                <td>Olentangy Liberty</td>
+                <td style={{textAlign: 'center'}}>Olentangy Liberty</td>
               </tr>
               <tr>
                 <td>2021-22</td>
                 <td>
-                  <ul>
-                    <li>Red - Olentangy Liberty</li>
-                    <li>White - Olentangy</li>
-                    <li>Blue - Gahanna</li>
+                  <ul style={{display: 'flex', flexDirection: 'row', gap: "1rem", justifyContent: 'center'}}>
+                    <li><span>Red:</span> Olentangy Liberty</li>
+                    <li><span>White:</span> Olentangy</li>
+                    <li><span>Blue:</span> Gahanna</li>
                   </ul>
                 </td>
-                <td>Olentangy Berlin</td>
+                <td style={{textAlign: 'center'}}>Olentangy Berlin</td>
               </tr>
               <tr>
                 <td>2020-21</td>
                 <td>
-                  <ul>
-                    <li>Red - Olentangy Liberty</li>
-                    <li>White - Olentangy</li>
-                    <li>Blue - Gahanna</li>
+                  <ul style={{display: 'flex', flexDirection: 'row', gap: "1rem", justifyContent: 'center'}}>
+                    <li><span>Red:</span> Olentangy Liberty</li>
+                    <li><span>White:</span> Olentangy</li>
+                    <li><span>Blue:</span> Gahanna</li>
                   </ul>
                 </td>
-                <td>Upper Arlington</td>
+                <td style={{textAlign: 'center'}}>Upper Arlington</td>
               </tr>
               <tr>
                 <td>2019-20</td>
                 <td>
-                  <ul>
-                    <li>Red - Olentangy Liberty</li>
-                    <li>White - Olentangy</li>
-                    <li>Blue - Gahanna</li>
+                  <ul style={{display: 'flex', flexDirection: 'row', gap: "1rem", justifyContent: 'center'}}>
+                    <li><span>Red:</span> Olentangy Liberty</li>
+                    <li><span>White:</span> Olentangy</li>
+                    <li><span>Blue:</span> Gahanna</li>
                   </ul>
                 </td>
-                <td>Upper Arlington</td>
+                <td style={{textAlign: 'center'}}>Upper Arlington</td>
               </tr>
               <tr>
                 <td>2018-19</td>
                 <td>
-                  <ul>
-                    <li>Red - Olentangy Liberty</li>
-                    <li>White - Olentangy</li>
-                    <li>Blue - Gahanna</li>
+                  <ul style={{display: 'flex', flexDirection: 'row', gap: "1rem", justifyContent: 'center'}}>
+                    <li><span>Red:</span> Olentangy Liberty</li>
+                    <li><span>White:</span> Olentangy</li>
+                    <li><span>Blue:</span> Gahanna</li>
                   </ul>
                 </td>
-                <td>Dublin Jerome</td>
+                <td style={{textAlign: 'center'}}>Dublin Jerome</td>
               </tr>
               <tr>
                 <td>2017-18</td>
                 <td>
-                  <ul>
-                    <li>Red - Olentangy Liberty</li>
-                    <li>White - Olentangy</li>
-                    <li>Blue - Gahanna</li>
+                  <ul style={{display: 'flex', flexDirection: 'row', gap: "1rem", justifyContent: 'center'}}>
+                    <li><span>Red:</span> Olentangy Liberty</li>
+                    <li><span>White:</span> Olentangy</li>
+                    <li><span>Blue:</span> Gahanna</li>
                   </ul>
                 </td>
-                <td>Dublin Jerome</td>
+                <td style={{textAlign: 'center'}}>Dublin Jerome</td>
               </tr>
               <tr>
                 <td>2016-17</td>
                 <td>
-                  <ul>
-                    <li>Red - Olentangy Liberty</li>
-                    <li>White - Olentangy</li>
-                    <li>Blue - Gahanna</li>
+                  <ul style={{display: 'flex', flexDirection: 'row', gap: "1rem", justifyContent: 'center'}}>
+                    <li><span>Red:</span> Olentangy Liberty</li>
+                    <li><span>White:</span> Olentangy</li>
+                    <li><span>Blue:</span> Gahanna</li>
                   </ul>
                 </td>
-                <td>Dublin Jerome</td>
+                <td style={{textAlign: 'center'}}>Dublin Jerome</td>
               </tr>
               <tr>
                 <td>2015-16</td>
                 <td>
-                  <ul>
-                    <li>Red - Olentangy Liberty</li>
-                    <li>White - Olentangy</li>
-                    <li>Blue - Gahanna</li>
+                  <ul style={{display: 'flex', flexDirection: 'row', gap: "1rem", justifyContent: 'center'}}>
+                    <li><span>Red:</span> Olentangy Liberty</li>
+                    <li><span>White:</span> Olentangy</li>
+                    <li><span>Blue:</span> Gahanna</li>
                   </ul>
                 </td>
-                <td>Dublin Coffman</td>
+                <td style={{textAlign: 'center'}}>Dublin Coffman</td>
               </tr>
               <tr>
                 <td>2014-15</td>
                 <td>
-                  <ul>
-                    <li>Red - Olentangy Liberty</li>
-                    <li>White - Olentangy</li>
-                    <li>Blue - Gahanna</li>
+                  <ul style={{display: 'flex', flexDirection: 'row', gap: "1rem", justifyContent: 'center'}}>
+                    <li><span>Red:</span> Olentangy Liberty</li>
+                    <li><span>White:</span> Olentangy</li>
+                    <li><span>Blue:</span> Gahanna</li>
                   </ul>
                 </td>
-                <td>Olentangy Orange</td>
+                <td style={{textAlign: 'center'}}>Olentangy Orange</td>
               </tr>
               <tr>
                 <td>2013-14</td>
                 <td>
-                  <ul>
-                    <li>Red - Olentangy Liberty</li>
-                    <li>White - Olentangy</li>
-                    <li>Blue - Gahanna</li>
+                  <ul style={{display: 'flex', flexDirection: 'row', gap: "1rem", justifyContent: 'center'}}>
+                    <li><span>Red:</span> Olentangy Liberty</li>
+                    <li><span>White:</span> Olentangy</li>
+                    <li><span>Blue:</span> Gahanna</li>
                   </ul>
                 </td>
-                <td>St.Charles</td>
+                <td style={{textAlign: 'center'}}>St.Charles</td>
               </tr>
               <tr>
                 <td>2012-13</td>
                 <td>
-                  <ul>
-                    <li>Red - Olentangy Liberty</li>
-                    <li>White - Olentangy</li>
-                    <li>Blue - Gahanna</li>
+                  <ul style={{display: 'flex', flexDirection: 'row', gap: "1rem", justifyContent: 'center'}}>
+                    <li><span>Red:</span> Olentangy Liberty</li>
+                    <li><span>White:</span> Olentangy</li>
+                    <li><span>Blue:</span> Gahanna</li>
                   </ul>
                 </td>
-                <td>Dublin Jerome</td>
+                <td style={{textAlign: 'center'}}>Dublin Jerome</td>
               </tr>
               <tr>
                 <td>2011-12</td>
                 <td>
-                  <ul>
-                    <li>Red - Olentangy Liberty</li>
-                    <li>White - Olentangy</li>
-                    <li>Blue - Gahanna</li>
+                  <ul style={{display: 'flex', flexDirection: 'row', gap: "1rem", justifyContent: 'center'}}>
+                    <li><span>Red:</span> Olentangy Liberty</li>
+                    <li><span>White:</span> Olentangy</li>
+                    <li><span>Blue:</span> Gahanna</li>
                   </ul>
                 </td>
-                <td>Olentangy Liberty</td>
+                <td style={{textAlign: 'center'}}>Olentangy Liberty</td>
               </tr>
             </tbody>
           </table>

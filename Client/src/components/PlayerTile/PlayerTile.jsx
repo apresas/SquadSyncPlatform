@@ -2,14 +2,15 @@ import React from "react";
 import playerPortrait from "../../assets/Player_Icon.svg";
 import "./playerTile.css"
 
-function PlayerTile({ player, teamData, setCurrentPlayer, checkCurrentPlayer, getFilteredPlayer }) {
-    const onPlayerClick = (player) => {
+function PlayerTile({ player, teamData, setCurrentPlayer, checkCurrentPlayer, getFilteredPlayer, setType }) {
+    const onPlayerClick = (player, type) => {
         setCurrentPlayer(player)
         checkCurrentPlayer();
         getFilteredPlayer(player.playerID)
+        setType(type)
       }
   return (
-    <div className="player_container" onClick={() => onPlayerClick(player)}>
+    <div className="player_container" onClick={() => onPlayerClick(player, player.position.toUpperCase())}>
       <div className="portrait_container">
         <img src={playerPortrait} alt="" className="player_image" />
         <span />

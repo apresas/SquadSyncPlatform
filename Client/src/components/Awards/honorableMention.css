@@ -97,7 +97,7 @@
     justify-content: center;
     height: 100%;
     aspect-ratio: 1/2;
-    border-right: 1px solid lightgrey;
+    border-left: 1px solid lightgrey;
     font-weight: 600;
 }
 

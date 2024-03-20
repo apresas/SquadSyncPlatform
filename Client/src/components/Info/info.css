@@ -5,6 +5,12 @@
     justify-content: center;
     color: var(--color-bg);
     font-family: var(--font-main);
+    font-size: 1.1rem;
+}
+
+.info_container h2{
+    font-size: 2rem;
+    font-family: var(--font-header);
 }
 
 .info_content_container {
@@ -36,12 +42,20 @@
     margin-bottom: 1rem;
 }
 
+.league_championship_table span {
+    font-weight: 600;
+}
+
 .team_history_table td:nth-of-type(2), .team_history_table td:nth-of-type(3) {
     text-align: center;
 }
 
+.team_history_table td, .total_championship_table td {
+    padding: 0.5rem 0;
+}
+
 .total_championship_table td:nth-of-type(1), .team_history_table td:nth-of-type(1), .league_championship_table td:nth-of-type(1){
-    padding: 0 1.5rem ;
+    padding: 0 0 0 1.5rem ;
 }
 
 .total_championship_table td:nth-of-type(2), .total_championship_table td:nth-of-type(3), .total_championship_table td:nth-of-type(4), .total_championship_table td:nth-of-type(5), .total_championship_table td:nth-of-type(6) {
@@ -55,7 +69,7 @@
 .team_history_table thead, .league_championship_table thead, .total_championship_table thead, .league_contacts_table thead {
     /* width: 100%; */
     background-color: var(--color-ohio-blue);
-    font-family: var(--font-header);
+    font-family: var(--font-sub-header);
     color: white;
 }
 
@@ -71,6 +85,7 @@
     font-size: 1.5rem;
     padding: 1rem 0;
     color: white;
+    font-family: var(--font-header);
 }
 
 .league_championship_table  ul, .league_contacts_table ul {

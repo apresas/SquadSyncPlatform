@@ -64,8 +64,8 @@ function UpdatePlayerModal({
     e.preventDefault();
 
     try {
-      await axios.put(
-        "http://localhost:9200/players/" + currentPlayer.playerID,
+      await axios.patch(
+        "http://localhost:9200/player/" + currentPlayer.playerID,
         updatedPlayer
       );
       console.log("Player Updated");

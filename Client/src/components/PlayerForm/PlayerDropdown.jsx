@@ -22,10 +22,15 @@ function PlayerDropdown({
   setPrimaryID,
   setSecondaryID,
   setGoalID,
-  setEventPeriod
+  setEventPeriod,
+  setSelectedHomeGoalie,
+  setSelectedAwayGoalie,
+  setSelected,
+  selected
 }) {
   const [dropdownTitle, setDropdownTitle] = useState(`Select ${type}`);
   const [playerID, setPlayerID] = useState()
+  const [goalieID, setGoalieID] = useState()
   const [logo, setLogo] = useState();
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
@@ -97,6 +102,19 @@ function PlayerDropdown({
           setSecondaryID(player.playerID)
         }
       })
+    } else if(type === "Home Goalies") {
+      data.map((goalie) => {
+        if(goalie.playerID === goalieID) {
+        setSelectedHomeGoalie(goalie)
+        // setSelected(true)
+      }
+      })
+    } else if(type === "Away Goalies") {
+      data.map((goalie) => {
+        if(goalie.playerID === goalieID) {
+        setSelectedAwayGoalie(goalie)
+      }
+      })
     }
   }, [dropdownTitle]);
 
@@ -112,7 +130,6 @@ function PlayerDropdown({
         setDropdownTitle(data.schoolName)
         setLogo(data.logo)
        })}
-
     }
   }, [currentPlayer])
 
@@ -147,6 +164,7 @@ function PlayerDropdown({
           currentTeamTitle={currentTeamTitle}
           setLogo={setLogo}
           setPlayerID={setPlayerID}
+          setGoalieID={setGoalieID}
         />
       ) : null}
     </div>

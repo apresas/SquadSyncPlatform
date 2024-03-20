@@ -6,3 +6,7 @@
 .navLinks {
     color: white;
 }
+
+.nav_selected {
+    color: var(--color-ohio-red);
+}

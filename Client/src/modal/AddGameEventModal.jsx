@@ -47,7 +47,7 @@ function addGameEventModal({
     type: "",
   });
 
-  const periods = ["1st", "2nd", "3rd"];
+  const periods = ["1st", "2nd", "3rd", "OT"];
   const [eventPlayers, setEventPlayers] = useState(allPlayers);
   const [eventPeriod, setEventPeriod] = useState();
 
@@ -195,7 +195,7 @@ function addGameEventModal({
   //   updateScore()
   // }
 
-  updateScore()
+  // updateScore()
   }, [gameEvents])
 
   const getCurrentGame = async() => {
@@ -238,12 +238,12 @@ function addGameEventModal({
     setOpenModal(false);
   };
 
-  const updateScore = async() => {
-    await axios
-    .patch("http://localhost:9200/game/" + currentGameID, gameScore)
-    .catch(err => {console.log(err)})
-    setEventSubmit(false)
-  }
+  // const updateScore = async() => {
+  //   await axios
+  //   .patch("http://localhost:9200/game/" + currentGameID, gameScore)
+  //   .catch(err => {console.log(err)})
+  //   setEventSubmit(false)
+  // }
 
   // console.log(eventSubmit)
 

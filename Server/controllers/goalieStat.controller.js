@@ -1,7 +1,7 @@
 const models = require("../models");
 
 function index(req, res) {
-  models.Player.findAll()
+  models.GoalieStat.findAll()
     .then((result) => {
       res.status(200).json(result);
     })
@@ -13,23 +13,21 @@ function index(req, res) {
 }
 
 function save(req, res) {
-  const player = {
+  const goalieStat = {
+    goalieStatsID: req.body.goalieStatsID,
+    gameID: req.body.gameID,
     playerID: req.body.playerID,
     teamID: req.body.teamID,
-    playerImage: req.body.playerImage,
-    firstName: req.body.firstName,
-    lastName: req.body.lastName,
-    jerseyNumber: req.body.jerseyNumber,
-    position: req.body.position,
-    height: req.body.height,
-    weight: req.body.weight,
-    handedness: req.body.handedness,
-    class: req.body.class
+    shotsAgainst: req.body.shotsAgainst,
+    goalsAgainst: req.body.goalsAgainst,
+    saves: req.body.saves,
+    toi: req.body.toi,
   };
-  models.Player.create(player)
+  console.log(goalieStat);
+  models.GoalieStat.create(goalieStat)
     .then((result) => {
       res.status(200).json({
-        message: "Player created successfully",
+        message: "Test created successfully",
         post: result,
       });
     })
@@ -42,9 +40,9 @@ function save(req, res) {
 }
 
 function show(req, res) {
-  const playerID = req.params.playerID;
+  const goalieStatsID = req.params.gameStatsID;
 
-  models.Player.findByPk(playerID)
+  models.GoalieStat.findByPk(goalieStatsID)
     .then((result) => {
       res.status(200).json(result);
     })
@@ -55,13 +53,11 @@ function show(req, res) {
     });
 }
 
-function showByTeamID(req, res) {
-  const teamID = req.params.teamID;
-  models.Player.findAll({
-    where: {
-      teamID: teamID,
-    },
-  })
+function showByGameID(req, res) {
+  const gameID = req.params.gameID;
+  models.GoalieStat.findAll({ where: { 
+    gameID: gameID
+   } })
     .then((result) => {
       res.status(200).json(result);
     })
@@ -72,15 +68,11 @@ function showByTeamID(req, res) {
     });
 }
 
-function showByPosition(req, res) {
-  const teamID = req.params.teamID;
-  const position = req.params.position;
-  models.Player.findAll({
-    where: {
-      teamID: teamID,
-      position: position
-    },
-  })
+function showByPlayerID(req, res) {
+  const playerID = req.params.playerID;
+  models.GoalieStat.findAll({ where: { 
+    playerID: playerID
+   } })
     .then((result) => {
       res.status(200).json(result);
     })
@@ -92,24 +84,20 @@ function showByPosition(req, res) {
 }
 
 function update(req, res) {
-  const playerID = req.params.playerID;
-  updatedPlayer = {
-    teamID: req.body.teamID,
-    playerImage: req.body.playerImage,
-    firstName: req.body.firstName,
-    lastName: req.body.lastName,
-    jerseyNumber: req.body.jerseyNumber,
-    position: req.body.position,
-    height: req.body.height,
-    weight: req.body.weight,
-    handedness: req.body.handedness,
-    class: req.body.class
+  const goalieStatsID = req.params.gameStatsID;
+  updatedGoalieStats = {
+    gameID: req.body.gameID,
+    playerID: req.body.playerID,
+    shotsAgainst: req.body.shotsAgainst,
+    goalsAgainst: req.body.goalsAgainst,
+    saves: req.body.saves,
+    toi: req.body.toi,
   };
 
-  models.Player.update(updatedPlayer, { where: { playerID: playerID } })
+  models.GoalieStat.update(updatedGoalieStats, { where: { goalieStatsID: goalieStatsID } })
     .then((result) => {
       res.status(200).json({
-        message: "Player updated successfully",
+        message: "GameStat updated successfully",
         post: result,
       });
     })
@@ -122,11 +110,11 @@ function update(req, res) {
 }
 
 function destroy(req, res) {
-  const playerID = req.params.playerID;
-  models.Player.destroy({ where: { playerID: playerID } })
+  const goalieStatsID = req.params.goalieStatsID;
+  models.GoalieStat.destroy({ where: { goalieStatsID: goalieStatsID } })
     .then((result) => {
       res.status(200).json({
-        message: "Player deleted successfully",
+        message: "GameStat deleted successfully",
       });
     })
     .catch((err) => {
@@ -144,6 +132,6 @@ module.exports = {
   update: update,
   destroy: destroy,
 
-  showByTeamID: showByTeamID,
-  showByPosition: showByPosition,
+  showByGameID: showByGameID,
+  showByPlayerID: showByPlayerID
 };

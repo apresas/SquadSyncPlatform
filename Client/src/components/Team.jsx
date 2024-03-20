@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import "./team.css";
 import NavBar from "./NavBar";
 import SponcerBar from "./Sponcer/SponcerBar";
@@ -22,10 +22,16 @@ function Team({
   teamLoading
 }) {
 
+  const rosterBtn = useRef()
+  const statsBtn = useRef()
+  const scheduleBtn = useRef()
+
   const [openModal, setOpenModal] = useState(false);
 
   const location = useLocation();
   const currentTeamID = location.pathname.split("/")[2];
+
+  const [type, setType] = useState("")
 
 
   useEffect(() => {
@@ -43,6 +49,22 @@ function Team({
 
   // console.log(filterTeam)
 
+  const handleTeamNav = (type) => {
+    if(type === "ROSTER") {
+      rosterBtn.current.className = "team_btn team_selected"
+      statsBtn.current.className = "team_btn"
+      scheduleBtn.current.className = "team_btn"
+    } else if(type === "STATS") {
+      rosterBtn.current.className = "team_btn"
+      statsBtn.current.className = "team_btn team_selected"
+      scheduleBtn.current.className = "team_btn"
+    } else if(type === "SCHEDULE"){
+      rosterBtn.current.className = "team_btn"
+      statsBtn.current.className = "team_btn"
+      scheduleBtn.current.className = "team_btn team_selected"
+    }
+  }
+
   return (
     <>
       <PlayerModal
@@ -50,6 +72,7 @@ function Team({
         currentPlayer={currentPlayer}
         onClose={closeModal}
         filterTeam={filterTeam}
+        type={type}
       />
       <SponcerBar />
       <NavBar />
@@ -60,6 +83,13 @@ function Team({
             filterTeam={filterTeam}
           />
           <div className="header_bar" style={{backgroundColor: `${filterTeam.secondaryColor}`}}/>
+          <div className="team_nav_container" >
+            <div className="nav_controls">
+              <a className="team_btn team_selected" ref={rosterBtn} onClick={() => handleTeamNav("ROSTER")}>Roster</a>
+              <a className="team_btn" ref={statsBtn} onClick={() => handleTeamNav("STATS")}>Stats</a>
+              <a className="team_btn" ref={scheduleBtn} onClick={() => handleTeamNav("SCHEDULE")}>Schedule</a>
+            </div>
+          </div>
           <div className="players_grid">
             <h2 className="grid_title">Forwards</h2>
             <div className="forwards_grid">
@@ -73,6 +103,7 @@ function Team({
                     setCurrentPlayer={setCurrentPlayer}
                     checkCurrentPlayer={checkCurrentPlayer}
                     getFilteredPlayer={getFilteredPlayer}
+                    setType={setType}
                   />
                 ))}
             </div>
@@ -88,6 +119,7 @@ function Team({
                     setCurrentPlayer={setCurrentPlayer}
                     checkCurrentPlayer={checkCurrentPlayer}
                     getFilteredPlayer={getFilteredPlayer}
+                    setType={setType}
                   />
                 ))}
             </div>
@@ -103,6 +135,7 @@ function Team({
                     setCurrentPlayer={setCurrentPlayer}
                     checkCurrentPlayer={checkCurrentPlayer}
                     getFilteredPlayer={getFilteredPlayer}
+                    setType={setType}
                   />
                 ))}
             </div>

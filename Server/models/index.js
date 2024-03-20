@@ -154,6 +154,52 @@ const GameStats = sequelize.define("GameStats", {
   awayGiveaways: { type: Sequelize.DataTypes.INTEGER },
 });
 
+const GoalieStats = sequelize.define("GoalieStats", {
+  goalieStatsID: {
+    type: Sequelize.DataTypes.INTEGER,
+    allowNull: false,
+    primaryKey: true,
+  },
+  gameID: { type: Sequelize.DataTypes.INTEGER },
+  playerID: { type: Sequelize.DataTypes.INTEGER },
+  teamID: { type: Sequelize.DataTypes.INTEGER },
+  shotsAgainst: { type: Sequelize.DataTypes.INTEGER },
+  goalsAgainst: { type: Sequelize.DataTypes.INTEGER },
+  saves: { type: Sequelize.DataTypes.INTEGER },
+  toi: { type: Sequelize.DataTypes.FLOAT }
+});
+
+const Record = sequelize.define("Records", {
+  recordID: {
+    type: Sequelize.DataTypes.INTEGER,
+    allowNull: false,
+    primaryKey: true,
+  },
+  teamID: { type: Sequelize.DataTypes.INTEGER },
+  wins: { type: Sequelize.DataTypes.INTEGER },
+  loses: { type: Sequelize.DataTypes.INTEGER },
+  ties: { type: Sequelize.DataTypes.INTEGER },
+  otl: { type: Sequelize.DataTypes.INTEGER },
+  points: { type: Sequelize.DataTypes.INTEGER },
+  goalsFor: { type: Sequelize.DataTypes.INTEGER },
+  goalsAgainst: { type: Sequelize.DataTypes.INTEGER }
+});
+
+const Series = sequelize.define("Series", {
+  seriesID: { type: Sequelize.DataTypes.INTEGER, allowNull: false, primaryKey: true},
+  gameID: { type: Sequelize.DataTypes.INTEGER }, 
+  homeID: { type: Sequelize.DataTypes.INTEGER },
+  awayID: { type: Sequelize.DataTypes.INTEGER },
+
+})
+
+// GoalieStats.sync({alter: true})
+// .then(() => {
+//   console.log("Table and Model synced Successfully");
+// }).catch(() => {
+//   console.log("Error Syncing Table and Model");
+// })
+
 // GameStats.sync({force: true})
 //   .then(() => {
 //     console.log("Table and Model synced Successfully");
