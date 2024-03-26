@@ -62,7 +62,7 @@ function GameSummary({
 
   const [gameStatsSubmit, setGameStatsSubmit] = useState(false);
 
-  const [goalieSubmit, setGoalieSubmit] = useState(false)
+  const [goalieSubmit, setGoalieSubmit] = useState(false);
 
   const [homeSaves, setHomeSaves] = useState();
   const [awaySaves, setAwaySaves] = useState();
@@ -72,7 +72,6 @@ function GameSummary({
   const [selectedAwayGoalieOne, setSelectedAwayGoalieOne] = useState({});
   const [homeGoalieStats, setHomeGoalieStats] = useState([]);
   const [awayGoalieStats, setAwayGoalieStats] = useState([]);
-
 
   const [gameStats, setGameStats] = useState({
     gameStatsID: 0,
@@ -97,7 +96,6 @@ function GameSummary({
     isNull: true,
   });
 
-
   const [isFinal, setIsFinal] = useState(false);
 
   const [openModal, setOpenModal] = useState(false);
@@ -118,10 +116,10 @@ function GameSummary({
     setOpenStatsModal(true);
   };
 
-  const [goalieType, setGoalieType] = useState("ADD")
+  const [goalieType, setGoalieType] = useState("ADD");
   const handleGoalieOpen = async (e, type) => {
     e.preventDefault();
-    setGoalieType(type)
+    setGoalieType(type);
     setOpenGoalieModal(true);
   };
 
@@ -161,7 +159,6 @@ function GameSummary({
       });
   };
 
-
   const getHomeRoster = async (teamID) => {
     if (teamID !== undefined) {
       setHomeLoading(true);
@@ -188,7 +185,6 @@ function GameSummary({
     }
   };
 
-
   useEffect(() => {
     getFilterGame(currentGameID);
     getTeamData();
@@ -200,9 +196,150 @@ function GameSummary({
   }, []);
 
   useEffect(() => {
+    // let timeOfGoals = [];
+    // let goalsAgainst = [];
+    // {
+    //   gameEvents.map((event) => {
+    //     if (event.scoringTeam === awayTeam.teamID && event.period === "1st") {
+    //       timeOfGoals.push(
+    //         Math.round((45 - (15 - event.gameTime)) * 100) / 100
+    //       );
+    //       console.log(timeOfGoals);
+    //     }
+    //     if (event.scoringTeam === awayTeam.teamID && event.period === "2nd") {
+    //       timeOfGoals.push(
+    //         Math.round((45 - (30 - event.gameTime)) * 100) / 100
+    //       );
+    //       console.log(timeOfGoals);
+    //     }
+    //     if (event.scoringTeam === awayTeam.teamID && event.period === "3rd") {
+    //       timeOfGoals.push(
+    //         Math.round((45 - (45 - event.gameTime)) * 100) / 100
+    //       );
+    //       console.log(timeOfGoals);
+    //     }
+    //   });
+    // }
+    // let toi = 0;
+    // toi = 45 - 25;
+    // {
+    //   timeOfGoals.map((goal) => {
+    //     if (goal >= toi) {
+    //       // console.log(goal)
+    //       goalsAgainst.push(goal);
+    //     }
+    //   });
+    // }
+    // console.log(goalsAgainst);
+    // console.log(goalsAgainst.length);
+    // getGoalsAgainst(25,20,30,15)
+  }, [gameEvents]);
+
+  const [homeOneGoals, setHomeOneGoals] = useState();
+  const [homeTwoGoals, setHomeTwoGoals] = useState();
+  const [awayOneGoals, setAwayOneGoals] = useState();
+  const [awayTwoGoals, setAwayTwoGoals] = useState();
+
+  const getGoalsAgainst = (homeOne, homeTwo, awayOne, awayTwo) => {
+    let timeOfGoalsHome = [];
+    let homeOneGA = [];
+    let timeOfGoalsAway = [];
+    let awayOneGA = [];
+    let awayTwoGA = [];
+    let homeTwoGA = [];
+
+    let homeTOI = 0;
+    homeTOI = 45 - homeOne;
+    let awayTOI = 0;
+    awayTOI = 45 - awayOne;
+    let homeTwoTOI = 0;
+    homeTwoTOI = 45 - (homeTwo + homeOne);
+    let awayTwoTOI = 0;
+    awayTwoTOI = 45 - (awayTwo + awayOne);
+
+    let homeOneGoals = 0;
+    let homeTwoGoals = 0;
+    let awayOneGoals = 0;
+    let awayTwoGoals = 0;
+
+    {
+      gameEvents.map((event) => {
+        if (event.scoringTeam === awayTeam.teamID && event.period === "1st") {
+          timeOfGoalsHome.push(
+            Math.round((45 - (15 - event.gameTime)) * 100) / 100
+          );
+        }
+        if (event.scoringTeam === awayTeam.teamID && event.period === "2nd") {
+          timeOfGoalsHome.push(
+            Math.round((45 - (30 - event.gameTime)) * 100) / 100
+          );
+        }
+        if (event.scoringTeam === awayTeam.teamID && event.period === "3rd") {
+          timeOfGoalsHome.push(
+            Math.round((45 - (45 - event.gameTime)) * 100) / 100
+          );
+        }
+        if (event.scoringTeam === homeTeam.teamID && event.period === "1st") {
+          timeOfGoalsAway.push(
+            Math.round((45 - (15 - event.gameTime)) * 100) / 100
+          );
+        }
+        if (event.scoringTeam === homeTeam.teamID && event.period === "2nd") {
+          timeOfGoalsAway.push(
+            Math.round((45 - (30 - event.gameTime)) * 100) / 100
+          );
+        }
+        if (event.scoringTeam === homeTeam.teamID && event.period === "3rd") {
+          timeOfGoalsAway.push(
+            Math.round((45 - (45 - event.gameTime)) * 100) / 100
+          );
+        }
+      });
+    }
+
+    // console.log(timeOfGoalsHome);
+    // console.log(timeOfGoalsAway);
+
+    {
+      timeOfGoalsHome.map((goal) => {
+        if (goal >= homeTOI) {
+          homeOneGA.push(goal);
+        }
+        if (goal >= homeTwoTOI) {
+          homeTwoGA.push(goal);
+        }
+      });
+    }
+    {
+      timeOfGoalsAway.map((goal) => {
+        if (goal >= awayTOI) {
+          awayOneGA.push(goal);
+        }
+        if (goal >= awayTwoTOI) {
+          awayTwoGA.push(goal);
+        }
+      });
+    }
+
+    homeOneGoals = homeOneGA.length;
+    homeTwoGoals = homeTwoGA.length - homeOneGA.length;
+    awayOneGoals = awayOneGA.length;
+    awayTwoGoals = awayTwoGA.length - awayOneGA.length;
+
+    setHomeOneGoals(homeOneGoals);
+    setHomeTwoGoals(homeTwoGoals);
+    setAwayOneGoals(awayOneGoals);
+    setAwayTwoGoals(awayTwoGoals);
+
+    console.log(`homeOneGA: ${homeOneGoals}`);
+    console.log(`homeTwoGA: ${homeTwoGoals}`);
+    console.log(`awayOneGA: ${awayOneGoals}`);
+    console.log(`awayTwoGA: ${awayTwoGoals}`);
+  };
+
+  useEffect(() => {
     getCurrentGame(currentGameID);
   }, [currentGameID, isFinal]);
-
 
   const [lineScore, setLineScore] = useState({
     homeScore: {
@@ -217,23 +354,24 @@ function GameSummary({
     },
   });
 
-  const updateScore = async() => {
+  const updateScore = async () => {
     await axios
-    .patch("http://localhost:9200/game/" + currentGameID, gameScore)
-    .catch(err => {console.log(err)})
-    setEventSubmit(false)
-  }
+      .patch("http://localhost:9200/game/" + currentGameID, gameScore)
+      .catch((err) => {
+        console.log(err);
+      });
+    setEventSubmit(false);
+  };
   useEffect(() => {
     setScores();
 
-    
     // getRecord(homeTeam.teamID, awayTeam.teamID);
     // getSeasonSeries(homeTeam.teamID, awayTeam.teamID);
   }, [homeTeam, awayTeam, gameEvents, eventSubmit]);
 
   useEffect(() => {
-    updateScore()
-  }, [eventSubmit, gameScore])
+    updateScore();
+  }, [eventSubmit, gameScore]);
 
   useEffect(() => {
     setGameScore({
@@ -344,7 +482,7 @@ function GameSummary({
     record: "",
   });
 
-  const [goalieStats, setGoalieStats] = useState([])
+  const [goalieStats, setGoalieStats] = useState([]);
 
   const getGameSummary = async (homeID, awayID, date) => {
     formatGameDate(date);
@@ -378,10 +516,9 @@ function GameSummary({
             teamList.push(homeTeam);
             teamList.push(awayTeam);
             setTeams(teamList);
-            setGoalieStats(goalieStat)
+            setGoalieStats(goalieStat);
             console.log({ series, events, homeTeam, awayTeam });
             getGameStats();
-
           }
         )
       )
@@ -394,7 +531,6 @@ function GameSummary({
         }, 550);
       });
   };
-  
 
   // useEffect(() => {
   //   // getSeriesRecord(
@@ -407,7 +543,6 @@ function GameSummary({
 
   // getRecord(homeTeam.teamID, awayTeam.teamID);
   // }, [games]);
-
 
   return (
     <>
@@ -473,7 +608,11 @@ function GameSummary({
         homeGoalieStats={homeGoalieStats}
         setHomeGoalieStats={setHomeGoalieStats}
         goalieType={goalieType}
-
+        getGoalsAgainst={getGoalsAgainst}
+        homeOneGoals={homeOneGoals}
+        homeTwoGoals={homeTwoGoals}
+        awayOneGoals={awayOneGoals}
+        awayTwoGoals={awayTwoGoals}
       />
       {isLoading ? (
         <LoadingOverlay />
@@ -557,7 +696,6 @@ function GameSummary({
                     homeGoalieStats={homeGoalieStats}
                     goalieStats={goalieStats}
                     goalieSubmit={goalieSubmit}
-      
                   />
                   <SeasonSeries
                     games={games}

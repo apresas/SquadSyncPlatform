@@ -166,7 +166,7 @@ const GoalieStats = sequelize.define("GoalieStats", {
   shotsAgainst: { type: Sequelize.DataTypes.INTEGER },
   goalsAgainst: { type: Sequelize.DataTypes.INTEGER },
   saves: { type: Sequelize.DataTypes.INTEGER },
-  toi: { type: Sequelize.DataTypes.FLOAT }
+  TOI: { type: Sequelize.DataTypes.FLOAT }
 });
 
 const Record = sequelize.define("Records", {

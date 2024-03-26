@@ -21,7 +21,7 @@ function save(req, res) {
     shotsAgainst: req.body.shotsAgainst,
     goalsAgainst: req.body.goalsAgainst,
     saves: req.body.saves,
-    toi: req.body.toi,
+    toi: req.body.TOI,
   };
   console.log(goalieStat);
   models.GoalieStat.create(goalieStat)
@@ -91,7 +91,7 @@ function update(req, res) {
     shotsAgainst: req.body.shotsAgainst,
     goalsAgainst: req.body.goalsAgainst,
     saves: req.body.saves,
-    toi: req.body.toi,
+    toi: req.body.TOI,
   };
 
   models.GoalieStat.update(updatedGoalieStats, { where: { goalieStatsID: goalieStatsID } })

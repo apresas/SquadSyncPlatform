@@ -62,8 +62,14 @@ function GoalieStats({
   const [awayGoalie, setAwayGoalie] = useState({});
   const [homeStats, setHomeStats] = useState({});
   const [awayStats, setAwayStats] = useState({});
+  const [homeTOI, setHomeTOI] = useState("NA")
+  const [awayTOI, setAwayTOI] = useState("NA")
 
   const setGoalie = () => {
+    if(goalieStats.length === 0) {
+      setHomeStats({shotsAgainst: "NA", saves: "NA"})
+      setAwayStats({shotsAgainst: "NA", saves: "NA"})
+    }
     {
       goalieStats.map((stat) => {
         if (stat.teamID === homeTeam.teamID) {
@@ -104,6 +110,30 @@ function GoalieStats({
     setAwaySaves(awaySaves);
   };
 
+  useEffect(() => {
+    formatTOI(homeStats.toi, "HOME")
+    formatTOI(awayStats.toi, "AWAY")
+  }, [homeStats, awayStats])
+
+  const formatTOI = (toi, type) => {
+    if(type === "HOME") {
+      let toiString = String(toi);
+      if(toiString.length <= 2) {
+        setHomeTOI(toiString + ":00")
+      }
+    }
+
+    if(type === "AWAY") {
+      let toiString = String(toi);
+      if(toiString.length <= 2) {
+        setAwayTOI(toiString + ":00")
+      }
+    }
+
+
+  }
+
+
   // const getGoalieStats = async() => {
   //   await axios
   //   .get("http://localhost:9200/goalieStatByGame/" + currentGameID)
@@ -119,6 +149,7 @@ function GoalieStats({
   //   console.log(homeRoster);
   //   console.log(awayRoster);
   // console.log(goalieStats);
+  // console.log(homeSavePct)
 
   // console.log(homeStats)
   return (
@@ -158,7 +189,7 @@ function GoalieStats({
               ) : (
                 <div className="goalie_stat">NA</div>
               )}
-              <div className="goalie_stat">45:00</div>
+              <div className="goalie_stat">{homeTOI}</div>
             </div>
           </section>
         </section>
@@ -193,11 +224,11 @@ function GoalieStats({
               ) : (
                 <div className="goalie_stat">NA</div>
               )}
-              <div className="goalie_stat">45:00</div>
+              <div className="goalie_stat">{awayTOI}</div>
             </div>
           </section>
         </section>
-        {status !== "Final" ? (
+        {status !== "Final" && gameStats.gameStatsID !== 0 ? (
           <div className="goalieStats_controls">
             {goalieStats.length === 0 ? (
               <button className="add_goalie_stats" onClick={(e) => handleGoalieOpen(e, "ADD")}>
