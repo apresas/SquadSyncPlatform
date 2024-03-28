@@ -3,6 +3,7 @@ import "./goalieStats.css";
 import { MdPostAdd } from "react-icons/md";
 import { BiSolidEdit } from "react-icons/bi";
 import axios from "axios";
+import GoalieStatTile from "./GoalieStatTile";
 
 function GoalieStats({
   homeTeam,
@@ -28,66 +29,55 @@ function GoalieStats({
   goalieStats,
   goalieSubmit,
 }) {
-  // const [homeSaves, setHomeSaves] = useState();
-  // const [awaySaves, setAwaySaves] = useState();
-  // const [homeSavePct, setHomeSavePct] = useState();
-  // const [awaySavePct, setAwaySavePct] = useState();
-  // const [homeGoalie, setHomeGoalie] = useState({});
-  // const [awayGoalie, setAwayGoalie] = useState({});
-  // const [homeStats, setHomeStats] = useState({});
-  // const [awayStats, setAwayStats] = useState({});
-
-  useEffect(() => {
-    setGoalie();
-  }, []);
-
   useEffect(() => {
     setGoalie();
   }, [goalieSubmit]);
 
-  useEffect(() => {
-    setSaves(
-      gameStats.homeShots,
-      gameStats.awayShots,
-      gameScore.homeScore,
-      gameScore.awayScore
-    );
-  }, [gameStats.homeShots, gameStats.awayShots, gameScore]);
-
-  useEffect(() => {
-    setSavePct(gameStats.homeShots, gameStats.awayShots, homeSaves, awaySaves);
-  }, [homeSaves, awaySaves, gameStats.homeShots, gameStats.awayShots]);
+  // useEffect(() => {
+  //   setSaves(
+  //     gameStats.homeShots,
+  //     gameStats.awayShots,
+  //     gameScore.homeScore,
+  //     gameScore.awayScore
+  //   );
+  // }, [gameStats.homeShots, gameStats.awayShots, gameScore]);
 
   const [homeGoalie, setHomeGoalie] = useState({});
   const [awayGoalie, setAwayGoalie] = useState({});
-  const [homeStats, setHomeStats] = useState({});
-  const [awayStats, setAwayStats] = useState({});
-  const [homeTOI, setHomeTOI] = useState("NA")
-  const [awayTOI, setAwayTOI] = useState("NA")
+  const [homeStats, setHomeStats] = useState([]);
+  const [awayStats, setAwayStats] = useState([]);
 
   const setGoalie = () => {
-    if(goalieStats.length === 0) {
-      setHomeStats({shotsAgainst: "NA", saves: "NA"})
-      setAwayStats({shotsAgainst: "NA", saves: "NA"})
-    }
+    let homeStat = [];
+    let homeGoalie = [];
+    let awayStat = [];
+    let awayGoalie = [];
+    // if (goalieStats.length === 0) {
+    //   setHomeStats({ shotsAgainst: "NA", saves: "NA" });
+    //   setAwayStats({ shotsAgainst: "NA", saves: "NA" });
+    // }
     {
       goalieStats.map((stat) => {
         if (stat.teamID === homeTeam.teamID) {
-          setHomeStats(stat);
+          homeStat.push(stat);
+          setHomeStats(homeStat);
           {
             homeRoster.map((goalie) => {
               if (goalie.playerID === stat.playerID) {
-                setHomeGoalie(goalie);
+                homeGoalie.push(goalie);
+                setHomeGoalie(homeGoalie);
               }
             });
           }
         }
         if (stat.teamID === awayTeam.teamID) {
-          setAwayStats(stat);
+          awayStat.push(stat);
+          setAwayStats(awayStat);
           {
             awayRoster.map((goalie) => {
               if (goalie.playerID === stat.playerID) {
-                setAwayGoalie(goalie);
+                awayGoalie.push(goalie);
+                setAwayGoalie(awayGoalie);
               }
             });
           }
@@ -96,62 +86,15 @@ function GoalieStats({
     }
   };
 
-  const setSavePct = (homeShots, awayShots, homeSaves, awaySaves) => {
-    let homeSavePct = (homeSaves / awayShots).toFixed(3);
-    let awaySavePct = (awaySaves / homeShots).toFixed(3);
-    setHomeSavePct(homeSavePct);
-    setAwaySavePct(awaySavePct);
-  };
+  // const setSaves = (homeShots, awayShots, homeScore, awayScore) => {
+  //   let homeSaves = awayShots - awayScore;
+  //   let awaySaves = homeShots - homeScore;
+  //   setHomeSaves(homeSaves);
+  //   setAwaySaves(awaySaves);
+  // };
 
-  const setSaves = (homeShots, awayShots, homeScore, awayScore) => {
-    let homeSaves = awayShots - awayScore;
-    let awaySaves = homeShots - homeScore;
-    setHomeSaves(homeSaves);
-    setAwaySaves(awaySaves);
-  };
+  console.log(homeStats);
 
-  useEffect(() => {
-    formatTOI(homeStats.toi, "HOME")
-    formatTOI(awayStats.toi, "AWAY")
-  }, [homeStats, awayStats])
-
-  const formatTOI = (toi, type) => {
-    if(type === "HOME") {
-      let toiString = String(toi);
-      if(toiString.length <= 2) {
-        setHomeTOI(toiString + ":00")
-      }
-    }
-
-    if(type === "AWAY") {
-      let toiString = String(toi);
-      if(toiString.length <= 2) {
-        setAwayTOI(toiString + ":00")
-      }
-    }
-
-
-  }
-
-
-  // const getGoalieStats = async() => {
-  //   await axios
-  //   .get("http://localhost:9200/goalieStatByGame/" + currentGameID)
-  // }
-
-  // console.log(homeGoalieStats);
-  // console.log(awayGoalieStats);
-
-  //   console.log(gameStats)
-  //   console.log(homeGoalie);
-  //   console.log(awayGoalie);
-
-  //   console.log(homeRoster);
-  //   console.log(awayRoster);
-  // console.log(goalieStats);
-  // console.log(homeSavePct)
-
-  // console.log(homeStats)
   return (
     <div className="goalieStats_container">
       <div className="goalieStats_header">
@@ -163,82 +106,41 @@ function GoalieStats({
             <h3>{homeTeam.schoolName}</h3>
             <img src={homeTeam.logo} alt="Home Logo" />
           </div>
-          <section className="goalie_stat_grid">
-            <div className="goalie_stat_player">
-              <h4>{homeGoalie.jerseyNumber}</h4>
-              <span />
-              <h4>
-                {homeGoalie.firstName} {homeGoalie.lastName}
-              </h4>
-            </div>
-            <div className="goalie_stat_header">
-              <h4>SH/SV</h4>
-              <h4>SV%</h4>
-              <h4>TOI</h4>
-            </div>
-            <div className="goalie_stat_body">
-              {gameStats.gameStatsID !== 0 ? (
-                <div className="goalie_stat">
-                  {homeStats.shotsAgainst}/{homeStats.saves}
-                </div>
-              ) : (
-                <div className="goalie_stat">NA</div>
-              )}
-              {gameStats.gameStatsID !== 0 ? (
-                <div className="goalie_stat">{homeSavePct}</div>
-              ) : (
-                <div className="goalie_stat">NA</div>
-              )}
-              <div className="goalie_stat">{homeTOI}</div>
-            </div>
-          </section>
+          {homeStats.length === 0
+            ? null
+            : homeStats.map((stat, i) => {
+                return (
+                  <GoalieStatTile key={i} stat={stat} goalie={homeGoalie} />
+                );
+              })}
         </section>
         <section className="awayGoalie_section">
           <div className="goalie_header">
             <h3>{awayTeam.schoolName}</h3>
             <img src={awayTeam.logo} alt="Away Logo" />
           </div>
-          <section className="goalie_stat_grid">
-            <div className="goalie_stat_player">
-              <h4>{awayGoalie.jerseyNumber}</h4>
-              <span />
-              <h4>
-                {awayGoalie.firstName} {awayGoalie.lastName}
-              </h4>
-            </div>
-            <div className="goalie_stat_header">
-              <h4>SH/SV</h4>
-              <h4>SV%</h4>
-              <h4>TOI</h4>
-            </div>
-            <div className="goalie_stat_body">
-              {gameStats.gameStatsID !== 0 ? (
-                <div className="goalie_stat">
-                  {awayStats.shotsAgainst}/{awayStats.saves}
-                </div>
-              ) : (
-                <div className="goalie_stat">NA</div>
-              )}
-              {gameStats.gameStatsID !== 0 ? (
-                <div className="goalie_stat">{awaySavePct}</div>
-              ) : (
-                <div className="goalie_stat">NA</div>
-              )}
-              <div className="goalie_stat">{awayTOI}</div>
-            </div>
-          </section>
+          {awayStats.length === 0
+            ? null
+            : awayStats.map((stat, i) => {
+                return (
+                  <GoalieStatTile key={i} stat={stat} goalie={awayGoalie} />
+                );
+              })}
         </section>
         {status !== "Final" && gameStats.gameStatsID !== 0 ? (
           <div className="goalieStats_controls">
             {goalieStats.length === 0 ? (
-              <button className="add_goalie_stats" onClick={(e) => handleGoalieOpen(e, "ADD")}>
+              <button
+                className="add_goalie_stats"
+                onClick={(e) => handleGoalieOpen(e, "ADD")}
+              >
                 <MdPostAdd />
               </button>
             ) : null}
             {goalieStats.length > 0 ? (
               <button
                 className="update_goalie_stats"
-                onClick={(e) => handleGoalieOpen(e,"UPDATE")}
+                onClick={(e) => handleGoalieOpen(e, "UPDATE")}
               >
                 <BiSolidEdit />
               </button>

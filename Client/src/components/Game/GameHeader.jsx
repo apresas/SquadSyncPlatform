@@ -63,7 +63,6 @@ function GameHeader({ game, homeTeam, awayTeam, gameScore, record, status }) {
       homeGames.map((game) => {
         if (teamOneID === game.homeID) {
           if (game.homeScore > game.awayScore) {
-            console.log(game)
             teamOneWins += 1;
           } else if (game.homeScore < game.awayScore) {
             teamOneLoses += 1;
@@ -130,9 +129,9 @@ function GameHeader({ game, homeTeam, awayTeam, gameScore, record, status }) {
     });
   };
 
-  useEffect(() => {
-    console.log(headerRecord);
-  }, [headerRecord]);
+  // useEffect(() => {
+  //   console.log(headerRecord);
+  // }, [headerRecord]);
 
   return (
     <section className="gameSummary_header">

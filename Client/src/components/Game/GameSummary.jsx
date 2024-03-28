@@ -331,10 +331,10 @@ function GameSummary({
     setAwayOneGoals(awayOneGoals);
     setAwayTwoGoals(awayTwoGoals);
 
-    console.log(`homeOneGA: ${homeOneGoals}`);
-    console.log(`homeTwoGA: ${homeTwoGoals}`);
-    console.log(`awayOneGA: ${awayOneGoals}`);
-    console.log(`awayTwoGA: ${awayTwoGoals}`);
+    // console.log(`homeOneGA: ${homeOneGoals}`);
+    // console.log(`homeTwoGA: ${homeTwoGoals}`);
+    // console.log(`awayOneGA: ${awayOneGoals}`);
+    // console.log(`awayTwoGA: ${awayTwoGoals}`);
   };
 
   useEffect(() => {
@@ -443,7 +443,7 @@ function GameSummary({
     // if(gameStatsSubmit) {
     //   getGameSummary()
     // }
-    console.log(gameStatsSubmit);
+    // console.log(gameStatsSubmit);
     getGameStats();
   }, [gameStatsSubmit]);
 
@@ -517,7 +517,7 @@ function GameSummary({
             teamList.push(awayTeam);
             setTeams(teamList);
             setGoalieStats(goalieStat);
-            console.log({ series, events, homeTeam, awayTeam });
+            // console.log({ series, events, homeTeam, awayTeam });
             getGameStats();
           }
         )
@@ -613,6 +613,7 @@ function GameSummary({
         homeTwoGoals={homeTwoGoals}
         awayOneGoals={awayOneGoals}
         awayTwoGoals={awayTwoGoals}
+        goalieStats={goalieStats}
       />
       {isLoading ? (
         <LoadingOverlay />

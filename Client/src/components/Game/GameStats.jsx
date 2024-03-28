@@ -64,12 +64,12 @@ function GameStats({
       gameStats.awayPPG
     );
     formatFO(gameStats.homeFO, gameStats.awayFO);
-    formatSV(
-      gameScore.homeScore,
-      gameScore.awayScore,
-      gameStats.homeShots,
-      gameStats.awayShots
-    );
+    // formatSV(
+    //   gameScore.homeScore,
+    //   gameScore.awayScore,
+    //   gameStats.homeShots,
+    //   gameStats.awayShots
+    // );
   }, [gameStats, gameStatsSubmit, gameScore]);
 
   useEffect(() => {
@@ -142,14 +142,14 @@ function GameStats({
     // console.log(awayRounded)
   };
 
-  const formatSV = (homeScore, awayScore, homeShots, awayShots) => {
-    const awaySaves = homeShots - homeScore;
-    const awaySVPct = parseFloat((awaySaves / homeShots).toFixed(3));
-    console.log(`Away Saves: ${awaySaves}, Away Save%: ${awaySVPct}`);
-    const homeSaves = awayShots - awayScore;
-    const homeSVPct = parseFloat((homeSaves / awayShots).toFixed(3));
-    console.log(`Home Saves: ${homeSaves}, Home Save%: ${homeSVPct}`);
-  };
+  // const formatSV = (homeScore, awayScore, homeShots, awayShots) => {
+  //   const awaySaves = homeShots - homeScore;
+  //   const awaySVPct = parseFloat((awaySaves / homeShots).toFixed(3));
+  //   // console.log(`Away Saves: ${awaySaves}, Away Save%: ${awaySVPct}`);
+  //   const homeSaves = awayShots - awayScore;
+  //   const homeSVPct = parseFloat((homeSaves / awayShots).toFixed(3));
+  //   // console.log(`Home Saves: ${homeSaves}, Home Save%: ${homeSVPct}`);
+  // };
 
   return (
     <div className="gameStats_container">

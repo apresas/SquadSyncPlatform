@@ -31,6 +31,7 @@ function GoalieStatsModal({
   homeTwoGoals,
   awayOneGoals,
   awayTwoGoals,
+  goalieStats
 }) {
   const [homeTwoDefTOI, setHomeTwoDefTOI] = useState({
     minutes: 0,
@@ -158,6 +159,18 @@ function GoalieStatsModal({
 
   useEffect(() => {
     if (goalieType === "UPDATE") {
+      {goalieStats.map((stat) => {
+        if(stat.teamID === homeTeam.teamID) {
+          let ID = stat.playerID
+          let shots = stat.shotsAgainst
+          console.log(`homeID: ${ID} homeShots: ${shots}`)
+        } else if(stat.teamID === awayTeam.teamID) {
+          let ID = stat.playerID
+          let shots = stat.shotsAgainst
+          console.log(`awayID: ${ID} awayShots: ${shots}`)
+        }
+      })}
+      console.log(goalieStats)
       // setGameStatsID(gameStats.gameStatsID);
       // setHomeShots(gameStats.homeShots);
       // setAwayShots(gameStats.awayShots);
@@ -284,13 +297,13 @@ function GoalieStatsModal({
     setAwayOneShotsAgainst(awayOneSA);
     setAwayTwoShotsAgainst(awayTwoSA);
 
-    console.log(homeOneSvPct, homeTwoSvPct, awayOneSvPct, awayTwoSvPct);
-    console.log(
-      `Home1 SV%: ${homeOneSvPct}, Home2 SV%:${homeTwoSvPct}, Away1 SV%:${awayOneSvPct}, Away2 SV%: ${awayTwoSvPct}`
-    );
-    console.log(
-      `Home1 SV/SH: ${homeOneSv}/${homeOneSA}, Home2 SV: ${homeTwoSv}/${homeTwoSA}, Away1 SV: ${awayOneSv}/${awayOneSA}, Away2 SV: ${awayTwoSv}/${awayTwoSA}`
-    );
+    // console.log(homeOneSvPct, homeTwoSvPct, awayOneSvPct, awayTwoSvPct);
+    // console.log(
+    //   `Home1 SV%: ${homeOneSvPct}, Home2 SV%:${homeTwoSvPct}, Away1 SV%:${awayOneSvPct}, Away2 SV%: ${awayTwoSvPct}`
+    // );
+    // console.log(
+    //   `Home1 SV/SH: ${homeOneSv}/${homeOneSA}, Home2 SV: ${homeTwoSv}/${homeTwoSA}, Away1 SV: ${awayOneSv}/${awayOneSA}, Away2 SV: ${awayTwoSv}/${awayTwoSA}`
+    // );
   };
 
   useEffect(() => {
@@ -384,8 +397,6 @@ function GoalieStatsModal({
       });
   };
 
-  console.log(homeGoalies);
-
   const goalieStatSubmit = async (e) => {
     e.preventDefault();
     if (
@@ -398,16 +409,16 @@ function GoalieStatsModal({
       console.log(
         `Home One: ${homeGoalieOneStats.TOI}, Away One: ${awayGoalieOneStats.TOI}`
       );
-      // await axios
-      // .all([
-      //   axios.post("http://localhost:9200/goalieStat", homeGoalieOneStats),
-      //   axios.post("http://localhost:9200/goalieStat", awayGoalieOneStats),
-      // ])
-      // .then(() => {
-      //   setGoalieSubmit(true);
-      // })
-      // .catch((err) => console.log(err));
-      // .finally(() => {setGoalieSubmit(false)})
+      await axios
+      .all([
+        axios.post("http://localhost:9200/goalieStat", homeGoalieOneStats),
+        axios.post("http://localhost:9200/goalieStat", awayGoalieOneStats),
+      ])
+      .then(() => {
+        setGoalieSubmit(true);
+      })
+      .catch((err) => console.log(err))
+      .finally(() => {setGoalieSubmit(false)})
     } else if (
       homeGoalieTwoStats.playerID !== undefined &&
       awayGoalieTwoStats.playerID === undefined
@@ -416,17 +427,17 @@ function GoalieStatsModal({
       console.log(
         `Home One: ${homeGoalieOneStats.TOI}, Away One: ${awayGoalieOneStats.TOI}, Home Two: ${homeGoalieTwoStats.TOI}`
       );
-      // await axios
-      // .all([
-      //   axios.post("http://localhost:9200/goalieStat", homeGoalieOneStats),
-      //   axios.post("http://localhost:9200/goalieStat", awayGoalieOneStats),
-      //   axios.post("http://localhost:9200/goalieStat", homeGoalieTwoStats)
-      // ])
-      // .then(() => {
-      //   setGoalieSubmit(true);
-      // })
-      // .catch((err) => console.log(err));
-      // .finally(() => {setGoalieSubmit(false)})
+      await axios
+      .all([
+        axios.post("http://localhost:9200/goalieStat", homeGoalieOneStats),
+        axios.post("http://localhost:9200/goalieStat", awayGoalieOneStats),
+        axios.post("http://localhost:9200/goalieStat", homeGoalieTwoStats)
+      ])
+      .then(() => {
+        setGoalieSubmit(true);
+      })
+      .catch((err) => console.log(err))
+      .finally(() => {setGoalieSubmit(false)})
     } else if (
       awayGoalieTwoStats.playerID !== undefined &&
       homeGoalieTwoStats.playerID === undefined
@@ -435,34 +446,34 @@ function GoalieStatsModal({
       console.log(
         `Home One: ${homeGoalieOneStats.TOI}, Away One: ${awayGoalieOneStats.TOI}, Away Two: ${awayGoalieTwoStats.TOI}`
       );
-      // await axios
-      // .all([
-      //   axios.post("http://localhost:9200/goalieStat", homeGoalieOneStats),
-      //   axios.post("http://localhost:9200/goalieStat", awayGoalieOneStats),
-      //   axios.post("http://localhost:9200/goalieStat", awayGoalieTwoStats)
-      // ])
-      // .then(() => {
-      //   setGoalieSubmit(true);
-      // })
-      // .catch((err) => console.log(err));
-      // .finally(() => {setGoalieSubmit(false)})
+      await axios
+      .all([
+        axios.post("http://localhost:9200/goalieStat", homeGoalieOneStats),
+        axios.post("http://localhost:9200/goalieStat", awayGoalieOneStats),
+        axios.post("http://localhost:9200/goalieStat", awayGoalieTwoStats)
+      ])
+      .then(() => {
+        setGoalieSubmit(true);
+      })
+      .catch((err) => console.log(err))
+      .finally(() => {setGoalieSubmit(false)})
     } else {
       console.log("ALL GOALIES");
       console.log(
         `Home One: ${homeGoalieOneStats.TOI}, Home Two: ${homeGoalieTwoStats.TOI}, Away One: ${awayGoalieOneStats.TOI}, Away Two: ${awayGoalieTwoStats.TOI}`
       );
-      // await axios
-      // .all([
-      //   axios.post("http://localhost:9200/goalieStat", homeGoalieOneStats),
-      //   axios.post("http://localhost:9200/goalieStat", awayGoalieOneStats),
-      //   axios.post("http://localhost:9200/goalieStat", homeGoalieTwoStats),
-      //   axios.post("http://localhost:9200/goalieStat", homeGoalieTwoStats)
-      // ])
-      // .then(() => {
-      //   setGoalieSubmit(true);
-      // })
-      // .catch((err) => console.log(err));
-      // .finally(() => {setGoalieSubmit(false)})
+      await axios
+      .all([
+        axios.post("http://localhost:9200/goalieStat", homeGoalieOneStats),
+        axios.post("http://localhost:9200/goalieStat", awayGoalieOneStats),
+        axios.post("http://localhost:9200/goalieStat", homeGoalieTwoStats),
+        axios.post("http://localhost:9200/goalieStat", homeGoalieTwoStats)
+      ])
+      .then(() => {
+        setGoalieSubmit(true);
+      })
+      .catch((err) => console.log(err))
+      .finally(() => {setGoalieSubmit(false)})
     }
 
     // await axios
@@ -476,7 +487,7 @@ function GoalieStatsModal({
     //   .catch((err) => console.log(err));
 
     // setGoalieSubmit(false);
-    // handleClose();
+    handleClose();
   };
 
   const handleClose = () => {
@@ -564,10 +575,10 @@ function GoalieStatsModal({
   };
 
   useEffect(() => {
-    console.log(homeGoalieOneStats);
-    console.log(awayGoalieOneStats);
-    console.log(homeGoalieTwoStats);
-    console.log(awayGoalieTwoStats);
+    // console.log(homeGoalieOneStats);
+    // console.log(awayGoalieOneStats);
+    // console.log(homeGoalieTwoStats);
+    // console.log(awayGoalieTwoStats);
 
     let homeGoalieStats = [];
     let awayGoaliesStats = [];
@@ -633,9 +644,9 @@ function GoalieStatsModal({
     let extraSeconds = remanderTime % 60;
     newMinutes = newMinutes < 10 ? "0" + newMinutes : newMinutes;
     extraSeconds = extraSeconds < 10 ? "0" + extraSeconds : extraSeconds;
-    let newTime = newMinutes + ":" + extraSeconds;
+    // let newTime = newMinutes + ":" + extraSeconds;
 
-    console.log(newTime);
+    // console.log(newTime);
 
     if (type === "HOME") {
       // setHomeTwoDefTOI({minutes: newMinutes, seconds:extraSeconds})
@@ -1030,6 +1041,7 @@ function GoalieStatsModal({
                               id="hours"
                               max="2"
                               dir="rtl"
+                              value={homeOneMinutes}
                               onChange={(e) =>
                                 setHomeOneMinutes(e.target.value)
                               }
@@ -1039,6 +1051,7 @@ function GoalieStatsModal({
                               type="text"
                               id="minutes"
                               max="2"
+                              value={homeOneSeconds}
                               onChange={(e) =>
                                 setHomeOneSeconds(e.target.value)
                               }
@@ -1054,6 +1067,7 @@ function GoalieStatsModal({
                             type="number"
                             max={awayShots}
                             min={0}
+                            value={homeOneShotsAgainst}
                             onChange={(e) =>
                               setHomeOneShotsAgainst(e.target.value)
                             }
@@ -1102,6 +1116,7 @@ function GoalieStatsModal({
                             id="hours"
                             max="2"
                             dir="rtl"
+                            value={homeTwoMinutes}
                             onChange={(e) => setHomeTwoMinutes(e.target.value)}
                           />
                           <div id="colon">:</div>
@@ -1109,6 +1124,7 @@ function GoalieStatsModal({
                             type="text"
                             id="minutes"
                             max="2"
+                            value={homeTwoSeconds}
                             onChange={(e) => setHomeTwoSeconds(e.target.value)}
                           />
                         </div>
@@ -1118,6 +1134,7 @@ function GoalieStatsModal({
                         <input
                           id="home_shotsAgainst"
                           type="number"
+                          value={homeTwoShotsAgainst}
                           onChange={(e) =>
                             setHomeTwoShotsAgainst(e.target.value)
                           }
@@ -1154,6 +1171,7 @@ function GoalieStatsModal({
                               id="hours"
                               max="2"
                               dir="rtl"
+                              value={awayOneMinutes}
                               onChange={(e) =>
                                 setAwayOneMinutes(e.target.value)
                               }
@@ -1163,6 +1181,7 @@ function GoalieStatsModal({
                               type="text"
                               id="minutes"
                               max="2"
+                              value={awayTwoSeconds}
                               onChange={(e) =>
                                 setAwayOneSeconds(e.target.value)
                               }
@@ -1178,6 +1197,7 @@ function GoalieStatsModal({
                             type="number"
                             max={homeShots}
                             min={0}
+                            value={awayOneShotsAgainst}
                             onChange={(e) =>
                               setAwayOneShotsAgainst(e.target.value)
                             }
@@ -1226,6 +1246,7 @@ function GoalieStatsModal({
                                 id="hours"
                                 max="2"
                                 dir="rtl"
+                                value={awayTwoMinutes}
                                 onChange={(e) =>
                                   setAwayTwoMinutes(e.target.value)
                                 }
@@ -1235,6 +1256,7 @@ function GoalieStatsModal({
                                 type="text"
                                 id="minutes"
                                 max="2"
+                                value={awayTwoSeconds}
                                 onChange={(e) =>
                                   setAwayTwoSeconds(e.target.value)
                                 }
@@ -1248,6 +1270,7 @@ function GoalieStatsModal({
                             <input
                               id="away_shotsAgainst"
                               type="number"
+                              value={awayTwoShotsAgainst}
                               onChange={(e) =>
                                 setAwayTwoShotsAgainst(e.target.value)
                               }

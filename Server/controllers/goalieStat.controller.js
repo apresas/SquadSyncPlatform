@@ -57,7 +57,7 @@ function showByGameID(req, res) {
   const gameID = req.params.gameID;
   models.GoalieStat.findAll({ where: { 
     gameID: gameID
-   } })
+   }, order:[['toi', 'DESC']]})
     .then((result) => {
       res.status(200).json(result);
     })

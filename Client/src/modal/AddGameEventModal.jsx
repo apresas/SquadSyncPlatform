@@ -122,7 +122,8 @@ function addGameEventModal({
     await axios
       .get("http://localhost:9200/playerByTeam/" + teamID)
       .then((res) => {
-        setEventPlayers(res.data);
+        const players = res.data.filter((player) => player.position === "Forward" || player.position === "Defense")
+        setEventPlayers(players);
       })
       .catch((err) => console.log(err));
   };

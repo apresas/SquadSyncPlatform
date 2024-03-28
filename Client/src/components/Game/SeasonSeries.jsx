@@ -77,35 +77,35 @@ function seasonSeries({
 
     {
       series.map((game) => {
-        console.log(game);
+        // console.log(game);
 
         if (game.homeID === teamOneID) {
-          console.log("Team One: home");
+          // console.log("Team One: home");
           if (game.homeScore > game.awayScore) {
             teamOneWins += 1;
-            console.log("ONE: home win");
+            // console.log("ONE: home win");
           }
         }
         if (game.awayID === teamOneID) {
-          console.log("Team One: away");
+          // console.log("Team One: away");
           if (game.awayScore > game.homeScore) {
             teamOneWins += 1;
-            console.log("ONE: away win");
+            // console.log("ONE: away win");
           }
         }
 
         if (game.homeID === teamTwoID) {
-          console.log("Team Two: home");
+          // console.log("Team Two: home");
           if (game.homeScore > game.awayScore) {
             teamTwoWins += 1;
-            console.log("TWO: home win");
+            // console.log("TWO: home win");
           }
         }
         if (game.awayID === teamTwoID) {
-          console.log("Team Two: away");
+          // console.log("Team Two: away");
           if (game.awayScore > game.homeScore) {
             teamTwoWins += 1;
-            console.log("TWO: away win");
+            // console.log("TWO: away win");
           }
         }
       });
@@ -135,13 +135,13 @@ function seasonSeries({
     }
     }
 
-    console.log(teamOneWins);
-    console.log(teamTwoWins);
+    // console.log(teamOneWins);
+    // console.log(teamTwoWins);
   };
 
-  useEffect(() => {
-    console.log(record);
-  }, [record]);
+  // useEffect(() => {
+  //   console.log(record);
+  // }, [record]);
 
   return (
     <div className="seasonSeries_container">

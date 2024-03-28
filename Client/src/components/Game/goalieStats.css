@@ -14,13 +14,12 @@
 .goalie_stat_grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    padding: 1rem 0.5rem;
+    padding: 1rem;
     background-color: var(--color-item-white);
-    
 }
 
-.awayGoalie_section {
-    border-bottom: 1px solid lightgrey;
+.goalie_stat_grid:first-of-type {
+  border-bottom: 1px solid lightgray;
 }
 
 .goalie_stat_header, .goalie_stat_body {

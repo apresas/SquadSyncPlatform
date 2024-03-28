@@ -109,9 +109,9 @@ function gameStatsModal({
     }
   }, [open]);
 
-  useEffect(() => {
-    console.log(type);
-  }, [type]);
+  // useEffect(() => {
+  //   console.log(type);
+  // }, [type]);
 
   useEffect(() => {
     generateID();
