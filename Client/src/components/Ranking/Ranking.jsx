@@ -1,10 +1,13 @@
-import React from "react";
+import {useEffect} from "react";
 import TitleBar from "../TitleBar";
 import "./ranking.css";
 import RankingData from "../../data/stateRanking.json";
 
-function Ranking() {
+function Ranking({getDates}) {
   const date = "01-19-24"
+  useEffect(() => {
+    getDates(new Date())
+  }, [])
   return (
     <div className="ranking_container">
       <div className="ranking_content_container">

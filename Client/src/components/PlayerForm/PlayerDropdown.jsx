@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import "./playerDropdown.css";
 import PlayerDropdownMenu from "./playerDropdownMenu";
 import { IoChevronDown } from "react-icons/io5";
@@ -13,7 +13,7 @@ function PlayerDropdown({
   setSelectedPosition,
   setSelectedClass,
   setSelectedHandedness,
-  setSelectedJerseyNumber, 
+  setSelectedJerseyNumber,
   currentPlayer,
   submitted,
   setHomeID,
@@ -22,25 +22,27 @@ function PlayerDropdown({
   setPrimaryID,
   setSecondaryID,
   setGoalID,
-  setEventPeriod
+  setEventPeriod,
+  setSelectedHomeGoalie,
+  setSelectedAwayGoalie,
+  setSelected,
+  selected,
 }) {
   const [dropdownTitle, setDropdownTitle] = useState(`Select ${type}`);
-  const [playerID, setPlayerID] = useState()
+  const [playerID, setPlayerID] = useState();
+  const [goalieID, setGoalieID] = useState();
   const [logo, setLogo] = useState();
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
     setOpen(!open);
   };
 
-
   useEffect(() => {
-    if(submitted === true) {
-      setDropdownTitle(`Select ${type}`)
+    if (submitted === true) {
+      setDropdownTitle(`Select ${type}`);
       setLogo(null);
     }
-  }, [submitted])
-
-
+  }, [submitted]);
 
   useEffect(() => {
     if (type === "Position" || type === "Update Position") {
@@ -48,7 +50,7 @@ function PlayerDropdown({
     } else if (type === "Class" || type === "Update Class") {
       setSelectedClass(dropdownTitle);
     } else if (type === "Team" || type === "Update Team") {
-      setSelectedTeamID('')
+      setSelectedTeamID("");
       data.map((teamList) => {
         if (teamList.schoolName === dropdownTitle) {
           setSelectedTeamID(teamList.teamID);
@@ -60,62 +62,95 @@ function PlayerDropdown({
       setSelectedJerseyNumber(dropdownTitle);
     } else if (type === "Home Team") {
       data.map((teamList) => {
-        if(teamList.schoolName === dropdownTitle) {
+        if (teamList.schoolName === dropdownTitle) {
           setHomeID(teamList.teamID);
         }
-      })
+      });
     } else if (type === "Away Team") {
       data.map((teamList) => {
-        if(teamList.schoolName === dropdownTitle) {
+        if (teamList.schoolName === dropdownTitle) {
           setAwayID(teamList.teamID);
         }
-      })
+      });
     } else if (type === "Scoring Team") {
       data.map((teamList) => {
-        if(teamList.schoolName === dropdownTitle) {
+        if (teamList.schoolName === dropdownTitle) {
           setScoringID(teamList.teamID);
         }
-      })
-    } else if(type === "Periods") {
-      setEventPeriod(dropdownTitle)
-    } else if(type === "Goal Scorer") {
+      });
+    } else if (type === "Periods") {
+      setEventPeriod(dropdownTitle);
+    } else if (type === "Goal Scorer") {
       data.map((player) => {
-        if(player.playerID === playerID) {
-          setGoalID(player.playerID)
+        if (player.playerID === playerID) {
+          setGoalID(player.playerID);
         }
-      })
-
-    } else if(type === "Primary Assist") {
+      });
+    } else if (type === "Primary Assist") {
       data.map((player) => {
-        if(player.playerID === playerID) {
-          setPrimaryID(player.playerID)
+        if (player.playerID === playerID) {
+          setPrimaryID(player.playerID);
         }
-      })
-    } else if(type === "Secondary Assist") {
+      });
+    } else if (type === "Secondary Assist") {
       data.map((player) => {
-        if(player.playerID === playerID) {
-          setSecondaryID(player.playerID)
+        if (player.playerID === playerID) {
+          setSecondaryID(player.playerID);
         }
-      })
+      });
+    } else if (type === "Home Goalies" || type === "Update Home Goalies One" || type === "Update Home Goalies Two") {
+      data.map((goalie) => {
+        if (goalie.playerID === goalieID) {
+          setSelectedHomeGoalie(goalie);
+          // setSelected(true)
+        }
+      });
+    } else if (type === "Away Goalies" || type === "Update Away Goalies One" || type === "Update Away Goalies Two") {
+      data.map((goalie) => {
+        if (goalie.playerID === goalieID) {
+          setSelectedAwayGoalie(goalie);
+        }
+      });
     }
   }, [dropdownTitle]);
 
   useEffect(() => {
     if (type === "Update Position") {
-      setDropdownTitle(currentPlayer.position)
+      setDropdownTitle(currentPlayer.position);
     } else if (type === "Update Class") {
-      setDropdownTitle(currentPlayer.class)
+      setDropdownTitle(currentPlayer.class);
     } else if (type === "Update Handedness") {
-      setDropdownTitle(currentPlayer.handedness)
+      setDropdownTitle(currentPlayer.handedness);
     } else if (type === "Update Team") {
-       {data.filter((data) => data.teamID === currentPlayer.teamID).map((data) => {
-        setDropdownTitle(data.schoolName)
-        setLogo(data.logo)
-       })}
-
+      {
+        data
+          .filter((data) => data.teamID === currentPlayer.teamID)
+          .map((data) => {
+            setDropdownTitle(data.schoolName);
+            setLogo(data.logo);
+          });
+      }
+    } else if (
+      type === "Update Home Goalies One" ||
+      type === "Update Home Goalies Two" ||
+      type === "Update Away Goalies One" ||
+      type === "Update Away Goalies Two"
+    ) {
+      if (currentPlayer.playerID !== undefined) {
+        setDropdownTitle(
+          currentPlayer.firstName +
+            " " +
+            currentPlayer.lastName +
+            " #" +
+            currentPlayer.jerseyNumber
+        );
+      } else {
+        setDropdownTitle("Select Updated Goalie")
+      }
     }
-  }, [currentPlayer])
+  }, [currentPlayer]);
 
+  // console.log(currentPlayer)
   // useEffect(() =>{
   //   if(type === "Team") {
   //     data.map((teamList) => {
@@ -147,6 +182,8 @@ function PlayerDropdown({
           currentTeamTitle={currentTeamTitle}
           setLogo={setLogo}
           setPlayerID={setPlayerID}
+          setGoalieID={setGoalieID}
+          currentPlayer={currentPlayer}
         />
       ) : null}
     </div>

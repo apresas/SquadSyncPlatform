@@ -22,6 +22,7 @@ function Archieve({
   filteredPlayers,
   setCurrentPlayer,
   currentPlayer,
+  getDates
 }) {
   const [openModal, setOpenModal] = useState(false);
   // const [currentPlayer, setCurrentPlayer] = useState({});
@@ -53,6 +54,12 @@ function Archieve({
     setCurrentPlayer(playerData);
   };
   console.log(currentPlayer);
+
+  useEffect(() => {
+    getDates(new Date())
+  }, [])
+
+
   useEffect(() => {
     getFilterTeam(filterTeamID);
   }, [filterTeamID]);

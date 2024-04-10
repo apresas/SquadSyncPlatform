@@ -18,13 +18,14 @@ function addGameEventModal({
   goalID,
   primaryID,
   secondaryID,
-  currentGame,
+  currentGameID,
   homeRoster,
   awayRoster,
   gameScore,
   setEventSubmit, 
   eventSubmit, 
-  teams
+  teams,
+  gameEvents
 }) {
   const [newEventID, setNewEventID] = useState();
 
@@ -34,19 +35,19 @@ function addGameEventModal({
 
   const [newEvent, setNewEvent] = useState({
     eventID: newEventID,
-    gameID: currentGame.gameID,
-    scoreTeam: "",
-    scorerID: "",
+    gameID: currentGameID,
+    scoringTeam: "",
+    goalID: "",
     primaryAssistID: "",
     secondaryAssistID: "",
     homeScore: 0,
     awayScore: 0,
-    gameTime: "",
+    gameTime: 0,
     period: "",
     type: "",
   });
 
-  const periods = ["1st", "2nd", "3rd"];
+  const periods = ["1st", "2nd", "3rd", "OT"];
   const [eventPlayers, setEventPlayers] = useState(allPlayers);
   const [eventPeriod, setEventPeriod] = useState();
 
@@ -54,7 +55,7 @@ function addGameEventModal({
   const [seconds, setSeconds] = useState()
   const [time, setTime] = useState()
 
-  const [currentGameID, setCurrentGameID] = useState()
+  // const [currentGameID, setCurrentGameID] = useState()
 
   const generateID = () => {
     const newID = Math.floor(100000 + Math.random() * 900000);
@@ -62,16 +63,17 @@ function addGameEventModal({
   };
 
   useEffect(() => {
-    setTime(minutes + ":" + seconds)
+    const newTime = parseFloat(minutes + '.' + seconds);
+    setTime(newTime)
   }, [minutes, seconds])
 
   useEffect(() => {
     generateID();
   }, [eventSubmit])
 
-  useEffect(() => {
-    setCurrentGameID(currentGame.gameID)
-  }, [currentGame.gameID]);
+  // useEffect(() => {
+  //   setCurrentGameID(currentGame.gameID)
+  // }, [currentGame.gameID]);
 
 
   const handleClose = () => {
@@ -88,8 +90,8 @@ function addGameEventModal({
     setEventPeriod(undefined);
     setType(undefined);
     setNewScore({
-      home: gameScore.homeScore,
-      away: gameScore.awayScore
+      homeScore: gameScore.homeScore,
+      awayScore: gameScore.awayScore
     })
   }
 
@@ -118,9 +120,10 @@ function addGameEventModal({
 
   const getFilteredEventPlayers = async (teamID) => {
     await axios
-      .get("http://localhost:9200/players/" + teamID)
+      .get("http://localhost:9200/playerByTeam/" + teamID)
       .then((res) => {
-        setEventPlayers(res.data);
+        const players = res.data.filter((player) => player.position === "Forward" || player.position === "Defense")
+        setEventPlayers(players);
       })
       .catch((err) => console.log(err));
   };
@@ -149,8 +152,8 @@ function addGameEventModal({
 
   const [type, setType] = useState()
   const [newScore, setNewScore] = useState({
-    home: gameScore.homeScore,
-    away: gameScore.awayScore,
+    homeScore: gameScore.homeScore,
+    awayScore: gameScore.awayScore,
   })
 
   useEffect(() => {
@@ -162,55 +165,88 @@ function addGameEventModal({
 
     if(type === "HOME"){
       setNewScore({
-        home: gameScore.homeScore + 1,
-        away: gameScore.awayScore
+        homeScore: gameScore.homeScore + 1,
+        awayScore: gameScore.awayScore
       })
     } else if(type === "AWAY"){
       setNewScore({
-        home: gameScore.homeScore,
-        away: gameScore.awayScore + 1
+        homeScore: gameScore.homeScore,
+        awayScore: gameScore.awayScore + 1
       })
     }
+    // console.log(type)
     // console.log(`EventID: ${newEventID}, GameID: ${currentGameID}, ScoringTeam: ${scoringID}, GoalID: ${goalID}, PrimaryID: ${primaryID}, SecondaryID: ${secondaryID} HomeScore: ${newScore.home} AwayScore: ${newScore.away}, Period: ${eventPeriod}, GameTime: ${time} Type: ${type} `)
     setNewEvent({
       eventID: newEventID,
       gameID: currentGameID,
-      scoreTeam: scoringID,
-      scorerID: goalID,
+      scoringTeam: scoringID,
+      goalID: goalID,
       primaryAssistID: primaryID,
       secondaryAssistID: secondaryID,
-      homeScore: newScore.home,
-      awayScore: newScore.away,
+      homeScore: newScore.homeScore,
+      awayScore: newScore.awayScore,
       gameTime: time,
       period: eventPeriod,
       type: type,
     })
-  }, [newEventID, currentGameID, scoringID, goalID, primaryID, secondaryID, eventPeriod, time, type, gameScore, homeTeam.teamID, awayTeam.teamID, newScore.home, newScore.away])
+  }, [newEventID, currentGameID, scoringID, goalID, primaryID, secondaryID, eventPeriod, time, type, gameScore, homeTeam.teamID, awayTeam.teamID, newScore.homeScore, newScore.awayScore])
 
+  useEffect(() => {
+  //   if(eventSubmit){
+  //   updateScore()
+  // }
+
+  // updateScore()
+  }, [gameEvents])
+
+  const getCurrentGame = async() => {
+    let score = {
+      homeScore: 0,
+      awayScore: 0
+    }
+    await axios
+    .get("http://localhost:9200/game/" + currentGameID)
+    .then((res) => {
+      score.homeScore = res.data.homeScore,
+      score.awayScore = res.data.awayScore
+      updateScore(score)
+    })
+  }
 
   const submitEvent = async (e) => {
     e.preventDefault();
-    console.log(newEvent)
+    // console.log(newEvent)
+    // console.log(newScore)
     try {
-      await axios.post("http://localhost:9200/events", newEvent);
+      await axios.post("http://localhost:9200/event", newEvent);
       console.log("Event Added");
+      setEventSubmit(true)
     } catch (err) {
       console.log(err);
     }
 
-    try {
-      await axios 
-      .put("http://localhost:9200/schedule/" + currentGame.gameID, newScore)
-      console.log("score updated")
-    } catch (err) {
-      console.log(err);
-    }
+    // try {
+    //   await axios 
+    //   .put("http://localhost:9200/schedule/" + currentGameID, newScore)
+    //   console.log("score updated")
+    // } catch (err) {
+    //   console.log(err);
+    // }
 
 
     setEventSubmit(!eventSubmit);
     clearFields();
     setOpenModal(false);
   };
+
+  // const updateScore = async() => {
+  //   await axios
+  //   .patch("http://localhost:9200/game/" + currentGameID, gameScore)
+  //   .catch(err => {console.log(err)})
+  //   setEventSubmit(false)
+  // }
+
+  // console.log(eventSubmit)
 
   if (!open) {
     return null;
@@ -272,7 +308,7 @@ function addGameEventModal({
                   <div id="time-input">
                     <input type="text" id="hours" max="2" dir="rtl" onChange={(e) => setMinutes(e.target.value)} />
                     <div id="colon">
-                      <span> : </span>
+                      :
                     </div>
                     <input type="text" id="minutes" max="2" onChange={(e) => setSeconds(e.target.value)} />
                   </div>
@@ -289,8 +325,8 @@ function addGameEventModal({
               </div>
             </form>
             <section className="event_controls">
-              <button onClick={submitEvent}>Submit</button>
-              <button onClick={handleClose}>Cancel</button>
+              <button className="submit_btn btn" onClick={submitEvent}>Submit</button>
+              <button className="cancel_btn btn" onClick={handleClose}>Cancel</button>
             </section>
           </div>
         </div>

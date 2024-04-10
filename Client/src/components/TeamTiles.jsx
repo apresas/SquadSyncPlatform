@@ -1,16 +1,14 @@
 import { useState, useMemo, useEffect, useRef } from "react";
-import axios from "axios";
 import "./teamTiles.css";
 import Teams from "../data/teams.json";
 import standings from "../data/standing.json";
 import TitleBar from "./TitleBar";
 import { FiChevronsDown } from "react-icons/fi";
-import { GrStar } from "react-icons/gr";
 import { useTable, useSortBy } from "react-table";
 import { Link, useParams } from "react-router-dom";
 import rosterData from "../data/rosterData.json";
 
-function TeamTiles({ setCurrentTeam, setRosterTeam, getTeamData, teamData }) {
+function TeamTiles({ setCurrentTeam, setRosterTeam, getTeamData, teamData, getDates }) {
   const openRed = useRef(false)
   const openWhite = useRef(false)
   const openBlue = useRef(false)
@@ -79,6 +77,10 @@ function TeamTiles({ setCurrentTeam, setRosterTeam, getTeamData, teamData }) {
     []
   );
 
+  useEffect(() => {
+    getDates(new Date())
+  }, [])
+
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
     useTable({ columns, data }, useSortBy);
 
@@ -132,8 +134,9 @@ function TeamTiles({ setCurrentTeam, setRosterTeam, getTeamData, teamData }) {
       </div> */}
       <section className="divisions">
         <h2 className="divisions_title">Red Division</h2>
-        <div className="star">
-          <GrStar style={{ fontSize: "2rem" }} />
+        <div className="div_icon">
+          <img src="../../src/assets/DivisionIcons/red_div_icon_v3.svg" alt="" />
+          {/* <GrStar style={{ fontSize: "2rem" }} /> */}
         </div>
         <div className="team_tiles red">
           {teamData.map((team) => {
@@ -224,8 +227,8 @@ function TeamTiles({ setCurrentTeam, setRosterTeam, getTeamData, teamData }) {
       </section>
       <section className="divisions">
         <h2 className="divisions_title">White Division</h2>
-        <div className="star">
-          <GrStar style={{ fontSize: "2rem" }} />
+        <div className="div_icon">
+        <img src="../../src/assets/DivisionIcons/white_div_icon_v3.svg" alt="" />
         </div>
         <div className="team_tiles white">
           {teamData.map((team) => {
@@ -318,8 +321,8 @@ function TeamTiles({ setCurrentTeam, setRosterTeam, getTeamData, teamData }) {
       </section>
       <section className="divisions">
         <h2 className="divisions_title">Blue Division</h2>
-        <div className="star">
-          <GrStar style={{ fontSize: "2rem" }} />
+        <div className="div_icon">
+        <img src="../../src/assets/DivisionIcons/blue_div_icon_v3.svg" alt="" />
         </div>
         <div className="team_tiles blue">
           {teamData.map((team) => {

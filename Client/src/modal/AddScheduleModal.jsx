@@ -26,6 +26,7 @@ function AddScheduleModal({
   // const [gameSubmit, setGameSubmit] = useState(false);
 
   const [newGame, setNewGame] = useState({
+    gameID: 0,
     date: "",
     arena: "",
     time: "",
@@ -33,6 +34,7 @@ function AddScheduleModal({
     awayID: undefined,
     homeScore: 0,
     awayScore: 0,
+    final: false
   });
 
   const handleDayClick = (day) => {
@@ -60,18 +62,21 @@ function AddScheduleModal({
       awayID: awayID,
       homeScore: homeScore,
       awayScore: awayScore,
+      final: false
     });
   }, [newGameID, date, venue, time, homeScore, awayScore, homeID, awayID]);
 
   const submitGame = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:9200/schedule", newGame);
+      // await axios.post("http://localhost:9200/schedule", newGame);
+      await axios.post("http://localhost:9200/game", newGame);
       console.log("Game Added");
     } catch (err) {
       console.log(err);
     }
-    setGameSubmit(!gameSubmit);
+    // setGameSubmit(!gameSubmit);
+    setGameSubmit(true)
     clearFields();
     setOpenModal(false);
   };
@@ -97,15 +102,15 @@ function AddScheduleModal({
   return (
     <>
       <div className="games_overlay">
-        <div className="update_container">
+        <div className="add_schedule_container">
           <div className="update_content">
-            <form className="player_form_container">
+            <form className="game_form_container">
               <h2>Add Game</h2>
               <div className="date_time_field">
                 <div className="date_picker_field">
                   <DayPicker selected={selected} onDayClick={handleDayClick} />
                 </div>
-                <div className="venue_time_field">
+                <div className="game_form_field">
                   <div className="field">
                     <label htmlFor="">Venue</label>
                     <input
@@ -138,7 +143,7 @@ function AddScheduleModal({
                       setAwayID={setAwayID}
                     />
                   </div>
-                  <div className="field team_field">
+                  {/* <div className="field team_field">
                     <label htmlFor="">Home Score</label>
                     <input
                       name="homeScore"
@@ -153,13 +158,13 @@ function AddScheduleModal({
                       type="number"
                       onChange={(e) => setAwayScore(e.target.value)}
                     />
-                  </div>
+                  </div> */}
                   <div className="update_player_form_controls">
-                    <button className="submit_player_btn" onClick={submitGame}>
+                    <button className="submit_btn btn" onClick={submitGame}>
                       Submit
                     </button>
                     <button
-                      className="submit_player_btn"
+                      className="cancel_btn btn"
                       onClick={() => setOpenModal(false)}
                     >
                       Cancel

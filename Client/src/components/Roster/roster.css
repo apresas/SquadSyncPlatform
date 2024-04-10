@@ -1,0 +1,70 @@
+.roster_container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-bg);
+}
+
+.roster_content {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1280px;
+    background-color: rgb(245, 245, 252);
+    color: var(--color-bg);
+    margin-top: 2rem;
+    font-family: var(--font-main);
+    padding: 4rem 0 8rem;
+}
+
+.roster_grid {
+    border: 1px solid lightgrey;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+}
+
+.active_grid > .roster_grid {
+    border-bottom: none;
+}
+
+.roster_grid:nth-of-type(2) {
+    border-left: none;
+    border-bottom: none;
+}
+
+.roster_forward_grid, .roster_defense_grid {
+    display: grid;
+    gap: 0.5rem;
+    width: fit-content;
+    /* margin-top: 1.5rem; */
+    /* border: 1px solid lightgrey; */
+    padding: 1rem
+}
+
+.roster_forward_grid {
+    grid-template-columns: repeat(3, 1fr);
+}
+.roster_defense_grid {
+    grid-template-columns: repeat(2, 1fr);
+    height: fit-content;
+}
+
+.scratch_grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0.5rem;
+    padding: 1rem;
+}
+
+.roster_controls {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    margin-top: 1rem;
+    width: 100%;
+    gap: 0.5rem;
+}

@@ -12,7 +12,8 @@ function Home({
     setRosterTeam,
     rosterTeam,
     teamData,
-    getTeamData
+    getTeamData,
+    getDates,
 }) {
   return (
     <>
@@ -21,7 +22,7 @@ function Home({
       <NavBar />
     </div>
     <div className="app_container">
-      <TeamTiles setCurrentTeam={setCurrentTeam} currentTeam={currentTeam} setRosterTeam={setRosterTeam} rosterTeam={rosterTeam} getTeamData={getTeamData} teamData={teamData}/>
+      <TeamTiles setCurrentTeam={setCurrentTeam} currentTeam={currentTeam} setRosterTeam={setRosterTeam} rosterTeam={rosterTeam} getTeamData={getTeamData} teamData={teamData} getDates={getDates}/>
       <LeagueLeaders />
       <Footer />
     </div>

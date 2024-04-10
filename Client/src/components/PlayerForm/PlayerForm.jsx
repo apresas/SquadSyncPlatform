@@ -105,7 +105,7 @@ function PlayerForm({ teamData, getTestPlayers, getFilterTeam, filterTeamID }) {
   const submitPlayer = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:9200/players", newPlayer);
+      await axios.post("http://localhost:9200/player", newPlayer);
       console.log("Player Added");
     } catch (err) {
       console.log(err);

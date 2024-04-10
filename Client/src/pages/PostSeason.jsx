@@ -3,12 +3,12 @@ import NavBar from "../components/NavBar";
 import SponcerBar from "../components/Sponcer/SponcerBar";
 import Footer from "../components/Footer";
 import PlayoffBracket from "../components/Playoff/PlayoffBracket";
-function PostSeason() {
+function PostSeason({ getDates }) {
   return (
     <>
-          <SponcerBar />
+      <SponcerBar />
       <NavBar />
-      <PlayoffBracket />
+      <PlayoffBracket getDates={getDates}/>
       <Footer />
     </>
   );

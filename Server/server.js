@@ -1,25 +1,71 @@
-import express from 'express';
-import mysql from 'mysql2';
-import cors from 'cors';
-import dotenv from 'dotenv';
+const express = require('express')
+const dotenv = require('dotenv')
+const mysql = require('mysql2')
+const cors = require('cors')
+const bodyParser = require('body-parser')
 
+// Config DB Connection
 dotenv.config()
-
-const port = 9200;
+const port = process.env.PORT;
 const app = express();
-// app.use(cors())
 app.use(express.json(), cors())
 const db = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'Tyler0710!',
-    database: "squadsynctest"
-    // host: process.env.HOST,
-    // user: process.env.USER,
-    // password: process.env.PASSWORD,
-    // database: process.env.DATABASE,
-    // port: process.env.DB_PORT
+    host: process.env.HOST,
+    user: process.env.USER,
+    password: process.env.PASSWORD,
+    database: process.env.DATABASE
 })
+app.use(bodyParser.json())
+
+// Routes Imports
+const testRoutes = require('./routes/test.js')
+const testUsersRoutes = require('./routes/testUsers.js')
+
+const gameRoutes = require('./routes/game.js')
+const gamesByDateRoutes = require('./routes/gamesByDate.js')
+const gamesByTeamRoutes = require('./routes/gamesByTeam.js')
+
+const teamRoutes = require('./routes/team.js')
+
+const eventRoutes = require('./routes/event.js')
+const eventByGameRoutes = require('./routes/eventByGame.js')
+const eventByGoalRoutes = require('./routes/eventByGoal.js')
+
+const playerRoutes = require('./routes/player.js')
+const playerByTeamRoutes = require('./routes/playerByTeam.js')
+
+const gameStatRoutes = require('./routes/gameStat.js')
+const gameStatByGameRoutes = require('./routes/gameStatByGame.js')
+
+const goalieStatRoutes = require('./routes/goalieStat.js')
+const goalieStatByGameRoutes = require('./routes/goalieStatByGame.js')
+const goalieStatByPlayerRoutes = require('./routes/goalieStatByPlayer.js')
+
+// Routes
+app.use("/test", testRoutes)
+app.use("/testUsers", testUsersRoutes)
+
+app.use("/game", gameRoutes)
+app.use("/gamesByDate", gamesByDateRoutes)
+app.use("/gamesByTeam", gamesByTeamRoutes)
+
+app.use("/team", teamRoutes)
+
+app.use("/event", eventRoutes)
+app.use("/eventByGame", eventByGameRoutes)
+app.use("/eventByGoal", eventByGoalRoutes)
+
+app.use("/player", playerRoutes)
+app.use("/playerByTeam", playerByTeamRoutes)
+
+app.use("/gameStat", gameStatRoutes)
+app.use("/gameStatByGame", gameStatByGameRoutes)
+
+app.use("/goalieStat", goalieStatRoutes)
+app.use("/goalieStatByGame", goalieStatByGameRoutes)
+app.use("/goalieStatByPlayer", goalieStatByPlayerRoutes)
+
+
 
 app.get('/teams', (req, res) => {
     const q = "SELECT * FROM teams"
@@ -113,8 +159,8 @@ app.put('/schedule/:gameID', (req, res) => {
     const gameID = req.params.gameID;
     const q = "UPDATE schedule SET `homeScore` = ?, `awayScore` = ? WHERE gameID = ?"
     const values = [
-        req.body.home,
-        req.body.away
+        req.body.homeScore,
+        req.body.awayScore
     ]
 
     db.query(q, [...values, gameID], (err, data) => {
@@ -288,5 +334,8 @@ app.put("/players/:playerID", (req, res) => {
         return res.json("Player has been updated successfully")
     })
 })
+
+
+
 
 app.listen({port}, () => console.log(`listening on port ${port}`))

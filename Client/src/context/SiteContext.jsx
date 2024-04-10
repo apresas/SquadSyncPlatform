@@ -50,16 +50,16 @@ export const SiteProvider = ({ children }) => {
   const [teamData, setTeamData] = useState([]);
 
   const getTeamData = async () => {
-    const res = await axios.get("http://localhost:9200/teams");
+    const res = await axios.get("http://localhost:9200/team");
     setTeamData(res.data);
   };
   
   const [teamLoading, setTeamLoading] = useState(false);
   const getCurrentTeam = async (teamID) => {
     setTeamLoading(true)
-    await axios.get("http://localhost:9200/teams/" + teamID)
+    await axios.get("http://localhost:9200/team/" + teamID)
     .then((res) => {
-      setFilterTeam(...res.data)
+      setFilterTeam(res.data)
     })
     .catch((err) => console.log(err))
     .finally(() => {
@@ -81,7 +81,7 @@ export const SiteProvider = ({ children }) => {
 
   const getFilterTeam = async (teamID) => {
     try {
-      const res = await axios.get("http://localhost:9200/players/" + teamID);
+      const res = await axios.get("http://localhost:9200/playerByTeam/" + teamID);
       setFilteredPlayers(res.data);
     } catch (err) {
       console.log(err);
@@ -100,7 +100,7 @@ export const SiteProvider = ({ children }) => {
 
   const [schedule, setSchedule] = useState([])
   const getSchedule = async () => {
-    const res = await axios.get("http://localhost:9200/schedule")
+    const res = await axios.get("http://localhost:9200/game")
     setSchedule(res.data);
   }
 
@@ -174,6 +174,18 @@ export const SiteProvider = ({ children }) => {
   const [gameSubmit, setGameSubmit] = useState(false);
   const [eventSubmit, setEventSubmit] = useState(false);
 
+  const setTest = async() => {
+    const test = {
+      title: 'test'
+    }
+    try {
+      await axios.post("http://localhost:9200/test", test);
+      console.log("Event Added");
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
 
   useEffect(() => {
     // axios({
@@ -183,6 +195,7 @@ export const SiteProvider = ({ children }) => {
     //   // console.log(res.data);
     //   setTeamData(res.data)
     // });
+    // setTest();
     getTeamData();
     getTestPlayers();
     getSchedule()

@@ -1,15 +1,14 @@
-import React from "react";
 import NavBar from "../components/NavBar";
 import SponcerBar from "../components/Sponcer/SponcerBar";
 import Footer from "../components/Footer";
 import Ranking from "../components/Ranking/Ranking";
 
-function Rankings() {
+function Rankings({getDates}) {
   return (
     <>
       <SponcerBar />
       <NavBar />
-      <Ranking />
+      <Ranking getDates={getDates}/>
       <Footer />
     </>
   );

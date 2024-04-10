@@ -35,14 +35,16 @@ function TestGameItem({ data, teamData, setCurrentGame }) {
 
   const link = "/game/" + data.gameID;
 
-  const handleGameClick = () => {
+  const handleGameClick = (data) => {
     setCurrentGame(data)
   }
+
+  // console.log(data)
 
   
 
   return (
-    <div className="game_item_container" onClick={handleGameClick}>
+    <div className="game_item_container" onClick={() => handleGameClick(data)}>
     <Link
     to={link}
     style={{ color: "inherit", textDecoration: "inherit", backgroundColor: "inherit" }}

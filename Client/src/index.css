@@ -22,6 +22,9 @@
   --font-sub-header: "Teko";
   --font-main: 'Rajdhani';
 
+  --header-spacing: 0.05rem;
+  /* --font-header: "Kdam Thmor Pro"; */
+
   --color-bg: #031327;
   --color-nav: #002654;
   --color-white: rgb(245, 245, 252);
@@ -30,14 +33,15 @@
   --color-ohio-blue: #0047ab;
   --color-dark-white: #e1e2f0;
   --color-border: rgba(119, 136, 153, 0.5);
+  --color-item-white: #efeffa;
 
   --transition: all 300ms ease-in-out;
   --transition-fast: all 200ms ease-in-out;
 }
 
 a {
-  font-weight: 500;
-  color: #646cff;
+  /* font-weight: 500;
+  color: #646cff; */
   text-decoration: inherit;
 }
 a:hover {
@@ -77,6 +81,30 @@ button:hover {
 button:focus,
 button:focus-visible {
   /* outline: 4px auto -webkit-focus-ring-color; */
+}
+
+.btn {
+  font-family: var(--font-sub-header);
+  font-weight: 400;
+  border: 1px solid lightgrey;
+  background-color: inherit;
+  color: var(--color-bg);
+  padding: 0.5rem 4rem;
+  transition: var(--transition-fast);
+  border-radius: 5px;
+  margin-top: 0.5rem;
+}
+
+.submit_btn:hover {
+  transition: var(--transition-fast);
+  border: 1px solid mediumspringgreen;
+  color: mediumspringgreen;
+}
+
+.cancel_btn:hover {
+  transition: var(--transition-fast);
+  border: 1px solid var(--color-ohio-red);
+  color: var(--color-ohio-red);
 }
 
 @media (prefers-color-scheme: light) {

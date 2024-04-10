@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import { FaRegCalendar } from "react-icons/fa";
 import "./dayTile.css";
 import { DateTime } from "luxon";
@@ -10,39 +10,38 @@ function DayTile({ href, date, selectedTeam }) {
   const day = DateTime.fromISO(date).toFormat("d");
   const dayOfWeek = DateTime.fromISO(date).toFormat("EEE");
   const dateTitle = month + "/" + day;
-
   const [gameCount, setGameCount] = useState(0);
-
   const [filterSchedule, setFilterSchedule] = useState([]);
-  const getFilterDate = async (date) => {
-    const res = await axios.get("http://localhost:9200/schedule/" + date);
-    setFilterSchedule(res.data);
-  };
 
-  const getFilterSchedule = async (date, teamID) => {
-    const res = await axios.get(
-      "http://localhost:9200/schedule/" + date + "/" + teamID
-    );
-    setFilterSchedule(res.data);
-  };
-
-  useEffect(() => {
-    getFilterSchedule(date);
-  }, [date]);
-
-  useEffect(() => {
+  const getGames = async (date, teamID) => {
     if (selectedTeam === undefined) {
-      getFilterDate(date);
+      await axios
+        .get("http://localhost:9200/gamesByDate/" + date)
+        .then((res) => {
+          setFilterSchedule(res.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     } else {
-      getFilterSchedule(date, selectedTeam);
+      await axios
+        .get("http://localhost:9200/gamesByDate/" + date + "/" + teamID)
+        .then((res) => {
+          setFilterSchedule(res.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
+  };
+
+  useEffect(() => {
+    getGames(date, selectedTeam);
   }, [date, selectedTeam]);
 
-
   useEffect(() => {
-    setGameCount(filterSchedule.length)
-  }, [filterSchedule.length])
-
+    setGameCount(filterSchedule.length);
+  }, [filterSchedule.length]);
 
   return (
     <a className="day_container" href={href}>

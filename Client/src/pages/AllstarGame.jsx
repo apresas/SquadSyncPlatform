@@ -4,12 +4,12 @@ import SponcerBar from "../components/Sponcer/SponcerBar";
 import Footer from "../components/Footer";
 import Allstar from "../components/AllStar/Allstar";
 
-function AllstarGame() {
+function AllstarGame({getDates}) {
   return (
     <>
       <SponcerBar />
       <NavBar />
-      <Allstar />
+      <Allstar getDates={getDates}/>
       <Footer />
     </>
   );

@@ -14,6 +14,7 @@ import History from "./pages/LeagueHistory";
 import Archieve from "./pages/Archieve";
 import Links from "./pages/Links";
 import Game from "./pages/Game";
+import Test from "./pages/Test"
 import { useSite } from "./context/SiteContext";
 
 function App() {
@@ -50,17 +51,17 @@ function App() {
     setGameSubmit,
     currentGame,
     setCurrentGame,
-    eventSubmit, 
+    eventSubmit,
     setEventSubmit,
-    gameScore, 
+    gameScore,
     setGameScore,
-    filterTeam, 
+    filterTeam,
     getCurrentTeam,
     getFilterGame,
     filterGame,
     teamLoading,
     getRecord,
-    record
+    record,
   } = useSite();
   return (
     <>
@@ -74,6 +75,7 @@ function App() {
               rosterTeam={rosterTeam}
               getTeamData={getTeamData}
               teamData={teamData}
+              getDates={getDates}
             />
           }
         />
@@ -100,6 +102,7 @@ function App() {
         <Route path="/stats" elememt={<StatsLeader />} />
         <Route
           path="/schedule"
+          onLeave={() => getDates(new Date())}
           element={
             <Schedule
               setDateList={setDateList}
@@ -123,11 +126,11 @@ function App() {
             />
           }
         />
-        <Route path="/info" element={<LeagueInfo />} />
-        <Route path="/rankings" element={<Rankings />} />
-        <Route path="/postseason" element={<PostSeason />} />
-        <Route path="/awards" element={<PlayerAwards />} />
-        <Route path="/allstar" element={<AllstarGame />} />
+        {/* <Route path="/info" element={<LeagueInfo />} /> */}
+        <Route path="/rankings" element={<Rankings getDates={getDates} />} />
+        <Route path="/postseason" element={<PostSeason getDates={getDates}/>} />
+        <Route path="/awards" element={<PlayerAwards getDates={getDates}/>} />
+        <Route path="/allstar" element={<AllstarGame getDates={getDates}/>} />
         <Route path="/history" element={<History />} />
         <Route
           path="/archive"
@@ -140,11 +143,12 @@ function App() {
               filteredPlayers={filteredPlayers}
               setCurrentPlayer={setCurrentPlayer}
               currentPlayer={currentPlayer}
+              getDates={getDates}
             />
           }
         />
         <Route path="/links" element={<Links />} />
-        <Route path="/info" element={<LeagueInfo />} />
+        <Route path="/info" element={<LeagueInfo getDates={getDates} />} />
         <Route
           path="/game/:id"
           element={
@@ -165,9 +169,11 @@ function App() {
               getRecord={getRecord}
               record={record}
               schedule={schedule}
+              getDates={getDates}
             />
           }
         />
+        <Route path="/test" element={<Test />} />
       </Routes>
     </>
   );

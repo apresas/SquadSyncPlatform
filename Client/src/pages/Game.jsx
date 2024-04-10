@@ -20,7 +20,8 @@ function Game({
   filterGame,
   getRecord,
   record,
-  schedule
+  schedule,
+  getDates
 }) {
   return (
     <>
@@ -43,6 +44,7 @@ function Game({
         getRecord={getRecord}
         record={record}
         schedule={schedule}
+        getDates={getDates}
       />
       <Footer />
     </>

@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import GameEventTile from "./GameEventTile";
 import "./gameEvent.css";
 import axios from "axios";
@@ -19,9 +19,16 @@ function GameEvent({
   setGameEvents,
   gameEvents,
   currentGameID,
+  setStatus, 
+  isFinal, 
+  setIsFinal
 }) {
   const homeButton = useRef();
   const awayButton = useRef();
+  const addBtnRef = useRef();
+  const finalRef = useRef();
+
+  const [gameStatus, setGameStatus] = useState(false)
   // console.log(currentGameID)
 
   // useEffect(() => {
@@ -35,16 +42,34 @@ function GameEvent({
   // }, [currentGame.gameID, gameEvents, setCurrentEvents])
 
   useEffect(() => {
-    getGameEvents(currentGameID);
-  }, [currentGame]);
+    getGameStatus(currentGameID)
+    if(isFinal) {
+      finalRef.current.className = "final_btn final_selected"
+    } else if (!isFinal) {
+      finalRef.current.className = "final_btn"
+    }
+  }, [])
+
+  // useEffect(() => {
+  //   getGameEvents(currentGameID);
+  // }, [currentGameID]);
 
   useEffect(() => {
     getGameEvents(currentGameID);
   }, [eventSubmit]);
 
+
+  const getGameStatus= async(gameID) => {
+    await axios
+    .get("http://localhost:9200/game/" + gameID)
+    .then((res) => {
+      setIsFinal(res.data.final)
+    }).catch((err) => {console.log(err)})
+  }
+
   const getGameEvents = async (gameID) => {
     await axios
-      .get("http://localhost:9200/events/" + gameID)
+      .get("http://localhost:9200/eventByGame/" + gameID)
       .then((res) => {
         setGameEvents(res.data);
       })
@@ -60,6 +85,56 @@ function GameEvent({
       homeButton.current.className = "gameEvent_home_btn"
     }
   }
+
+  const handleFinal = async(isFinal) => {
+    if(!isFinal) {
+      finalRef.current.className = "final_btn final_selected"
+      // finalRef.current.innerHTML = "Final"
+      await axios
+      .patch("http://localhost:9200/game/" + currentGameID, {final: true})
+      .then(() => console.log("Final updated successfully"))
+      .then(() => {
+        setIsFinal(true)
+      })
+      .catch((err) => {console.log(err)})
+    } else if(isFinal) {
+      finalRef.current.className = "final_btn"
+      // finalRef.current.innerHTML = "Set Final"
+      await axios
+      .patch("http://localhost:9200/game/" + currentGameID, {final: false})
+      .then(() => console.log("Final updated successfully"))
+      .then(() => {
+        setIsFinal(false)
+      })
+      .catch((err) => {console.log(err)})
+    }
+  }
+
+
+  useEffect(() => {
+    if(isFinal) {
+      addBtnRef.current.className = "gameEvent_add_btn final"
+      setStatus("Final")
+
+    } else {
+      addBtnRef.current.className = "gameEvent_add_btn"
+
+    }
+
+
+  }, [isFinal])
+
+  useEffect(() => {
+    let lastIndex = 0
+    if(gameEvents.length === 0 && !isFinal) {
+      setStatus("TBD")
+    } else if (gameEvents.length > 0 && !isFinal) {
+      lastIndex = gameEvents.length - 1
+      setStatus(gameEvents[lastIndex].period)
+    }
+  }, [gameEvents, isFinal])
+
+  // console.log(gameEvents)
 
   return (
     <div className="gameEvent_container">
@@ -96,9 +171,12 @@ function GameEvent({
           })}
       </section>
       <div className="gameEvent_controls">
-        <button className="gameEvent_add_btn" onClick={handleModalOpen}>
+        <button className="gameEvent_add_btn" ref={addBtnRef} onClick={handleModalOpen}>
           <span>Add New Event</span>
           <MdOutlineAddBox />
+        </button>
+        <button className="final_btn" ref={finalRef} onClick={() => handleFinal(isFinal)}>
+          {isFinal ? "Final" : "Set Final"}
         </button>
         {/* <button className="gameEvent_add_btn" onClick={handleModalOpen}>
           <MdPostAdd />

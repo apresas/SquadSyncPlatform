@@ -10,6 +10,7 @@ function GameEventTile({
   data,
   homeLoading,
   awayLoading,
+  isFinal
 }) {
   const [bannerColor, setBannerColor] = useState();
   const [homeLogoOpacity, setHomeLogoOpacity] = useState(0);
@@ -17,6 +18,7 @@ function GameEventTile({
   const [homeOpacity, setHomeOpacity] = useState(1);
   const [awayOpacity, setAwayOpacity] = useState(1);
   const [eventLogo, setEventLogo] = useState();
+  const [gameTime, setGameTime] = useState()
 
   const [goalScorer, setGoalScorer] = useState({
     playerID: "",
@@ -38,12 +40,12 @@ function GameEventTile({
   });
 
   useEffect(() => {
-    if (data.scoreTeam === homeTeam.teamID) {
+    if (data.scoringTeam === homeTeam.teamID) {
       setBannerColor(homeTeam.primaryColor);
       setHomeLogoOpacity(0.5);
       setAwayOpacity(0.5);
       setEventLogo(homeTeam.logo);
-    } else if (data.scoreTeam === awayTeam.teamID) {
+    } else if (data.scoringTeam === awayTeam.teamID) {
       setBannerColor(awayTeam.primaryColor);
       setAwayLogoOpacity(0.5);
       setHomeOpacity(0.5);
@@ -53,7 +55,7 @@ function GameEventTile({
     awayTeam.logo,
     awayTeam.primaryColor,
     awayTeam.teamID,
-    data.scoreTeam,
+    data.scoringTeam,
     homeTeam.logo,
     homeTeam.primaryColor,
     homeTeam.teamID,
@@ -63,7 +65,7 @@ function GameEventTile({
     if (homeLoading === false) {
       {
         homeRoster.map((player) => {
-          if (player.playerID === data.scorerID) {
+          if (player.playerID === data.goalID) {
             setGoalScorer({
               teamID: player.teamID,
               playerID: player.playerID,
@@ -95,7 +97,7 @@ function GameEventTile({
     if (awayLoading === false) {
       {
         awayRoster.map((player) => {
-          if (player.playerID === data.scorerID) {
+          if (player.playerID === data.goalID) {
             setGoalScorer({
               teamID: player.teamID,
               playerID: player.playerID,
@@ -134,6 +136,23 @@ function GameEventTile({
     data.secondaryAssistID,
     awayRoster,
   ]);
+
+  useEffect(() => {
+    // console.log(data)
+    if (data !== null) {
+    convertTime(data.gameTime)
+    }
+  }, [data])
+
+
+  const convertTime = (time) => {
+    const timeString = time.toFixed(2)
+    const timeSplit = timeString.split(".", 2);
+    const newTime = timeSplit[0] + ":" + timeSplit[1]
+  
+    setGameTime(newTime)
+  }
+
 
   return (
     <div className="gameEvent_tile_container">
@@ -176,7 +195,7 @@ function GameEventTile({
       </section>
       <section className="gameEvent_tile_content">
         <div className="gameEvent_time_container">
-          <p>{data.gameTime}</p>
+          <p>{gameTime}</p>
           <small>{data.period}</small>
         </div>
         <div className="gameEvent_event_container">

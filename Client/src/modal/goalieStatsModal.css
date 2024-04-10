@@ -1,0 +1,108 @@
+.goalie_overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    background-color: rgba(2, 14, 29, 0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.goalie_container {
+    position: relative;
+    width: 50rem;
+    min-width: fit-content;
+    height: fit-content;
+    background: white;
+    color: var(--color-bg);
+    border-radius: 15px;
+    overflow: hidden;
+    display: flex;
+}
+
+.goalie_content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border: 1px solid lightgray;
+    padding: 2rem;
+}
+
+.goalie_content h2{
+    margin-top: 0;
+}
+
+.goalie_form_container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+}
+
+.goalie_title {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.home_goalie_form, .away_goalie_form {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    border: 1px solid lightgrey;
+    gap: 0.5rem;
+}
+
+.home_goalie_form label, .away_goalie_form label{
+    font-family: var(--font-sub-header);
+    font-weight: 400;
+}
+
+.home_goalie_form input, .away_goalie_form input{
+    border: 1px solid lightgray;
+    padding: 0.5rem;
+}
+
+.goalie_field {
+    display: flex;
+    flex-direction: column;
+    /* width: 100%; */
+}
+
+.goalie_controls {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: flex-end;
+    margin-top: 1rem;
+}
+
+.goalie_section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.goalie_section h4 {
+    margin-bottom: 0.5rem;
+}
+
+.goalie_item_controls {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.add_goalie_two_btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: inherit;
+    border: 1px solid lightgrey;
+    color: var(--color-bg);
+    border-radius: 7px;
+    aspect-ratio: 1/1;
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+}

@@ -39,11 +39,12 @@ function GameSchedule({
 
   useEffect(() => {
     // setDateList()
-    // setGameSubmit(false)
+    setGameSubmit(false)
     getDates(new Date())
   }, [])
 
-  console.log(isLoading)
+
+  // console.log(isLoading)
 
   return (
     <>

@@ -11,7 +11,8 @@
 }
 
 .event_container {
-    width: 60rem;
+    /* width: 60rem; */
+    width: 45rem;
     /* height: 40rem; */
     background: white;
     color: var(--color-bg);
@@ -20,19 +21,29 @@
     padding: 2rem;
   }
 
+  .event_content {
+    padding: 2rem;
+    border: 1px solid lightgray;
+    border-radius: 7px;
+  }
+
   .event_content h2{
     font-family: var(--font-header);
+    margin-top: 0;
   }
 
   .event_field {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 0.5rem;
-    margin-bottom: 0.5rem;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
   }
 
   .event_dropdown h3{
+    font-family: var(--font-sub-header);
+    font-weight: 400;
     text-align: left;
+    font-size: 1rem;
   }
 
   .event_time {
@@ -52,10 +63,10 @@
     gap: 0.5rem;
   }
 
-  .event_controls button {
+  /* .event_controls button {
     background-color: var(--color-ohio-blue);
     font-family: var(--font-header);
-  }
+  } */
 
   .event_dropdown input[type=time]::-webkit-datetime-edit-ampm-field, .event_dropdown input[type="time"]::-webkit-calendar-picker-indicator, .event_dropdown input[type="time"]::-webkit-inner-spin-button,
   .event_dropdown input[type="time"]::-webkit-clear-button {
@@ -66,12 +77,17 @@
     display: flex;
     align-items: center;
     justify-content:center;
-    width: 100%;
-    border: 1px solid lightgray;
+    width: 30%;
+    /* border: 1px solid lightgray; */
+    /* background-color: red; */
     /* border-radius: 8px; */
     /* padding: 3px; */
   }
-  
+
+  #time-input input{
+    aspect-ratio: 1/1;
+  }
+
   input {
     min-width: 0;
     font-family: var(--font-sub-header);
@@ -84,14 +100,27 @@
 
   #colon {
     align-self: center;
+    justify-items: center;
+    line-height: 0.7;
+    margin: 0 0.25rem;
+    /* padding: 0.5rem 0; */
   }
   
   input:focus {
     outline: none;
   }
+
+  #hours, #minutes {
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border: 1px solid lightgrey;
+  }
   
   #hours {
-    text-align: right;
+    /* text-align: right; */
   }
 
 

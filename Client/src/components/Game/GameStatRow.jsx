@@ -2,13 +2,24 @@ import React, { useEffect, useState } from "react";
 import './gameStatRow.css'
 
 function GameStatRow({title, homeValue, awayValue, homeColor, awayColor, percentage}) {
-    const awayAverage = (awayValue/(homeValue + awayValue))*100
-    const homeAverage = (homeValue/(awayValue + homeValue))*100
+  let awayAverage = ((awayValue/(homeValue + awayValue))*100)
+  let homeAverage = ((homeValue/(awayValue + homeValue))*100) 
+  // const [awayAverage, setAwayAverage] = useState();
+  // const [homeAverage, setHomeAverage] = useState();
 
     const [homeRowValue, setHomeRowValue] = useState()
     const [awayRowValue, setAwayRowValue] = useState()
 
+    const getAverages = (homeValue, awayValue) => {
+      setAwayAverage((awayValue/(homeValue + awayValue))*100)
+      setHomeAverage((homeValue/(awayValue + homeValue))*100)
+      // console.log(`home value: ${homeValue} away value:${awayValue}`)
+      // console.log(`home: ${homeAverage} away:${awayAverage}`)
+    }
+
+
     useEffect(() => {
+      // console.log(`home: ${homeAverage} away:${awayAverage}`)
       if(percentage === true) {
         setHomeRowValue(homeValue + "%")
         setAwayRowValue(awayValue + "%")
@@ -16,7 +27,14 @@ function GameStatRow({title, homeValue, awayValue, homeColor, awayColor, percent
         setHomeRowValue(homeValue)
         setAwayRowValue(awayValue)
       }
+      // getAverages(homeValue, awayValue)
     }, [homeValue, awayValue])
+
+    useEffect(()=> {
+      // console.log(`home: ${homeRowValue} away:${awayRowValue}`)
+      // getAverages(homeRowValue, awayRowValue)
+    }, [homeRowValue, awayRowValue])
+
 
   return (
     <div className="gameStat_row">

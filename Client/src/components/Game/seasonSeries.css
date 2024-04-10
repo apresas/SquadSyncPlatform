@@ -1,6 +1,6 @@
-/* .seasonSeries_container {
-    padding-top: 1rem;
-} */
+.seasonSeries_container {
+    /* padding-bottom: 1rem; */
+}
 
 .seasonSeries_header, .seasonSeries_team_row, .seasonSeries_info_row {
     display: flex;

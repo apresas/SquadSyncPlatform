@@ -45,6 +45,7 @@
     font-size: 3rem;
     font-weight: 700;
     line-height: 1;
+    letter-spacing: var(--header-spacing);
 }
 
 .team_title {
@@ -112,4 +113,82 @@
 .players_grid h2 {
     font-family: var(--font-header);
 }
+
+.team_nav_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    border-bottom: 1px solid lightgrey;
+    background-color: var(--color-item-white);
+    padding: 1rem 0;
+}
+
+.nav_controls {
+    display: flex;
+    align-items: center;
+    gap: 3.25rem;
+    list-style: none;
+    font-size: 1.4rem;
+    font-family: var(--font-sub-header);
+}
+
+.team_btn {
+    position: relative;
+    color: var(--color-bg);
+    color: lightslategray;
+    transition: var(--transition-fast);
+
+}
+
+.team_btn::after {
+    content: "";
+    top: 1.65rem;
+    right: 0.4rem;
+    left: 0.4rem;
+    border-radius: 10px;
+    /* height: 2.5px; */
+    padding: 0.75px 0 ;
+}
+
+.team_selected{
+    position: relative;
+    /* color: var(--color-ohio-red); */
+    transition: var(--transition-fast);
+}
+
+.team_btn:hover::after {
+    content: "";
+    position: absolute;
+    background-color: var(--color-ohio-red);
+    border-radius: 10px;
+    height: 2.5px;
+    /* bottom: -0.20rem; */
+    top: 1.65rem;
+    right: 0;
+    left: 0;
+    transition: var(--transition-fast);
+}
+
+.team_selected::after {
+    content: "";
+    position: absolute;
+    background-color: var(--color-ohio-blue);
+    height: 2.5px;
+    top: 1.65rem;
+    right: 0.4rem;
+    left: 0.4rem;
+    transition: var(--transition-fast);
+  }
+
+.team_selected:hover::after {
+    content: "";
+    position: absolute;
+    background-color: var(--color-ohio-red);
+    border-radius: 10px;
+    height: 2.5px;
+    right: 0;
+    left: 0;
+    transition: var(--transition-fast);
+  }
 

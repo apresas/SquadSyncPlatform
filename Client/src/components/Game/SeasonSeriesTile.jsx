@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import "./seasonSeriesTile.css";
 import { DateTime } from "luxon";
 import { Link } from "react-router-dom";
+import axios from "axios"
+import seasonSeries from "./SeasonSeries";
 
 function SeasonSeriesTile({
   homeScore,
@@ -10,10 +12,19 @@ function SeasonSeriesTile({
   game,
   teamData,
   currentGame,
-  gameScore
+  gameScore, 
+  status,
+  gameEvents
 }) {
 
   const [currentTile, setCurrentTile] = useState("seasonSeriesTile_container");
+  const [seriesScore, setSeriesScore] = useState({
+    homeScore: 0,
+    awayScore: 0,
+  })
+  const [scoreUpdated, setScoreUpdated] = useState(false)
+
+
 
   const [link, setLink] = useState();
 
@@ -35,10 +46,27 @@ function SeasonSeriesTile({
     setGameLink(game);
   }, [game]);
 
+  // useEffect(() => {
+  //   if(scoreUpdated === false){
+  //     setScoreUpdated(true);
+  //   } else {
+  //     setScoreUpdated(false);
+  //   }
+  //   console.log(scoreUpdated)
+  //   console.log(gameScore)
+  // }, [gameScore])
+
+  useEffect(() => {
+    // console.log(gameScore)
+    getScore(game.gameID)
+  }, [status, gameScore])
+
+
   const formatGameDate = (date) => {
     const newDate = DateTime.fromISO(date).toFormat("DD");
     setTileDate(newDate);
   };
+
 
   const setTeams = (teams) => {
     {
@@ -46,12 +74,12 @@ function SeasonSeriesTile({
         if (team.teamID === game.homeID) {
           setHome({
             logo: team.logo,
-            abbrev: team.abbrev,
+            abbrev: team.abbreviation,
           });
         } else if (team.teamID === game.awayID) {
           setAway({
             logo: team.logo,
-            abbrev: team.abbrev,
+            abbrev: team.abbreviation,
           });
         }
       });
@@ -71,6 +99,17 @@ function SeasonSeriesTile({
     setLink(link);
   };
 
+  const getScore = async(gameID) => {
+    await axios
+    .get("http://localhost:9200/game/" + gameID)
+    .then((res) => {
+      setSeriesScore(res.data)
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+  }
+
   return (
     <Link
       to={link}
@@ -89,7 +128,7 @@ function SeasonSeriesTile({
           {game.homeScore === null || game.awayScore === null ? (
             <h3>-</h3>
           ) : (
-            <h3>{gameScore.homeScore}</h3>
+            <h3>{seriesScore.homeScore}</h3>
           )}
         </div>
         <div className="tile_team_container">
@@ -100,11 +139,11 @@ function SeasonSeriesTile({
           {game.homeScore === null || game.awayScore === null ? (
             <h3>-</h3>
           ) : (
-            <h3>{gameScore.awayScore}</h3>
+            <h3>{seriesScore.awayScore}</h3>
           )}
         </div>
         <div className="tile_team_info">
-          {game.homeScore === null || game.awayScore === null ? (
+          {seriesScore.final === false ? (
             <small>TBD</small>
           ) : (
             <small>Final</small>
