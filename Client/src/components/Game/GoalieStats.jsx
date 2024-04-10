@@ -93,7 +93,7 @@ function GoalieStats({
   //   setAwaySaves(awaySaves);
   // };
 
-  console.log(homeStats);
+  // console.log(homeStats);
 
   return (
     <div className="goalieStats_container">
@@ -106,26 +106,30 @@ function GoalieStats({
             <h3>{homeTeam.schoolName}</h3>
             <img src={homeTeam.logo} alt="Home Logo" />
           </div>
-          {homeStats.length === 0
-            ? null
-            : homeStats.map((stat, i) => {
-                return (
-                  <GoalieStatTile key={i} stat={stat} goalie={homeGoalie} />
-                );
-              })}
+          {homeStats.length === 0 ? (
+            <section className="goalie_stat_grid">
+              <h4>NO STATS</h4>
+            </section>
+          ) : (
+            homeStats.map((stat, i) => {
+              return <GoalieStatTile key={i} stat={stat} goalie={homeGoalie} />;
+            })
+          )}
         </section>
         <section className="awayGoalie_section">
           <div className="goalie_header">
             <h3>{awayTeam.schoolName}</h3>
             <img src={awayTeam.logo} alt="Away Logo" />
           </div>
-          {awayStats.length === 0
-            ? null
-            : awayStats.map((stat, i) => {
-                return (
-                  <GoalieStatTile key={i} stat={stat} goalie={awayGoalie} />
-                );
-              })}
+          {awayStats.length === 0 ? (
+            <section className="goalie_stat_grid">
+              <h4>NO STATS</h4>
+            </section>
+          ) : (
+            awayStats.map((stat, i) => {
+              return <GoalieStatTile key={i} stat={stat} goalie={awayGoalie} />;
+            })
+          )}
         </section>
         {status !== "Final" && gameStats.gameStatsID !== 0 ? (
           <div className="goalieStats_controls">

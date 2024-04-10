@@ -14,6 +14,7 @@ import History from "./pages/LeagueHistory";
 import Archieve from "./pages/Archieve";
 import Links from "./pages/Links";
 import Game from "./pages/Game";
+import Test from "./pages/Test"
 import { useSite } from "./context/SiteContext";
 
 function App() {
@@ -172,6 +173,7 @@ function App() {
             />
           }
         />
+        <Route path="/test" element={<Test />} />
       </Routes>
     </>
   );

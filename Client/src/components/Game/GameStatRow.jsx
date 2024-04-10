@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import './gameStatRow.css'
 
 function GameStatRow({title, homeValue, awayValue, homeColor, awayColor, percentage}) {
-  let awayAverage = (awayValue/(homeValue + awayValue))*100
-  let homeAverage = (homeValue/(awayValue + homeValue))*100
+  let awayAverage = ((awayValue/(homeValue + awayValue))*100)
+  let homeAverage = ((homeValue/(awayValue + homeValue))*100) 
   // const [awayAverage, setAwayAverage] = useState();
   // const [homeAverage, setHomeAverage] = useState();
 

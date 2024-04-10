@@ -51,9 +51,42 @@ function GameStats({
   const [homePK, setHomePK] = useState(0);
   const [awayPK, setAwayPK] = useState(0);
 
-  // useEffect(() => {
-  //   getGameStats(currentGame.gameID)
-  // }, [currentGame.gameID])
+  const [teamOneColor, setTeamOneColor] = useState();
+  const [teamTwoColor, setTeamTwoColor] = useState();
+
+  useEffect(() => {
+    setTeamOneColor(homeTeam.primaryColor)
+    setTeamTwoColor(awayTeam.primaryColor)
+    if (
+      homeTeam.teamID === 0 ||
+      homeTeam.teamID === 8 ||
+      homeTeam.teamID === 9 ||
+      homeTeam.teamID === 5 ||
+      homeTeam.teamID === 7 ||
+      homeTeam.teamID === 13 ||
+      homeTeam.teamID === 15 ||
+      homeTeam.teamID === 11 ||
+      homeTeam.teamID === 16
+    ) {
+      setTeamOneColor(homeTeam.primaryColor);
+      if (
+        awayTeam.teamID === 0 ||
+        awayTeam.teamID === 8 ||
+        awayTeam.teamID === 9 ||
+        awayTeam.teamID === 5 ||
+        awayTeam.teamID === 7 ||
+        awayTeam.teamID === 13 ||
+        awayTeam.teamID === 15 ||
+        awayTeam.teamID === 11 ||
+        awayTeam.teamID === 16
+      ) {
+        setTeamTwoColor(awayTeam.secondaryColor);
+      }
+    } else {
+      setTeamOneColor(homeTeam.primaryColor);
+      setTeamTwoColor(awayTeam.primaryColor);
+    }
+  }, [homeTeam, awayTeam]);
 
   useEffect(() => {
     formatPIM(gameStats.homeMinors, gameStats.awayMinors);
@@ -163,80 +196,80 @@ function GameStats({
           title="Shots on Goal"
           homeValue={gameStats.homeShots}
           awayValue={gameStats.awayShots}
-          homeColor={homeTeam.primaryColor}
-          awayColor={awayTeam.primaryColor}
+          homeColor={teamOneColor}
+          awayColor={teamTwoColor}
           percentage={false}
         />
         <GameStatRow
           title="Faceoff %"
           homeValue={homeFO}
           awayValue={awayFO}
-          homeColor={homeTeam.primaryColor}
-          awayColor={awayTeam.primaryColor}
+          homeColor={teamOneColor}
+          awayColor={teamTwoColor}
           percentage={true}
         />
         <GameStatRow
           title="Powerplays"
           homeValue={gameStats.homePP}
           awayValue={gameStats.awayPP}
-          homeColor={homeTeam.primaryColor}
-          awayColor={awayTeam.primaryColor}
+          homeColor={teamOneColor}
+          awayColor={teamTwoColor}
           percentage={false}
         />
         <GameStatRow
           title="Powerplay %"
           homeValue={homePP}
           awayValue={awayPP}
-          homeColor={homeTeam.primaryColor}
-          awayColor={awayTeam.primaryColor}
+          homeColor={teamOneColor}
+          awayColor={teamTwoColor}
           percentage={true}
         />
         <GameStatRow
           title="Penalty Minutes"
           homeValue={homePIMs}
           awayValue={awayPIMs}
-          homeColor={homeTeam.primaryColor}
-          awayColor={awayTeam.primaryColor}
+          homeColor={teamOneColor}
+          awayColor={teamTwoColor}
           percentage={false}
         />
         <GameStatRow
           title="Penalty Kill %"
           homeValue={homePK}
           awayValue={awayPK}
-          homeColor={homeTeam.primaryColor}
-          awayColor={awayTeam.primaryColor}
+          homeColor={teamOneColor}
+          awayColor={teamTwoColor}
           percentage={true}
         />
         <GameStatRow
           title="Hits"
           homeValue={gameStats.homeHits}
           awayValue={gameStats.awayHits}
-          homeColor={homeTeam.primaryColor}
-          awayColor={awayTeam.primaryColor}
+          homeColor={teamOneColor}
+          awayColor={teamTwoColor}
           percentage={false}
         />
         <GameStatRow
           title="Blocked Shots"
           homeValue={gameStats.homeBlocks}
           awayValue={gameStats.awayBlocks}
-          homeColor={homeTeam.primaryColor}
-          awayColor={awayTeam.primaryColor}
+          homeColor={teamOneColor}
+          awayColor={teamTwoColor}
           percentage={false}
         />
         <GameStatRow
           title="Giveaways"
           homeValue={gameStats.homeGiveaways}
           awayValue={gameStats.awayGiveaways}
-          homeColor={homeTeam.primaryColor}
-          awayColor={awayTeam.primaryColor}
+          homeColor={teamOneColor}
+          awayColor={teamTwoColor}
           percentage={false}
         />
         <GameStatRow
           title="Takeaways"
           homeValue={gameStats.awayGiveaways}
           awayValue={gameStats.homeGiveaways}
-          homeColor={homeTeam.primaryColor}
-          awayColor={awayTeam.primaryColor}
+          homeColor={teamOneColor}
+          awayColor={teamTwoColor}
           percentage={false}
         />
       </div>

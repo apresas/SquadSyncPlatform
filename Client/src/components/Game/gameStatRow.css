@@ -22,22 +22,27 @@
   width: 100%;
   height: 0.5em;
   border: 1px solid lightgrey;
+  overflow: hidden;
 }
 
 .home_bar {
   position: absolute;
-  left: 0;
+  left: -2.5px;
   top: 0;
   bottom: 0;
+  transform: skew(35deg);
   /* background-color: gold; */
   /* width: 60%; */
 }
 
+
 .away_bar {
   position: absolute;
-  right: 0;
+  right: -2.5px;
   top: 0;
   bottom: 0;
+  transform: skew(35deg);
   /* background-color: #00308F; */
   /* width: 40%; */
 }
+
