@@ -68,3 +68,144 @@
     width: 100%;
     gap: 0.5rem;
 }
+
+
+
+.test_grid_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.test_active_grid {
+    /* display: grid; */
+    /* grid-template-columns: 59% 41%; */
+    display: flex;
+    justify-items: center;
+    /* align-items: center; */
+    width: 100%;
+}
+
+.test_inactive_grid {
+    /* display: grid;
+    grid-template-columns: 59% 41%;
+    justify-items: center; */
+    /* align-items: center; */
+    width: 100%;
+}
+
+
+.root, .container1, .container2 {
+    /* border: 1px solid lightgrey; */
+    padding: 0 1.5rem 1.5rem;
+    gap: 0.5rem;
+    /* min-height: fit-content; */
+    /* height: 100%; */
+}
+
+.root {
+    display: grid;
+    justify-items: center;
+    grid-template-columns: repeat(3, 1fr);
+    /* width: fit-content; */
+    /* border-right: none; */
+}
+
+.container1{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    /* width: fit-content; */
+}
+
+.container2 {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+}
+
+.test_title {
+    text-align: center;
+    width: 100%;
+}
+
+.test_title h2 {
+    font-family: var(--font-header);
+    font-size: 2rem;
+}
+
+.test_player_number{
+    margin: 0;
+    font-family: var(--font-header);
+    line-height: 0.95;
+}
+
+.test_player_position {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+    font-size: 0.8rem;
+}
+.test_player_position img{
+    width: 1.5rem;
+    aspect-ratio: 1/1;
+}
+
+.test_roster_tile {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid lightgray;
+    width: fit-content;
+    min-width: 6.5rem;
+    aspect-ratio: 1/1;
+    padding: 1.5rem;
+    background-color: rgb(245, 245, 252);
+    transition: var(--transition-fast);
+}
+.test_roster_tile:hover {
+    transform: scale(1.05);
+    transition: var(--transition-fast);
+}
+
+.test_column {
+    border: 1px solid lightgrey;
+    border-bottom: none;
+}
+
+.test_column:nth-of-type(2) {
+    border-left: none;
+}
+
+.test_inactive_grid .test_column {
+    border-bottom: 1px solid lightgrey;
+}
+
+.test_tile_overlay {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: rgb(245, 245, 252);
+    opacity: 0.85;
+    font-size: 4rem;
+    color: grey;
+    transition: var(--transition-fast);
+}
+
+.test_tile_overlay:hover{
+    opacity: 0;
+    transition: var(--transition-fast);
+}
+
+
+
+/* .test_container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+} */

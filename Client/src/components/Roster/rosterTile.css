@@ -9,6 +9,8 @@
     width: 7rem;
     aspect-ratio: 1/1;
     transition: var(--transition-fast);
+    user-select: none;
+    background-color: rgb(245, 245, 252);
 }
 
 .roster_tile_container:hover {
