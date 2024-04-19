@@ -45,3 +45,8 @@
     border: 1px solid lightgrey;
     height: fit-content;
 }
+
+.roster_controls_container {
+    display: flex;
+    align-items: center
+}

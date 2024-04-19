@@ -15,6 +15,9 @@ import GoalieStatsModal from "../../modal/GoalieStatsModal";
 import { DateTime } from "luxon";
 import { useLocation } from "react-router-dom";
 import LoadingOverlay from "../Loading/LoadingOverlay";
+import GameControls from "./GameControls";
+import Roster from "../Roster/Roster";
+import TeamFilter from "./TeamFilter";
 
 function GameSummary({
   currentGame,
@@ -73,6 +76,8 @@ function GameSummary({
   const [homeGoalieStats, setHomeGoalieStats] = useState([]);
   const [awayGoalieStats, setAwayGoalieStats] = useState([]);
 
+  const [sectionID, setSectionID] = useState("EVENTS");
+
   const [gameStats, setGameStats] = useState({
     gameStatsID: 0,
     homeShots: 0,
@@ -103,6 +108,12 @@ function GameSummary({
   const [openStatsModal, setOpenStatsModal] = useState(false);
 
   const [openGoalieModal, setOpenGoalieModal] = useState(false);
+
+  const [filterTeamID, setFilterTeamID] = useState();
+
+  useEffect(() => {
+    setFilterTeamID(homeTeam.teamID);
+  }, [homeTeam, awayTeam])
 
   const handleModalOpen = async (e) => {
     e.preventDefault();
@@ -532,6 +543,15 @@ function GameSummary({
       });
   };
 
+  useEffect(() => {
+    // console.log(sectionID);
+    setFilterTeamID(homeTeam.teamID)
+  }, [sectionID]);
+
+  // useEffect(() => {
+  //   console.log(filterTeamID);
+  // }, [filterTeamID]);
+
   // useEffect(() => {
   //   // getSeriesRecord(
   //   //   homeTeam.teamID,
@@ -633,28 +653,39 @@ function GameSummary({
               />
               <div className="gameSummary_grid">
                 <section className="gameSummary_main_content">
+                  <GameControls setSectionID={setSectionID} />
                   {/* <BoxScore currentGame={currentGame} homeTeam={homeTeam} awayTeam={awayTeam}/> */}
-                  <GameEvent
-                    homeTeam={homeTeam}
-                    awayTeam={awayTeam}
-                    homeRoster={homeRoster}
-                    awayRoster={awayRoster}
-                    handleModalOpen={handleModalOpen}
-                    currentGame={currentGame}
-                    filteredPlayers={filteredPlayers}
-                    homeLoading={homeLoading}
-                    awayLoading={awayLoading}
-                    // currentEvents={currentEvents}
-                    // setCurrentEvents={setCurrentEvents}
-                    gameScore={gameScore}
-                    eventSubmit={eventSubmit}
-                    gameEvents={gameEvents}
-                    setGameEvents={setGameEvents}
-                    currentGameID={currentGameID}
-                    setStatus={setStatus}
-                    isFinal={isFinal}
-                    setIsFinal={setIsFinal}
-                  />
+                  {sectionID === "EVENTS" ? (
+                    <GameEvent
+                      homeTeam={homeTeam}
+                      awayTeam={awayTeam}
+                      homeRoster={homeRoster}
+                      awayRoster={awayRoster}
+                      handleModalOpen={handleModalOpen}
+                      currentGame={currentGame}
+                      filteredPlayers={filteredPlayers}
+                      homeLoading={homeLoading}
+                      awayLoading={awayLoading}
+                      // currentEvents={currentEvents}
+                      // setCurrentEvents={setCurrentEvents}
+                      gameScore={gameScore}
+                      eventSubmit={eventSubmit}
+                      gameEvents={gameEvents}
+                      setGameEvents={setGameEvents}
+                      currentGameID={currentGameID}
+                      setStatus={setStatus}
+                      isFinal={isFinal}
+                      setIsFinal={setIsFinal}
+                    />
+                  ) : (
+                    <>
+                    <div className="roster_controls_container">
+                    <h2>Roster</h2>
+                    <TeamFilter homeTeam={homeTeam} awayTeam={awayTeam} setFilterTeamID={setFilterTeamID}/>
+                    </div>
+                    <Roster filterTeamID={filterTeamID} setFilterTeamID={setFilterTeamID}/>
+                    </>
+                  )}
                 </section>
                 <section className="gameSummary_side_content">
                   <LineScore

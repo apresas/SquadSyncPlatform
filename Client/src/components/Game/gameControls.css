@@ -1,0 +1,44 @@
+.game_controls_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 1.5rem;
+}
+
+.game_filter_controls {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  border: 1px solid lightgray;
+  width: 25rem;
+  border-radius: 7px;
+  overflow: hidden;
+}
+
+.game_roster_btn,
+.game_events_btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: inherit;
+  padding: 1rem;
+  color: var(--color-bg);
+  height: 1.75rem;
+  border-radius: 0;
+  transition: var(--transition-fast);
+  border: none;
+}
+
+.game_roster_btn:hover,
+.game_events_btn:hover {
+    background-color: var(--color-dark-white)
+}
+
+.selected {
+    background-color: var(--color-bg);
+    color: white;
+  }
+
+.selected:hover {
+    background-color: var(--color-ohio-blue);
+}

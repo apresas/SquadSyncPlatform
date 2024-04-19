@@ -50,7 +50,7 @@ const defaultAnnouncements = {
   },
 };
 
-export default function TestRoster({ playerItems, setPlayerItems }) {
+export default function TestRoster({ playerItems, setPlayerItems, filterTeamID, setFilterTeamID }) {
   const [items, setItems] = useState({
     root: ["1", "2", "3"],
     container1: ["4", "5", "6"],
@@ -61,6 +61,8 @@ export default function TestRoster({ playerItems, setPlayerItems }) {
   const [activeId, setActiveId] = useState();
 
   const [players, setPlayers] = useState([]);
+  const [logo, setLogo] = useState();
+
 
   const sensors = useSensors(
     useSensor(PointerSensor),
@@ -71,7 +73,7 @@ export default function TestRoster({ playerItems, setPlayerItems }) {
 
   useEffect(() => {
     getRoster();
-  }, []);
+  }, [filterTeamID]);
 
   useEffect(() => {
     const forwards = players.filter((player) => player.position === "Forward");
@@ -87,7 +89,7 @@ export default function TestRoster({ playerItems, setPlayerItems }) {
 
   const getRoster = async () => {
     await axios
-      .get("http://localhost:9200/playerByTeam/" + 9)
+      .get("http://localhost:9200/playerByTeam/" + filterTeamID)
       .then((res) => {
         // setRoster(res.data);
         setPlayers(res.data);
@@ -95,6 +97,17 @@ export default function TestRoster({ playerItems, setPlayerItems }) {
       .catch((err) => {
         console.log(err);
       });
+
+      await axios
+      .get("http://localhost:9200/team/" + filterTeamID)
+      .then((res) => {
+        // setRoster(res.data);
+        setLogo(res.data.logo);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
   };
 
   return (
@@ -112,13 +125,17 @@ export default function TestRoster({ playerItems, setPlayerItems }) {
             id="root"
             items={items.root}
             players={playerItems.root}
+            filterTeamID={filterTeamID}
             isActive={true}
+            logo={logo}
           />
           <Container
             id="container1"
             items={items.container1}
             players={playerItems.container1}
+            filterTeamID={filterTeamID}
             isActive={true}
+            logo={logo}
           />
         </div>
         <div className="test_inactive_grid">
@@ -127,7 +144,9 @@ export default function TestRoster({ playerItems, setPlayerItems }) {
             id="container2"
             items={items.container2}
             players={playerItems.container2}
+            filterTeamID={filterTeamID}
             isActive={false}
+            logo={logo}
           />
         </div>
         {/* <Container id="container3" items={items.container3} players={playerItems.container3}/> */}
@@ -140,7 +159,7 @@ export default function TestRoster({ playerItems, setPlayerItems }) {
     if (id in playerItems) {
       return id;
     }
-    console.log(id);
+    // console.log(id);
     return Object.keys(playerItems).find((key) =>
       playerItems[key].includes(id)
     );
@@ -158,11 +177,21 @@ export default function TestRoster({ playerItems, setPlayerItems }) {
     const { id } = active;
     const { id: overId } = over;
 
-    console.log(event);
+    // console.log(overId.position);
+    // console.log(active.id)
 
     // Find the containers
     const activeContainer = findContainer(id);
     const overContainer = findContainer(overId);
+
+    // console.log(overContainer)
+
+    if(
+      (overContainer === "container1" && active.id.position !== "Defense") || (overContainer === "root" && active.id.position !== "Forward")
+    ){
+      return;
+    }
+
 
     if (
       !activeContainer ||
@@ -215,7 +244,7 @@ export default function TestRoster({ playerItems, setPlayerItems }) {
     const { id } = active;
     const { id: overId } = over;
 
-    console.log(id);
+    // console.log(id);
 
     const activeContainer = findContainer(id);
     const overContainer = findContainer(overId);

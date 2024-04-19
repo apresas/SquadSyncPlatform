@@ -878,10 +878,10 @@ function GoalieStatsModal({
   };
 
   useEffect(() => {
-    console.log(homeGoalieOneStats);
-    console.log(awayGoalieOneStats);
-    console.log(homeGoalieTwoStats);
-    console.log(awayGoalieTwoStats);
+    // console.log(homeGoalieOneStats);
+    // console.log(awayGoalieOneStats);
+    // console.log(homeGoalieTwoStats);
+    // console.log(awayGoalieTwoStats);
 
     let homeGoalieStats = [];
     let awayGoaliesStats = [];

@@ -14,9 +14,9 @@
     max-width: 1280px;
     background-color: rgb(245, 245, 252);
     color: var(--color-bg);
-    margin-top: 2rem;
+    margin-top: 1rem;
     font-family: var(--font-main);
-    padding: 4rem 0 8rem;
+    /* padding: 4rem 0 8rem; */
 }
 
 .roster_grid {
@@ -125,6 +125,7 @@
 .test_title {
     text-align: center;
     width: 100%;
+    padding: 1rem 0;
 }
 
 .test_title h2 {
@@ -132,8 +133,14 @@
     font-size: 2rem;
 }
 
+.test_player_name {
+    font-size: 0.9rem;
+    text-align: center;
+}
+
 .test_player_number{
     margin: 0;
+    font-size: 2.5rem;
     font-family: var(--font-header);
     line-height: 0.95;
 }
@@ -143,10 +150,10 @@
     align-items: center;
     justify-content: center;
     gap: 0.25rem;
-    font-size: 0.8rem;
+    font-size: 0.7rem;
 }
 .test_player_position img{
-    width: 1.5rem;
+    width: 1rem;
     aspect-ratio: 1/1;
 }
 
@@ -160,9 +167,21 @@
     width: fit-content;
     min-width: 6.5rem;
     aspect-ratio: 1/1;
-    padding: 1.5rem;
+    padding: 0.3rem;
     background-color: rgb(245, 245, 252);
     transition: var(--transition-fast);
+    overflow: hidden;
+    user-select: none;
+}
+
+.tile_bg_logo {
+    position: absolute;
+    top: 1rem;
+    bottom: 1rem;
+    right: 1rem;
+    left: 1rem;
+    opacity: 0.1;
+    aspect-ratio: 1/1;
 }
 .test_roster_tile:hover {
     transform: scale(1.05);

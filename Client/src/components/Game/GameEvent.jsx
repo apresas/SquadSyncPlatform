@@ -140,14 +140,14 @@ function GameEvent({
     <div className="gameEvent_container">
       <header className="gameEvent_header_container">
         <h2 className="gameEvent_title">Game Events</h2>
-        <div className="gameEvent_filters">
+        {/* <div className="gameEvent_filters">
           <button className="gameEvent_home_btn" ref={homeButton} onClick={() => handleFilterButton("gameEvent_home_btn")}>
             {homeTeam.schoolName}
           </button>
           <button className="gameEvent_away_btn selected" ref={awayButton} onClick={() => handleFilterButton("gameEvent_away_btn")}>
             {awayTeam.schoolName}
           </button>
-        </div>
+        </div> */}
       </header>
       <section className="gameEvent_content">
         {gameEvents

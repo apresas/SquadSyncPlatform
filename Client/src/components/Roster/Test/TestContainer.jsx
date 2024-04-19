@@ -18,7 +18,7 @@ const containerStyle = {
   // gridTemplateColumns: "1fr 1fr 1fr"
 };
 
-export default function Container({ id, items, players, isActive}) {
+export default function Container({ id, items, players, isActive, filterTeamID, logo}) {
   const [containerStyle, setContainerStyle] = useState("");
   const [title, setTitle] = useState("");
 
@@ -53,7 +53,7 @@ export default function Container({ id, items, players, isActive}) {
           <SortableItem key={i} id={id} item={items}/>
         ))} */}
           {players.map((player, i) => (
-            <SortableItem key={i} id={player} player={player} isActive={isActive} />
+            <SortableItem key={i} id={player} player={player} isActive={isActive} filterTeamID={filterTeamID} logo={logo}/>
           ))}
         </div>
       </div>

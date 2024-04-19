@@ -12,7 +12,7 @@ import { useDroppable } from "@dnd-kit/core";
 import RosterSection from "./RosterSection";
 import TestRoster from "./Test/TestRoster";
 
-function Roster() {
+function Roster({filterTeamID, setFilterTeamID}) {
   const [players, setPlayers] = useState([]);
   const [lists, setLists] = useState({
     forwards: [],
@@ -26,6 +26,8 @@ function Roster() {
     container2: [],
     // container3: []
   });
+
+  // const filterTeamID = 9
 
   const [activeID, setActiveID] = useState();
   // const [test, setTest] = useState(["Test 1", "Test 2", "Test 3", "Test 4"]);
@@ -42,7 +44,7 @@ function Roster() {
   useEffect(() => {
     getRoster();
     getTeam();
-  }, []);
+  }, [filterTeamID]);
 
   useEffect(() => {
     const forwards = players.filter((player) => player.position === "Forward");
@@ -52,7 +54,7 @@ function Roster() {
 
   const getRoster = async () => {
     await axios
-      .get("http://localhost:9200/playerByTeam/" + 9)
+      .get("http://localhost:9200/playerByTeam/" + filterTeamID)
       .then((res) => {
         setRoster(res.data);
         setPlayers(res.data);
@@ -69,7 +71,7 @@ function Roster() {
   };
   const getTeam = async () => {
     await axios
-      .get("http://localhost:9200/team/" + 9)
+      .get("http://localhost:9200/team/" + filterTeamID)
       .then((res) => {
         setTeam(res.data);
       })
@@ -128,7 +130,7 @@ function Roster() {
     getLists(forwards, defense);
   };
 
-  console.log(lists);
+  // console.log(lists);
 
   const defaultAnnouncements = {
     onDragStart(id) {
@@ -369,6 +371,8 @@ function Roster() {
           <TestRoster
             playerItems={playerItems}
             setPlayerItems={setPlayerItems}
+            filterTeamID={filterTeamID}
+            setFilterTeamID={setFilterTeamID}
           />
           <div className="roster_controls">
             <button className="submit_btn btn" onClick={handleRosterSubmit}>
